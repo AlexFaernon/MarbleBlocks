@@ -9,17 +9,10 @@ public class Jumper : MonoBehaviour
     private Tile _targetTile;
     private Side _movingSide;
     private bool _isMoving;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        if (!_currentTile.isGrass && !_isMoving)
+        if (!_currentTile.isGrass && !_currentTile.isFeeshOnTile && !_isMoving)
         {
             Destroy(gameObject);
         }
@@ -88,8 +81,13 @@ public class Jumper : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (!col.CompareTag("Ground")) return;
-
-        _currentTile = col.GetComponent<Tile>();
+        if (col.CompareTag("Ground"))
+        {
+            _currentTile = col.GetComponent<Tile>();
+        }
+        if (col.CompareTag("Spike"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

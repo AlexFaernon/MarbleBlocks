@@ -10,19 +10,23 @@ public class Feesh : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (_currentTile.isJumperOnTile || _currentTile.isSonicOnTile)
         {
-            var layerObject = LayerMask.GetMask("Ground");
-            var ray = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
-                Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-            var hit = Physics2D.Raycast(ray, ray, Mathf.Infinity, layerObject);
-            if (hit.collider != null)
+            return;
+        }
+
+        if (!Input.GetMouseButtonDown(0)) return;
+        
+        var layerObject = LayerMask.GetMask("Ground");
+        var ray = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
+            Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+        var hit = Physics2D.Raycast(ray, ray, Mathf.Infinity, layerObject);
+        if (hit.collider != null)
+        {
+            var targetTile = hit.collider.gameObject.GetComponent<Tile>();
+            if (CanSwimToTile(targetTile))
             {
-                var targetTile = hit.collider.gameObject.GetComponent<Tile>();
-                if (CanSwimToTile(targetTile))
-                {
-                    transform.position = targetTile.gameObject.transform.position;
-                }
+                transform.position = targetTile.gameObject.transform.position;
             }
         }
     }

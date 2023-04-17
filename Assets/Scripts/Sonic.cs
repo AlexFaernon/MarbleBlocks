@@ -9,32 +9,37 @@ public class Sonic : MonoBehaviour
 
     private void Update()
     {
-        if (!_currentTile.isGrass && !_isMoving)
+        if (!_currentTile.isGrass && !_currentTile.isFeeshOnTile && !_isMoving)
         {
             Destroy(gameObject);
+        }
+
+        if (_currentTile.isJumperOnTile)
+        {
+            return;
         }
         
         if (!_isMoving)
         {
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 _isMoving = true;
                 _movingSide = Side.North;
             }
 
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 _isMoving = true;
                 _movingSide = Side.South;
             }
 
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 _isMoving = true;
                 _movingSide = Side.East;
             }
 
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 _isMoving = true;
                 _movingSide = Side.West;
@@ -60,7 +65,8 @@ public class Sonic : MonoBehaviour
             return;
         }
         
-        if (_currentTile.AvailableToMoveThroughSide(_movingSide) && nextTile.AvailableToMoveThroughSide(enterSide))
+        if (_currentTile.AvailableToMoveThroughSide(_movingSide) && nextTile.AvailableToMoveThroughSide(enterSide) &&
+            !nextTile.isJumperOnTile)
         {
             transform.position = nextTile.transform.position;
         }
@@ -72,8 +78,13 @@ public class Sonic : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (!col.CompareTag("Ground")) return;
-
-        _currentTile = col.GetComponent<Tile>();
+        if (col.CompareTag("Ground"))
+        {
+            _currentTile = col.GetComponent<Tile>();
+        }
+        if (col.CompareTag("Spike"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

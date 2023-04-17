@@ -27,7 +27,7 @@ public class Lever : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (!col.CompareTag("Player")) return;
+        if (!col.CompareTag("Sonic") && !col.CompareTag("Jumper") && !col.CompareTag("Feesh")) return;
 
         if (isSwitchable || !_isActive)
         {

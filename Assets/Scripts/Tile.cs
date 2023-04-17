@@ -12,6 +12,9 @@ public class Tile : MonoBehaviour
     [SerializeField] private WallClass eastWall;
     public Vector2Int gridPosition;
     private SpriteRenderer _spriteRenderer;
+    public bool isFeeshOnTile;
+    public bool isJumperOnTile;
+    public bool isSonicOnTile;
 
     private void Awake()
     {
@@ -33,5 +36,41 @@ public class Tile : MonoBehaviour
             Side.East => eastWall.AvailableToMove(),
             _ => throw new ArgumentOutOfRangeException(nameof(side), side, null)
         };
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Feesh"))
+        {
+            isFeeshOnTile = true;
+        }
+
+        if (col.CompareTag("Jumper"))
+        {
+            isJumperOnTile = true;
+        }
+        
+        if (col.CompareTag("Sonic"))
+        {
+            isSonicOnTile = true;
+        }
+    }
+    
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.CompareTag("Feesh"))
+        {
+            isFeeshOnTile = false;
+        }
+
+        if (col.CompareTag("Jumper"))
+        {
+            isJumperOnTile = false;
+        }
+
+        if (col.CompareTag("Sonic"))
+        {
+            isSonicOnTile = false;
+        }
     }
 }

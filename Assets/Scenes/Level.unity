@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 946066859}
   m_Layer: 0
   m_Name: Jumper
-  m_TagString: Player
+  m_TagString: Jumper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -304,7 +304,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 0.30254498, b: 0, a: 1}
   m_FlipX: 0
@@ -422,7 +422,7 @@ GameObject:
   - component: {fileID: 1544296218}
   m_Layer: 0
   m_Name: Feesh
-  m_TagString: Player
+  m_TagString: Feesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -563,11 +563,11 @@ GameObject:
   - component: {fileID: 2066191732}
   m_Layer: 0
   m_Name: Sonic
-  m_TagString: Player
+  m_TagString: Sonic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!50 &2066191732
 Rigidbody2D:
   serializedVersion: 4
@@ -645,7 +645,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0, g: 0.7930951, b: 1, a: 1}
   m_FlipX: 0
