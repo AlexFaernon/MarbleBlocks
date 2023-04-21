@@ -25,14 +25,11 @@ public class Lever : MonoBehaviour
         _spriteRenderer.color = spriteColor;
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    public void Switch()
     {
-        if (!col.CompareTag("Sonic") && !col.CompareTag("Jumper") && !col.CompareTag("Feesh")) return;
-
-        if (isSwitchable || !_isActive)
-        {
-            _isActive = !_isActive;
-            WallClass.OnLevelSwitch.Invoke(color);
-        }
+        if (!isSwitchable && _isActive) return;
+        
+        _isActive = !_isActive;
+        WallClass.OnLevelSwitch.Invoke(color);
     }
 }

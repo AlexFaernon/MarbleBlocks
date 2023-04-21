@@ -26,7 +26,7 @@ public class Feesh : MonoBehaviour
             var targetTile = hit.collider.gameObject.GetComponent<Tile>();
             if (CanSwimToTile(targetTile))
             {
-                transform.position = targetTile.gameObject.transform.position;
+                transform.position = targetTile.transform.position;
             }
         }
     }
@@ -87,8 +87,14 @@ public class Feesh : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (!col.CompareTag("Ground")) return;
-
-        _currentTile = col.GetComponent<Tile>();
+        if (col.CompareTag("Ground"))
+        {
+            _currentTile = col.GetComponent<Tile>();
+        }
+        
+        if (col.CompareTag("Lever"))
+        {
+            col.GetComponent<Lever>().Switch();
+        }
     }
 }

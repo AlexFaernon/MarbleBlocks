@@ -415,10 +415,10 @@ GameObject:
   - component: {fileID: 1961461068361722116}
   - component: {fileID: 5282572041587201037}
   - component: {fileID: 2776009732546278545}
-  - component: {fileID: 678120817697927904}
+  - component: {fileID: 2221280172028741453}
   m_Layer: 0
   m_Name: Lever
-  m_TagString: Untagged
+  m_TagString: Lever
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -504,7 +504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSwitchable: 0
   color: {r: 0, g: 0, b: 0, a: 0}
---- !u!61 &678120817697927904
+--- !u!61 &2221280172028741453
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -588,6 +588,9 @@ MonoBehaviour:
   westWall: {fileID: 8907400977605207734}
   eastWall: {fileID: 254574152065305435}
   gridPosition: {x: 0, y: 0}
+  isFeeshOnTile: 0
+  isJumperOnTile: 0
+  isSonicOnTile: 0
 --- !u!212 &437219753439431342
 SpriteRenderer:
   m_ObjectHideFlags: 0

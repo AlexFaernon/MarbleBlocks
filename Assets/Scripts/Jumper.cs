@@ -85,9 +85,15 @@ public class Jumper : MonoBehaviour
         {
             _currentTile = col.GetComponent<Tile>();
         }
+        
         if (col.CompareTag("Spike"))
         {
             Destroy(gameObject);
+        }
+        
+        if (col.CompareTag("Lever"))
+        {
+            col.GetComponent<Lever>().Switch();
         }
     }
 }

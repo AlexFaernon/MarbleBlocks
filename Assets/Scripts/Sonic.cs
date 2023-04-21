@@ -4,12 +4,30 @@ using UnityEngine;
 public class Sonic : MonoBehaviour
 {
     private Tile _currentTile;
-    private bool _isMoving;
+    private bool isMoving;
     private Side _movingSide;
+    private Lever lever;
+
+    public bool IsMoving
+    {
+        get => isMoving;
+        set
+        {
+            isMoving = value;
+            if (isMoving || lever is null) return;
+            
+            if ((transform.position - lever.transform.position).magnitude < 0.01f)
+            {
+                lever.Switch();
+            }
+
+            lever = null;
+        }
+    }
 
     private void Update()
     {
-        if (!_currentTile.isGrass && !_currentTile.isFeeshOnTile && !_isMoving)
+        if (!_currentTile.isGrass && !_currentTile.isFeeshOnTile && !IsMoving)
         {
             Destroy(gameObject);
         }
@@ -19,29 +37,29 @@ public class Sonic : MonoBehaviour
             return;
         }
         
-        if (!_isMoving)
+        if (!IsMoving)
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                _isMoving = true;
+                IsMoving = true;
                 _movingSide = Side.North;
             }
 
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                _isMoving = true;
+                IsMoving = true;
                 _movingSide = Side.South;
             }
 
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                _isMoving = true;
+                IsMoving = true;
                 _movingSide = Side.East;
             }
 
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                _isMoving = true;
+                IsMoving = true;
                 _movingSide = Side.West;
             }
             
@@ -58,10 +76,10 @@ public class Sonic : MonoBehaviour
         };
         
         var nextTile = TileManager.GetTile(_currentTile, _movingSide);
-        if (!nextTile)
+        if (!nextTile && _currentTile.AvailableToMoveThroughSide(_movingSide))
         {
             Debug.Log("Out of map");
-            _isMoving = false;
+            IsMoving = false;
             return;
         }
         
@@ -72,7 +90,7 @@ public class Sonic : MonoBehaviour
         }
         else
         {
-            _isMoving = false;
+            IsMoving = false;
         }
     }
 
@@ -82,9 +100,15 @@ public class Sonic : MonoBehaviour
         {
             _currentTile = col.GetComponent<Tile>();
         }
+        
         if (col.CompareTag("Spike"))
         {
             Destroy(gameObject);
+        }
+
+        if (col.CompareTag("Lever"))
+        {
+            lever = col.GetComponent<Lever>();
         }
     }
 }

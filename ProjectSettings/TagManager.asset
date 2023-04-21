@@ -11,6 +11,7 @@ TagManager:
   - Sonic
   - Feesh
   - Jumper
+  - Lever
   layers:
   - Default
   - TransparentFX
