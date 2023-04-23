@@ -16,15 +16,20 @@ public class TileManager : MonoBehaviour
     private void Awake()
     {
         _grid = GetComponent<Grid>();
-        _tiles = new Tile[fieldSize.x, fieldSize.y];
-        for (var x = 0; x < fieldSize.x; x++)
+        _tiles = new Tile[fieldSize.x + 2, fieldSize.y + 2];
+        for (var x = 0; x < fieldSize.x + 2; x++)
         {
-            for (var y = 0; y < fieldSize.y; y++)
+            for (var y = 0; y < fieldSize.y + 2; y++)
             {
                 var intPos = new Vector2Int(x, y);
                 var pos = _grid.GetCellCenterWorld((Vector3Int)intPos);
                 _tiles[x, y] = Instantiate(tile, pos, Quaternion.identity).GetComponent<Tile>();
                 _tiles[x, y].gridPosition = intPos;
+                if (x == 0 || x == fieldSize.x + 1 || y == 0 || y == fieldSize.y + 1)
+                {
+                    _tiles[x, y].isEdge = true;
+                }
+                
                 _tiles[x, y].isGrass = true;
             }
         }

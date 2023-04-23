@@ -5,16 +5,19 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+    public bool isEdge;
     public bool isGrass;
     [SerializeField] private WallClass northWall;
     [SerializeField] private WallClass southWall;
     [SerializeField] private WallClass westWall;
     [SerializeField] private WallClass eastWall;
-    public Vector2Int gridPosition;
+    [SerializeField] private GameObject whirlpool;
+    [HideInInspector] public Vector2Int gridPosition;
     private SpriteRenderer _spriteRenderer;
-    public bool isFeeshOnTile;
-    public bool isJumperOnTile;
-    public bool isSonicOnTile;
+    [HideInInspector] public bool isFeeshOnTile;
+    [HideInInspector] public bool isJumperOnTile;
+    [HideInInspector] public bool isSonicOnTile;
+    public bool IsWhirlpoolOnTile => whirlpool.activeSelf;
 
     private void Awake()
     {
@@ -23,6 +26,12 @@ public class Tile : MonoBehaviour
 
     private void Update()
     {
+        if (isEdge)
+        {
+            _spriteRenderer.color = Color.clear;
+            return;
+        }
+        
         _spriteRenderer.color = isGrass ? Color.green : Color.blue;
     }
 

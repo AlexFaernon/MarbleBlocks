@@ -29,7 +29,16 @@ public class Sonic : MonoBehaviour
     {
         if (!_currentTile.isGrass && !_currentTile.isFeeshOnTile && !IsMoving)
         {
+            Debug.Log("Drown");
             Destroy(gameObject);
+            return;
+        }
+
+        if (_currentTile.isEdge)
+        {
+            Debug.Log("Fall");
+            Destroy(gameObject);
+            return;
         }
 
         if (_currentTile.isJumperOnTile)
@@ -76,13 +85,7 @@ public class Sonic : MonoBehaviour
         };
         
         var nextTile = TileManager.GetTile(_currentTile, _movingSide);
-        if (!nextTile && _currentTile.AvailableToMoveThroughSide(_movingSide))
-        {
-            Debug.Log("Out of map");
-            IsMoving = false;
-            return;
-        }
-        
+
         if (_currentTile.AvailableToMoveThroughSide(_movingSide) && nextTile.AvailableToMoveThroughSide(enterSide) &&
             !nextTile.isJumperOnTile)
         {

@@ -82,7 +82,7 @@ public class Feesh : MonoBehaviour
         }
         
         return tile.AvailableToMoveThroughSide(movingSide) && nextTile.AvailableToMoveThroughSide(enterSide) &&
-               !nextTile.isGrass;
+               !nextTile.isGrass && !nextTile.IsWhirlpoolOnTile && !nextTile.isEdge;
     }
     
     private void OnTriggerEnter2D(Collider2D col)

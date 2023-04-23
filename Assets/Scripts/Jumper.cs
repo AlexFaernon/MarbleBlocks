@@ -14,7 +14,16 @@ public class Jumper : MonoBehaviour
     {
         if (!_currentTile.isGrass && !_currentTile.isFeeshOnTile && !_isMoving)
         {
+            Debug.Log("Drown");
             Destroy(gameObject);
+            return;
+        }
+        
+        if (_currentTile.isEdge)
+        {
+            Debug.Log("Fall");
+            Destroy(gameObject);
+            return;
         }
         
         if (Input.GetKeyDown(KeyCode.W))
@@ -64,7 +73,6 @@ public class Jumper : MonoBehaviour
         var nextTile = TileManager.GetTile(_targetTile, _movingSide);
         if (!nextTile)
         {
-            Debug.Log("Out of map");
             _isMoving = false;
             return;
         }
