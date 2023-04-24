@@ -8,31 +8,63 @@ using UnityEngine.Tilemaps;
 
 public class TileManager : MonoBehaviour
 {
-    [SerializeField] private GameObject tile;
+    [SerializeField] private GameObject tilePrefab;
     [SerializeField] private Vector2Int fieldSize;
+    [SerializeField] private bool loadLevel;
     private Grid _grid;
+    private static TileClass[,] _loadedTiles;
     private static Tile[,] _tiles;
 
     private void Awake()
     {
         _grid = GetComponent<Grid>();
         _tiles = new Tile[fieldSize.x + 2, fieldSize.y + 2];
+        if (loadLevel)
+        {
+            _loadedTiles = SaveManager.LoadLevel();
+        }
+
+        BuildLevel();
+    }
+
+    private void BuildLevel()
+    {
         for (var x = 0; x < fieldSize.x + 2; x++)
         {
             for (var y = 0; y < fieldSize.y + 2; y++)
             {
                 var intPos = new Vector2Int(x, y);
                 var pos = _grid.GetCellCenterWorld((Vector3Int)intPos);
-                _tiles[x, y] = Instantiate(tile, pos, Quaternion.identity).GetComponent<Tile>();
+                _tiles[x, y] = Instantiate(tilePrefab, pos, Quaternion.identity).GetComponent<Tile>();
                 _tiles[x, y].gridPosition = intPos;
                 if (x == 0 || x == fieldSize.x + 1 || y == 0 || y == fieldSize.y + 1)
                 {
                     _tiles[x, y].isEdge = true;
                 }
-                
-                _tiles[x, y].isGrass = true;
+                else if (loadLevel)
+                {
+                    _tiles[x, y].TileClass = _loadedTiles[x - 1, y - 1];
+                }
+                else
+                {
+                    _tiles[x, y].isGrass = true;
+                }
             }
         }
+    }
+
+    public TileClass[,] GetSave()
+    {
+        var tiles = new TileClass[fieldSize.x, fieldSize.y];
+
+        foreach (var tile in _tiles)
+        {
+            if (tile.isEdge) continue;
+            
+            tiles[tile.gridPosition.x - 1, tile.gridPosition.y - 1] = tile.GetSave();
+        }
+
+        return tiles;
     }
 
     public static Tile GetTile(Tile currentTile, Side nearTitleSide)

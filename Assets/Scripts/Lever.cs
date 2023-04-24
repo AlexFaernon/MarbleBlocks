@@ -8,6 +8,12 @@ public class Lever : MonoBehaviour
 {
     [SerializeField] private bool isSwitchable;
     [SerializeField] private Color color;
+
+    public LeverClass LeverClass
+    {
+        set => SetLever(value);
+    }
+
     private bool _isActive;
     private SpriteRenderer _spriteRenderer;
 
@@ -25,11 +31,22 @@ public class Lever : MonoBehaviour
         _spriteRenderer.color = spriteColor;
     }
 
+    public LeverClass GetSave()
+    {
+        return new LeverClass { Color = color, IsSwitchable = isSwitchable };
+    }
+
     public void Switch()
     {
         if (!isSwitchable && _isActive) return;
         
         _isActive = !_isActive;
-        WallClass.OnLevelSwitch.Invoke(color);
+        Wall.OnLevelSwitch.Invoke(color);
+    }
+    
+    private void SetLever(LeverClass leverClass)
+    {
+        isSwitchable = leverClass.IsSwitchable;
+        color = leverClass.Color;
     }
 }
