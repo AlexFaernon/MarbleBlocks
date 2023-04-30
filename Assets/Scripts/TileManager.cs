@@ -1,15 +1,10 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
-using UnityEditor.Tilemaps;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class TileManager : MonoBehaviour
 {
     [SerializeField] private GameObject tilePrefab;
-    [SerializeField] private Vector2Int fieldSize;
+    public Vector2Int fieldSize;
     [SerializeField] private bool loadLevel;
     private Grid _grid;
     private static TileClass[,] _loadedTiles;
@@ -18,10 +13,14 @@ public class TileManager : MonoBehaviour
     private void Awake()
     {
         _grid = GetComponent<Grid>();
+        if (loadLevel)
+        {
+            fieldSize = SaveManager.LoadedLevel.FieldSize;
+        }
         _tiles = new Tile[fieldSize.x + 2, fieldSize.y + 2];
         if (loadLevel)
         {
-            _loadedTiles = SaveManager.LoadLevel();
+            _loadedTiles = SaveManager.LoadedLevel.Tiles;
         }
 
         BuildLevel();

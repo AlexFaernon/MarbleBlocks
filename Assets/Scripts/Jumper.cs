@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Jumper : MonoBehaviour
@@ -9,6 +7,7 @@ public class Jumper : MonoBehaviour
     private Tile _targetTile;
     private Side _movingSide;
     private bool _isMoving;
+    public Vector2Int GetSave => _currentTile.gridPosition;
     
     void Update()
     {

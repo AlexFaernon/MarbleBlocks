@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 public class Wall : MonoBehaviour
@@ -24,7 +23,7 @@ public class Wall : MonoBehaviour
 
     private void OnLeverSwitch(Color leverColor)
     {
-        if (color == leverColor)
+        if (color.r == leverColor.r && color.g == leverColor.g && color.b == leverColor.b)
         {
             isOpened = !isOpened;
         }

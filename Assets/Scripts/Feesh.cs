@@ -1,13 +1,12 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class Feesh : MonoBehaviour
 {
     private Tile _currentTile;
-
+    public Vector2Int GetSave => _currentTile.gridPosition;
+    
     private void Update()
     {
         if (_currentTile.isJumperOnTile || _currentTile.isSonicOnTile)

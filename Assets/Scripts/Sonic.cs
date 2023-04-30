@@ -7,6 +7,7 @@ public class Sonic : MonoBehaviour
     private bool isMoving;
     private Side _movingSide;
     private Lever lever;
+    public Vector2Int GetSave => _currentTile.gridPosition;
 
     public bool IsMoving
     {
