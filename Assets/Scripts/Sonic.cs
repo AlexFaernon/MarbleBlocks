@@ -1,4 +1,5 @@
 using System;
+using Lean.Touch;
 using UnityEngine;
 
 public class Sonic : MonoBehaviour
@@ -24,6 +25,11 @@ public class Sonic : MonoBehaviour
 
             lever = null;
         }
+    }
+
+    private void Awake()
+    {
+        LeanTouch.OnFingerSwipe += Swipe;
     }
 
     private void Update()
@@ -96,6 +102,11 @@ public class Sonic : MonoBehaviour
         {
             IsMoving = false;
         }
+    }
+
+    private void Swipe(LeanFinger leanFinger)
+    {
+        //Debug.Log();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
