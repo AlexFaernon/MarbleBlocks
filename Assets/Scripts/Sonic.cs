@@ -27,9 +27,12 @@ public class Sonic : MonoBehaviour
         }
     }
 
-    private void Awake()
+    public void Move(Side side)
     {
-        LeanTouch.OnFingerSwipe += Swipe;
+        if (IsMoving || _currentTile.isJumperOnTile) return;
+        
+        IsMoving = true;
+        _movingSide = side;
     }
 
     private void Update()
@@ -47,40 +50,8 @@ public class Sonic : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
-        if (_currentTile.isJumperOnTile)
-        {
-            return;
-        }
         
-        if (!IsMoving)
-        {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                IsMoving = true;
-                _movingSide = Side.North;
-            }
-
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                IsMoving = true;
-                _movingSide = Side.South;
-            }
-
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                IsMoving = true;
-                _movingSide = Side.East;
-            }
-
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                IsMoving = true;
-                _movingSide = Side.West;
-            }
-            
-            return;
-        }
+        if (!IsMoving) return;
 
         var enterSide = _movingSide switch
         {
@@ -102,11 +73,6 @@ public class Sonic : MonoBehaviour
         {
             IsMoving = false;
         }
-    }
-
-    private void Swipe(LeanFinger leanFinger)
-    {
-        //Debug.Log();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
