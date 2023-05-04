@@ -8,6 +8,7 @@ public class Sonic : MonoBehaviour
     private bool isMoving;
     private Side _movingSide;
     private Lever lever;
+    public bool isActive;
     public Vector2Int GetSave => _currentTile.gridPosition;
 
     public bool IsMoving
@@ -29,6 +30,9 @@ public class Sonic : MonoBehaviour
 
     public void Move(Side side)
     {
+        if (!isActive)
+            throw new Exception("Character isn't active");
+        
         if (IsMoving || _currentTile.isJumperOnTile) return;
         
         IsMoving = true;

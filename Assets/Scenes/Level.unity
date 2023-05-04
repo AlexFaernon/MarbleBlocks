@@ -1114,6 +1114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1045753443}
+  - component: {fileID: 1045753447}
   - component: {fileID: 1045753446}
   - component: {fileID: 1045753445}
   - component: {fileID: 1045753444}
@@ -1169,7 +1170,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.49803922}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1226,6 +1227,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1045753442}
   m_CullTransparentMesh: 1
+--- !u!114 &1045753447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045753442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f874e19a1e70b134097d17822af2ef09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: Jumper
 --- !u!1 &1075785392
 GameObject:
   m_ObjectHideFlags: 0
@@ -1421,7 +1435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 5610050262307082003, guid: 39846da7fa8955349ba43a82fd404b4e, type: 3}
   fieldSize: {x: 7, y: 7}
-  loadLevel: 0
+  loadLevel: 1
 --- !u!114 &1321951032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1528,6 +1542,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1448476021}
+  - component: {fileID: 1448476025}
   - component: {fileID: 1448476024}
   - component: {fileID: 1448476023}
   - component: {fileID: 1448476022}
@@ -1583,7 +1598,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1640,6 +1655,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1448476020}
   m_CullTransparentMesh: 1
+--- !u!114 &1448476025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448476020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f874e19a1e70b134097d17822af2ef09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: Sonic
 --- !u!1 &1624130049
 GameObject:
   m_ObjectHideFlags: 0
@@ -1839,6 +1867,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1882381698}
+  - component: {fileID: 1882381702}
   - component: {fileID: 1882381701}
   - component: {fileID: 1882381700}
   - component: {fileID: 1882381699}
@@ -1951,6 +1980,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1882381697}
   m_CullTransparentMesh: 1
+--- !u!114 &1882381702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882381697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f874e19a1e70b134097d17822af2ef09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: Feesh
 --- !u!1 &1935645354
 GameObject:
   m_ObjectHideFlags: 0
@@ -2391,7 +2433,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2008194922503646696, guid: 2fc49fa0b92ea174e9fd3be3b8edf8fc, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2170304946276133776, guid: 2fc49fa0b92ea174e9fd3be3b8edf8fc, type: 3}
       propertyPath: m_Pivot.x
@@ -2492,7 +2534,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3384081889145027817, guid: 398a95025ebfb944ca66c46c95350b65, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4416106041397054700, guid: 398a95025ebfb944ca66c46c95350b65, type: 3}
       propertyPath: m_Pivot.x
@@ -2689,7 +2731,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7478366469092275023, guid: 1aee358c70c8aa0469c8f64ea7fb411b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1aee358c70c8aa0469c8f64ea7fb411b, type: 3}

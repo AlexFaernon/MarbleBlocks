@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Feesh : MonoBehaviour
 {
+    public bool isActive;
     private Tile _currentTile;
     public Vector2Int GetSave => _currentTile.gridPosition;
     
     private void Update()
     {
-        if (_currentTile.isJumperOnTile || _currentTile.isSonicOnTile)
+        if (!isActive || _currentTile.isJumperOnTile || _currentTile.isSonicOnTile)
         {
             return;
         }

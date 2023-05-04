@@ -7,6 +7,7 @@ public class Jumper : MonoBehaviour
     private Tile _targetTile;
     private Side _movingSide;
     private bool _isMoving;
+    public bool isActive;
     public Vector2Int GetSave => _currentTile.gridPosition;
     
     void Update()
@@ -24,30 +25,6 @@ public class Jumper : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            _isMoving = true;
-            _movingSide = Side.North;
-        }
-
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            _isMoving = true;
-            _movingSide = Side.South;
-        }
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            _isMoving = true;
-            _movingSide = Side.East;
-        }
-
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            _isMoving = true;
-            _movingSide = Side.West;
-        }
 
         if (!_isMoving) return;
 
@@ -58,6 +35,15 @@ public class Jumper : MonoBehaviour
         transform.position = _targetTile.transform.position;
     }
 
+    public void Move(Side side)
+    {
+        if (!isActive)
+            throw new Exception("Character isn't active");
+
+        _isMoving = true;
+        _movingSide = side;
+    }
+    
     private void TryToMove()
     {
         var enterSide = _movingSide switch

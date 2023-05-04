@@ -7,33 +7,47 @@ using UnityEngine;
 public class SwipeManager : MonoBehaviour
 {
     private Sonic sonic;
+    private Jumper jumper;
     
     private void Awake()
     {
         sonic = GameObject.FindWithTag("Sonic").GetComponent<Sonic>();
+        jumper = GameObject.FindWithTag("Jumper").GetComponent<Jumper>();
     }
     
     public void Up(LeanFinger leanFinger)
     {
-        sonic.Move(Side.North);
+        MoveCharacter(Side.North);
         Debug.Log("Up");
     }
     
     public void Down(LeanFinger leanFinger)
     {
-        sonic.Move(Side.South);
+        MoveCharacter(Side.South);
         Debug.Log("Dowm");
     }
     
     public void Left(LeanFinger leanFinger)
     {
-        sonic.Move(Side.West);
+        MoveCharacter(Side.West);
         Debug.Log("Left");
     }
     
     public void Right(LeanFinger leanFinger)
     {
-        sonic.Move(Side.East);
+        MoveCharacter(Side.East);
         Debug.Log("Right");
+    }
+
+    private void MoveCharacter(Side side)
+    {
+        if (sonic.isActive)
+        {
+            sonic.Move(side);
+        }
+        if (jumper.isActive)
+        {
+            jumper.Move(side);
+        }
     }
 }
