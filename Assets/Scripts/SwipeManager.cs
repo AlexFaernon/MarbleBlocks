@@ -41,7 +41,7 @@ public class SwipeManager : MonoBehaviour
 
     private void MoveCharacter(Side side)
     {
-        if (sonic.isActive)
+        if (sonic.IsActive)
         {
             sonic.Move(side);
         }

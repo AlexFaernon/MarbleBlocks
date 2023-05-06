@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Lean.Touch;
 using UnityEngine;
 
@@ -17,20 +18,37 @@ public class Sonic : MonoBehaviour
         set
         {
             isMoving = value;
-            if (isMoving || lever is null) return;
+            if (isMoving) return;
             
-            if ((transform.position - lever.transform.position).magnitude < 0.01f)
+            if (IsActive)
+            {
+                HighlightTiles();
+            }
+            
+            if (lever is not null && (transform.position - lever.transform.position).magnitude < 0.01f)
             {
                 lever.Switch();
             }
-
             lever = null;
+        }
+    }
+
+    public bool IsActive
+    {
+        get => isActive;
+        set
+        {
+            isActive = value;
+            if (value)
+            {
+                HighlightTiles();
+            }
         }
     }
 
     public void Move(Side side)
     {
-        if (!isActive)
+        if (!IsActive)
             throw new Exception("Character isn't active");
         
         if (IsMoving || _currentTile.isJumperOnTile) return;
@@ -57,6 +75,42 @@ public class Sonic : MonoBehaviour
         
         if (!IsMoving) return;
 
+        var nextTile = TileManager.GetTile(_currentTile, _movingSide);
+
+        if (CanMoveForward(_currentTile, _movingSide))
+        {
+            transform.position = nextTile.transform.position;
+        }
+        else
+        {
+            IsMoving = false;
+        }
+    }
+
+    private void HighlightTiles()
+    {
+        var highlightedTiles = new HashSet<Tile>();
+        foreach (Side side in Enum.GetValues(typeof(Side)))
+        {
+            var currentTile = _currentTile;
+            while (CanMoveForward(currentTile, side))
+            {
+                currentTile = TileManager.GetTile(currentTile, side);
+                if (currentTile.isEdge)
+                {
+                    break;
+                }
+                highlightedTiles.Add(currentTile);
+            }
+        }
+        
+        TileManager.HighlightTiles(highlightedTiles);
+    }
+
+    private bool CanMoveForward(Tile currentTile, Side moveSide)
+    {
+        var nextTile = TileManager.GetTile(_currentTile, moveSide);
+        
         var enterSide = _movingSide switch
         {
             Side.North => Side.South,
@@ -65,18 +119,9 @@ public class Sonic : MonoBehaviour
             Side.East => Side.West,
             _ => throw new ArgumentOutOfRangeException()
         };
-        
-        var nextTile = TileManager.GetTile(_currentTile, _movingSide);
 
-        if (_currentTile.AvailableToMoveThroughSide(_movingSide) && nextTile.AvailableToMoveThroughSide(enterSide) &&
-            !nextTile.isJumperOnTile)
-        {
-            transform.position = nextTile.transform.position;
-        }
-        else
-        {
-            IsMoving = false;
-        }
+        return currentTile.AvailableToMoveThroughSide(moveSide) && nextTile.AvailableToMoveThroughSide(enterSide) &&
+               !nextTile.isJumperOnTile;
     }
 
     private void OnTriggerEnter2D(Collider2D col)

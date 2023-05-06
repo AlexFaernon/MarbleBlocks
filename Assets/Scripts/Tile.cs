@@ -14,8 +14,9 @@ public class Tile : MonoBehaviour
     [SerializeField] private GameObject exit;
     [SerializeField] private GameObject spike;
     [SerializeField] private Lever lever;
+    [SerializeField] private GameObject highlight;
     private SpriteRenderer _spriteRenderer;
-    
+
     [HideInInspector] public Vector2Int gridPosition;
     [HideInInspector] public bool isFeeshOnTile;
     [HideInInspector] public bool isJumperOnTile;
@@ -26,6 +27,11 @@ public class Tile : MonoBehaviour
         set => SetLoadedTile(value);
     }
 
+    public bool IsHighlighted
+    {
+        set => highlight.SetActive(value);
+    }
+    
     public bool IsWhirlpoolOnTile => whirlpool.activeSelf;
 
     private void Awake()

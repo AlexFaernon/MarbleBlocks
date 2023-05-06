@@ -15,11 +15,23 @@ public class Feesh : MonoBehaviour
             return;
         }
 
-        if (!Input.GetMouseButtonDown(0)) return;
-        
+        Vector2 ray;
+        if (Input.GetMouseButtonDown(0))
+        {
+            ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
+        else if (Input.touchCount > 0)
+        {
+            var touch = Input.GetTouch(0);
+            ray = Camera.main.ScreenToWorldPoint(touch.position);
+        }
+        else
+        {
+            return;
+        }
+
         var layerObject = LayerMask.GetMask("Ground");
-        var ray = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
-            Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+        
         var hit = Physics2D.Raycast(ray, ray, Mathf.Infinity, layerObject);
         if (hit.collider != null)
         {

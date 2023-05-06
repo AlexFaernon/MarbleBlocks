@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TileManager : MonoBehaviour
@@ -84,5 +85,13 @@ public class TileManager : MonoBehaviour
         }
 
         return null;
+    }
+
+    public static void HighlightTiles(HashSet<Tile> highlightedTiles)
+    {
+        foreach (var tile in _tiles)
+        {
+            tile.IsHighlighted = highlightedTiles.Contains(tile);
+        }
     }
 }
