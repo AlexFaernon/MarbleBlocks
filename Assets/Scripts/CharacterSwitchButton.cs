@@ -23,8 +23,8 @@ public class CharacterSwitchButton : MonoBehaviour
     private void ActivateCharacter()
     {
         sonic.IsActive = sonic.CompareTag(character);
-        jumper.isActive = jumper.CompareTag(character);
-        feesh.isActive = feesh.CompareTag(character);
+        jumper.IsActive = jumper.CompareTag(character);
+        feesh.IsActive = feesh.CompareTag(character);
     }
 
     private void Update()
@@ -32,8 +32,8 @@ public class CharacterSwitchButton : MonoBehaviour
         button.interactable = character switch
         {
             "Sonic" => !sonic.IsActive,
-            "Jumper" => !jumper.isActive,
-            "Feesh" => !feesh.isActive,
+            "Jumper" => !jumper.IsActive,
+            "Feesh" => !feesh.IsActive,
             _ => throw new ArgumentOutOfRangeException("Incorrect character name")
         };
         button.interactable = !sonic.IsMoving;

@@ -45,7 +45,7 @@ public class SwipeManager : MonoBehaviour
         {
             sonic.Move(side);
         }
-        if (jumper.isActive)
+        if (jumper.IsActive)
         {
             jumper.Move(side);
         }

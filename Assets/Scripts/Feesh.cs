@@ -6,11 +6,26 @@ public class Feesh : MonoBehaviour
 {
     public bool isActive;
     private Tile _currentTile;
+    private HashSet<Tile> _availableTiles = new();
     public Vector2Int GetSave => _currentTile.gridPosition;
-    
+
+    public bool IsActive
+    {
+        get => isActive;
+        set
+        {
+            isActive = value;
+            if (value)
+            {
+                FindAvailableTiles();
+                TileManager.HighlightTiles(_availableTiles);
+            }
+        }
+    }
+
     private void Update()
     {
-        if (!isActive || _currentTile.isJumperOnTile || _currentTile.isSonicOnTile)
+        if (!IsActive || _currentTile.isJumperOnTile || _currentTile.isSonicOnTile)
         {
             return;
         }
@@ -36,14 +51,14 @@ public class Feesh : MonoBehaviour
         if (hit.collider != null)
         {
             var targetTile = hit.collider.gameObject.GetComponent<Tile>();
-            if (CanSwimToTile(targetTile))
+            if (_availableTiles.Contains(targetTile))
             {
                 transform.position = targetTile.transform.position;
             }
         }
     }
 
-    private bool CanSwimToTile(Tile targetTile)
+    private void FindAvailableTiles()
     {
         var queue = new Queue<Tile>();
         var visited = new HashSet<Tile>();
@@ -55,11 +70,6 @@ public class Feesh : MonoBehaviour
             var currentTile = queue.Dequeue();
             visited.Add(currentTile);
 
-            if (currentTile == targetTile)
-            {
-                return true;
-            }
-            
             foreach (Side side in Enum.GetValues(typeof(Side)))
             {
                 var nextTile = TileManager.GetTile(currentTile, side);
@@ -72,7 +82,7 @@ public class Feesh : MonoBehaviour
             }
         }
 
-        return false;
+        _availableTiles = visited;
     }
 
     private bool TileIsAvailable(Tile tile, Side movingSide)
@@ -102,6 +112,8 @@ public class Feesh : MonoBehaviour
         if (col.CompareTag("Ground"))
         {
             _currentTile = col.GetComponent<Tile>();
+            FindAvailableTiles();
+            TileManager.HighlightTiles(_availableTiles);
         }
         
         if (col.CompareTag("Lever"))

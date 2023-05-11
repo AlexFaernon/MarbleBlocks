@@ -1,18 +1,32 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Jumper : MonoBehaviour
 {
     private Tile _currentTile;
-    private Tile _targetTile;
     private Side _movingSide;
-    private bool _isMoving;
     public bool isActive;
     public Vector2Int GetSave => _currentTile.gridPosition;
-    
+
+    public bool IsActive
+    {
+        get => isActive;
+        set
+        {
+            isActive = value;
+            if (value)
+            {
+                HighlightTiles();
+            }
+        }
+    }
+
+    public bool IsMoving { get; set; }
+
     void Update()
     {
-        if (!_currentTile.isGrass && !_currentTile.isFeeshOnTile && !_isMoving)
+        if (!_currentTile.isGrass && !_currentTile.isFeeshOnTile && !IsMoving)
         {
             Debug.Log("Drown");
             Destroy(gameObject);
@@ -26,27 +40,28 @@ public class Jumper : MonoBehaviour
             return;
         }
 
-        if (!_isMoving) return;
-
-        _targetTile = _currentTile;
-        TryToMove();
-        TryToMove();
-        _isMoving = false;
-        transform.position = _targetTile.transform.position;
+        if (!IsMoving) return;
+        
+         var targetTile = TryToMove(_movingSide);
+         if (targetTile != _currentTile)
+         {
+             transform.position = targetTile.transform.position;
+         }
+         IsMoving = false;
     }
 
     public void Move(Side side)
     {
-        if (!isActive)
+        if (!IsActive)
             throw new Exception("Character isn't active");
 
-        _isMoving = true;
+        IsMoving = true;
         _movingSide = side;
     }
     
-    private void TryToMove()
+    private Tile TryToMove(Side movingSide)
     {
-        var enterSide = _movingSide switch
+        var enterSide = movingSide switch
         {
             Side.North => Side.South,
             Side.South => Side.North,
@@ -55,21 +70,41 @@ public class Jumper : MonoBehaviour
             _ => throw new ArgumentOutOfRangeException()
         };
 
-        var nextTile = TileManager.GetTile(_targetTile, _movingSide);
-        if (!nextTile)
+        var targetTile = _currentTile;
+        for (var i = 0; i < 2; i++)
         {
-            _isMoving = false;
-            return;
+            var nextTile = TileManager.GetTile(targetTile, movingSide);
+            if (!nextTile)
+            {
+                return targetTile;
+            }
+
+            if (targetTile.AvailableToMoveThroughSide(movingSide) && nextTile.AvailableToMoveThroughSide(enterSide))
+            {
+                targetTile = nextTile;
+            }
+            else
+            {
+                return targetTile;
+            }
         }
 
-        if (_targetTile.AvailableToMoveThroughSide(_movingSide) && nextTile.AvailableToMoveThroughSide(enterSide))
+        return targetTile;
+    }
+
+    private void HighlightTiles()
+    {
+        var highlightedTiles = new HashSet<Tile>();
+        foreach (Side side in Enum.GetValues(typeof(Side)))
         {
-            _targetTile = nextTile;
+            var targetTile = TryToMove(side);
+            if (targetTile != _currentTile)
+            {
+                highlightedTiles.Add(targetTile);
+            }
         }
-        else
-        {
-            _isMoving = false;
-        }
+        
+        TileManager.HighlightTiles(highlightedTiles);
     }
     
     private void OnTriggerEnter2D(Collider2D col)
@@ -77,6 +112,7 @@ public class Jumper : MonoBehaviour
         if (col.CompareTag("Ground"))
         {
             _currentTile = col.GetComponent<Tile>();
+            HighlightTiles();
         }
         
         if (col.CompareTag("Spike"))

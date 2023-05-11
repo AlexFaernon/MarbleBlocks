@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Lean.Touch;
 using UnityEngine;
 
 public class Sonic : MonoBehaviour
