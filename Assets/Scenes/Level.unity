@@ -2556,7 +2556,7 @@ GameObject:
   - component: {fileID: 825244324}
   m_Layer: 5
   m_Name: Defeat
-  m_TagString: Finish
+  m_TagString: Defeat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5462,6 +5462,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8032314004207740922, guid: 2fc49fa0b92ea174e9fd3be3b8edf8fc, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fc49fa0b92ea174e9fd3be3b8edf8fc, type: 3}
 --- !u!1001 &4416106042061904195
@@ -5577,7 +5581,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7080534221441952164, guid: 398a95025ebfb944ca66c46c95350b65, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 398a95025ebfb944ca66c46c95350b65, type: 3}
