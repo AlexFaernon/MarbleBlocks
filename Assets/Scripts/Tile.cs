@@ -34,9 +34,19 @@ public class Tile : MonoBehaviour
     
     public bool IsWhirlpoolOnTile => whirlpool.activeSelf;
 
-    private void Awake()
+    private void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        if (gridPosition.y == 1)
+        {
+            _spriteRenderer.sprite =
+                isGrass ? TileSpriteManager.GetRandomGroundBot : TileSpriteManager.GetRandomWaterBot;
+        }
+        else
+        {
+            _spriteRenderer.sprite =
+                isGrass ? TileSpriteManager.GetRandomGroundMid : TileSpriteManager.GetRandomWaterMid;
+        }
     }
 
     private void Update()
@@ -44,10 +54,7 @@ public class Tile : MonoBehaviour
         if (isEdge)
         {
             _spriteRenderer.color = Color.clear;
-            return;
         }
-        
-        _spriteRenderer.color = isGrass ? Color.green : Color.blue;
     }
 
     public bool AvailableToMoveThroughSide(Side side)

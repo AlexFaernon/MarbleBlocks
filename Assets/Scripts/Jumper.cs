@@ -6,7 +6,7 @@ public class Jumper : MonoBehaviour
 {
     private Tile _currentTile;
     private Side _movingSide;
-    public bool isActive;
+    private bool isActive;
     public Vector2Int GetSave => _currentTile.gridPosition;
 
     public bool IsActive
@@ -98,7 +98,7 @@ public class Jumper : MonoBehaviour
         foreach (Side side in Enum.GetValues(typeof(Side)))
         {
             var targetTile = TryToMove(side);
-            if (targetTile != _currentTile)
+            if (targetTile != _currentTile && !targetTile.isEdge)
             {
                 highlightedTiles.Add(targetTile);
             }
@@ -112,7 +112,10 @@ public class Jumper : MonoBehaviour
         if (col.CompareTag("Ground"))
         {
             _currentTile = col.GetComponent<Tile>();
-            HighlightTiles();
+            if (IsActive)
+            {
+                HighlightTiles();
+            }
         }
         
         if (col.CompareTag("Spike"))

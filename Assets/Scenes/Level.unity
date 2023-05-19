@@ -1428,7 +1428,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &541434544
 GameObject:
@@ -3297,6 +3297,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1321951030}
   - component: {fileID: 1321951031}
+  - component: {fileID: 1321951034}
   - component: {fileID: 1321951032}
   - component: {fileID: 1321951029}
   - component: {fileID: 1321951033}
@@ -3315,7 +3316,7 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321951028}
   m_Enabled: 1
-  m_CellSize: {x: 1, y: 1, z: 0}
+  m_CellSize: {x: 1, y: 0.75348836, z: 0}
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
@@ -3327,7 +3328,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321951028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.9700003, y: -4.456, z: 0}
+  m_LocalPosition: {x: -5.79, y: -3.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3378,6 +3379,18 @@ MonoBehaviour:
   jumper: {fileID: 3384081889145027817, guid: 398a95025ebfb944ca66c46c95350b65, type: 3}
   feesh: {fileID: 7478366469092275023, guid: 1aee358c70c8aa0469c8f64ea7fb411b, type: 3}
   grid: {fileID: 1321951029}
+--- !u!114 &1321951034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321951028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12bdb5114ea5438bac7e69678d78e55d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1378726888
 GameObject:
   m_ObjectHideFlags: 0

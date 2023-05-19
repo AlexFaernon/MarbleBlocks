@@ -112,8 +112,11 @@ public class Feesh : MonoBehaviour
         if (col.CompareTag("Ground"))
         {
             _currentTile = col.GetComponent<Tile>();
-            FindAvailableTiles();
-            TileManager.HighlightTiles(_availableTiles);
+            if (IsActive)
+            {
+                FindAvailableTiles();
+                TileManager.HighlightTiles(_availableTiles);
+            }
         }
         
         if (col.CompareTag("Lever"))
