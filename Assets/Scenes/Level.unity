@@ -4341,7 +4341,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1785217480}
-  - component: {fileID: 1785217484}
   - component: {fileID: 1785217483}
   - component: {fileID: 1785217482}
   - component: {fileID: 1785217481}
@@ -4454,18 +4453,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1785217479}
   m_CullTransparentMesh: 1
---- !u!114 &1785217484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1785217479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b489a06d146448428e6e5632b432e6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1800973708
 GameObject:
   m_ObjectHideFlags: 0
@@ -5587,6 +5574,10 @@ PrefabInstance:
     - target: {fileID: 4416106041397054700, guid: 398a95025ebfb944ca66c46c95350b65, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7080534221441952164, guid: 398a95025ebfb944ca66c46c95350b65, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 398a95025ebfb944ca66c46c95350b65, type: 3}

@@ -6,6 +6,6 @@ public class WinButton : MonoBehaviour
 {
     private void Awake()
     {
-        GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene("Menu"));
+        GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene("MenuOLD"));
     }
 }
