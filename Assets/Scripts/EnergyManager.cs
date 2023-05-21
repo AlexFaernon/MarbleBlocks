@@ -21,10 +21,10 @@ public class EnergyManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    private IEnumerator EnergyRefill()
+    /*private IEnumerator EnergyRefill()
     {
         
-    }
+    }*/
 
     private void OnApplicationPause(bool pauseStatus)
     {
