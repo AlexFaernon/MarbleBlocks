@@ -12,7 +12,7 @@ public class LevelButton : MonoBehaviour
 
     private void OnClick()
     {
-        SaveManager.LevelNumber = levelNumber;
+        LevelSaveManager.LevelNumber = levelNumber;
         SceneManager.LoadScene("Level");
     }
 }

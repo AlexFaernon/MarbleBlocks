@@ -2,7 +2,7 @@
 using UnityEngine;
 using File = System.IO.File;
 
-public class SaveManager : MonoBehaviour
+public class LevelSaveManager : MonoBehaviour
 {
     public static int LevelNumber;
     public static Level LoadedLevel;

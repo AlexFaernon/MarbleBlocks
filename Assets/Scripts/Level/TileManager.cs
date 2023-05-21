@@ -16,12 +16,12 @@ public class TileManager : MonoBehaviour
         _grid = GetComponent<Grid>();
         if (loadLevel)
         {
-            fieldSize = SaveManager.LoadedLevel.FieldSize;
+            fieldSize = LevelSaveManager.LoadedLevel.FieldSize;
         }
         _tiles = new Tile[fieldSize.x + 2, fieldSize.y + 2];
         if (loadLevel)
         {
-            _loadedTiles = SaveManager.LoadedLevel.Tiles;
+            _loadedTiles = LevelSaveManager.LoadedLevel.Tiles;
         }
 
         BuildLevel();
