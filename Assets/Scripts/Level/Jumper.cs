@@ -128,4 +128,9 @@ public class Jumper : MonoBehaviour
             col.GetComponent<Lever>().Switch();
         }
     }
+    
+    private void OnDestroy()
+    {
+        GameObject.FindWithTag("Defeat").transform.GetChild(0).gameObject.SetActive(true);
+    }
 }

@@ -9,12 +9,22 @@ public class CharacterManager : MonoBehaviour
 
     private void Awake()
     {
-        var sonicPos = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.SonicPosition);
-        var jumperPos = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.JumperPosition);
-        var feeshPos = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.FeeshPosition);
-
-        Instantiate(sonic, sonicPos, Quaternion.identity);
-        Instantiate(jumper, jumperPos, Quaternion.identity);
-        Instantiate(feesh, feeshPos, Quaternion.identity);
+        if (LevelSaveManager.LoadedLevel.SonicPosition != Vector2Int.zero)
+        {
+            var sonicPos = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.SonicPosition);
+            Instantiate(sonic, sonicPos, Quaternion.identity);
+        }
+        
+        if (LevelSaveManager.LoadedLevel.JumperPosition != Vector2Int.zero)
+        {
+            var jumperPos = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.JumperPosition);
+            Instantiate(jumper, jumperPos, Quaternion.identity);
+        }
+        
+        if (LevelSaveManager.LoadedLevel.FeeshPosition != Vector2Int.zero)
+        {
+            var feeshPos = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.FeeshPosition);
+            Instantiate(feesh, feeshPos, Quaternion.identity);
+        }
     }
 }

@@ -13,18 +13,53 @@ public class CharacterSwitchButton : MonoBehaviour
     private Button button;
     private void Awake()
     {
-        sonic = GameObject.FindWithTag("Sonic").GetComponent<Sonic>();
-        jumper = GameObject.FindWithTag("Jumper").GetComponent<Jumper>();
-        feesh = GameObject.FindWithTag("Feesh").GetComponent<Feesh>();
+        var sonicObj = GameObject.FindWithTag("Sonic");
+        if (sonicObj)
+        {
+            sonic =  sonicObj.GetComponent<Sonic>();
+        }
+        var jumperObj = GameObject.FindWithTag("Jumper");
+        if (jumperObj)
+        {
+            jumper = jumperObj.GetComponent<Jumper>();
+        }
+        
+        var feeshObj = GameObject.FindWithTag("Feesh");
+        if (feeshObj)
+        {
+            feesh = feeshObj.GetComponent<Feesh>();
+        }
+        
         button = GetComponent<Button>();
         button.onClick.AddListener(ActivateCharacter);
+        switch (character)
+        {
+            case "Sonic":
+                if (sonic is null)
+                {
+                    gameObject.SetActive(false);
+                }
+                return;
+            case "Jumper":
+                if (jumper is null)
+                {
+                    gameObject.SetActive(false);
+                }
+                return;
+            case "Feesh":
+                if (feesh is null)
+                {
+                    gameObject.SetActive(false);
+                }
+                return;
+        }
     }
 
     private void ActivateCharacter()
     {
-        sonic.IsActive = sonic.CompareTag(character);
-        jumper.IsActive = jumper.CompareTag(character);
-        feesh.IsActive = feesh.CompareTag(character);
+        if (sonic != null) sonic.IsActive   = sonic.CompareTag(character);
+        if (jumper != null) jumper.IsActive = jumper.CompareTag(character);
+        if (feesh != null) feesh.IsActive   = feesh.CompareTag(character);
     }
 
     private void Update()
@@ -36,6 +71,6 @@ public class CharacterSwitchButton : MonoBehaviour
             "Feesh" => !feesh.IsActive,
             _ => throw new ArgumentOutOfRangeException("Incorrect character name")
         };
-        button.interactable = !sonic.IsMoving;
+        if (sonic != null) button.interactable = !sonic.IsMoving;
     }
 }

@@ -18,11 +18,11 @@ public class LevelSaveManager : MonoBehaviour
     {
         var levelSave = new Level
         {
-            FieldSize = tileManager.fieldSize,
-            Tiles = tileManager.GetSave(),
-            FeeshPosition = GameObject.FindGameObjectWithTag("Feesh").GetComponent<Feesh>().GetSave,
+            FieldSize      = tileManager.fieldSize,
+            Tiles          = tileManager.GetSave(),
+            FeeshPosition  = GameObject.FindGameObjectWithTag("Feesh").GetComponent<Feesh>().GetSave,
             JumperPosition = GameObject.FindGameObjectWithTag("Jumper").GetComponent<Jumper>().GetSave,
-            SonicPosition = GameObject.FindGameObjectWithTag("Sonic").GetComponent<Sonic>().GetSave,
+            SonicPosition  = GameObject.FindGameObjectWithTag("Sonic").GetComponent<Sonic>().GetSave,
         };
         var save = JsonConvert.SerializeObject(levelSave);
         File.WriteAllText(Application.persistentDataPath + "\\save.json", save);

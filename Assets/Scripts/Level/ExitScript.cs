@@ -6,7 +6,7 @@ public class ExitScript : MonoBehaviour
     {
         if (col.CompareTag("Feesh") || col.CompareTag("Sonic") || col.CompareTag("Jumper"))
         {
-            Destroy(col.gameObject);
+            col.gameObject.SetActive(false);
             GameObject.FindWithTag("Finish").transform.GetChild(0).gameObject.SetActive(true);
         }
     }

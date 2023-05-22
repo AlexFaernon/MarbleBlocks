@@ -122,6 +122,11 @@ public class Feesh : MonoBehaviour
         if (col.CompareTag("Lever"))
         {
             col.GetComponent<Lever>().Switch();
+            if (IsActive)
+            {
+                FindAvailableTiles();
+                TileManager.HighlightTiles(_availableTiles);
+            }
         }
     }
 }

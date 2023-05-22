@@ -140,4 +140,9 @@ public class Sonic : MonoBehaviour
             lever = col.GetComponent<Lever>();
         }
     }
+
+    private void OnDestroy()
+    {
+        GameObject.FindWithTag("Defeat").transform.GetChild(0).gameObject.SetActive(true);
+    }
 }

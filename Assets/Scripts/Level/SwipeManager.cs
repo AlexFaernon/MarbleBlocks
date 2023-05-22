@@ -11,8 +11,16 @@ public class SwipeManager : MonoBehaviour
     
     private void Awake()
     {
-        sonic = GameObject.FindWithTag("Sonic").GetComponent<Sonic>();
-        jumper = GameObject.FindWithTag("Jumper").GetComponent<Jumper>();
+        var sonicObj = GameObject.FindWithTag("Sonic");
+        if (sonicObj)
+        {
+            sonic = sonicObj.GetComponent<Sonic>();
+        }
+        var jumperObj = GameObject.FindWithTag("Jumper");
+        if (jumperObj)
+        {
+            jumper = jumperObj.GetComponent<Jumper>();
+        }
     }
     
     public void Up(LeanFinger leanFinger)
@@ -41,11 +49,11 @@ public class SwipeManager : MonoBehaviour
 
     private void MoveCharacter(Side side)
     {
-        if (sonic.IsActive)
+        if (sonic && sonic.IsActive)
         {
             sonic.Move(side);
         }
-        if (jumper.IsActive)
+        if (jumper && jumper.IsActive)
         {
             jumper.Move(side);
         }

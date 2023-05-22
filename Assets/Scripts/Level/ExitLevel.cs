@@ -1,10 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class WinButton : MonoBehaviour
+public class ExitLevel : MonoBehaviour
 {
-    private void Awake()
+    public void Awake()
     {
         GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene("MainMenu"));
     }
