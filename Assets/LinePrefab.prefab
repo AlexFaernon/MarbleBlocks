@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5060874367870582550}
   - component: {fileID: 5060874367870582571}
-  - component: {fileID: 5060874367870582548}
+  - component: {fileID: 2159671850014964431}
   - component: {fileID: 5060874367870582549}
   - component: {fileID: 7289589732119952565}
   m_Layer: 0
-  m_Name: MenuLevelCircle
+  m_Name: LinePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 45, y: 45}
+  m_SizeDelta: {x: 83, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5060874367870582571
 CanvasRenderer:
@@ -48,7 +48,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 938989792175523079}
   m_CullTransparentMesh: 1
---- !u!114 &5060874367870582548
+--- !u!114 &2159671850014964431
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,14 +57,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 938989792175523079}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1efd74f908ae73f4183cd6a12b848b0f, type: 3}
+  m_Script: {fileID: 11500000, guid: 214303ffd3bd4aa7a3910cf5c72ef016, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  closed: {fileID: 21300000, guid: 847223919578e134c87fccbab98af1b7, type: 3}
-  opened: {fileID: 21300000, guid: ac94c89c75c62884aa53e10961f3c9f1, type: 3}
-  completed: {fileID: 21300000, guid: fa7177e58756b0a44b77903b4270ea75, type: 3}
-  previousLevelCircle: {fileID: 0}
-  levelNumber: 0
+  closed: {fileID: 21300000, guid: 65c6e51826c9f40469a5e1a66cb41123, type: 3}
+  opened: {fileID: 21300000, guid: 738c38d24ef3d17438e6d25a4b552287, type: 3}
+  completed: {fileID: 21300000, guid: 14b4facd1f770844f89ef9c5a373e014, type: 3}
+  nextLevelCircle: {fileID: 0}
 --- !u!114 &5060874367870582549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,7 +84,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fa7177e58756b0a44b77903b4270ea75, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 14b4facd1f770844f89ef9c5a373e014, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
