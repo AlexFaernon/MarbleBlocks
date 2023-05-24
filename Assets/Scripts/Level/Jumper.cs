@@ -6,15 +6,15 @@ public class Jumper : MonoBehaviour
 {
     private Tile _currentTile;
     private Side _movingSide;
-    private bool isActive;
+    private bool _isActive;
     public Vector2Int GetSave => _currentTile.gridPosition;
 
     public bool IsActive
     {
-        get => isActive;
+        get => _isActive;
         set
         {
-            isActive = value;
+            _isActive = value;
             if (value)
             {
                 HighlightTiles();

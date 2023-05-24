@@ -1,34 +1,35 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Sonic : MonoBehaviour
 {
     private Tile _currentTile;
-    private bool isMoving;
+    private bool _isMoving;
     private Side _movingSide;
-    private Lever lever;
+    private Lever _lever;
     public bool isActive;
     public Vector2Int GetSave => _currentTile.gridPosition;
 
     public bool IsMoving
     {
-        get => isMoving;
+        get => _isMoving;
         set
         {
-            isMoving = value;
-            if (isMoving) return;
+            _isMoving = value;
+            if (_isMoving) return;
             
             if (IsActive)
             {
                 HighlightTiles();
             }
             
-            if (lever is not null && (transform.position - lever.transform.position).magnitude < 0.01f)
+            if (_lever is not null && (transform.position - _lever.transform.position).magnitude < 0.01f)
             {
-                lever.Switch();
+                _lever.Switch();
             }
-            lever = null;
+            _lever = null;
         }
     }
 
@@ -137,7 +138,7 @@ public class Sonic : MonoBehaviour
 
         if (col.CompareTag("Lever"))
         {
-            lever = col.GetComponent<Lever>();
+            _lever = col.GetComponent<Lever>();
         }
     }
 

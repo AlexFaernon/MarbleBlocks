@@ -12,21 +12,22 @@ public class MenuLevelCircle : MonoBehaviour
     [SerializeField] private Sprite opened;
     [SerializeField] private Sprite completed;
     [SerializeField] private MenuLevelCircle previousLevelCircle;
+    [SerializeField] private GameObject levelPreview;
     public int levelNumber;
 
     public bool IsOpened { get; private set; }
     public bool IsCompleted { get; private set; }
 
-    private Button button;
+    private Button _button;
     private void Awake()
     {
-        button = GetComponent<Button>();
-        button.onClick.AddListener(LoadLevel);
+        _button = GetComponent<Button>();
+        _button.onClick.AddListener(LoadLevel);
     }
 
     private void LoadLevel()
     {
         LevelSaveManager.LevelNumber = levelNumber;
-        SceneManager.LoadScene("Level");
+        levelPreview.SetActive(true);
     }
 }

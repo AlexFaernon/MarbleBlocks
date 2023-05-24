@@ -3,7 +3,9 @@ using UnityEngine;
 public class Lever : MonoBehaviour
 {
     [SerializeField] private bool isSwitchable;
-    [SerializeField] private Color color;
+    [SerializeField] private DoorLeverColor color;
+    private Sprite _off;
+    private Sprite _on;
 
     public LeverClass LeverClass
     {
@@ -16,15 +18,13 @@ public class Lever : MonoBehaviour
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _off = TileSpriteManager.GetLeverSprite(color, false);
+        _on = TileSpriteManager.GetLeverSprite(color, true);
     }
 
     private void Update()
     {
-        _spriteRenderer.color = color;
-        
-        var spriteColor = _spriteRenderer.color;
-        color.a = _isActive ? 0.5f : 1;
-        _spriteRenderer.color = spriteColor;
+        _spriteRenderer.sprite = _isActive ? _on : _off;
     }
 
     public LeverClass GetSave()

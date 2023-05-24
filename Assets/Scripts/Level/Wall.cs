@@ -1,29 +1,38 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class Wall : MonoBehaviour
 {
     [SerializeField] private bool isDoor;
     [SerializeField] private bool isOpened;
-    [SerializeField] private Color color;
+    [SerializeField] private DoorLeverColor color;
     private SpriteRenderer _spriteRenderer;
+    private Sprite _closed;
+    private Sprite _opened;
 
     public WallClass WallClass
     {
         set => SetWall(value);
     }
 
-    public static readonly UnityEvent<Color> OnLevelSwitch = new();
+    public static readonly UnityEvent<DoorLeverColor> OnLevelSwitch = new();
 
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        if (isDoor)
+        {
+            _closed = TileSpriteManager.GetDoorSprite(color, false);
+            _opened = TileSpriteManager.GetDoorSprite(color, true);
+        }
         OnLevelSwitch.AddListener(OnLeverSwitch);
+        tag = isDoor ? "Door" : "Wall";
     }
 
-    private void OnLeverSwitch(Color leverColor)
+    private void OnLeverSwitch(DoorLeverColor leverColor)
     {
-        if (color.r == leverColor.r && color.g == leverColor.g && color.b == leverColor.b)
+        if (color == leverColor)
         {
             isOpened = !isOpened;
         }
@@ -31,15 +40,10 @@ public class Wall : MonoBehaviour
 
     private void Update()
     {
-        tag = isDoor ? "Door" : "Wall";
-
-        _spriteRenderer.enabled = true;
-        
-        _spriteRenderer.color = isDoor ? color : Color.white;
-        
-        var spriteColor = _spriteRenderer.color;
-        color.a = isDoor && isOpened ? 0.5f : 1;
-        _spriteRenderer.color = spriteColor;
+        if (isDoor)
+        {
+            _spriteRenderer.sprite = isOpened ? _opened : _closed;
+        }
     }
 
     public bool AvailableToMove()

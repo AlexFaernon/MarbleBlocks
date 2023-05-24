@@ -6,20 +6,20 @@ using UnityEngine;
 
 public class SwipeManager : MonoBehaviour
 {
-    private Sonic sonic;
-    private Jumper jumper;
+    private Sonic _sonic;
+    private Jumper _jumper;
     
     private void Awake()
     {
         var sonicObj = GameObject.FindWithTag("Sonic");
         if (sonicObj)
         {
-            sonic = sonicObj.GetComponent<Sonic>();
+            _sonic = sonicObj.GetComponent<Sonic>();
         }
         var jumperObj = GameObject.FindWithTag("Jumper");
         if (jumperObj)
         {
-            jumper = jumperObj.GetComponent<Jumper>();
+            _jumper = jumperObj.GetComponent<Jumper>();
         }
     }
     
@@ -49,13 +49,13 @@ public class SwipeManager : MonoBehaviour
 
     private void MoveCharacter(Side side)
     {
-        if (sonic && sonic.IsActive)
+        if (_sonic && _sonic.IsActive)
         {
-            sonic.Move(side);
+            _sonic.Move(side);
         }
-        if (jumper && jumper.IsActive)
+        if (_jumper && _jumper.IsActive)
         {
-            jumper.Move(side);
+            _jumper.Move(side);
         }
     }
 }

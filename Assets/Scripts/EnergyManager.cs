@@ -13,8 +13,8 @@ public class EnergyManager : MonoBehaviour
     [SerializeField] private TMP_Text timer;
     public const int MaxEnergy = 5;
     private const int EnergyRefillTime = 300;
-    private bool energyIsRefiling;
-    private float timeUntilRefill;
+    private bool _energyIsRefiling;
+    private float _timeUntilRefill;
 
     public static int CurrentEnergy { get; private set; }
 
@@ -31,24 +31,24 @@ public class EnergyManager : MonoBehaviour
     private void Update()
     {
         energy.text = $"{CurrentEnergy}/{MaxEnergy}";
-        timer.text  = $"{(int)timeUntilRefill / 60}:{(int)timeUntilRefill % 60}";
+        timer.text  = $"{(int)_timeUntilRefill / 60}:{(int)_timeUntilRefill % 60}";
         if (CurrentEnergy < MaxEnergy)
         {
-            if (energyIsRefiling)
+            if (_energyIsRefiling)
             {
-                timeUntilRefill -= Time.unscaledDeltaTime;
+                _timeUntilRefill -= Time.unscaledDeltaTime;
             }
             else
             {
-                energyIsRefiling = true;
-                timeUntilRefill  = EnergyRefillTime;
+                _energyIsRefiling = true;
+                _timeUntilRefill  = EnergyRefillTime;
             }
 
-            if (timeUntilRefill <= 0)
+            if (_timeUntilRefill <= 0)
             {
                 CurrentEnergy++;
-                energyIsRefiling = false;
-                timeUntilRefill = 0;
+                _energyIsRefiling = false;
+                _timeUntilRefill = 0;
             }
         }
     }
@@ -58,18 +58,18 @@ public class EnergyManager : MonoBehaviour
         {
             PlayerPrefs.SetInt(nameof(CurrentEnergy), CurrentEnergy);
             PlayerPrefs.SetString("PauseTime", DateTime.Now.ToString(CultureInfo.InvariantCulture));
-            PlayerPrefs.SetFloat(nameof(timeUntilRefill), timeUntilRefill);
+            PlayerPrefs.SetFloat(nameof(_timeUntilRefill), _timeUntilRefill);
         }
         else
         {
             CurrentEnergy   = PlayerPrefs.GetInt(nameof(CurrentEnergy), MaxEnergy);
-            timeUntilRefill = PlayerPrefs.GetFloat(nameof(timeUntilRefill), 0);
+            _timeUntilRefill = PlayerPrefs.GetFloat(nameof(_timeUntilRefill), 0);
 
             if (DateTime.TryParse(PlayerPrefs.GetString("PauseTime"), CultureInfo.InvariantCulture, DateTimeStyles.None, out var lastPauseTime))
             {
                 var secondsPassed = (float)(DateTime.Now - lastPauseTime).TotalSeconds;
                 Debug.Log($"last {lastPauseTime}, passed {secondsPassed} seconds");
-                if (timeUntilRefill > 0)
+                if (_timeUntilRefill > 0)
                 {
                     RefillEnergySincePause(secondsPassed);
                 }
@@ -81,26 +81,26 @@ public class EnergyManager : MonoBehaviour
     {
         while (CurrentEnergy < MaxEnergy && secondsPassed > 0)
         {
-            if (timeUntilRefill <= secondsPassed)
+            if (_timeUntilRefill <= secondsPassed)
             {
-                secondsPassed   -= timeUntilRefill;
-                timeUntilRefill =  EnergyRefillTime;
+                secondsPassed   -= _timeUntilRefill;
+                _timeUntilRefill =  EnergyRefillTime;
                 CurrentEnergy++;
             }
             else
             {
-                timeUntilRefill -= secondsPassed;
+                _timeUntilRefill -= secondsPassed;
                 secondsPassed   =  0;
             }
         }
 
         if (CurrentEnergy < MaxEnergy)
         {
-            energyIsRefiling = true;
+            _energyIsRefiling = true;
         }
         else
         {
-            timeUntilRefill = 0;
+            _timeUntilRefill = 0;
         }
     }
     
@@ -108,6 +108,6 @@ public class EnergyManager : MonoBehaviour
     {
         PlayerPrefs.SetInt(nameof(CurrentEnergy), CurrentEnergy);
         PlayerPrefs.SetString("PauseTime", DateTime.Now.ToString(CultureInfo.InvariantCulture));
-        PlayerPrefs.SetFloat(nameof(timeUntilRefill), timeUntilRefill);
+        PlayerPrefs.SetFloat(nameof(_timeUntilRefill), _timeUntilRefill);
     }
 }

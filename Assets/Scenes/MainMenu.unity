@@ -139,6 +139,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
+      propertyPath: levelPreview
+      value: 
+      objectReference: {fileID: 1306658636}
+    - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
       propertyPath: previousLevelCircle
       value: 
       objectReference: {fileID: 1694830062}
@@ -783,6 +787,10 @@ PrefabInstance:
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
+      propertyPath: levelPreview
+      value: 
+      objectReference: {fileID: 1306658636}
+    - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
       propertyPath: previousLevelCircle
       value: 
       objectReference: {fileID: 1626823461}
@@ -1309,6 +1317,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
+      propertyPath: levelPreview
+      value: 
+      objectReference: {fileID: 1306658636}
+    - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
       propertyPath: previousLevelCircle
       value: 
       objectReference: {fileID: 1343313934}
@@ -1429,6 +1441,10 @@ PrefabInstance:
       propertyPath: levelNumber
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
+      propertyPath: levelPreview
+      value: 
+      objectReference: {fileID: 1306658636}
     - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
       propertyPath: previousLevelCircle
       value: 
@@ -1731,6 +1747,10 @@ PrefabInstance:
       value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
+      propertyPath: levelPreview
+      value: 
+      objectReference: {fileID: 1306658636}
+    - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
       propertyPath: previousLevelCircle
       value: 
       objectReference: {fileID: 524059440}
@@ -1855,6 +1875,10 @@ PrefabInstance:
       propertyPath: levelNumber
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
+      propertyPath: levelPreview
+      value: 
+      objectReference: {fileID: 1306658636}
     - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
       propertyPath: previousLevelCircle
       value: 
@@ -2402,6 +2426,10 @@ PrefabInstance:
       propertyPath: levelNumber
       value: 16
       objectReference: {fileID: 0}
+    - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
+      propertyPath: levelPreview
+      value: 
+      objectReference: {fileID: 1306658636}
     - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
       propertyPath: previousLevelCircle
       value: 
@@ -3179,6 +3207,10 @@ PrefabInstance:
       propertyPath: levelNumber
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
+      propertyPath: levelPreview
+      value: 
+      objectReference: {fileID: 1306658636}
     - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
       propertyPath: previousLevelCircle
       value: 
@@ -4043,6 +4075,10 @@ PrefabInstance:
       value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
+      propertyPath: levelPreview
+      value: 
+      objectReference: {fileID: 1306658636}
+    - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
       propertyPath: previousLevelCircle
       value: 
       objectReference: {fileID: 464531319}
@@ -4378,6 +4414,10 @@ PrefabInstance:
       propertyPath: levelNumber
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
+      propertyPath: levelPreview
+      value: 
+      objectReference: {fileID: 1306658636}
     - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
       propertyPath: previousLevelCircle
       value: 
@@ -5004,6 +5044,10 @@ PrefabInstance:
       propertyPath: levelNumber
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
+      propertyPath: levelPreview
+      value: 
+      objectReference: {fileID: 1306658636}
     - target: {fileID: 5060874367870582549, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -5168,7 +5212,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0412\u044B\u0445\u043E\u0434"
+  m_text: "\u041D\u0430\u0437\u0430\u0434"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8d27ed830fdbfac4a9e2a13553533566, type: 2}
   m_sharedMaterial: {fileID: -2488903439599084082, guid: 8d27ed830fdbfac4a9e2a13553533566, type: 2}
@@ -6040,6 +6084,10 @@ PrefabInstance:
       propertyPath: levelNumber
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
+      propertyPath: levelPreview
+      value: 
+      objectReference: {fileID: 1306658636}
     - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
       propertyPath: previousLevelCircle
       value: 
@@ -7241,6 +7289,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
+      propertyPath: levelPreview
+      value: 
+      objectReference: {fileID: 1306658636}
+    - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
       propertyPath: previousLevelCircle
       value: 
       objectReference: {fileID: 383840101}
@@ -7361,6 +7413,10 @@ PrefabInstance:
       propertyPath: levelNumber
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
+      propertyPath: levelPreview
+      value: 
+      objectReference: {fileID: 1306658636}
     - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
       propertyPath: previousLevelCircle
       value: 
@@ -7486,6 +7542,10 @@ PrefabInstance:
       propertyPath: levelNumber
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
+      propertyPath: levelPreview
+      value: 
+      objectReference: {fileID: 1306658636}
     - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
       propertyPath: previousLevelCircle
       value: 
@@ -8351,6 +8411,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
+      propertyPath: levelPreview
+      value: 
+      objectReference: {fileID: 1306658636}
+    - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
       propertyPath: previousLevelCircle
       value: 
       objectReference: {fileID: 1184895730}
@@ -8726,6 +8790,10 @@ PrefabInstance:
       value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
+      propertyPath: levelPreview
+      value: 
+      objectReference: {fileID: 1306658636}
+    - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
       propertyPath: previousLevelCircle
       value: 
       objectReference: {fileID: 441794313}
@@ -9027,6 +9095,10 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
+      propertyPath: levelPreview
+      value: 
+      objectReference: {fileID: 1306658636}
+    - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
       propertyPath: previousLevelCircle
       value: 
       objectReference: {fileID: 647284339}
@@ -9147,6 +9219,10 @@ PrefabInstance:
       propertyPath: levelNumber
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
+      propertyPath: levelPreview
+      value: 
+      objectReference: {fileID: 1306658636}
     - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
       propertyPath: previousLevelCircle
       value: 
@@ -9476,7 +9552,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1888126129}
   - component: {fileID: 1888126132}
-  - component: {fileID: 1888126133}
   - component: {fileID: 1888126131}
   - component: {fileID: 1888126130}
   m_Layer: 5
@@ -9504,7 +9579,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.26998138, y: -392}
+  m_AnchoredPosition: {x: 0.269989, y: -392}
   m_SizeDelta: {x: -142.26999, y: 29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1888126130
@@ -9550,7 +9625,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1888126131}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1306658636}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1888126131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9589,19 +9676,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1888126128}
   m_CullTransparentMesh: 1
---- !u!114 &1888126133
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1888126128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef24bf061e45bb84591d15a7a01f78d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelInfo: {fileID: 1306658636}
 --- !u!1 &1893038272
 GameObject:
   m_ObjectHideFlags: 0
@@ -10326,6 +10400,10 @@ PrefabInstance:
       value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
+      propertyPath: levelPreview
+      value: 
+      objectReference: {fileID: 1306658636}
+    - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
       propertyPath: previousLevelCircle
       value: 
       objectReference: {fileID: 1741405824}
@@ -10646,6 +10724,7 @@ GameObject:
   - component: {fileID: 2102280419}
   - component: {fileID: 2102280418}
   - component: {fileID: 2102280417}
+  - component: {fileID: 2102280420}
   m_Layer: 5
   m_Name: Start
   m_TagString: Untagged
@@ -10756,6 +10835,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102280415}
   m_CullTransparentMesh: 1
+--- !u!114 &2102280420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102280415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb5314671df4e042b88f30f63c6ef4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyManager: {fileID: 1498861789}
 --- !u!1001 &2107827268
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10889,6 +10981,10 @@ PrefabInstance:
       propertyPath: levelNumber
       value: 21
       objectReference: {fileID: 0}
+    - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
+      propertyPath: levelPreview
+      value: 
+      objectReference: {fileID: 1306658636}
     - target: {fileID: 5060874367870582548, guid: ea404739bdef5f645a0f97fc0747d100, type: 3}
       propertyPath: previousLevelCircle
       value: 
