@@ -41,8 +41,8 @@ public class TileSpriteManager : MonoBehaviour
     {
         if (!Doors.ContainsKey((color, isOpened)))
         {
-            Doors[(color, false)] = Resources.Load<Sprite>($"Levers\\Closed\\{color}");
-            Doors[(color, true)] = Resources.Load<Sprite>($"Levers\\Opened\\{color}");
+            Doors[(color, false)] = Resources.Load<Sprite>($"Doors\\Closed\\{color}");
+            Doors[(color, true)] = Resources.Load<Sprite>($"Doors\\Opened\\{color}");
         }
 
         return Doors[(color, isOpened)];

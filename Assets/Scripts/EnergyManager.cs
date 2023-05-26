@@ -12,7 +12,7 @@ public class EnergyManager : MonoBehaviour
     [SerializeField] private TMP_Text energy;
     [SerializeField] private TMP_Text timer;
     public const int MaxEnergy = 5;
-    private const int EnergyRefillTime = 300;
+    private const int EnergyRefillTime = 60;
     private bool _energyIsRefiling;
     private float _timeUntilRefill;
 

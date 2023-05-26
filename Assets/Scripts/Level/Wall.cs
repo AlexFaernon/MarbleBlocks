@@ -21,13 +21,7 @@ public class Wall : MonoBehaviour
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        if (isDoor)
-        {
-            _closed = TileSpriteManager.GetDoorSprite(color, false);
-            _opened = TileSpriteManager.GetDoorSprite(color, true);
-        }
-        OnLevelSwitch.AddListener(OnLeverSwitch);
-        tag = isDoor ? "Door" : "Wall";
+        
     }
 
     private void OnLeverSwitch(DoorLeverColor leverColor)
@@ -61,6 +55,13 @@ public class Wall : MonoBehaviour
         gameObject.SetActive(wallClass.IsActive);
         isDoor = wallClass.IsDoor;
         color = wallClass.Color;
+        if (isDoor)
+        {
+            _closed = TileSpriteManager.GetDoorSprite(color, false);
+            _opened = TileSpriteManager.GetDoorSprite(color, true);
+            OnLevelSwitch.AddListener(OnLeverSwitch);
+        }
+        tag = isDoor ? "Door" : "Wall";
     }
 
     private void OnDestroy()
