@@ -57,6 +57,13 @@ public class CharacterSwitchButton : MonoBehaviour
 
     private void ActivateCharacter()
     {
+        if (_sonic != null) _sonic.IsActive   = _sonic.CompareTag(character);
+        if (_jumper != null) _jumper.IsActive = _jumper.CompareTag(character);
+        if (_feesh != null) _feesh.IsActive   = _feesh.CompareTag(character);
+    }
+
+    private void Update()
+    {
         switch (LevelSaveManager.LevelNumber)
         {
             case 2 when character != "Sonic":
@@ -66,13 +73,7 @@ public class CharacterSwitchButton : MonoBehaviour
                 _button.interactable = false;
                 return;
         }
-        if (_sonic != null) _sonic.IsActive   = _sonic.CompareTag(character);
-        if (_jumper != null) _jumper.IsActive = _jumper.CompareTag(character);
-        if (_feesh != null) _feesh.IsActive   = _feesh.CompareTag(character);
-    }
-
-    private void Update()
-    {
+        
         _button.interactable = character switch
         {
             "Sonic" => !_sonic.IsActive,

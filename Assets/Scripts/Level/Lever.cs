@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class Lever : MonoBehaviour
@@ -12,19 +13,19 @@ public class Lever : MonoBehaviour
         set => SetLever(value);
     }
 
-    private bool _isActive;
+    public bool IsActive { private set; get; }
     private SpriteRenderer _spriteRenderer;
 
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _off = TileSpriteManager.GetLeverSprite(color, false);
-        _on = TileSpriteManager.GetLeverSprite(color, true);
+        _off = Resources.Load<Sprite>($"Levers/Off/{color}");
+        _on = Resources.Load<Sprite>($"Levers/On/{color}");
     }
 
     private void Update()
     {
-        _spriteRenderer.sprite = _isActive ? _on : _off;
+        _spriteRenderer.sprite = IsActive ? _on : _off;
     }
 
     public LeverClass GetSave()
@@ -34,9 +35,9 @@ public class Lever : MonoBehaviour
 
     public void Switch()
     {
-        if (!isSwitchable && _isActive) return;
+        if (!isSwitchable && IsActive) return;
         
-        _isActive = !_isActive;
+        IsActive = !IsActive;
         Wall.OnLevelSwitch.Invoke(color);
     }
     

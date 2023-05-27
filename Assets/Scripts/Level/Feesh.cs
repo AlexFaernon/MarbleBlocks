@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Feesh : MonoBehaviour
 {
-    public bool isActive;
+    private bool isActive;
+    private Sonic _sonic;
+    private Jumper _jumper;
     private Tile _currentTile;
     private HashSet<Tile> _availableTiles = new();
     public Vector2Int GetSave => _currentTile.gridPosition;
@@ -21,6 +24,12 @@ public class Feesh : MonoBehaviour
                 TileManager.HighlightTiles(_availableTiles);
             }
         }
+    }
+
+    private void Start()
+    {
+        _sonic = GameObject.FindWithTag("Sonic")?.GetComponent<Sonic>();
+        _jumper = GameObject.FindWithTag("Jumper")?.GetComponent<Jumper>();
     }
 
     private void Update()
@@ -45,10 +54,10 @@ public class Feesh : MonoBehaviour
             return;
         }
 
-        var layerObject = LayerMask.GetMask("Ground");
+        var layerObject = LayerMask.GetMask("Ground", "UI");
         
         var hit = Physics2D.Raycast(ray, ray, Mathf.Infinity, layerObject);
-        if (hit.collider != null)
+        if (hit.collider != null && !EventSystem.current.IsPointerOverGameObject())
         {
             var targetTile = hit.collider.gameObject.GetComponent<Tile>();
             if (_availableTiles.Contains(targetTile))
@@ -106,7 +115,14 @@ public class Feesh : MonoBehaviour
         return tile.AvailableToMoveThroughSide(movingSide) && nextTile.AvailableToMoveThroughSide(enterSide) &&
                !nextTile.isGrass && !nextTile.IsWhirlpoolOnTile && !nextTile.isEdge;
     }
-    
+
+    private void OnMouseDown()
+    {
+        IsActive = true;
+        if (_sonic) _sonic.IsActive = false;
+        if (_jumper) _jumper.IsActive = false;
+    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Ground"))

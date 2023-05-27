@@ -7,7 +7,9 @@ public class Jumper : MonoBehaviour
     private Tile _currentTile;
     private Side _movingSide;
     private bool _isActive;
-    public Vector2Int GetSave => _currentTile.gridPosition;
+    private Feesh _feesh;
+    private Sonic _sonic;
+    public Vector2Int GetGridPosition => _currentTile.gridPosition;
 
     public bool IsActive
     {
@@ -23,6 +25,12 @@ public class Jumper : MonoBehaviour
     }
 
     public bool IsMoving { get; set; }
+    
+    private void Start()
+    {
+        _feesh = GameObject.FindWithTag("Feesh")?.GetComponent<Feesh>();
+        _sonic = GameObject.FindWithTag("Sonic")?.GetComponent<Sonic>();
+    }
 
     void Update()
     {
@@ -105,6 +113,13 @@ public class Jumper : MonoBehaviour
         }
         
         TileManager.HighlightTiles(highlightedTiles);
+    }
+    
+    private void OnMouseDown()
+    {
+        IsActive = true;
+        if (_feesh) _feesh.IsActive = false;
+        if (_sonic) _sonic.IsActive = false;
     }
     
     private void OnTriggerEnter2D(Collider2D col)

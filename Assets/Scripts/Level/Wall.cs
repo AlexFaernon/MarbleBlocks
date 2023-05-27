@@ -57,8 +57,9 @@ public class Wall : MonoBehaviour
         color = wallClass.Color;
         if (isDoor)
         {
-            _closed = TileSpriteManager.GetDoorSprite(color, false);
-            _opened = TileSpriteManager.GetDoorSprite(color, true);
+            var side = transform.localPosition.x == 0 ? "Horizontal" : "Vertical";
+            _opened = Resources.Load<Sprite>($"Doors/{side}/Opened/{color}");
+            _closed = Resources.Load<Sprite>($"Doors/{side}/Closed/{color}");
             OnLevelSwitch.AddListener(OnLeverSwitch);
         }
         tag = isDoor ? "Door" : "Wall";

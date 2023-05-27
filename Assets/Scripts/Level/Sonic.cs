@@ -10,6 +10,8 @@ public class Sonic : MonoBehaviour
     private Side _movingSide;
     private Lever _lever;
     public bool isActive;
+    private Feesh _feesh;
+    private Jumper _jumper;
     public Vector2Int GetSave => _currentTile.gridPosition;
 
     public bool IsMoving
@@ -44,6 +46,12 @@ public class Sonic : MonoBehaviour
                 HighlightTiles();
             }
         }
+    }
+
+    private void Start()
+    {
+        _feesh = GameObject.FindWithTag("Feesh")?.GetComponent<Feesh>();
+        _jumper = GameObject.FindWithTag("Jumper")?.GetComponent<Jumper>();
     }
 
     public void Move(Side side)
@@ -123,6 +131,14 @@ public class Sonic : MonoBehaviour
         return currentTile.AvailableToMoveThroughSide(moveSide) && nextTile.AvailableToMoveThroughSide(enterSide) &&
                !nextTile.isJumperOnTile;
     }
+    
+    private void OnMouseDown()
+    {
+        IsActive = true;
+        if (_feesh) _feesh.IsActive = false;
+        if (_jumper) _jumper.IsActive = false;
+    }
+
 
     private void OnTriggerEnter2D(Collider2D col)
     {

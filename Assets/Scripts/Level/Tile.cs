@@ -68,7 +68,7 @@ public class Tile : MonoBehaviour
             _ => throw new ArgumentOutOfRangeException(nameof(side), side, null)
         };
     }
-
+    
     public TileClass GetSave()
     {
         var tileObject = OnTileObject.None;
