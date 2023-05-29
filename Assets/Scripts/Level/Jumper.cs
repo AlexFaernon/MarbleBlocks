@@ -37,6 +37,7 @@ public class Jumper : MonoBehaviour
         if (!_currentTile.isGrass && !_currentTile.isFeeshOnTile && !IsMoving)
         {
             Debug.Log("Drown");
+            GameObject.FindWithTag("Defeat").transform.GetChild(0).gameObject.SetActive(true);
             Destroy(gameObject);
             return;
         }
@@ -44,6 +45,7 @@ public class Jumper : MonoBehaviour
         if (_currentTile.isEdge)
         {
             Debug.Log("Fall");
+            GameObject.FindWithTag("Defeat").transform.GetChild(0).gameObject.SetActive(true);
             Destroy(gameObject);
             return;
         }
@@ -54,6 +56,7 @@ public class Jumper : MonoBehaviour
          if (targetTile != _currentTile)
          {
              transform.position = targetTile.transform.position;
+             StepCounter.Count++;
          }
          IsMoving = false;
     }
@@ -135,6 +138,7 @@ public class Jumper : MonoBehaviour
         
         if (col.CompareTag("Spike"))
         {
+            GameObject.FindWithTag("Defeat").transform.GetChild(0).gameObject.SetActive(true);
             Destroy(gameObject);
         }
         
@@ -142,10 +146,5 @@ public class Jumper : MonoBehaviour
         {
             col.GetComponent<Lever>().Switch();
         }
-    }
-    
-    private void OnDestroy()
-    {
-        GameObject.FindWithTag("Defeat").transform.GetChild(0).gameObject.SetActive(true);
     }
 }

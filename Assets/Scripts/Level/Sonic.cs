@@ -60,15 +60,20 @@ public class Sonic : MonoBehaviour
             throw new Exception("Character isn't active");
         
         if (IsMoving || _currentTile.isJumperOnTile) return;
-        
-        IsMoving = true;
-        _movingSide = side;
+
+        if (CanMoveForward(_currentTile, side))
+        {
+            IsMoving = true;
+            _movingSide = side;
+            StepCounter.Count++;
+        }
     }
 
     private void Update()
     {
         if (!_currentTile.isGrass && !_currentTile.isFeeshOnTile && !IsMoving)
         {
+            GameObject.FindWithTag("Defeat").transform.GetChild(0).gameObject.SetActive(true);
             Debug.Log("Drown");
             Destroy(gameObject);
             return;
@@ -76,6 +81,7 @@ public class Sonic : MonoBehaviour
 
         if (_currentTile.isEdge)
         {
+            GameObject.FindWithTag("Defeat").transform.GetChild(0).gameObject.SetActive(true);
             Debug.Log("Fall");
             Destroy(gameObject);
             return;
@@ -149,6 +155,7 @@ public class Sonic : MonoBehaviour
         
         if (col.CompareTag("Spike"))
         {
+            GameObject.FindWithTag("Defeat").transform.GetChild(0).gameObject.SetActive(true);
             Destroy(gameObject);
         }
 
@@ -156,10 +163,5 @@ public class Sonic : MonoBehaviour
         {
             _lever = col.GetComponent<Lever>();
         }
-    }
-
-    private void OnDestroy()
-    {
-        GameObject.FindWithTag("Defeat").transform.GetChild(0).gameObject.SetActive(true);
     }
 }

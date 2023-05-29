@@ -63,6 +63,7 @@ public class Feesh : MonoBehaviour
             if (_availableTiles.Contains(targetTile))
             {
                 transform.position = targetTile.transform.position;
+                StepCounter.Count++;
             }
         }
     }
@@ -90,8 +91,9 @@ public class Feesh : MonoBehaviour
                 }
             }
         }
-
+        
         _availableTiles = visited;
+        _availableTiles.Remove(_currentTile);
     }
 
     private bool TileIsAvailable(Tile tile, Side movingSide)

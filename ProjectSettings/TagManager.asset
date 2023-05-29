@@ -13,6 +13,7 @@ TagManager:
   - Jumper
   - Lever
   - Defeat
+  - EnergyManager
   layers:
   - Default
   - TransparentFX

@@ -1,4 +1,5 @@
 using Lean.Touch;
+using System;
 using UnityEngine;
 
     // This script allows you to zoom a camera in and out based on the pinch gesture
@@ -27,6 +28,16 @@ using UnityEngine;
 
         [Tooltip("The maximum FOV/Size we want to zoom to")]
         public float zoomMax = 60.0f;
+
+        private void Awake()
+        {
+            var size = 4.5f;
+            var sizeMin = 3.5f;
+            var offset = (LevelSaveManager.LoadedLevel.FieldSize.x - 7) / 2;
+            zoom = size + offset;
+            zoomMin = sizeMin + offset;
+            zoomMax = zoom;
+        }
 
         protected virtual void LateUpdate()
         {

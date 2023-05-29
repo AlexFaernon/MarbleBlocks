@@ -9,17 +9,20 @@ using UnityEngine.Serialization;
 
 public class EnergyManager : MonoBehaviour
 {
-    [SerializeField] private TMP_Text energy;
-    [SerializeField] private TMP_Text timer;
     public const int MaxEnergy = 5;
     private const int EnergyRefillTime = 60;
     private bool _energyIsRefiling;
-    private float _timeUntilRefill;
+    public static float TimeUntilRefill;
 
     public static int CurrentEnergy { get; private set; }
 
     private void Awake()
     {
+        if (FindObjectsOfType<EnergyManager>().Length > 1)
+        {
+            Destroy(gameObject);
+        }
+
         DontDestroyOnLoad(this);
     }
 
@@ -30,25 +33,23 @@ public class EnergyManager : MonoBehaviour
 
     private void Update()
     {
-        energy.text = $"{CurrentEnergy}/{MaxEnergy}";
-        timer.text  = $"{(int)_timeUntilRefill / 60}:{(int)_timeUntilRefill % 60}";
         if (CurrentEnergy < MaxEnergy)
         {
             if (_energyIsRefiling)
             {
-                _timeUntilRefill -= Time.unscaledDeltaTime;
+                TimeUntilRefill -= Time.unscaledDeltaTime;
             }
             else
             {
                 _energyIsRefiling = true;
-                _timeUntilRefill  = EnergyRefillTime;
+                TimeUntilRefill  = EnergyRefillTime;
             }
 
-            if (_timeUntilRefill <= 0)
+            if (TimeUntilRefill <= 0)
             {
                 CurrentEnergy++;
                 _energyIsRefiling = false;
-                _timeUntilRefill = 0;
+                TimeUntilRefill = 0;
             }
         }
     }
@@ -56,20 +57,22 @@ public class EnergyManager : MonoBehaviour
     {
         if (pauseStatus)
         {
+            Debug.Log("pause");
             PlayerPrefs.SetInt(nameof(CurrentEnergy), CurrentEnergy);
             PlayerPrefs.SetString("PauseTime", DateTime.Now.ToString(CultureInfo.InvariantCulture));
-            PlayerPrefs.SetFloat(nameof(_timeUntilRefill), _timeUntilRefill);
+            PlayerPrefs.SetFloat(nameof(TimeUntilRefill), TimeUntilRefill);
         }
         else
         {
+            Debug.Log("unpause");
             CurrentEnergy   = PlayerPrefs.GetInt(nameof(CurrentEnergy), MaxEnergy);
-            _timeUntilRefill = PlayerPrefs.GetFloat(nameof(_timeUntilRefill), 0);
+            TimeUntilRefill = PlayerPrefs.GetFloat(nameof(TimeUntilRefill), 0);
 
             if (DateTime.TryParse(PlayerPrefs.GetString("PauseTime"), CultureInfo.InvariantCulture, DateTimeStyles.None, out var lastPauseTime))
             {
                 var secondsPassed = (float)(DateTime.Now - lastPauseTime).TotalSeconds;
                 Debug.Log($"last {lastPauseTime}, passed {secondsPassed} seconds");
-                if (_timeUntilRefill > 0)
+                if (TimeUntilRefill > 0)
                 {
                     RefillEnergySincePause(secondsPassed);
                 }
@@ -81,15 +84,15 @@ public class EnergyManager : MonoBehaviour
     {
         while (CurrentEnergy < MaxEnergy && secondsPassed > 0)
         {
-            if (_timeUntilRefill <= secondsPassed)
+            if (TimeUntilRefill <= secondsPassed)
             {
-                secondsPassed   -= _timeUntilRefill;
-                _timeUntilRefill =  EnergyRefillTime;
+                secondsPassed   -= TimeUntilRefill;
+                TimeUntilRefill =  EnergyRefillTime;
                 CurrentEnergy++;
             }
             else
             {
-                _timeUntilRefill -= secondsPassed;
+                TimeUntilRefill -= secondsPassed;
                 secondsPassed   =  0;
             }
         }
@@ -100,7 +103,7 @@ public class EnergyManager : MonoBehaviour
         }
         else
         {
-            _timeUntilRefill = 0;
+            TimeUntilRefill = 0;
         }
     }
     
@@ -108,6 +111,6 @@ public class EnergyManager : MonoBehaviour
     {
         PlayerPrefs.SetInt(nameof(CurrentEnergy), CurrentEnergy);
         PlayerPrefs.SetString("PauseTime", DateTime.Now.ToString(CultureInfo.InvariantCulture));
-        PlayerPrefs.SetFloat(nameof(_timeUntilRefill), _timeUntilRefill);
+        PlayerPrefs.SetFloat(nameof(TimeUntilRefill), TimeUntilRefill);
     }
 }

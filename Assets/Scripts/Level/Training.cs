@@ -8,18 +8,22 @@ public class Training : MonoBehaviour
 {
     [SerializeField] private GameObject blocker;
     [SerializeField] private Transform feeshTraining;
+    [SerializeField] private Transform sonicTraining;
     [SerializeField] private Transform jumperTraining;
 
     private void Start()
     {
-        if (LevelSaveManager.LevelNumber == 1)
+        switch (LevelSaveManager.LevelNumber)
         {
-            StartCoroutine(FeeshTraining());
-        }
-
-        if (LevelSaveManager.LevelNumber == 3)
-        {
-            StartCoroutine(JumperTraining());
+            case 1:
+                StartCoroutine(FeeshTraining());
+                break;
+            case 2:
+                StartCoroutine(SonicTraining());
+                break;
+            case 3:
+                StartCoroutine(JumperTraining());
+                break;
         }
     }
 
@@ -57,6 +61,38 @@ public class Training : MonoBehaviour
         current.SetActive(true);
     }
 
+    private IEnumerator SonicTraining()
+    {
+        sonicTraining.gameObject.SetActive(true);
+        var sonic = GameObject.FindWithTag("Sonic").GetComponent<Sonic>();
+
+        var current = sonicTraining.GetChild(0).gameObject;
+        yield return new WaitForEndOfFrame();
+        current.SetActive(true);
+        yield return new WaitUntil(() => sonic.GetSave == new Vector2Int(1, 7));
+        current.SetActive(false);
+
+        yield return new WaitUntil(() => sonic.GetSave == new Vector2Int(7, 1));
+        blocker.SetActive(true);
+        
+        current = sonicTraining.GetChild(1).gameObject;
+        current.SetActive(true);
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0) || Input.touchCount > 0);
+        current.SetActive(false);
+        
+        current = sonicTraining.GetChild(2).gameObject;
+        current.SetActive(true);
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0) || Input.touchCount > 0);
+        current.SetActive(false);
+        
+        current = sonicTraining.GetChild(3).gameObject;
+        current.SetActive(true);
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0) || Input.touchCount > 0);
+        current.SetActive(false);
+        
+        blocker.SetActive(false);
+    }
+    
     private IEnumerator JumperTraining()
     {
         jumperTraining.gameObject.SetActive(true);
