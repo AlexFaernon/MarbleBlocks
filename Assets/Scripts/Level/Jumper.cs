@@ -32,8 +32,6 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
         _feesh = GameObject.FindWithTag("Feesh")?.GetComponent<Feesh>();
         _sonic = GameObject.FindWithTag("Sonic")?.GetComponent<Sonic>();
     }
-    
-    
 
     void Update()
     {
