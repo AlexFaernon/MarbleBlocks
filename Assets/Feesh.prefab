@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6118298324262576452}
   - component: {fileID: 6118298324262576451}
   - component: {fileID: 6118298324262576450}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Feesh
   m_TagString: Feesh
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.34
+  m_Radius: 1.77
 --- !u!50 &6118298324262576450
 Rigidbody2D:
   serializedVersion: 4

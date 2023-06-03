@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2170304946276133791}
   - component: {fileID: 2170304946276133788}
   - component: {fileID: 2170304946276133789}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sonic
   m_TagString: Sonic
   m_Icon: {fileID: 0}
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2779dc4dce4b5604fac93eea10a6b575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentTile: {fileID: 0}
   isActive: 0
 --- !u!212 &2170304946276133791
 SpriteRenderer:
@@ -88,7 +89,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: 76dfae88d08352d4994791d1ed54c1c1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

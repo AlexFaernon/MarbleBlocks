@@ -4,8 +4,7 @@ using UnityEngine;
 
     // This script allows you to zoom a camera in and out based on the pinch gesture
     // This supports both perspective and orthographic cameras
-    [ExecuteInEditMode]
-    public class ZoomPinch : MonoBehaviour
+public class ZoomPinch : MonoBehaviour
     {
         [Tooltip("Ignore fingers with StartedOverGui?")]
         public bool ignoreGuiFingers = true;

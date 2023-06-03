@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Feesh : MonoBehaviour
+public class Feesh : MonoBehaviour, IPointerDownHandler
 {
     private bool isActive;
     private Sonic _sonic;
@@ -118,8 +118,10 @@ public class Feesh : MonoBehaviour
                !nextTile.isGrass && !nextTile.IsWhirlpoolOnTile && !nextTile.isEdge;
     }
 
-    private void OnMouseDown()
+    public void OnPointerDown(PointerEventData eventData)
     {
+        if (LevelSaveManager.LevelNumber is 2 or 3) return;
+        
         IsActive = true;
         if (_sonic) _sonic.IsActive = false;
         if (_jumper) _jumper.IsActive = false;

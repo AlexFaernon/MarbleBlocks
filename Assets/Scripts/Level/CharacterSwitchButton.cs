@@ -13,6 +13,16 @@ public class CharacterSwitchButton : MonoBehaviour
     private Button _button;
     private void Awake()
     {
+        switch (LevelSaveManager.LevelNumber)
+        {
+            case 2 when character != "Sonic":
+                gameObject.SetActive(false);
+                return;
+            case 3 when character != "Jumper":
+                gameObject.SetActive(false);
+                return;
+        }
+        
         var sonicObj = GameObject.FindWithTag("Sonic");
         if (sonicObj)
         {
@@ -64,16 +74,6 @@ public class CharacterSwitchButton : MonoBehaviour
 
     private void Update()
     {
-        switch (LevelSaveManager.LevelNumber)
-        {
-            case 2 when character != "Sonic":
-                _button.interactable = false;
-                return;
-            case 3 when character != "Jumper":
-                _button.interactable = false;
-                return;
-        }
-        
         _button.interactable = character switch
         {
             "Sonic" => !_sonic.IsActive,

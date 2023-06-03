@@ -11,7 +11,7 @@ public class MenuLevelLine : MonoBehaviour
     [SerializeField] private Sprite completed;
     [SerializeField] private MenuLevelCircle nextLevelCircle;
 
-    private void Awake()
+    private void Start()
     {
         if (nextLevelCircle.IsCompleted)
         {

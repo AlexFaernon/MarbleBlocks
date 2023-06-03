@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Jumper : MonoBehaviour
+public class Jumper : MonoBehaviour, IPointerDownHandler
 {
     private Tile _currentTile;
     private Side _movingSide;
@@ -117,9 +118,11 @@ public class Jumper : MonoBehaviour
         
         TileManager.HighlightTiles(highlightedTiles);
     }
-    
-    private void OnMouseDown()
+
+    public void OnPointerDown(PointerEventData eventData)
     {
+        if (LevelSaveManager.LevelNumber == 2) return;
+        
         IsActive = true;
         if (_feesh) _feesh.IsActive = false;
         if (_sonic) _sonic.IsActive = false;

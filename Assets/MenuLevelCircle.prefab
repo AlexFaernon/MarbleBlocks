@@ -64,6 +64,7 @@ MonoBehaviour:
   opened: {fileID: 21300000, guid: ac94c89c75c62884aa53e10961f3c9f1, type: 3}
   completed: {fileID: 21300000, guid: fa7177e58756b0a44b77903b4270ea75, type: 3}
   previousLevelCircle: {fileID: 0}
+  levelPreview: {fileID: 0}
   levelNumber: 0
 --- !u!114 &5060874367870582549
 MonoBehaviour:
@@ -120,7 +121,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:

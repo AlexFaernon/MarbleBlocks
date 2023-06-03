@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class Sonic : MonoBehaviour
+public class Sonic : MonoBehaviour, IPointerDownHandler
 {
-    private Tile _currentTile;
+    [SerializeField]private Tile _currentTile;
     private bool _isMoving;
     private Side _movingSide;
     private Lever _lever;
@@ -27,7 +28,7 @@ public class Sonic : MonoBehaviour
                 HighlightTiles();
             }
             
-            if (_lever is not null && (transform.position - _lever.transform.position).magnitude < 0.01f)
+            if (_lever is not null && (transform.position - _lever.transform.position).magnitude < 0.1f)
             {
                 _lever.Switch();
             }
@@ -114,6 +115,9 @@ public class Sonic : MonoBehaviour
                 {
                     break;
                 }
+            }
+            if (currentTile != _currentTile)
+            {
                 highlightedTiles.Add(currentTile);
             }
         }
@@ -123,9 +127,9 @@ public class Sonic : MonoBehaviour
 
     private bool CanMoveForward(Tile currentTile, Side moveSide)
     {
-        var nextTile = TileManager.GetTile(_currentTile, moveSide);
+        var nextTile = TileManager.GetTile(currentTile, moveSide);
         
-        var enterSide = _movingSide switch
+        var enterSide = moveSide switch
         {
             Side.North => Side.South,
             Side.South => Side.North,
@@ -138,13 +142,14 @@ public class Sonic : MonoBehaviour
                !nextTile.isJumperOnTile;
     }
     
-    private void OnMouseDown()
+    public void OnPointerDown(PointerEventData eventData)
     {
+        if (LevelSaveManager.LevelNumber == 3) return;
+        
         IsActive = true;
         if (_feesh) _feesh.IsActive = false;
         if (_jumper) _jumper.IsActive = false;
     }
-
 
     private void OnTriggerEnter2D(Collider2D col)
     {

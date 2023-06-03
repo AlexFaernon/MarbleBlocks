@@ -9,6 +9,7 @@ public class NextLevelButton : MonoBehaviour
 {
 	private void Awake()
 	{
+		MenuLevelCircle.LevelCompletion[LevelSaveManager.LevelNumber] = true;
 		GetComponent<Button>().onClick.AddListener(NextLevel);
 	}
 
