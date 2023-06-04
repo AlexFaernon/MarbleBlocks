@@ -50,7 +50,7 @@ public class MenuLevelCircle : MonoBehaviour
     {
         yield return new WaitUntil(() => NameManager.PlayerName != "");
 
-        if (NameManager.PlayerName == "TRW")
+        if (NameManager.PlayerName.ToUpper() == "TRW")
         {
             GetComponent<Image>().sprite = completed;
             _button.interactable = true;

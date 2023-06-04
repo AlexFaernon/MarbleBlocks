@@ -5,12 +5,12 @@ using UnityEngine.EventSystems;
 
 public class Jumper : MonoBehaviour, IPointerDownHandler
 {
-    private Tile _currentTile;
+    public Tile CurrentTile { get; private set; }
     private Side _movingSide;
     private bool _isActive;
     private Feesh _feesh;
     private Sonic _sonic;
-    public Vector2Int GetGridPosition => _currentTile.gridPosition;
+    public Vector2Int GetGridPosition => CurrentTile.gridPosition;
 
     public bool IsActive
     {
@@ -35,7 +35,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
 
     void Update()
     {
-        if (!_currentTile.isGrass && !_currentTile.isFeeshOnTile && !IsMoving)
+        if (!CurrentTile.isGrass && !CurrentTile.isFeeshOnTile && !IsMoving)
         {
             Debug.Log("Drown");
             GameObject.FindWithTag("Defeat").transform.GetChild(0).gameObject.SetActive(true);
@@ -43,7 +43,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
             return;
         }
         
-        if (_currentTile.isEdge)
+        if (CurrentTile.isEdge)
         {
             Debug.Log("Fall");
             GameObject.FindWithTag("Defeat").transform.GetChild(0).gameObject.SetActive(true);
@@ -54,7 +54,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
         if (!IsMoving) return;
         
          var targetTile = TryToMove(_movingSide);
-         if (targetTile != _currentTile)
+         if (targetTile != CurrentTile)
          {
              transform.position = targetTile.transform.position;
              StepCounter.Count++;
@@ -82,7 +82,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
             _ => throw new ArgumentOutOfRangeException()
         };
 
-        var targetTile = _currentTile;
+        var targetTile = CurrentTile;
         for (var i = 0; i < 2; i++)
         {
             var nextTile = TileManager.GetTile(targetTile, movingSide);
@@ -91,7 +91,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
                 return targetTile;
             }
 
-            if (targetTile.AvailableToMoveThroughSide(movingSide) && nextTile.AvailableToMoveThroughSide(enterSide))
+            if (targetTile.AvailableToMoveThroughSide(movingSide) && nextTile.AvailableToMoveThroughSide(enterSide) && !targetTile.IsExitOnTile)
             {
                 targetTile = nextTile;
             }
@@ -110,7 +110,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
         foreach (Side side in Enum.GetValues(typeof(Side)))
         {
             var targetTile = TryToMove(side);
-            if (targetTile != _currentTile && !targetTile.isEdge)
+            if (targetTile != CurrentTile && !targetTile.isEdge)
             {
                 highlightedTiles.Add(targetTile);
             }
@@ -132,7 +132,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
     {
         if (col.CompareTag("Ground"))
         {
-            _currentTile = col.GetComponent<Tile>();
+            CurrentTile = col.GetComponent<Tile>();
             if (IsActive)
             {
                 HighlightTiles();

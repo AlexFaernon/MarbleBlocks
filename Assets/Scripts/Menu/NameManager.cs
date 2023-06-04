@@ -14,7 +14,6 @@ public class NameManager : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log(PlayerName);
         if (PlayerName != "")
         {
             gameObject.SetActive(false);

@@ -19,12 +19,22 @@ public class StartLevel : MonoBehaviour
 
 	private void LoadLevel()
 	{
-		energyManager.SpendEnergy();
+		if (LevelSaveManager.LevelNumber > 3)
+		{
+			energyManager.SpendEnergy();
+		}
 		SceneManager.LoadScene("Level");
 	}
 
 	private void Update()
 	{
+		if (LevelSaveManager.LevelNumber <= 3)
+		{
+			_button.interactable = true;
+			label.text = "Начать уровень";
+			return;
+		}
+		
 		_button.interactable = EnergyManager.CurrentEnergy > 0;
 		label.text = EnergyManager.CurrentEnergy > 0 ? "Начать уровень" : "Не хватает энергии";
 	}

@@ -6,14 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class Sonic : MonoBehaviour, IPointerDownHandler
 {
-    [SerializeField]private Tile _currentTile;
+    public Tile CurrentTile { get; private set; }
     private bool _isMoving;
     private Side _movingSide;
     private Lever _lever;
     public bool isActive;
     private Feesh _feesh;
     private Jumper _jumper;
-    public Vector2Int GetSave => _currentTile.gridPosition;
+    public Vector2Int GetSave => CurrentTile.gridPosition;
 
     public bool IsMoving
     {
@@ -60,9 +60,9 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
         if (!IsActive)
             throw new Exception("Character isn't active");
         
-        if (IsMoving || _currentTile.isJumperOnTile) return;
+        if (IsMoving || CurrentTile.isJumperOnTile) return;
 
-        if (CanMoveForward(_currentTile, side))
+        if (CanMoveForward(CurrentTile, side))
         {
             IsMoving = true;
             _movingSide = side;
@@ -72,7 +72,7 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
 
     private void Update()
     {
-        if (!_currentTile.isGrass && !_currentTile.isFeeshOnTile && !IsMoving)
+        if (!CurrentTile.isGrass && !CurrentTile.isFeeshOnTile && !IsMoving)
         {
             GameObject.FindWithTag("Defeat").transform.GetChild(0).gameObject.SetActive(true);
             Debug.Log("Drown");
@@ -80,7 +80,7 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
             return;
         }
 
-        if (_currentTile.isEdge)
+        if (CurrentTile.isEdge)
         {
             GameObject.FindWithTag("Defeat").transform.GetChild(0).gameObject.SetActive(true);
             Debug.Log("Fall");
@@ -90,9 +90,9 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
         
         if (!IsMoving) return;
 
-        var nextTile = TileManager.GetTile(_currentTile, _movingSide);
+        var nextTile = TileManager.GetTile(CurrentTile, _movingSide);
 
-        if (CanMoveForward(_currentTile, _movingSide))
+        if (CanMoveForward(CurrentTile, _movingSide))
         {
             transform.position = nextTile.transform.position;
         }
@@ -107,7 +107,7 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
         var highlightedTiles = new HashSet<Tile>();
         foreach (Side side in Enum.GetValues(typeof(Side)))
         {
-            var currentTile = _currentTile;
+            var currentTile = CurrentTile;
             while (CanMoveForward(currentTile, side))
             {
                 currentTile = TileManager.GetTile(currentTile, side);
@@ -116,7 +116,7 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
                     break;
                 }
             }
-            if (currentTile != _currentTile)
+            if (currentTile != CurrentTile)
             {
                 highlightedTiles.Add(currentTile);
             }
@@ -155,7 +155,8 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
     {
         if (col.CompareTag("Ground"))
         {
-            _currentTile = col.GetComponent<Tile>();
+            CurrentTile = col.GetComponent<Tile>();
+            Debug.Log($"current tile is null? {CurrentTile is null}");
         }
         
         if (col.CompareTag("Spike"))

@@ -8,9 +8,9 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
     private bool isActive;
     private Sonic _sonic;
     private Jumper _jumper;
-    private Tile _currentTile;
+    public Tile CurrentTile { get; private set; }
     private HashSet<Tile> _availableTiles = new();
-    public Vector2Int GetSave => _currentTile.gridPosition;
+    public Vector2Int GetSave => CurrentTile.gridPosition;
 
     public bool IsActive
     {
@@ -34,7 +34,7 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
 
     private void Update()
     {
-        if (!IsActive || _currentTile.isJumperOnTile || _currentTile.isSonicOnTile)
+        if (!IsActive || CurrentTile.isJumperOnTile || CurrentTile.isSonicOnTile)
         {
             return;
         }
@@ -73,7 +73,7 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
         var queue = new Queue<Tile>();
         var visited = new HashSet<Tile>();
         
-        queue.Enqueue(_currentTile);
+        queue.Enqueue(CurrentTile);
         
         while (queue.Count > 0)
         {
@@ -93,7 +93,7 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
         }
         
         _availableTiles = visited;
-        _availableTiles.Remove(_currentTile);
+        _availableTiles.Remove(CurrentTile);
     }
 
     private bool TileIsAvailable(Tile tile, Side movingSide)
@@ -131,7 +131,7 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
     {
         if (col.CompareTag("Ground"))
         {
-            _currentTile = col.GetComponent<Tile>();
+            CurrentTile = col.GetComponent<Tile>();
             if (IsActive)
             {
                 FindAvailableTiles();
