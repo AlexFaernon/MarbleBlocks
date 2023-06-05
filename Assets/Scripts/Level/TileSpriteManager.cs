@@ -18,10 +18,16 @@ public class TileSpriteManager : MonoBehaviour
 
     private void Awake()
     {
-        _groundMid = Resources.LoadAll<Sprite>("Tiles\\Land\\Mid");
-        _groundBot = Resources.LoadAll<Sprite>("Tiles\\Land\\Bottom");
-        _waterMib = Resources.LoadAll<Sprite>("Tiles\\Water\\Mid");
-        _waterBot = Resources.LoadAll<Sprite>("Tiles\\Water\\Bottom");
+        var areaNumber = LevelSaveManager.LevelNumber switch
+        {
+            < 12 => 1,
+            >= 12 => 2
+        };
+        
+        _groundMid = Resources.LoadAll<Sprite>($"Tiles\\Area{areaNumber}\\Land\\Mid");
+        _groundBot = Resources.LoadAll<Sprite>($"Tiles\\Area{areaNumber}\\Land\\Bottom");
+        _waterMib = Resources.LoadAll<Sprite>($"Tiles\\Area{areaNumber}\\Water\\Mid");
+        _waterBot = Resources.LoadAll<Sprite>($"Tiles\\Area{areaNumber}\\Water\\Bottom");
     }
 
     private static Sprite GetRandomSprite(Sprite[] sprites)

@@ -52,14 +52,16 @@ public class Training : MonoBehaviour
         current = feeshTraining.GetChild(2).gameObject;
         blocker.SetActive(true);
         current.SetActive(true);
-        yield return new WaitUntil(() => Input.GetMouseButtonDown(0) || Input.touchCount > 0);
+        yield return new WaitUntil(() => Input.touchCount == 0);
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0) || GetTouchDown());
         current.SetActive(false);
-
+        
         yield return new WaitForEndOfFrame();
         
         current = feeshTraining.GetChild(3).gameObject;
         current.SetActive(true);
-        yield return new WaitUntil(() => Input.GetMouseButtonDown(0) || Input.touchCount > 0);
+        yield return new WaitUntil(() => Input.touchCount == 0);
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0) || GetTouchDown());
         current.SetActive(false);
         blocker.SetActive(false);
 
@@ -85,7 +87,8 @@ public class Training : MonoBehaviour
         current = sonicTraining.GetChild(1).gameObject;
         current.SetActive(true);
         yield return new WaitForEndOfFrame();
-        yield return new WaitUntil(() => Input.GetMouseButtonDown(0) || Input.touchCount > 0);
+        yield return new WaitUntil(() => Input.touchCount == 0);
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0) || GetTouchDown());
         current.SetActive(false);
         blocker.SetActive(false);
         
@@ -95,13 +98,15 @@ public class Training : MonoBehaviour
         blocker.SetActive(true);
         current.SetActive(true);
         yield return new WaitForEndOfFrame();
-        yield return new WaitUntil(() => Input.GetMouseButtonDown(0) || Input.touchCount > 0);
+        yield return new WaitUntil(() => Input.touchCount == 0);
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0) || GetTouchDown());
         current.SetActive(false);
 
         current = sonicTraining.GetChild(3).gameObject;
         current.SetActive(true);
         yield return new WaitForEndOfFrame();
-        yield return new WaitUntil(() => Input.GetMouseButtonDown(0) || Input.touchCount > 0);
+        yield return new WaitUntil(() => Input.touchCount == 0);
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0) || GetTouchDown());
         current.SetActive(false);
         
         blocker.SetActive(false);
@@ -123,7 +128,8 @@ public class Training : MonoBehaviour
         blocker.SetActive(true);
         current.SetActive(true);
         yield return new WaitForEndOfFrame();
-        yield return new WaitUntil(() => Input.GetMouseButtonDown(0) || Input.touchCount > 0);
+        yield return new WaitUntil(() => Input.touchCount == 0);
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0) || GetTouchDown());
         current.SetActive(false);
         blocker.SetActive(false);
         
@@ -138,8 +144,14 @@ public class Training : MonoBehaviour
         blocker.SetActive(true);
         current.SetActive(true);
         yield return new WaitForEndOfFrame();
-        yield return new WaitUntil(() => Input.GetMouseButtonDown(0) || Input.touchCount > 0);
+        yield return new WaitUntil(() => Input.touchCount == 0);
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0) || GetTouchDown());
         current.SetActive(false);
         blocker.SetActive(false);
+    }
+
+    private bool GetTouchDown()
+    {
+        return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began;
     }
 }

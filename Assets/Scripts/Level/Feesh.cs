@@ -44,7 +44,7 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
         {
             ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
-        else if (Input.touchCount > 0)
+        else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             var touch = Input.GetTouch(0);
             ray = Camera.main.ScreenToWorldPoint(touch.position);
@@ -56,11 +56,11 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
 
         var layerObject = LayerMask.GetMask("Ground", "UI");
         
-        var hit = Physics2D.Raycast(ray, ray, Mathf.Infinity, layerObject);
-        if (hit.collider != null && !EventSystem.current.IsPointerOverGameObject())
+        var hit = Physics2D.Raycast(ray, Vector2.zero, Mathf.Infinity, layerObject);
+        if (hit.collider != null)
         {
             var targetTile = hit.collider.gameObject.GetComponent<Tile>();
-            if (_availableTiles.Contains(targetTile))
+            if (_availableTiles.Contains(targetTile) && targetTile != CurrentTile)
             {
                 transform.position = targetTile.transform.position;
                 StepCounter.Count++;

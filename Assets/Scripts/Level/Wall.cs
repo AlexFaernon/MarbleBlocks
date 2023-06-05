@@ -57,6 +57,7 @@ public class Wall : MonoBehaviour
         color = wallClass.Color;
         if (isDoor)
         {
+            isOpened = wallClass.IsOpened;
             var side = transform.localPosition.x == 0 ? "Horizontal" : "Vertical";
             _opened = Resources.Load<Sprite>($"Doors/{side}/Opened/{color}");
             _closed = Resources.Load<Sprite>($"Doors/{side}/Closed/{color}");

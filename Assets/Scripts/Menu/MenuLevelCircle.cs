@@ -17,7 +17,7 @@ public class MenuLevelCircle : MonoBehaviour
     public bool IsOpened { get; private set; }
     public bool IsCompleted { get; private set; }
 
-    public static bool[] LevelCompletion = new bool[20];
+    public static bool[] LevelCompletion = new bool[40];
     private Button _button;
     private void Awake()
     {
