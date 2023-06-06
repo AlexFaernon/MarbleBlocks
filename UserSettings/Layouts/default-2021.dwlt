@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 65
+  controlID: 112
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 98
+  controlID: 17
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -312,23 +312,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 56670000
-      m_LastClickedID: 26454
-      m_ExpandedIDs: 1cf9ffff6afaffff38660000566700001e680000
+      m_SelectedIDs: e4690000
+      m_LastClickedID: 27108
+      m_ExpandedIDs: 00f8ffff26fbffff14610000a0670000fc67000044680000a6680000426900004a69000074690000c2690000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: Characters
+        m_OriginalName: Characters
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: 26518
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 6}
       m_SearchString: 
@@ -618,9 +618,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -1.1659003, y: 0.24242687, z: -10.690019}
+    m_Target: {x: -1.0512631, y: -0.835467, z: 48.243042}
     speed: 2
-    m_Value: {x: -1.0155611, y: 0.1806804, z: -10.687183}
+    m_Value: {x: -1.0512631, y: -0.835467, z: 48.243042}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -671,9 +671,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 6.583432
+    m_Target: 4.5411477
     speed: 2
-    m_Value: 6.2999353
+    m_Value: 4.5411477
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -895,22 +895,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - "Assets/Sprites/Level/\u0413\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B"
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 78
   m_LastFolders:
-  - Assets/Scenes
+  - "Assets/Sprites/Level/\u0413\u043E\u0442\u043E\u0432\u044B\u0435 \u0441\u043F\u0440\u0430\u0439\u0442\u044B"
   m_LastFoldersGridSize: 78
   m_LastProjectPath: D:\Development\GitHub\MarbleBlocks
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 199}
-    m_SelectedIDs: 5a650000
-    m_LastClickedID: 25946
-    m_ExpandedIDs: 000000002a6500002c6500002e65000030650000326500003465000036650000386500003a65000000ca9a3b
+    scrollPos: {x: 0, y: 235}
+    m_SelectedIDs: a06e0000
+    m_LastClickedID: 28320
+    m_ExpandedIDs: 00000000cc630000ce630000d0630000d2630000d4630000d6630000d8630000da630000dc6300000464000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -938,7 +938,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000002a6500002c6500002e65000030650000326500003465000036650000386500003a650000
+    m_ExpandedIDs: 00000000cc630000ce630000d0630000d2630000d4630000d6630000d8630000da630000dc630000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
