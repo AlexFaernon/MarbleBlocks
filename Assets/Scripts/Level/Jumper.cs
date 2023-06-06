@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -11,7 +12,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
     private Feesh _feesh;
     private Sonic _sonic;
     public Vector2Int GetGridPosition => CurrentTile.gridPosition;
-
+    [SerializeField] private Animator animator;
     public bool IsActive
     {
         get => _isActive;
@@ -58,6 +59,18 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
          {
              transform.position = targetTile.transform.position;
              StepCounter.Count++;
+             
+             // типо анимации
+             if (_movingSide == Side.North)
+                 animator.SetBool("UP", true);
+             /*if (_movingSide == Side.South)
+                 animator.SetBool("DOWN", true);
+             if (_movingSide == Side.East)
+                 animator.SetBool("RIGHT", true);
+             if (_movingSide == Side.West)
+                 animator.SetBool("LEFT", true);*/
+             
+             //TODO Сделать SetBool = false
          }
          IsMoving = false;
     }
