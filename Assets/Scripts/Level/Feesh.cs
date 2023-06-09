@@ -1,23 +1,29 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
 
 public class Feesh : MonoBehaviour, IPointerDownHandler
 {
-    private bool isActive;
+    private bool _isActive;
     private Sonic _sonic;
     private Jumper _jumper;
     public Tile CurrentTile { get; private set; }
-    private HashSet<Tile> _availableTiles = new();
+    private HashSet<Tile> _availableTiles;
+    private Dictionary<Tile, Tile> _paths;
+    private Stack<Tile> _currentPath;
+    private Collider2D _collider;
     public Vector2Int GetSave => CurrentTile.gridPosition;
+    public bool IsMoving { get; private set; }
 
     public bool IsActive
     {
-        get => isActive;
+        get => _isActive;
         set
         {
-            isActive = value;
+            _isActive = value;
             if (value)
             {
                 FindAvailableTiles();
@@ -30,11 +36,12 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
     {
         _sonic = GameObject.FindWithTag("Sonic")?.GetComponent<Sonic>();
         _jumper = GameObject.FindWithTag("Jumper")?.GetComponent<Jumper>();
+        _collider = GetComponent<Collider2D>();
     }
 
     private void Update()
     {
-        if (!IsActive || CurrentTile.isJumperOnTile || CurrentTile.isSonicOnTile)
+        if (!IsActive || CurrentTile.isJumperOnTile || CurrentTile.isSonicOnTile || IsMoving)
         {
             return;
         }
@@ -57,21 +64,36 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
         var layerObject = LayerMask.GetMask("Ground", "UI");
         
         var hit = Physics2D.Raycast(ray, Vector2.zero, Mathf.Infinity, layerObject);
-        if (hit.collider != null)
+        if (hit.collider is not null)
         {
             var targetTile = hit.collider.gameObject.GetComponent<Tile>();
-            if (_availableTiles.Contains(targetTile) && targetTile != CurrentTile)
+            if (_availableTiles.Contains(targetTile))
             {
-                transform.position = targetTile.transform.position;
-                StepCounter.Count++;
+                _currentPath = GetPathToTile(targetTile);
+                IsMoving = true;
+                _collider.enabled = false;
+                StartCoroutine(Move());
             }
         }
+    }
+
+    private IEnumerator Move()
+    {
+        while (_currentPath.Count != 0)
+        {
+            transform.position = _currentPath.Pop().transform.position;
+            yield return new WaitForSecondsRealtime(0.1f);
+        }
+        _collider.enabled = true;
+        IsMoving = false;
+        StepCounter.Count++;
     }
 
     private void FindAvailableTiles()
     {
         var queue = new Queue<Tile>();
         var visited = new HashSet<Tile>();
+        _paths = new();
         
         queue.Enqueue(CurrentTile);
         
@@ -88,6 +110,7 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
                 if (!visited.Contains(nextTile) && !queue.Contains(nextTile) && TileIsAvailable(currentTile, side))
                 {
                     queue.Enqueue(nextTile);
+                    _paths.TryAdd(nextTile, currentTile);
                 }
             }
         }
@@ -116,6 +139,21 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
         
         return tile.AvailableToMoveThroughSide(movingSide) && nextTile.AvailableToMoveThroughSide(enterSide) &&
                !nextTile.isGrass && !nextTile.IsWhirlpoolOnTile && !nextTile.isEdge;
+    }
+
+    private Stack<Tile> GetPathToTile(Tile targetTile)
+    {
+        Assert.IsTrue(_availableTiles.Contains(targetTile));
+        var path = new Stack<Tile>();
+        var currentTile = targetTile;
+        while (currentTile != CurrentTile)
+        {
+            Debug.Log(currentTile.gridPosition);
+            path.Push(currentTile);
+            currentTile = _paths[currentTile];
+        }
+        path.Push(currentTile);
+        return path;
     }
 
     public void OnPointerDown(PointerEventData eventData)

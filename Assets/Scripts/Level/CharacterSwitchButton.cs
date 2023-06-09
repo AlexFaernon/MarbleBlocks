@@ -81,6 +81,6 @@ public class CharacterSwitchButton : MonoBehaviour
             "Feesh" => !_feesh.IsActive,
             _ => throw new ArgumentOutOfRangeException("Incorrect character name")
         };
-        if (_sonic != null) _button.interactable = !_sonic.IsMoving;
+        if (_sonic != null) _button.interactable = !_sonic.IsMoving && !_feesh.IsMoving && !_jumper.IsMoving;
     }
 }

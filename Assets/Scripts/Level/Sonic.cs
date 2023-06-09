@@ -1,11 +1,14 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class Sonic : MonoBehaviour, IPointerDownHandler
 {
+    [SerializeField] private float speed;
     public Tile CurrentTile { get; private set; }
     private bool _isMoving;
     private Side _movingSide;
@@ -55,10 +58,9 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
         _jumper = GameObject.FindWithTag("Jumper")?.GetComponent<Jumper>();
     }
 
-    public void Move(Side side)
+    public void StartMoving(Side side)
     {
-        if (!IsActive)
-            throw new Exception("Character isn't active");
+        Assert.IsTrue(IsActive);
         
         if (IsMoving || CurrentTile.isJumperOnTile) return;
 
@@ -66,40 +68,49 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
         {
             IsMoving = true;
             _movingSide = side;
-            StepCounter.Count++;
+            StartCoroutine(Move());
         }
     }
 
     private void Update()
     {
-        if (!CurrentTile.isGrass && !CurrentTile.isFeeshOnTile && !IsMoving)
+        if (!CurrentTile.isGrass && !CurrentTile.isFeeshOnTile && !IsMoving || CurrentTile.isEdge)
         {
             GameObject.FindWithTag("Defeat").transform.GetChild(0).gameObject.SetActive(true);
-            Debug.Log("Drown");
             Destroy(gameObject);
-            return;
         }
+    }
 
-        if (CurrentTile.isEdge)
+    private IEnumerator Move()
+    {
+        var movingVector = _movingSide switch
         {
-            GameObject.FindWithTag("Defeat").transform.GetChild(0).gameObject.SetActive(true);
-            Debug.Log("Fall");
-            Destroy(gameObject);
-            return;
+            Side.North => Vector2.up,
+            Side.South => Vector2.down,
+            Side.West => Vector2.left,
+            Side.East => Vector2.right,
+            _ => throw new ArgumentOutOfRangeException()
+        };
+        while (IsMoving)
+        {
+            var nextTile = TileManager.GetTile(CurrentTile, _movingSide);
+            if (CanMoveForward(CurrentTile, _movingSide))
+            {
+                while ((transform.position - nextTile.transform.position).magnitude > 0.1f)
+                {
+                    transform.Translate(Time.deltaTime * speed * movingVector);
+                    yield return new WaitForEndOfFrame();
+                }
+
+                transform.position = nextTile.transform.position;
+            }
+            else
+            {
+                IsMoving = false;
+            }
         }
         
-        if (!IsMoving) return;
-
-        var nextTile = TileManager.GetTile(CurrentTile, _movingSide);
-
-        if (CanMoveForward(CurrentTile, _movingSide))
-        {
-            transform.position = nextTile.transform.position;
-        }
-        else
-        {
-            IsMoving = false;
-        }
+        StepCounter.Count++;
     }
 
     private void HighlightTiles()

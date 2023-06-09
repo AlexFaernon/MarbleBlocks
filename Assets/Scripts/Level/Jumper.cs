@@ -1,16 +1,20 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
 
 public class Jumper : MonoBehaviour, IPointerDownHandler
 {
+    [SerializeField] private float speed;
     public Tile CurrentTile { get; private set; }
     private Side _movingSide;
     private bool _isActive;
     private Feesh _feesh;
     private Sonic _sonic;
+    private Collider2D _collider2D;
     public Vector2Int GetGridPosition => CurrentTile.gridPosition;
     [SerializeField] private Animator animator;
     public bool IsActive
@@ -32,59 +36,70 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
     {
         _feesh = GameObject.FindWithTag("Feesh")?.GetComponent<Feesh>();
         _sonic = GameObject.FindWithTag("Sonic")?.GetComponent<Sonic>();
+        _collider2D = GetComponent<Collider2D>();
     }
 
     void Update()
     {
-        if (!CurrentTile.isGrass && !CurrentTile.isFeeshOnTile && !IsMoving)
+        if (!CurrentTile.isGrass && !CurrentTile.isFeeshOnTile && !IsMoving || CurrentTile.isEdge)
         {
-            Debug.Log("Drown");
             GameObject.FindWithTag("Defeat").transform.GetChild(0).gameObject.SetActive(true);
             Destroy(gameObject);
-            return;
-        }
-        
-        if (CurrentTile.isEdge)
-        {
-            Debug.Log("Fall");
-            GameObject.FindWithTag("Defeat").transform.GetChild(0).gameObject.SetActive(true);
-            Destroy(gameObject);
-            return;
         }
 
-        if (!IsMoving) return;
-        
-         var targetTile = TryToMove(_movingSide);
-         if (targetTile != CurrentTile)
-         {
-             transform.position = targetTile.transform.position;
-             StepCounter.Count++;
-             
-             // типо анимации
-             if (_movingSide == Side.North)
-                 animator.SetBool("UP", true);
-             /*if (_movingSide == Side.South)
-                 animator.SetBool("DOWN", true);
-             if (_movingSide == Side.East)
-                 animator.SetBool("RIGHT", true);
-             if (_movingSide == Side.West)
-                 animator.SetBool("LEFT", true);*/
+        //типо анимации
+        //      if (_movingSide == Side.North)
+        //          animator.SetBool("UP", true);
+        //      if (_movingSide == Side.South)
+        //          animator.SetBool("DOWN", true);
+        //      if (_movingSide == Side.East)
+        //          animator.SetBool("RIGHT", true);
+        //      if (_movingSide == Side.West)
+        //          animator.SetBool("LEFT", true);
              
              //TODO Сделать SetBool = false
-         }
-         IsMoving = false;
     }
 
-    public void Move(Side side)
+    private IEnumerator Move(Tile targetTile)
     {
-        if (!IsActive)
-            throw new Exception("Character isn't active");
+        var movingVector = _movingSide switch
+        {
+            Side.North => Vector2.up,
+            Side.South => Vector2.down,
+            Side.West => Vector2.left,
+            Side.East => Vector2.right,
+            _ => throw new ArgumentOutOfRangeException()
+        };
 
-        IsMoving = true;
+        _collider2D.enabled = false;
+        while ((transform.position - targetTile.transform.position).magnitude > 0.1f)
+        {
+            transform.Translate(Time.deltaTime * speed * movingVector);
+            yield return new WaitForEndOfFrame();
+        }
+
+        transform.position = targetTile.transform.position;
+        StepCounter.Count++;
+        IsMoving = false;
+        _collider2D.enabled = true;
+    }
+
+    public void StartMoving(Side side)
+    {
+        Assert.IsTrue(IsActive);
+        
+        if (IsMoving) return;
+        
         _movingSide = side;
+        var targetTile = GetTargetTile(_movingSide);
+        if (targetTile != CurrentTile)
+        {
+            IsMoving = true;
+            StartCoroutine(Move(targetTile));
+        }
     }
     
-    private Tile TryToMove(Side movingSide)
+    private Tile GetTargetTile(Side movingSide)
     {
         var enterSide = movingSide switch
         {
@@ -122,7 +137,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
         var highlightedTiles = new HashSet<Tile>();
         foreach (Side side in Enum.GetValues(typeof(Side)))
         {
-            var targetTile = TryToMove(side);
+            var targetTile = GetTargetTile(side);
             if (targetTile != CurrentTile && !targetTile.isEdge)
             {
                 highlightedTiles.Add(targetTile);

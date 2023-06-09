@@ -51,11 +51,11 @@ public class SwipeManager : MonoBehaviour
     {
         if (_sonic && _sonic.IsActive)
         {
-            _sonic.Move(side);
+            _sonic.StartMoving(side);
         }
         if (_jumper && _jumper.IsActive)
         {
-            _jumper.Move(side);
+            _jumper.StartMoving(side);
         }
     }
 }
