@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
@@ -46,22 +45,11 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
             GameObject.FindWithTag("Defeat").transform.GetChild(0).gameObject.SetActive(true);
             Destroy(gameObject);
         }
-
-        //типо анимации
-        //      if (_movingSide == Side.North)
-        //          animator.SetBool("UP", true);
-        //      if (_movingSide == Side.South)
-        //          animator.SetBool("DOWN", true);
-        //      if (_movingSide == Side.East)
-        //          animator.SetBool("RIGHT", true);
-        //      if (_movingSide == Side.West)
-        //          animator.SetBool("LEFT", true);
-             
-             //TODO Сделать SetBool = false
     }
 
     private IEnumerator Move(Tile targetTile)
     {
+
         var movingVector = _movingSide switch
         {
             Side.North => Vector2.up,
@@ -75,10 +63,23 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
         while ((transform.position - targetTile.transform.position).magnitude > 0.1f)
         {
             transform.Translate(Time.deltaTime * speed * movingVector);
+            if (movingVector == Vector2.right)
+                animator.SetTrigger("RIGHT");
+            if (movingVector == Vector2.up)
+                animator.SetTrigger("UP");
+            if (movingVector == Vector2.down)
+                animator.SetTrigger("DOWN");
+            if (movingVector == Vector2.left)
+                animator.SetTrigger("LEFT");
             yield return new WaitForEndOfFrame();
         }
 
         transform.position = targetTile.transform.position;
+        animator.ResetTrigger("RIGHT");
+        animator.ResetTrigger("UP");
+        animator.ResetTrigger("DOWN");
+        animator.ResetTrigger("LEFT");
+
         StepCounter.Count++;
         IsMoving = false;
         _collider2D.enabled = true;

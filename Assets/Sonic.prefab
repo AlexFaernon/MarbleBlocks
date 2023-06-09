@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2170304946276133791}
   - component: {fileID: 2170304946276133788}
   - component: {fileID: 2170304946276133789}
+  - component: {fileID: 8450396943348876347}
   m_Layer: 6
   m_Name: Sonic
   m_TagString: Sonic
@@ -49,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   isActive: 0
+  animator: {fileID: 8450396943348876347}
 --- !u!212 &2170304946276133791
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -138,3 +140,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &8450396943348876347
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2008194922503646696}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7bada23c676287848b60c9356fb1df77, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

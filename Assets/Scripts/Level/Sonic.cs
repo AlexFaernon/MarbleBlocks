@@ -17,6 +17,7 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
     private Feesh _feesh;
     private Jumper _jumper;
     public Vector2Int GetSave => CurrentTile.gridPosition;
+    [SerializeField] private Animator animator;
 
     public bool IsMoving
     {
@@ -99,17 +100,28 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
                 while ((transform.position - nextTile.transform.position).magnitude > 0.1f)
                 {
                     transform.Translate(Time.deltaTime * speed * movingVector);
+                    if (movingVector == Vector2.right)
+                        animator.SetTrigger("RIGHT");
+                    if (movingVector == Vector2.up)
+                        animator.SetTrigger("UP");
+                    if (movingVector == Vector2.down)
+                        animator.SetTrigger("DOWN");
+                    if (movingVector == Vector2.left)
+                        animator.SetTrigger("LEFT");
                     yield return new WaitForEndOfFrame();
                 }
 
                 transform.position = nextTile.transform.position;
+                animator.ResetTrigger("RIGHT");
+                animator.ResetTrigger("UP");
+                animator.ResetTrigger("DOWN");
+                animator.ResetTrigger("LEFT");
             }
             else
             {
                 IsMoving = false;
             }
         }
-        
         StepCounter.Count++;
     }
 

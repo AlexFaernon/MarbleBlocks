@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: JumperRIGHT
+  m_Name: SonicLEFT
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,9 +20,9 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 0b9cf19d9f9a4e9439cd02d72ec7eb18, type: 3}
+      value: {fileID: 21300000, guid: c4571ead3f10a26409f6897ec04b18e1, type: 3}
     - time: 0.05
-      value: {fileID: 21300000, guid: 75cb992785da50c43bc72b87e6df4b01, type: 3}
+      value: {fileID: 21300000, guid: 9f55d90ae060c874caf0307f65f3bbb3, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -42,8 +42,8 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 0b9cf19d9f9a4e9439cd02d72ec7eb18, type: 3}
-    - {fileID: 21300000, guid: 75cb992785da50c43bc72b87e6df4b01, type: 3}
+    - {fileID: 21300000, guid: c4571ead3f10a26409f6897ec04b18e1, type: 3}
+    - {fileID: 21300000, guid: 9f55d90ae060c874caf0307f65f3bbb3, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
