@@ -73,12 +73,11 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
                 animator.SetTrigger("LEFT");
             yield return new WaitForEndOfFrame();
         }
-
-        transform.position = targetTile.transform.position;
         animator.ResetTrigger("RIGHT");
         animator.ResetTrigger("UP");
         animator.ResetTrigger("DOWN");
         animator.ResetTrigger("LEFT");
+        transform.position = targetTile.transform.position;
 
         StepCounter.Count++;
         IsMoving = false;
