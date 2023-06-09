@@ -92,6 +92,14 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
             Side.East => Vector2.right,
             _ => throw new ArgumentOutOfRangeException()
         };
+        if (movingVector == Vector2.right)
+            animator.SetTrigger("RIGHT");
+        if (movingVector == Vector2.up)
+            animator.SetTrigger("UP");
+        if (movingVector == Vector2.down)
+            animator.SetTrigger("DOWN");
+        if (movingVector == Vector2.left)
+            animator.SetTrigger("LEFT");
         while (IsMoving)
         {
             var nextTile = TileManager.GetTile(CurrentTile, _movingSide);
@@ -100,14 +108,6 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
                 while ((transform.position - nextTile.transform.position).magnitude > 0.1f)
                 {
                     transform.Translate(Time.deltaTime * speed * movingVector);
-                    if (movingVector == Vector2.right)
-                        animator.SetTrigger("RIGHT");
-                    if (movingVector == Vector2.up)
-                        animator.SetTrigger("UP");
-                    if (movingVector == Vector2.down)
-                        animator.SetTrigger("DOWN");
-                    if (movingVector == Vector2.left)
-                        animator.SetTrigger("LEFT");
                     yield return new WaitForEndOfFrame();
                 }
 

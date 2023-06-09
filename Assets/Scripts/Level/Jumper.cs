@@ -59,18 +59,19 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
             _ => throw new ArgumentOutOfRangeException()
         };
 
+        if (movingVector == Vector2.right)
+            animator.SetTrigger("RIGHT");
+        if (movingVector == Vector2.up)
+            animator.SetTrigger("UP");
+        if (movingVector == Vector2.down)
+            animator.SetTrigger("DOWN");
+        if (movingVector == Vector2.left)
+            animator.SetTrigger("LEFT"); 
         _collider2D.enabled = false;
         while ((transform.position - targetTile.transform.position).magnitude > 0.1f)
         {
             transform.Translate(Time.deltaTime * speed * movingVector);
-            if (movingVector == Vector2.right)
-                animator.SetTrigger("RIGHT");
-            if (movingVector == Vector2.up)
-                animator.SetTrigger("UP");
-            if (movingVector == Vector2.down)
-                animator.SetTrigger("DOWN");
-            if (movingVector == Vector2.left)
-                animator.SetTrigger("LEFT");
+
             yield return new WaitForEndOfFrame();
         }
         animator.ResetTrigger("RIGHT");
