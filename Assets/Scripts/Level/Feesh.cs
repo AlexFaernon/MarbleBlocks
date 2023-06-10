@@ -79,13 +79,19 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
 
     private IEnumerator Move()
     {
+        var previousTile = CurrentTile;
         while (_currentPath.Count != 0)
         {
-            transform.position = _currentPath.Pop().transform.position;
+            var nextTile = _currentPath.Pop();
+            var direction = (Vector2)(nextTile.gridPosition - previousTile.gridPosition);
+            transform.up = direction;
+            transform.position = nextTile.transform.position;
+            previousTile = nextTile;
             yield return new WaitForSecondsRealtime(0.1f);
         }
         _collider.enabled = true;
         IsMoving = false;
+        transform.up = Vector3.up;
         StepCounter.Count++;
     }
 
