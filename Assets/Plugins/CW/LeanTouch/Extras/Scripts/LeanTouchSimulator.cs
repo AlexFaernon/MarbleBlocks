@@ -13,16 +13,24 @@ namespace Lean.Touch
     public class LeanTouchSimulator : MonoBehaviour
     {
         /// <summary>This allows you to set which key is required to simulate multi key twisting.</summary>
-		public KeyCode PinchTwistKey { set { pinchTwistKey = value; } get { return pinchTwistKey; } } [SerializeField] private KeyCode pinchTwistKey = KeyCode.LeftControl;
+		public KeyCode PinchTwistKey { set => pinchTwistKey = value;
+	        get => pinchTwistKey;
+        } [SerializeField] private KeyCode pinchTwistKey = KeyCode.LeftControl;
 
 		/// <summary>This allows you to set which key is required to change the pivot point of the pinch twist gesture.</summary>
-		public KeyCode MovePivotKey { set { movePivotKey = value; } get { return movePivotKey; } } [SerializeField] private KeyCode movePivotKey = KeyCode.LeftAlt;
+		public KeyCode MovePivotKey { set => movePivotKey = value;
+			get => movePivotKey;
+		} [SerializeField] private KeyCode movePivotKey = KeyCode.LeftAlt;
 
 		/// <summary>This allows you to set which key is required to simulate multi key dragging.</summary>
-		public KeyCode MultiDragKey { set { multiDragKey = value; } get { return multiDragKey; } } [SerializeField] private KeyCode multiDragKey = KeyCode.LeftAlt;
+		public KeyCode MultiDragKey { set => multiDragKey = value;
+			get => multiDragKey;
+		} [SerializeField] private KeyCode multiDragKey = KeyCode.LeftAlt;
 
 		/// <summary>This allows you to set which texture will be used to show the simulated fingers.</summary>
-		public Texture2D FingerTexture { set { fingerTexture = value; } get { return fingerTexture; } } [SerializeField] private Texture2D fingerTexture;
+		public Texture2D FingerTexture { set => fingerTexture = value;
+			get => fingerTexture;
+		} [SerializeField] private Texture2D fingerTexture;
 
 		// The current pivot (0,0 = bottom left, 1,1 = top right)
 		private Vector2 pivot = new Vector2(0.5f, 0.5f);

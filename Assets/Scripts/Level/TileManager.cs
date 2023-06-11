@@ -6,7 +6,7 @@ public class TileManager : MonoBehaviour
 {
     [SerializeField] private GameObject tilePrefab;
     public Vector2Int fieldSize;
-    [SerializeField] private bool loadLevel;
+    public bool loadLevel;
     private Grid _grid;
     private static TileClass[,] _loadedTiles;
     private static Tile[,] _tiles;
@@ -39,7 +39,7 @@ public class TileManager : MonoBehaviour
                 _tiles[x, y].gridPosition = intPos;
                 if (x == 0 || x == fieldSize.x + 1 || y == 0 || y == fieldSize.y + 1)
                 {
-                    _tiles[x, y].isEdge = true;
+                    _tiles[x, y].IsEdge = true;
                 }
                 else if (loadLevel)
                 {
@@ -47,7 +47,7 @@ public class TileManager : MonoBehaviour
                 }
                 else
                 {
-                    _tiles[x, y].isGrass = true;
+                    _tiles[x, y].IsGrass = true;
                 }
             }
         }
@@ -59,7 +59,7 @@ public class TileManager : MonoBehaviour
 
         foreach (var tile in _tiles)
         {
-            if (tile.isEdge) continue;
+            if (tile.IsEdge) continue;
             
             tiles[tile.gridPosition.x - 1, tile.gridPosition.y - 1] = tile.GetSave();
         }

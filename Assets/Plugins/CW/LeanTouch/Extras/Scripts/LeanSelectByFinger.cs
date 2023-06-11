@@ -16,7 +16,9 @@ namespace Lean.Touch
 		public LeanScreenQuery ScreenQuery = new LeanScreenQuery(LeanScreenQuery.MethodType.Raycast);
 
 		/// <summary>If you enable this then any selected object will automatically be deselected if the finger used to select it is no longer touching the screen.</summary>
-		public bool DeselectWithFingers { set { deselectWithFingers = value; } get { return deselectWithFingers; } } [SerializeField] private bool deselectWithFingers;
+		public bool DeselectWithFingers { set => deselectWithFingers = value;
+			get => deselectWithFingers;
+		} [SerializeField] private bool deselectWithFingers;
 
 		/// <summary>This is invoked when an object is selected.</summary>
 		public LeanSelectableLeanFingerEvent OnSelectedFinger { get { if (onSelectedFinger == null) onSelectedFinger = new LeanSelectableLeanFingerEvent(); return onSelectedFinger; } } [SerializeField] private LeanSelectableLeanFingerEvent onSelectedFinger;

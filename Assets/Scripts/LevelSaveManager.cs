@@ -4,12 +4,16 @@ using File = System.IO.File;
 
 public class LevelSaveManager : MonoBehaviour
 {
+    [SerializeField] private Vector2Int feesh;
+    [SerializeField] private Vector2Int jumper;
+    [SerializeField] private Vector2Int sonic;
     public static int LevelNumber;
     public static LevelClass LoadedLevel;
     [SerializeField] private TileManager tileManager;
 
     private void Awake()
     {
+        if (LevelNumber == 0) return;
         var levelJson = Resources.Load<TextAsset>(LevelNumber.ToString()).text;
         LoadedLevel = JsonConvert.DeserializeObject<LevelClass>(levelJson);
     }
@@ -20,9 +24,9 @@ public class LevelSaveManager : MonoBehaviour
         {
             FieldSize      = tileManager.fieldSize,
             Tiles          = tileManager.GetSave(),
-            FeeshPosition  = GameObject.FindGameObjectWithTag("Feesh").GetComponent<Feesh>().GetSave,
-            JumperPosition = GameObject.FindGameObjectWithTag("Jumper").GetComponent<Jumper>().GetGridPosition,
-            SonicPosition  = GameObject.FindGameObjectWithTag("Sonic").GetComponent<Sonic>().GetSave,
+            FeeshPosition  = feesh,
+            JumperPosition = jumper,
+            SonicPosition  = sonic
         };
         var save = JsonConvert.SerializeObject(levelSave);
         File.WriteAllText(Application.persistentDataPath + "\\save.json", save);

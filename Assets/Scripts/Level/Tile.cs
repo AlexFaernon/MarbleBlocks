@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    public bool isEdge;
-    public bool isGrass;
     [SerializeField] private Wall northWall;
     [SerializeField] private Wall southWall;
     [SerializeField] private Wall westWall;
@@ -21,7 +19,7 @@ public class Tile : MonoBehaviour
     [HideInInspector] public bool isFeeshOnTile;
     [HideInInspector] public bool isJumperOnTile;
     [HideInInspector] public bool isSonicOnTile;
-
+    
     public TileClass TileClass
     {
         set => SetLoadedTile(value);
@@ -34,6 +32,11 @@ public class Tile : MonoBehaviour
     
     public bool IsWhirlpoolOnTile => whirlpool.activeSelf;
     public bool IsExitOnTile => exit.activeSelf;
+    
+    public bool IsEdge { get; set; }
+    
+    [field: SerializeField]
+    public bool IsGrass { get; set; }
 
     private void Awake()
     {
@@ -42,9 +45,14 @@ public class Tile : MonoBehaviour
 
     private void Update()
     {
-        if (isEdge)
+        if (IsEdge)
         {
             _spriteRenderer.color = Color.clear;
+            return;
+        }
+        if (LevelSaveManager.LevelNumber == 0)
+        {
+            _spriteRenderer.color = IsGrass ? Color.green : Color.blue;
         }
     }
 
@@ -91,12 +99,12 @@ public class Tile : MonoBehaviour
 
         var leverClass = tileObject == OnTileObject.Lever ? lever.GetSave() : null;
         
-        return new TileClass {IsGrass = isGrass, OnTileObject = tileObject, Walls = walls, LeverClass = leverClass};
+        return new TileClass {IsGrass = IsGrass, OnTileObject = tileObject, Walls = walls, LeverClass = leverClass};
     }
 
     private void SetLoadedTile(TileClass tileClass)
     {
-        isGrass = tileClass.IsGrass;
+        IsGrass = tileClass.IsGrass;
         switch (tileClass.OnTileObject)
         {
             case OnTileObject.None:
@@ -118,21 +126,26 @@ public class Tile : MonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
         
-        if (gridPosition.y == 1)
-        {
-            _spriteRenderer.sprite =
-                isGrass ? TileSpriteManager.GetRandomGroundBot : TileSpriteManager.GetRandomWaterBot;
-        }
-        else
-        {
-            _spriteRenderer.sprite =
-                isGrass ? TileSpriteManager.GetRandomGroundMid : TileSpriteManager.GetRandomWaterMid;
-        }
+        SetSprite();
 
         northWall.WallClass = tileClass.Walls[Side.North];
         southWall.WallClass = tileClass.Walls[Side.South];
         westWall.WallClass = tileClass.Walls[Side.West];
         eastWall.WallClass = tileClass.Walls[Side.East];
+    }
+
+    private void SetSprite()
+    {
+        if (gridPosition.y == 1)
+        {
+            _spriteRenderer.sprite =
+                IsGrass ? TileSpriteManager.GetRandomGroundBot : TileSpriteManager.GetRandomWaterBot;
+        }
+        else
+        {
+            _spriteRenderer.sprite =
+                IsGrass ? TileSpriteManager.GetRandomGroundMid : TileSpriteManager.GetRandomWaterMid;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)

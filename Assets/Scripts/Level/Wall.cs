@@ -47,7 +47,7 @@ public class Wall : MonoBehaviour
 
     public WallClass GetSave()
     {
-        return new WallClass { IsActive = gameObject.activeSelf, IsDoor = isDoor, Color = color };
+        return new WallClass { IsActive = gameObject.activeSelf, IsDoor = isDoor, IsOpened = isOpened, Color = color };
     }
     
     private void SetWall(WallClass wallClass)
@@ -58,9 +58,9 @@ public class Wall : MonoBehaviour
         if (isDoor)
         {
             isOpened = wallClass.IsOpened;
-            var side = transform.localPosition.x == 0 ? "Horizontal" : "Vertical";
-            _opened = Resources.Load<Sprite>($"Doors/{side}/Opened/{color}");
-            _closed = Resources.Load<Sprite>($"Doors/{side}/Closed/{color}");
+            var position = transform.localPosition.x == 0 ? "Horizontal" : "Vertical";
+            _opened = Resources.Load<Sprite>($"Doors/{position}/Opened/{color}");
+            _closed = Resources.Load<Sprite>($"Doors/{position}/Closed/{color}");
             OnLevelSwitch.AddListener(OnLeverSwitch);
         }
         tag = isDoor ? "Door" : "Wall";

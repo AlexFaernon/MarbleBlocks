@@ -24,13 +24,19 @@ namespace Lean.Touch
 		}
 
 		/// <summary>Ignore fingers with StartedOverGui?</summary>
-		public bool IgnoreStartedOverGui { set { ignoreStartedOverGui = value; } get { return ignoreStartedOverGui; } } [SerializeField] private bool ignoreStartedOverGui = true;
+		public bool IgnoreStartedOverGui { set => ignoreStartedOverGui = value;
+			get => ignoreStartedOverGui;
+		} [SerializeField] private bool ignoreStartedOverGui = true;
 
 		/// <summary>Which inputs should this component react to?</summary>
-		public ButtonTypes RequiredButtons { set { requiredButtons = value; } get { return requiredButtons; } } [SerializeField] private ButtonTypes requiredButtons = (ButtonTypes)~0;
+		public ButtonTypes RequiredButtons { set => requiredButtons = value;
+			get => requiredButtons;
+		} [SerializeField] private ButtonTypes requiredButtons = (ButtonTypes)~0;
 
 		/// <summary>If the specified object is set and isn't selected, then this component will do nothing.</summary>
-		public LeanSelectable RequiredSelectable { set { requiredSelectable = value; } get { return requiredSelectable; } } [SerializeField] private LeanSelectable requiredSelectable;
+		public LeanSelectable RequiredSelectable { set => requiredSelectable = value;
+			get => requiredSelectable;
+		} [SerializeField] private LeanSelectable requiredSelectable;
 
 		/// <summary>This event will be called if the above conditions are met when your finger begins touching the screen.</summary>
 		public LeanFingerEvent OnFinger { get { if (onFinger == null) onFinger = new LeanFingerEvent(); return onFinger; } } [SerializeField] private LeanFingerEvent onFinger;

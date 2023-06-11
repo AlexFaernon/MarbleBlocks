@@ -26,16 +26,24 @@ namespace CW.Common
 		}
 
 		/// <summary>The action that will be performed when this UI element is clicked.</summary>
-		public LinkType Link { set { link = value; } get { return link; } } [SerializeField] private LinkType link;
+		public LinkType Link { set => link = value;
+			get => link;
+		} [SerializeField] private LinkType link;
 
 		/// <summary>The URL that will be opened.</summary>
-		public string UrlTarget { set { urlTarget = value; } get { return urlTarget; } } [SerializeField] private string urlTarget;
+		public string UrlTarget { set => urlTarget = value;
+			get => urlTarget;
+		} [SerializeField] private string urlTarget;
 
 		/// <summary>If this GameObject is active, then the button will be faded in.</summary>
-		public Transform IsolateTarget { set { isolateTarget = value; } get { return isolateTarget; } } [SerializeField] private Transform isolateTarget;
+		public Transform IsolateTarget { set => isolateTarget = value;
+			get => isolateTarget;
+		} [SerializeField] private Transform isolateTarget;
 
 		/// <summary>If this button is already selected and you click/tap it again, what should happen?</summary>
-		public ToggleType IsolateToggle { set { isolateToggle = value; } get { return isolateToggle; } } [SerializeField] private ToggleType isolateToggle;
+		public ToggleType IsolateToggle { set => isolateToggle = value;
+			get => isolateToggle;
+		} [SerializeField] private ToggleType isolateToggle;
 
 		[System.NonSerialized]
 		private CanvasGroup cachedCanvasGroup;

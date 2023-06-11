@@ -9,6 +9,8 @@ public class CharacterManager : MonoBehaviour
 
     private void Awake()
     {
+        if (LevelSaveManager.LevelNumber == 0) return;
+        
         if (LevelSaveManager.LoadedLevel.SonicPosition != Vector2Int.zero)
         {
             var sonicPos = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.SonicPosition);

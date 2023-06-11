@@ -40,7 +40,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
 
     void Update()
     {
-        if (!CurrentTile.isGrass && !CurrentTile.isFeeshOnTile && !IsMoving || CurrentTile.isEdge)
+        if (!CurrentTile.IsGrass && !CurrentTile.isFeeshOnTile && !IsMoving || CurrentTile.IsEdge)
         {
             GameObject.FindWithTag("Defeat").transform.GetChild(0).gameObject.SetActive(true);
             Destroy(gameObject);
@@ -139,7 +139,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
         foreach (Side side in Enum.GetValues(typeof(Side)))
         {
             var targetTile = GetTargetTile(side);
-            if (targetTile != CurrentTile && !targetTile.isEdge)
+            if (targetTile != CurrentTile && !targetTile.IsEdge)
             {
                 highlightedTiles.Add(targetTile);
             }

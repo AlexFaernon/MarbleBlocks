@@ -58,13 +58,7 @@ namespace Lean.Touch
 		public List<LeanSnapshot> Snapshots = new List<LeanSnapshot>(1000);
 
 		/// <summary>This will return true if this finger is currently touching the screen.</summary>
-		public bool IsActive
-		{
-			get
-			{
-				return LeanTouch.Fingers.Contains(this);
-			}
-		}
+		public bool IsActive => LeanTouch.Fingers.Contains(this);
 
 		/// <summary>This will tell you how many seconds of snapshot footage is stored for this finger.</summary>
 		public float SnapshotDuration
@@ -81,31 +75,13 @@ namespace Lean.Touch
 		}
 
 		/// <summary>This will return true if the current finger is over any Unity GUI elements.</summary>
-		public bool IsOverGui
-		{
-			get
-			{
-				return LeanTouch.PointOverGui(ScreenPosition);
-			}
-		}
+		public bool IsOverGui => LeanTouch.PointOverGui(ScreenPosition);
 
 		/// <summary>Did this finger begin touching the screen this frame?</summary>
-		public bool Down
-		{
-			get
-			{
-				return Set == true && LastSet == false;
-			}
-		}
+		public bool Down => Set == true && LastSet == false;
 
 		/// <summary>Did the finger stop touching the screen this frame?</summary>
-		public bool Up
-		{
-			get
-			{
-				return Set == false && LastSet == true;
-			}
-		}
+		public bool Up => Set == false && LastSet == true;
 
 		/// <summary>This will return how far in pixels the finger has moved since the last recorded snapshot.</summary>
 		public Vector2 LastSnapshotScreenDelta
@@ -129,49 +105,19 @@ namespace Lean.Touch
 		}
 
 		/// <summary>This returns a resolution-independent 'LastSnapshotScreenDelta' value.</summary>
-		public Vector2 LastSnapshotScaledDelta
-		{
-			get
-			{
-				return LastSnapshotScreenDelta * LeanTouch.ScalingFactor;
-			}
-		}
+		public Vector2 LastSnapshotScaledDelta => LastSnapshotScreenDelta * LeanTouch.ScalingFactor;
 
 		/// <summary>This will return how far in pixels the finger has moved since the last frame.</summary>
-		public Vector2 ScreenDelta
-		{
-			get
-			{
-				return ScreenPosition - LastScreenPosition;
-			}
-		}
+		public Vector2 ScreenDelta => ScreenPosition - LastScreenPosition;
 
 		/// <summary>This returns a resolution-independent 'ScreenDelta' value.</summary>
-		public Vector2 ScaledDelta
-		{
-			get
-			{
-				return ScreenDelta * LeanTouch.ScalingFactor;
-			}
-		}
+		public Vector2 ScaledDelta => ScreenDelta * LeanTouch.ScalingFactor;
 
 		/// <summary>This tells you how far this finger has moved since it began touching the screen.</summary>
-		public Vector2 SwipeScreenDelta
-		{
-			get
-			{
-				return ScreenPosition - StartScreenPosition;
-			}
-		}
+		public Vector2 SwipeScreenDelta => ScreenPosition - StartScreenPosition;
 
 		/// <summary>This returns a resolution-independent 'SwipeScreenDelta' value.</summary>
-		public Vector2 SwipeScaledDelta
-		{
-			get
-			{
-				return SwipeScreenDelta * LeanTouch.ScalingFactor;
-			}
-		}
+		public Vector2 SwipeScaledDelta => SwipeScreenDelta * LeanTouch.ScalingFactor;
 
 		/// <summary>This returns a smooth point between the previous and current screen position based on a 0..1 progress value.</summary>
 		public Vector2 GetSmoothScreenPosition(float t)

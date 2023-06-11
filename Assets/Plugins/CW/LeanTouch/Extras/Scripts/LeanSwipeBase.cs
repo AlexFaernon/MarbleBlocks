@@ -32,13 +32,17 @@ namespace Lean.Touch
 		/// 90 = Right.
 		/// 180 = Down.
 		/// 270 = Left.</summary>
-		public float RequiredAngle { set { requiredAngle = value; } get { return requiredAngle; } } [SerializeField] private float requiredAngle;
+		public float RequiredAngle { set => requiredAngle = value;
+			get => requiredAngle;
+		} [SerializeField] private float requiredAngle;
 
 		/// <summary>The angle of the arc in degrees that the swipe must be inside.
 		/// -1 = No requirement.
 		/// 90 = Quarter circle (+- 45 degrees).
 		/// 180 = Semicircle (+- 90 degrees).</summary>
-		public float RequiredArc { set { requiredArc = value; } get { return requiredArc; } } [SerializeField] private float requiredArc = -1.0f;
+		public float RequiredArc { set => requiredArc = value;
+			get => requiredArc;
+		} [SerializeField] private float requiredArc = -1.0f;
 
 		/// <summary>Called on the first frame the conditions are met.</summary>
 		public LeanFingerEvent OnFinger { get { if (onFinger == null) onFinger = new LeanFingerEvent(); return onFinger; } } [SerializeField] public LeanFingerEvent onFinger;
@@ -46,13 +50,19 @@ namespace Lean.Touch
 		/// <summary>Should the swipe delta be modified before use?
 		/// Normalize = The swipe delta magnitude/length will be set to 1.
 		/// Normalize4 = The swipe delta will be + or - 1 on either the x or y axis.</summary>
-		public ModifyType Modify { set { modify = value; } get { return modify; } } [SerializeField] private ModifyType modify;
+		public ModifyType Modify { set => modify = value;
+			get => modify;
+		} [SerializeField] private ModifyType modify;
 
 		/// <summary>The coordinate space of the OnDelta values.</summary>
-		public CoordinateType Coordinate { set { coordinate = value; } get { return coordinate; } } [SerializeField] private CoordinateType coordinate;
+		public CoordinateType Coordinate { set => coordinate = value;
+			get => coordinate;
+		} [SerializeField] private CoordinateType coordinate;
 
 		/// <summary>The swipe delta will be multiplied by this value.</summary>
-		public float Multiplier { set { multiplier = value; } get { return multiplier; } } [SerializeField] private float multiplier = 1.0f;
+		public float Multiplier { set => multiplier = value;
+			get => multiplier;
+		} [SerializeField] private float multiplier = 1.0f;
 
 		/// <summary>Called on the first frame the conditions are met.
 		/// Vector2 = The scaled swipe delta.</summary>

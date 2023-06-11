@@ -8,22 +8,34 @@ namespace CW.Common
 	public class CwCameraMove : MonoBehaviour
 	{
 		/// <summary>Is this component currently listening for inputs?</summary>
-		public bool Listen { set { listen = value; } get { return listen; } } [SerializeField] private bool listen = true;
+		public bool Listen { set => listen = value;
+			get => listen;
+		} [SerializeField] private bool listen = true;
 
 		/// <summary>How quickly the position transitions from the current to the target value (-1 = instant).</summary>
-		public float Damping { set { damping = value; } get { return damping; } } [SerializeField] private float damping = 10.0f;
+		public float Damping { set => damping = value;
+			get => damping;
+		} [SerializeField] private float damping = 10.0f;
 
 		/// <summary>The movement speed will be multiplied by this.</summary>
-		public float Sensitivity { set { sensitivity = value; } get { return sensitivity; } } [SerializeField] private float sensitivity = 1.0f;
+		public float Sensitivity { set => sensitivity = value;
+			get => sensitivity;
+		} [SerializeField] private float sensitivity = 1.0f;
 
 		/// <summary>The keys/fingers required to move left/right.</summary>
-		public CwInputManager.Axis HorizontalControls { set { horizontalControls = value; } get { return horizontalControls; } } [SerializeField] private CwInputManager.Axis horizontalControls = new CwInputManager.Axis(2, false, CwInputManager.AxisGesture.HorizontalDrag, 1.0f, KeyCode.A, KeyCode.D, KeyCode.LeftArrow, KeyCode.RightArrow, 100.0f);
+		public CwInputManager.Axis HorizontalControls { set => horizontalControls = value;
+			get => horizontalControls;
+		} [SerializeField] private CwInputManager.Axis horizontalControls = new CwInputManager.Axis(2, false, CwInputManager.AxisGesture.HorizontalDrag, 1.0f, KeyCode.A, KeyCode.D, KeyCode.LeftArrow, KeyCode.RightArrow, 100.0f);
 
 		/// <summary>The keys/fingers required to move backward/forward.</summary>
-		public CwInputManager.Axis DepthControls { set { depthControls = value; } get { return depthControls; } } [SerializeField] private CwInputManager.Axis depthControls = new CwInputManager.Axis(2, false, CwInputManager.AxisGesture.HorizontalDrag, 1.0f, KeyCode.S, KeyCode.W, KeyCode.DownArrow, KeyCode.UpArrow, 100.0f);
+		public CwInputManager.Axis DepthControls { set => depthControls = value;
+			get => depthControls;
+		} [SerializeField] private CwInputManager.Axis depthControls = new CwInputManager.Axis(2, false, CwInputManager.AxisGesture.HorizontalDrag, 1.0f, KeyCode.S, KeyCode.W, KeyCode.DownArrow, KeyCode.UpArrow, 100.0f);
 
 		/// <summary>The keys/fingers required to move down/up.</summary>
-		public CwInputManager.Axis VerticalControls { set { verticalControls = value; } get { return verticalControls; } } [SerializeField] private CwInputManager.Axis verticalControls = new CwInputManager.Axis(3, false, CwInputManager.AxisGesture.HorizontalDrag, 1.0f, KeyCode.F, KeyCode.R, KeyCode.None, KeyCode.None, 100.0f);
+		public CwInputManager.Axis VerticalControls { set => verticalControls = value;
+			get => verticalControls;
+		} [SerializeField] private CwInputManager.Axis verticalControls = new CwInputManager.Axis(3, false, CwInputManager.AxisGesture.HorizontalDrag, 1.0f, KeyCode.F, KeyCode.R, KeyCode.None, KeyCode.None, 100.0f);
 
 		[System.NonSerialized]
 		private Vector3 remainingDelta;

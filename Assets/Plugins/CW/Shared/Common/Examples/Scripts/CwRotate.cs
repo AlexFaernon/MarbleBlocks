@@ -8,10 +8,14 @@ namespace CW.Common
 	public class CwRotate : MonoBehaviour
 	{
 		/// <summary>The speed of the rotation in degrees per second.</summary>
-		public Vector3 AngularVelocity { set { angularVelocity = value; } get { return angularVelocity; } } [SerializeField] private Vector3 angularVelocity = Vector3.up;
+		public Vector3 AngularVelocity { set => angularVelocity = value;
+			get => angularVelocity;
+		} [SerializeField] private Vector3 angularVelocity = Vector3.up;
 
 		/// <summary>The rotation space.</summary>
-		public Space RelativeTo { set { relativeTo = value; } get { return relativeTo; } } [SerializeField] private Space relativeTo;
+		public Space RelativeTo { set => relativeTo = value;
+			get => relativeTo;
+		} [SerializeField] private Space relativeTo;
 
 		protected virtual void Update()
 		{

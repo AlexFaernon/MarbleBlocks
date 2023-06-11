@@ -11,10 +11,12 @@ namespace Lean.Common
 	public class LeanSelectableRendererColor : LeanSelectableBehaviour
 	{
 		/// <summary>The default color given to the SpriteRenderer.</summary>
-		public Color DefaultColor { set { defaultColor = value; UpdateColor(); } get { return defaultColor; } } [SerializeField] private Color defaultColor = Color.white;
+		public Color DefaultColor { set { defaultColor = value; UpdateColor(); } get => defaultColor;
+		} [SerializeField] private Color defaultColor = Color.white;
 
 		/// <summary>The color given to the SpriteRenderer when selected.</summary>
-		public Color SelectedColor { set { selectedColor = value; UpdateColor(); } get { return selectedColor; } } [SerializeField] private Color selectedColor = Color.green;
+		public Color SelectedColor { set { selectedColor = value; UpdateColor(); } get => selectedColor;
+		} [SerializeField] private Color selectedColor = Color.green;
 
 		[System.NonSerialized]
 		private Renderer cachedRenderer;

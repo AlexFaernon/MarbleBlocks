@@ -33,26 +33,28 @@ namespace CW.Common
 			public int      Hash;
 			public bool     Dirty;
 
-			public string HashString
-			{
-				get
-				{
-					return "//<HASH>" + Hash + "</HASH>";
-				}
-			}
+			public string HashString => "//<HASH>" + Hash + "</HASH>";
 		}
 
 		/// <summary>The title of the generated shader.</summary>
-		public string Title { set  { title = value; } get { return title; } } [SerializeField] private string title;
+		public string Title { set => title = value;
+			get => title;
+		} [SerializeField] private string title;
 
 		/// <summary>The shader that will be modified to work with the selected rendering pipeline.</summary>
-		public Shader Target { set  { target = value; } get { return target; } } [SerializeField] private Shader target;
+		public Shader Target { set => target = value;
+			get => target;
+		} [SerializeField] private Shader target;
 
 		/// <summary>The hash code of the currently loaded bundle.</summary>
-		public int VariantHash { set  { variantHash = value; } get { return variantHash; } } [SerializeField] private int variantHash;
+		public int VariantHash { set => variantHash = value;
+			get => variantHash;
+		} [SerializeField] private int variantHash;
 
 		/// <summary>The hash code of the current device to make sure the shaders have been loaded properly.</summary>
-		public int ProjectHash { set  { projectHash = value; } get { return projectHash; } } [SerializeField] private int projectHash;
+		public int ProjectHash { set => projectHash = value;
+			get => projectHash;
+		} [SerializeField] private int projectHash;
 
 		/// <summary>This stores all shader variants for this shader.</summary>
 		public List<ShaderVariant> Variants { get { if (variants == null) variants = new List<ShaderVariant>(); return variants; } } [SerializeField] private List<ShaderVariant> variants;

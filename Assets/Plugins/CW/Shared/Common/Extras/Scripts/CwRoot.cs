@@ -12,13 +12,7 @@ namespace CW.Common
 	{
 		private static List<CwRoot> instances = new List<CwRoot>();
 
-		public static bool Exists
-		{
-			get
-			{
-				return instances.Count > 0;
-			}
-		}
+		public static bool Exists => instances.Count > 0;
 
 		public static Transform Root
 		{

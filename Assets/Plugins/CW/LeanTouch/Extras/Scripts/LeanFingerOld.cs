@@ -15,13 +15,19 @@ namespace Lean.Touch
 		[System.Serializable] public class Vector2Event : UnityEvent<Vector2> {}
 
 		/// <summary>Ignore fingers with StartedOverGui?</summary>
-		public bool IgnoreStartedOverGui { set { ignoreStartedOverGui = value; } get { return ignoreStartedOverGui; } } [SerializeField] private bool ignoreStartedOverGui = true;
+		public bool IgnoreStartedOverGui { set => ignoreStartedOverGui = value;
+			get => ignoreStartedOverGui;
+		} [SerializeField] private bool ignoreStartedOverGui = true;
 
 		/// <summary>Ignore fingers with OverGui?</summary>
-		public bool IgnoreIsOverGui { set { ignoreIsOverGui = value; } get { return ignoreIsOverGui; } } [SerializeField] private bool ignoreIsOverGui;
+		public bool IgnoreIsOverGui { set => ignoreIsOverGui = value;
+			get => ignoreIsOverGui;
+		} [SerializeField] private bool ignoreIsOverGui;
 
 		/// <summary>If the specified object is set and isn't selected, then this component will do nothing.</summary>
-		public LeanSelectable RequiredSelectable { set { requiredSelectable = value; } get { return requiredSelectable; } } [SerializeField] private LeanSelectable requiredSelectable;
+		public LeanSelectable RequiredSelectable { set => requiredSelectable = value;
+			get => requiredSelectable;
+		} [SerializeField] private LeanSelectable requiredSelectable;
 
 		/// <summary>This event will be called if the above conditions are met when your finger becomes old.</summary>
 		public LeanFingerEvent OnFinger { get { if (onFinger == null) onFinger = new LeanFingerEvent(); return onFinger; } } [SerializeField] private LeanFingerEvent onFinger;

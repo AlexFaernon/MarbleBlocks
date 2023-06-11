@@ -33,7 +33,9 @@ namespace Lean.Touch
 		[System.Serializable] public class LeanSelectFingerEvent : UnityEvent<LeanSelectByFinger, LeanFinger> {}
 
 		/// <summary>This allows you to control which fingers will be used by components that require this selectable.</summary>
-		public UseType Use { set { use = value; } get { return use; } } [SerializeField] private UseType use;
+		public UseType Use { set => use = value;
+			get => use;
+		} [SerializeField] private UseType use;
 
 		/// <summary>This event is called when selection begins (finger = the finger that selected this).</summary>
 		public LeanFingerEvent OnSelectedFinger { get { if (onSelectedFinger == null) onSelectedFinger = new LeanFingerEvent(); return onSelectedFinger; } } [SerializeField] private LeanFingerEvent onSelectedFinger;
@@ -70,13 +72,7 @@ namespace Lean.Touch
 		}
 
 		/// <summary>This tells you every currently active finger that selected this object.</summary>
-		public List<SelectedPair> SelectingPairs
-		{
-			get
-			{
-				return selectingPairs;
-			}
-		}
+		public List<SelectedPair> SelectingPairs => selectingPairs;
 
 		public void SelectSelf(LeanFinger finger)
 		{

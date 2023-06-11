@@ -9,7 +9,9 @@ namespace Lean.Touch
 	public class LeanFingerUp : LeanFingerDown
 	{
 		/// <summary>Ignore fingers with OverGui?</summary>
-		public bool IgnoreIsOverGui { set { ignoreIsOverGui = value; } get { return ignoreIsOverGui; } } [SerializeField] private bool ignoreIsOverGui;
+		public bool IgnoreIsOverGui { set => ignoreIsOverGui = value;
+			get => ignoreIsOverGui;
+		} [SerializeField] private bool ignoreIsOverGui;
 
 		private List<LeanFinger> fingers = new List<LeanFinger>();
 

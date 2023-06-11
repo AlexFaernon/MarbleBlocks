@@ -12,7 +12,9 @@ namespace Lean.Common
 		[System.Serializable] public class StringEvent : UnityEvent<string> {}
 
 		/// <summary>The final text will use this string formatting, where {0} is the first value, {1} is the second, etc. Formatting uses standard <b>string.Format</b> style.</summary>
-		public string Format { set { format = value; } get { return format; } } [SerializeField] [Multiline] private string format = "Current Value = {0}";
+		public string Format { set => format = value;
+			get => format;
+		} [SerializeField] [Multiline] private string format = "Current Value = {0}";
 
 		/// <summary>Based on the <b>Send</b> setting, this event will be invoked.
 		/// String = The .</summary>

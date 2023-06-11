@@ -75,7 +75,7 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
 
     private void Update()
     {
-        if (!CurrentTile.isGrass && !CurrentTile.isFeeshOnTile && !IsMoving || CurrentTile.isEdge)
+        if (!CurrentTile.IsGrass && !CurrentTile.isFeeshOnTile && !IsMoving || CurrentTile.IsEdge)
         {
             GameObject.FindWithTag("Defeat").transform.GetChild(0).gameObject.SetActive(true);
             Destroy(gameObject);
@@ -134,7 +134,7 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
             while (CanMoveForward(currentTile, side))
             {
                 currentTile = TileManager.GetTile(currentTile, side);
-                if (currentTile.isEdge)
+                if (currentTile.IsEdge)
                 {
                     break;
                 }

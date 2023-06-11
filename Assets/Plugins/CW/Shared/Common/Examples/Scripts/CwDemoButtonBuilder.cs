@@ -10,19 +10,29 @@ namespace CW.Common
 	public class CwDemoButtonBuilder : MonoBehaviour
 	{
 		/// <summary>The built button will be based on this prefab.</summary>
-		public GameObject ButtonPrefab { set { buttonPrefab = value; } get { return buttonPrefab; } } [SerializeField] private GameObject buttonPrefab;
+		public GameObject ButtonPrefab { set => buttonPrefab = value;
+			get => buttonPrefab;
+		} [SerializeField] private GameObject buttonPrefab;
 
 		/// <summary>The built button will be placed under this transform.</summary>
-		public RectTransform ButtonRoot { set { buttonRoot = value; } get { return buttonRoot; } } [SerializeField] private RectTransform buttonRoot;
+		public RectTransform ButtonRoot { set => buttonRoot = value;
+			get => buttonRoot;
+		} [SerializeField] private RectTransform buttonRoot;
 
 		/// <summary>The icon given to this button.</summary>
-		public Sprite Icon { set { icon = value; } get { return icon; } } [SerializeField] private Sprite icon;
+		public Sprite Icon { set => icon = value;
+			get => icon;
+		} [SerializeField] private Sprite icon;
 
 		/// <summary>The icon will be tinted by this.</summary>
-		public Color Color { set { color = value; } get { return color; } } [SerializeField] private Color color = Color.white;
+		public Color Color { set => color = value;
+			get => color;
+		} [SerializeField] private Color color = Color.white;
 
 		/// <summary>Use a different name for the button text?</summary>
-		public string OverrideName { set { overrideName = value; } get { return overrideName; } } [SerializeField] [Multiline(3)] private string overrideName;
+		public string OverrideName { set => overrideName = value;
+			get => overrideName;
+		} [SerializeField] [Multiline(3)] private string overrideName;
 
 		[SerializeField]
 		private GameObject clone;

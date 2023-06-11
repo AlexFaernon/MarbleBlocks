@@ -11,22 +11,32 @@ namespace Lean.Common
 	public class LeanRoll : MonoBehaviour
 	{
 		/// <summary>The current angle in degrees.</summary>
-		public float Angle { set { angle = value; } get { return angle; } } [SerializeField] private float angle;
+		public float Angle { set => angle = value;
+			get => angle;
+		} [SerializeField] private float angle;
 
 		/// <summary>Should the <b>Angle</b> value be clamped?</summary>
-		public bool Clamp { set { clamp = value; } get { return clamp; } } [SerializeField] private bool clamp;
+		public bool Clamp { set => clamp = value;
+			get => clamp;
+		} [SerializeField] private bool clamp;
 
 		/// <summary>The minimum <b>Angle</b> value.</summary>
-		public float ClampMin { set { clampMin = value; } get { return clampMin; } } [SerializeField] private float clampMin;
+		public float ClampMin { set => clampMin = value;
+			get => clampMin;
+		} [SerializeField] private float clampMin;
 
 		/// <summary>The maximum <b>Angle</b> value.</summary>
-		public float ClampMax { set { clampMax = value; } get { return clampMax; } } [SerializeField] private float clampMax;
+		public float ClampMax { set => clampMax = value;
+			get => clampMax;
+		} [SerializeField] private float clampMax;
 
 		/// <summary>If you want this component to change smoothly over time, then this allows you to control how quick the changes reach their target value.
 		/// -1 = Instantly change.
 		/// 1 = Slowly change.
 		/// 10 = Quickly change.</summary>
-		public float Damping { set { damping = value; } get { return damping; } } [SerializeField] private float damping = -1.0f;
+		public float Damping { set => damping = value;
+			get => damping;
+		} [SerializeField] private float damping = -1.0f;
 
 		[SerializeField]
 		private float currentAngle;

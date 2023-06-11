@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Lever : MonoBehaviour
 {
-    [SerializeField] private bool isSwitchable;
+    [SerializeField] private bool isSwitchable = true;
     [SerializeField] private DoorLeverColor color;
     private Sprite _off;
     private Sprite _on;

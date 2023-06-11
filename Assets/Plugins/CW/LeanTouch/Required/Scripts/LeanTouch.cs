@@ -80,27 +80,19 @@ namespace Lean.Touch
 		public event System.Action OnSimulateFingers;
 
 		/// <summary>This allows you to set how many seconds are required between a finger down/up for a tap to be registered.</summary>
-		public float TapThreshold { set { tapThreshold = value; } get { return tapThreshold; } } [SerializeField] private float tapThreshold = DEFAULT_TAP_THRESHOLD;
+		public float TapThreshold { set => tapThreshold = value;
+			get => tapThreshold;
+		} [SerializeField] private float tapThreshold = DEFAULT_TAP_THRESHOLD;
 
-		public static float CurrentTapThreshold
-		{
-			get
-			{
-				return Instances.Count > 0 ? Instances[0].tapThreshold : DEFAULT_TAP_THRESHOLD;
-			}
-		}
+		public static float CurrentTapThreshold => Instances.Count > 0 ? Instances[0].tapThreshold : DEFAULT_TAP_THRESHOLD;
 
 		/// <summary>This allows you to set how many pixels of movement (relative to the ReferenceDpi) are required within the TapThreshold for a swipe to be triggered.</summary>
-		public float SwipeThreshold { set { swipeThreshold = value; } get { return swipeThreshold; } } [SerializeField] private float swipeThreshold = DEFAULT_SWIPE_THRESHOLD;
+		public float SwipeThreshold { set => swipeThreshold = value;
+			get => swipeThreshold;
+		} [SerializeField] private float swipeThreshold = DEFAULT_SWIPE_THRESHOLD;
 
 
-		public static float CurrentSwipeThreshold
-		{
-			get
-			{
-				return Instances.Count > 0 ? Instances[0].swipeThreshold : DEFAULT_SWIPE_THRESHOLD;
-			}
-		}
+		public static float CurrentSwipeThreshold => Instances.Count > 0 ? Instances[0].swipeThreshold : DEFAULT_SWIPE_THRESHOLD;
 
 #if LEAN_ALLOW_RECLAIM
 		/// <summary>This allows you to set how many pixels (relative to the ReferenceDpi) away from a previous finger the new touching finger must be for it to be reclaimed. This is useful on platforms that give incorrect finger ID data.</summary>
@@ -118,52 +110,59 @@ namespace Lean.Touch
 #endif
 
 		/// <summary>This allows you to set the default DPI you want the input scaling to be based on. For example, if you set this to 200 and your display has a DPI of 400, then the <b>ScaledDelta</b> finger value will be half the distance of the pixel space <b>ScreenDelta</b> value.</summary>
-		public int ReferenceDpi { set { referenceDpi = value; } get { return referenceDpi; } } [SerializeField] private int referenceDpi = DEFAULT_REFERENCE_DPI;
+		public int ReferenceDpi { set => referenceDpi = value;
+			get => referenceDpi;
+		} [SerializeField] private int referenceDpi = DEFAULT_REFERENCE_DPI;
 
-		public static int CurrentReferenceDpi
-		{
-			get
-			{
-				return Instances.Count > 0 ? Instances[0].referenceDpi : DEFAULT_REFERENCE_DPI;
-			}
-		}
+		public static int CurrentReferenceDpi => Instances.Count > 0 ? Instances[0].referenceDpi : DEFAULT_REFERENCE_DPI;
 
 		/// <summary>This allows you to set which layers your GUI is on, so it can be ignored by each finger.</summary>
-		public LayerMask GuiLayers { set { guiLayers = value; } get { return guiLayers; } } [SerializeField] private LayerMask guiLayers = (LayerMask)DEFAULT_GUI_LAYERS;
+		public LayerMask GuiLayers { set => guiLayers = value;
+			get => guiLayers;
+		} [SerializeField] private LayerMask guiLayers = (LayerMask)DEFAULT_GUI_LAYERS;
 
-		public static LayerMask CurrentGuiLayers
-		{
-			get
-			{
-				return Instances.Count > 0 ? Instances[0].guiLayers : (LayerMask)DEFAULT_GUI_LAYERS;
-			}
-		}
+		public static LayerMask CurrentGuiLayers => Instances.Count > 0 ? Instances[0].guiLayers : (LayerMask)DEFAULT_GUI_LAYERS;
 
 		/// <summary>If you disable this then lean touch will act as if you stopped touching the screen.</summary>
-		public bool UseTouch { set { useTouch = value; } get { return useTouch; } } [SerializeField] private bool useTouch = true;
+		public bool UseTouch { set => useTouch = value;
+			get => useTouch;
+		} [SerializeField] private bool useTouch = true;
 
 		/// <summary>Should the mouse hover position be stored as a finger?
 		/// NOTE: It will be given a finger <b>Index</b> of HOVER_FINGER_INDEX = -42.</summary>
-		public bool UseHover { set { useHover = value; } get { return useHover; } } [SerializeField] private bool useHover = true;
+		public bool UseHover { set => useHover = value;
+			get => useHover;
+		} [SerializeField] private bool useHover = true;
 
 		/// <summary>Should any mouse button press be stored as a finger?
 		/// NOTE: It will be given a finger <b>Index</b> of MOUSE_FINGER_INDEX = -1.</summary>
-		public bool UseMouse { set { useMouse = value; } get { return useMouse; } } [SerializeField] private bool useMouse = true;
+		public bool UseMouse { set => useMouse = value;
+			get => useMouse;
+		} [SerializeField] private bool useMouse = true;
 
 		/// <summary>Should components hooked into the <b>OnSimulateFingers</b> event be used? (e.g. LeanTouchSimulator)</summary>
-		public bool UseSimulator { set { useSimulator = value; } get { return useSimulator; } } [SerializeField] private bool useSimulator = true;
+		public bool UseSimulator { set => useSimulator = value;
+			get => useSimulator;
+		} [SerializeField] private bool useSimulator = true;
 
 		/// <summary>When using the old/legacy input system, by default it will convert touch data into mouse data, even if there is no mouse. Enabling this setting will disable this behavior.</summary>
-		public bool DisableMouseEmulation { set { disableMouseEmulation = value; UpdateMouseEmulation(); } get { return disableMouseEmulation; } } [SerializeField] private bool disableMouseEmulation = true;
+		public bool DisableMouseEmulation { set { disableMouseEmulation = value; UpdateMouseEmulation(); } get => disableMouseEmulation;
+		} [SerializeField] private bool disableMouseEmulation = true;
 
 		/// <summary>Should each finger record snapshots of their screen positions?</summary>
-		public bool RecordFingers { set { recordFingers = value; } get { return recordFingers; } } [SerializeField] private bool recordFingers = true;
+		public bool RecordFingers { set => recordFingers = value;
+			get => recordFingers;
+		} [SerializeField] private bool recordFingers = true;
 
 		/// <summary>This allows you to set the amount of pixels a finger must move for another snapshot to be stored.</summary>
-		public float RecordThreshold { set { recordThreshold = value; } get { return recordThreshold; } } [SerializeField] private float recordThreshold = 5.0f;
+		public float RecordThreshold { set => recordThreshold = value;
+			get => recordThreshold;
+		} [SerializeField] private float recordThreshold = 5.0f;
 
 		/// <summary>This allows you to set the maximum amount of seconds that can be recorded, 0 = unlimited.</summary>
-		public float RecordLimit { set { recordLimit = value; } get { return recordLimit; } } [SerializeField] private float recordLimit = DEFAULT_RECORD_LIMIT;
+		public float RecordLimit { set => recordLimit = value;
+			get => recordLimit;
+		} [SerializeField] private float recordLimit = DEFAULT_RECORD_LIMIT;
 
 		// Used to find if the GUI is in use
 		private static List<RaycastResult> tempRaycastResults = new List<RaycastResult>(10);
@@ -178,13 +177,7 @@ namespace Lean.Touch
 		private static EventSystem tempEventSystem;
 
 		/// <summary>The first active and enabled LeanTouch instance.</summary>
-		public static LeanTouch Instance
-		{
-			get
-			{
-				return Instances.Count > 0 ? Instances[0] : null;
-			}
-		}
+		public static LeanTouch Instance => Instances.Count > 0 ? Instances[0] : null;
 
 		/// <summary>If you multiply this value with any other pixel delta (e.g. ScreenDelta), then it will become device resolution independent relative to the device DPI.</summary>
 		public static float ScalingFactor

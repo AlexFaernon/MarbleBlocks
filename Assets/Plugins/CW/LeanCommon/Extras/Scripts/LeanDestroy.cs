@@ -21,14 +21,20 @@ namespace Lean.Common
 		/// AfterDelay = After the specified amount of <b>Seconds</b> has elapsed.
 		/// AfterDelayUnscaled = The same as AfterDelay, but using unscaledDeltaTime.
 		/// Manually = You must manually call the <b>DestroyNow</b> method.</summary>
-		public ExecuteType Execute { set { execute = value; } get { return execute; } } [SerializeField] private ExecuteType execute = ExecuteType.Manually;
+		public ExecuteType Execute { set => execute = value;
+			get => execute;
+		} [SerializeField] private ExecuteType execute = ExecuteType.Manually;
 
 		/// <summary>The GameObject that will be destroyed.
 		/// None/null = This GameObject.</summary>
-		public GameObject Target { set { target = value; } get { return target; } } [SerializeField] private GameObject target;
+		public GameObject Target { set => target = value;
+			get => target;
+		} [SerializeField] private GameObject target;
 
 		/// <summary>The amount of seconds remaining until the GameObject is destroyed.</summary>
-		public float Seconds { set { seconds = value; } get { return seconds; } } [SerializeField] private float seconds = -1.0f;
+		public float Seconds { set => seconds = value;
+			get => seconds;
+		} [SerializeField] private float seconds = -1.0f;
 
 		protected virtual void Update()
 		{

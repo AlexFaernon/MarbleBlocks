@@ -9,28 +9,44 @@ namespace CW.Common
 	public class CwDemo : MonoBehaviour
 	{
 		/// <summary>If you enable this setting and your project is running with the new InputSystem then the <b>EventSystem's InputModule</b> component will be upgraded.</summary>
-		public bool UpgradeInputModule { set { upgradeInputModule = value; } get { return upgradeInputModule; } } [SerializeField] private bool upgradeInputModule = true;
+		public bool UpgradeInputModule { set => upgradeInputModule = value;
+			get => upgradeInputModule;
+		} [SerializeField] private bool upgradeInputModule = true;
 
 		/// <summary>If you enable this setting and your project is running with HDRP then a <b>Volume</b> component will be added to the scene that adjusts the camera exposure to match the other pipelines.</summary>
-		public bool ChangeExposureInHDRP { set { changeExposureInHDRP = value; } get { return changeExposureInHDRP; } } [SerializeField] private bool changeExposureInHDRP = true;
+		public bool ChangeExposureInHDRP { set => changeExposureInHDRP = value;
+			get => changeExposureInHDRP;
+		} [SerializeField] private bool changeExposureInHDRP = true;
 
 		/// <summary>If you enable this setting and your project is running with HDRP then a <b>Volume</b> component will be added to the scene that adjusts the background to match the other pipelines.</summary>
-		public bool ChangeVisualEnvironmentInHDRP { set { changeVisualEnvironmentInHDRP = value; } get { return changeVisualEnvironmentInHDRP; } } [SerializeField] private bool changeVisualEnvironmentInHDRP = true;
+		public bool ChangeVisualEnvironmentInHDRP { set => changeVisualEnvironmentInHDRP = value;
+			get => changeVisualEnvironmentInHDRP;
+		} [SerializeField] private bool changeVisualEnvironmentInHDRP = true;
 
 		/// <summary>If you enable this setting and your project is running with HDRP then a <b>Volume</b> component will be added to the scene that adjusts the fog to match the other pipelines.</summary>
-		public bool ChangeFogInHDRP { set { changeFogInHDRP = value; } get { return changeFogInHDRP; } } [SerializeField] private bool changeFogInHDRP = true;
+		public bool ChangeFogInHDRP { set => changeFogInHDRP = value;
+			get => changeFogInHDRP;
+		} [SerializeField] private bool changeFogInHDRP = true;
 
 		/// <summary>If you enable this setting and your project is running with HDRP then a <b>Volume</b> component will be added to the scene that adjusts the clouds to match the other pipelines.</summary>
-		public bool ChangeCloudsInHDRP { set { changeCloudsInHDRP = value; } get { return changeCloudsInHDRP; } } [SerializeField] private bool changeCloudsInHDRP = true;
+		public bool ChangeCloudsInHDRP { set => changeCloudsInHDRP = value;
+			get => changeCloudsInHDRP;
+		} [SerializeField] private bool changeCloudsInHDRP = true;
 
 		/// <summary>If you enable this setting and your project is running with HDRP then a <b>Volume</b> component will be added to the scene that adjusts the motion blur to match the other pipelines.</summary>
-		public bool ChangeMotionBlurInHDRP { set { changeMotionBlurInHDRP = value; } get { return changeMotionBlurInHDRP; } } [SerializeField] private bool changeMotionBlurInHDRP = true;
+		public bool ChangeMotionBlurInHDRP { set => changeMotionBlurInHDRP = value;
+			get => changeMotionBlurInHDRP;
+		} [SerializeField] private bool changeMotionBlurInHDRP = true;
 
 		/// <summary>If you enable this setting and your project is running with HDRP then any lights missing the <b>HDAdditionalLightData</b> component will have it added.</summary>
-		public bool UpgradeLightsInHDRP { set { upgradeLightsInHDRP = value; } get { return upgradeLightsInHDRP; } } [SerializeField] private bool upgradeLightsInHDRP = true;
+		public bool UpgradeLightsInHDRP { set => upgradeLightsInHDRP = value;
+			get => upgradeLightsInHDRP;
+		} [SerializeField] private bool upgradeLightsInHDRP = true;
 
 		/// <summary>If you enable this setting and your project is running with HDRP then any cameras missing the <b>HDAdditionalCameraData</b> component will have it added.</summary>
-		public bool UpgradeCamerasInHDRP { set { upgradeCamerasInHDRP = value; } get { return upgradeCamerasInHDRP; } } [SerializeField] private bool upgradeCamerasInHDRP = true;
+		public bool UpgradeCamerasInHDRP { set => upgradeCamerasInHDRP = value;
+			get => upgradeCamerasInHDRP;
+		} [SerializeField] private bool upgradeCamerasInHDRP = true;
 
 		protected virtual void OnEnable()
 		{

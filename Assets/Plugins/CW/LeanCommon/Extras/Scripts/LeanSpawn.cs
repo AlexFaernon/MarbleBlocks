@@ -16,13 +16,19 @@ namespace Lean.Common
 		}
 
 		/// <summary>The prefab that this component can spawn.</summary>
-		public Transform Prefab { set { prefab = value; } get { return prefab; } } [SerializeField] private Transform prefab;
+		public Transform Prefab { set => prefab = value;
+			get => prefab;
+		} [SerializeField] private Transform prefab;
 
 		/// <summary>If you call <b>Spawn()</b>, where should the position come from?</summary>
-		public SourceType DefaultPosition { set { defaultPosition = value; } get { return defaultPosition; } } [SerializeField] private SourceType defaultPosition;
+		public SourceType DefaultPosition { set => defaultPosition = value;
+			get => defaultPosition;
+		} [SerializeField] private SourceType defaultPosition;
 
 		/// <summary>If you call <b>Spawn()</b>, where should the rotation come from?</summary>
-		public SourceType DefaultRotation { set { defaultRotation = value; } get { return defaultRotation; } } [SerializeField] private SourceType defaultRotation;
+		public SourceType DefaultRotation { set => defaultRotation = value;
+			get => defaultRotation;
+		} [SerializeField] private SourceType defaultRotation;
 
 		/// <summary>This will spawn <b>Prefab</b> at the current <b>Transform.position</b>.</summary>
 		public void Spawn()

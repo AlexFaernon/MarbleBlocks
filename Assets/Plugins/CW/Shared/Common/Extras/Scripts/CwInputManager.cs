@@ -277,7 +277,9 @@ namespace CW.Common
 		}
 
 		/// <summary>Fingers that began touching the screen on top of these UI layers will be ignored.</summary>
-		public LayerMask GuiLayers { set { guiLayers = value; } get { return guiLayers; } } [SerializeField] private LayerMask guiLayers = 1 << 5;
+		public LayerMask GuiLayers { set => guiLayers = value;
+			get => guiLayers;
+		} [SerializeField] private LayerMask guiLayers = 1 << 5;
 
 		/// <summary>This event will tell you when a finger begins touching the screen.</summary>
 		public static event System.Action<Finger> OnFingerDown;
@@ -304,13 +306,7 @@ namespace CW.Common
 
 		private static Stack<Finger> pool = new Stack<Finger>();
 
-		public static List<Finger> Fingers
-		{
-			get
-			{
-				return fingers;
-			}
-		}
+		public static List<Finger> Fingers => fingers;
 
 		public static float ScaleFactor
 		{

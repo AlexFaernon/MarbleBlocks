@@ -17,20 +17,28 @@ namespace Lean.Touch
 
 		/// <summary>The movement speed will be multiplied by this.
 		/// -1 = Inverted Controls.</summary>
-		public float Sensitivity { set { sensitivity = value; } get { return sensitivity; } } [SerializeField] private float sensitivity = 1.0f;
+		public float Sensitivity { set => sensitivity = value;
+			get => sensitivity;
+		} [SerializeField] private float sensitivity = 1.0f;
 
 		/// <summary>If you want this component to change smoothly over time, then this allows you to control how quick the changes reach their target value.
 		/// -1 = Instantly change.
 		/// 1 = Slowly change.
 		/// 10 = Quickly change.</summary>
-		public float Damping { set { damping = value; } get { return damping; } } [SerializeField] private float damping = -1.0f;
+		public float Damping { set => damping = value;
+			get => damping;
+		} [SerializeField] private float damping = -1.0f;
 
 		/// <summary>This allows you to control how much momentum is retained when the dragging fingers are all released.
 		/// NOTE: This requires <b>Damping</b> to be above 0.</summary>
-		public float Inertia { set { inertia = value; } get { return inertia; } } [SerializeField] [Range(0.0f, 1.0f)] private float inertia;
+		public float Inertia { set => inertia = value;
+			get => inertia;
+		} [SerializeField] [Range(0.0f, 1.0f)] private float inertia;
 
 		/// <summary>This allows you to set the target position value when calling the <b>ResetPosition</b> method.</summary>
-		public Vector3 DefaultPosition { set { defaultPosition = value; } get { return defaultPosition; } } [SerializeField] private Vector3 defaultPosition;
+		public Vector3 DefaultPosition { set => defaultPosition = value;
+			get => defaultPosition;
+		} [SerializeField] private Vector3 defaultPosition;
 
 		[SerializeField]
 		private Vector3 remainingDelta;

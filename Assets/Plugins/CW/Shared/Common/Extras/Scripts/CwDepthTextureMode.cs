@@ -11,7 +11,8 @@ namespace CW.Common
 	public class CwDepthTextureMode : MonoBehaviour
 	{
 		/// <summary>The depth mode that will be applied to the camera.</summary>
-		public DepthTextureMode DepthMode { set { depthMode = value; UpdateDepthMode(); } get { return depthMode; } } [SerializeField] private DepthTextureMode depthMode = DepthTextureMode.None;
+		public DepthTextureMode DepthMode { set { depthMode = value; UpdateDepthMode(); } get => depthMode;
+		} [SerializeField] private DepthTextureMode depthMode = DepthTextureMode.None;
 
 		[System.NonSerialized]
 		private Camera cachedCamera;

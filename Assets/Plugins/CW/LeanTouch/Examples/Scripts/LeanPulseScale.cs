@@ -9,22 +9,32 @@ namespace Lean.Touch
 	public class LeanPulseScale : MonoBehaviour
 	{
 		/// <summary>The default scale.</summary>
-		public Vector3 BaseScale { set { baseScale = value; } get { return baseScale; } } [SerializeField] private Vector3 baseScale = Vector3.one;
+		public Vector3 BaseScale { set => baseScale = value;
+			get => baseScale;
+		} [SerializeField] private Vector3 baseScale = Vector3.one;
 
 		/// <summary>The current scale multiplier.</summary>
-		public float Size { set { size = value; } get { return size; } } [SerializeField] private float size = 1.0f;
+		public float Size { set => size = value;
+			get => size;
+		} [SerializeField] private float size = 1.0f;
 
 		/// <summary>The interval between each pulse in seconds.</summary>
-		public float PulseInterval { set { pulseInterval = value; } get { return pulseInterval; } } [SerializeField] private float pulseInterval = 1.0f;
+		public float PulseInterval { set => pulseInterval = value;
+			get => pulseInterval;
+		} [SerializeField] private float pulseInterval = 1.0f;
 
 		/// <summary>The amount Size will be incremented each pulse.</summary>
-		public float PulseSize { set { pulseSize = value; } get { return pulseSize; } } [SerializeField] private float pulseSize = 1.0f;
+		public float PulseSize { set => pulseSize = value;
+			get => pulseSize;
+		} [SerializeField] private float pulseSize = 1.0f;
 
 		/// <summary>If you want this component to change smoothly over time, then this allows you to control how quick the changes reach their target value.
 		/// -1 = Instantly change.
 		/// 1 = Slowly change.
 		/// 10 = Quickly change.</summary>
-		public float Damping { set { damping = value; } get { return damping; } } [SerializeField] private float damping = 5.0f;
+		public float Damping { set => damping = value;
+			get => damping;
+		} [SerializeField] private float damping = 5.0f;
 
 		[System.NonSerialized]
 		private float counter;

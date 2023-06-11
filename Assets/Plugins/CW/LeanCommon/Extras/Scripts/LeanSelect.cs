@@ -30,20 +30,28 @@ namespace Lean.Common
 		public static LinkedList<LeanSelect> Instances = new LinkedList<LeanSelect>(); [System.NonSerialized] private LinkedListNode<LeanSelect> instancesNode;
 
 		/// <summary>If you attempt to select a point that has no objects underneath, should all currently selected objects be deselected?</summary>
-		public bool DeselectWithNothing { set { deselectWithNothing = value; } get { return deselectWithNothing; } } [SerializeField] private bool deselectWithNothing;
+		public bool DeselectWithNothing { set => deselectWithNothing = value;
+			get => deselectWithNothing;
+		} [SerializeField] private bool deselectWithNothing;
 
 		/// <summary>If you have selected the maximum number of objects, what should happen?
 		/// Unlimited = Always allow selection.
 		/// StopAtMax = Allow selection up to the <b>MaxSelectables</b> count, then do nothing.
 		/// DeselectFirst = Always allow selection, but deselect the first object when the <b>MaxSelectables</b> count is reached.</summary>
-		public LimitType Limit { set { limit = value; } get { return limit; } } [SerializeField] private LimitType limit;
+		public LimitType Limit { set => limit = value;
+			get => limit;
+		} [SerializeField] private LimitType limit;
 
 		/// <summary>The maximum number of selectables that can be selected at the same time.
 		/// 0 = Unlimited.</summary>
-		public int MaxSelectables { set { maxSelectables = value; } get { return maxSelectables; } } [SerializeField] private int maxSelectables = 5;
+		public int MaxSelectables { set => maxSelectables = value;
+			get => maxSelectables;
+		} [SerializeField] private int maxSelectables = 5;
 
 		/// <summary>If you select an already selected selectable, what should happen?</summary>
-		public ReselectType Reselect { set { reselect = value; } get { return reselect; } } [SerializeField] private ReselectType reselect = ReselectType.SelectAgain;
+		public ReselectType Reselect { set => reselect = value;
+			get => reselect;
+		} [SerializeField] private ReselectType reselect = ReselectType.SelectAgain;
 
 		/// <summary>This stores all objects selected by this component.</summary>
 		public List<LeanSelectable> Selectables { get { if (selectables == null) selectables = new List<LeanSelectable>(); return selectables; } } [SerializeField] protected List<LeanSelectable> selectables;

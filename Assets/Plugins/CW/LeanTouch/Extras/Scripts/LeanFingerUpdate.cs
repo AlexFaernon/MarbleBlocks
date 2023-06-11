@@ -24,34 +24,52 @@ namespace Lean.Touch
 		[System.Serializable] public class Vector3Vector3Event : UnityEvent<Vector3, Vector3> {}
 
 		/// <summary>Ignore fingers with StartedOverGui?</summary>
-		public bool IgnoreStartedOverGui { set { ignoreStartedOverGui = value; } get { return ignoreStartedOverGui; } } [SerializeField] private bool ignoreStartedOverGui = true;
+		public bool IgnoreStartedOverGui { set => ignoreStartedOverGui = value;
+			get => ignoreStartedOverGui;
+		} [SerializeField] private bool ignoreStartedOverGui = true;
 
 		/// <summary>Ignore fingers with OverGui?</summary>
-		public bool IgnoreIsOverGui { set { ignoreIsOverGui = value; } get { return ignoreIsOverGui; } } [SerializeField] private bool ignoreIsOverGui;
+		public bool IgnoreIsOverGui { set => ignoreIsOverGui = value;
+			get => ignoreIsOverGui;
+		} [SerializeField] private bool ignoreIsOverGui;
 
 		/// <summary>If the finger didn't move, ignore it?</summary>
-		public bool IgnoreIfStatic { set { ignoreIfStatic = value; } get { return ignoreIfStatic; } } [SerializeField] private bool ignoreIfStatic;
+		public bool IgnoreIfStatic { set => ignoreIfStatic = value;
+			get => ignoreIfStatic;
+		} [SerializeField] private bool ignoreIfStatic;
 
 		/// <summary>If the finger just began touching the screen, ignore it?</summary>
-		public bool IgnoreIfDown { set { ignoreIfDown = value; } get { return ignoreIfDown; } } [SerializeField] private bool ignoreIfDown;
+		public bool IgnoreIfDown { set => ignoreIfDown = value;
+			get => ignoreIfDown;
+		} [SerializeField] private bool ignoreIfDown;
 
 		/// <summary>If the finger just stopped touching the screen, ignore it?</summary>
-		public bool IgnoreIfUp { set { ignoreIfUp = value; } get { return ignoreIfUp; } } [SerializeField] private bool ignoreIfUp;
+		public bool IgnoreIfUp { set => ignoreIfUp = value;
+			get => ignoreIfUp;
+		} [SerializeField] private bool ignoreIfUp;
 
 		/// <summary>If the finger is the mouse hover, ignore it?</summary>
-		public bool IgnoreIfHover { set { ignoreIfHover = value; } get { return ignoreIfHover; } } [SerializeField] private bool ignoreIfHover = true;
+		public bool IgnoreIfHover { set => ignoreIfHover = value;
+			get => ignoreIfHover;
+		} [SerializeField] private bool ignoreIfHover = true;
 
 		/// <summary>If the specified object is set and isn't selected, then this component will do nothing.</summary>
-		public LeanSelectable RequiredSelectable { set { requiredSelectable = value; } get { return requiredSelectable; } } [SerializeField] private LeanSelectable requiredSelectable;
+		public LeanSelectable RequiredSelectable { set => requiredSelectable = value;
+			get => requiredSelectable;
+		} [SerializeField] private LeanSelectable requiredSelectable;
 
 		/// <summary>Called on every frame the conditions are met.</summary>
 		public LeanFingerEvent OnFinger { get { if (onFinger == null) onFinger = new LeanFingerEvent(); return onFinger; } } [SerializeField] private LeanFingerEvent onFinger;
 
 		/// <summary>The coordinate space of the OnDelta values.</summary>
-		public CoordinateType Coordinate { set { coordinate = value; } get { return coordinate; } } [SerializeField] private CoordinateType coordinate;
+		public CoordinateType Coordinate { set => coordinate = value;
+			get => coordinate;
+		} [SerializeField] private CoordinateType coordinate;
 
 		/// <summary>The delta values will be multiplied by this when output.</summary>
-		public float Multiplier { set { multiplier = value; } get { return multiplier; } } [SerializeField] private float multiplier = 1.0f;
+		public float Multiplier { set => multiplier = value;
+			get => multiplier;
+		} [SerializeField] private float multiplier = 1.0f;
 
 		/// <summary>This event is invoked when the requirements are met.
 		/// Vector2 = Position Delta based on your Coordinates setting.</summary>

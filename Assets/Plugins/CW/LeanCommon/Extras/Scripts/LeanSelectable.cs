@@ -14,7 +14,8 @@ namespace Lean.Common
 
 		public static LinkedList<LeanSelectable> Instances = new LinkedList<LeanSelectable>(); [System.NonSerialized] private LinkedListNode<LeanSelectable> instancesNode;
 
-		public bool SelfSelected { set { if (selfSelected != value) { selfSelected = value; if (value == true) InvokeOnSelected(null); else InvokeOnDeslected(null); } } get { return selfSelected; } } [SerializeField] private bool selfSelected;
+		public bool SelfSelected { set { if (selfSelected != value) { selfSelected = value; if (value == true) InvokeOnSelected(null); else InvokeOnDeslected(null); } } get => selfSelected;
+		} [SerializeField] private bool selfSelected;
 
 		/// <summary>This is invoked every time this object is selected.
 		/// LeanSelect = The component that caused the selection (null = self selection).

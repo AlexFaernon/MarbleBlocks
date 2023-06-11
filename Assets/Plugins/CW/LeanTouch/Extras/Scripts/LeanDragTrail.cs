@@ -27,20 +27,30 @@ namespace Lean.Touch
 		public LeanScreenDepth ScreenDepth = new LeanScreenDepth(LeanScreenDepth.ConversionType.FixedDistance, Physics.DefaultRaycastLayers, 10.0f);
 
 		/// <summary>The line prefab that will be used to render the trails.</summary>
-		public LineRenderer Prefab { set { prefab = value; } get { return prefab; } } [SerializeField] private LineRenderer prefab;
+		public LineRenderer Prefab { set => prefab = value;
+			get => prefab;
+		} [SerializeField] private LineRenderer prefab;
 
 		/// <summary>The maximum amount of active trails.
 		/// -1 = Unlimited.</summary>
-		public int MaxTrails { set { maxTrails = value; } get { return maxTrails; } } [SerializeField] private int maxTrails = -1;
+		public int MaxTrails { set => maxTrails = value;
+			get => maxTrails;
+		} [SerializeField] private int maxTrails = -1;
 
 		/// <summary>How many seconds it takes for each trail to disappear after a finger is released.</summary>
-		public float FadeTime { set { fadeTime = value; } get { return fadeTime; } } [SerializeField] protected float fadeTime = 1.0f;
+		public float FadeTime { set => fadeTime = value;
+			get => fadeTime;
+		} [SerializeField] protected float fadeTime = 1.0f;
 
 		/// <summary>The color of the trail start.</summary>
-		public Color StartColor { set { startColor = value; } get { return startColor; } } [SerializeField] protected Color startColor = Color.white;
+		public Color StartColor { set => startColor = value;
+			get => startColor;
+		} [SerializeField] protected Color startColor = Color.white;
 
 		/// <summary>The color of the trail end.</summary>
-		public Color EndColor { set { endColor = value; } get { return endColor; } } [SerializeField] protected Color endColor = Color.white;
+		public Color EndColor { set => endColor = value;
+			get => endColor;
+		} [SerializeField] protected Color endColor = Color.white;
 
 		// This stores all the links between fingers and LineRenderer instances
 		[SerializeField]

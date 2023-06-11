@@ -12,15 +12,21 @@ namespace Lean.Touch
 		public LeanFingerFilter Use = new LeanFingerFilter(true);
 
 		/// <summary>The axis of rotation.</summary>
-		public Vector3 Axis { set { axis = value; } get { return axis; } } [SerializeField] private Vector3 axis = Vector3.down;
+		public Vector3 Axis { set => axis = value;
+			get => axis;
+		} [SerializeField] private Vector3 axis = Vector3.down;
 
 		/// <summary>Rotate locally or globally?</summary>
-		public Space Space { set { space = value; } get { return space; } } [SerializeField] private Space space = Space.Self;
+		public Space Space { set => space = value;
+			get => space;
+		} [SerializeField] private Space space = Space.Self;
 
 		/// <summary>The sensitivity of the rotation.
 		/// 1 = Default.
 		/// 2 = Double.</summary>
-		public float Sensitivity { set { sensitivity = value; } get { return sensitivity; } } [SerializeField] private float sensitivity = 1.0f;
+		public float Sensitivity { set => sensitivity = value;
+			get => sensitivity;
+		} [SerializeField] private float sensitivity = 1.0f;
 
 		/// <summary>If you've set Use to ManuallyAddedFingers, then you can call this method to manually add a finger.</summary>
 		public void AddFinger(LeanFinger finger)
