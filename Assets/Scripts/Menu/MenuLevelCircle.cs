@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -13,46 +14,54 @@ public class MenuLevelCircle : MonoBehaviour
     [SerializeField] private Sprite completed;
     [SerializeField] private MenuLevelCircle previousLevelCircle;
     [SerializeField] private GameObject levelPreview;
+    [SerializeField] private TMP_Text numberLabel;
     public int levelNumber;
-    public bool IsOpened { get; private set; }
-    public bool IsCompleted { get; private set; }
 
-    public static bool[] LevelCompletion = new bool[40];
     private Button _button;
+    private Image _image;
+    public bool isCompleted;
+    public bool isOpened;
     private void Awake()
     {
-        LevelCompletion[0] = true;
         _button = GetComponent<Button>();
+        _image = GetComponent<Image>();
+        numberLabel.text = levelNumber.ToString();
+
         _button.onClick.AddListener(LoadLevel);
-        
-        if (!LevelCompletion[levelNumber])
+        if (levelNumber == 1)
         {
-            if (!LevelCompletion[levelNumber - 1])
-            {
-                _button.interactable = false;
-                GetComponent<Image>().sprite = closed;
-            }
-            else
-            {
-                IsOpened = true;
-                GetComponent<Image>().sprite = opened;
-            }
+            isOpened = true;
+        }
+        else if (PlayerPrefs.HasKey($"level{levelNumber - 1}"))
+        {
+            isOpened = Convert.ToBoolean(PlayerPrefs.GetInt($"level{levelNumber - 1}"));
+        }
+        
+        if (PlayerPrefs.HasKey($"level{levelNumber}"))
+        {
+            isCompleted = Convert.ToBoolean(PlayerPrefs.GetInt($"level{levelNumber}"));
+        }
+
+        if (isCompleted)
+        {
+            _image.sprite = completed;
+        }
+        else if (isOpened)
+        {
+            _image.sprite = opened;
         }
         else
         {
-            IsCompleted = true;
+            _image.sprite = closed;
+            _button.interactable = false;
         }
-
-        StartCoroutine(WaitUntilName());
     }
 
-    private IEnumerator WaitUntilName()
+    private void Update()
     {
-        yield return new WaitUntil(() => NameManager.PlayerName != "");
-
         if (NameManager.PlayerName.ToUpper() == "TRW")
         {
-            GetComponent<Image>().sprite = completed;
+            _image.sprite = completed;
             _button.interactable = true;
         }
     }

@@ -8,6 +8,7 @@ public class MenuBackground : MonoBehaviour
 {
     [SerializeField] private ScrollRect scroll;
     [SerializeField] private Sprite area2Sprite;
+    [SerializeField] private float areaSwitchTreashold;
     private Sprite _area1Sprite;
     private Image _spriteRenderer;
 
@@ -19,7 +20,7 @@ public class MenuBackground : MonoBehaviour
 
     private void Update()
     {
-        if (scroll.verticalNormalizedPosition < 0.5f)
+        if (scroll.verticalNormalizedPosition < areaSwitchTreashold)
         {
             _spriteRenderer.sprite = _area1Sprite;
         }

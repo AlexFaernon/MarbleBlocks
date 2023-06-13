@@ -744,7 +744,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7967156528535932473}
   - component: {fileID: 7369957440745209291}
-  - component: {fileID: 1985420697896049321}
+  - component: {fileID: 7077847326027360314}
   m_Layer: 3
   m_Name: Whirlpool
   m_TagString: Untagged
@@ -819,26 +819,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1985420697896049321
-Animator:
-  serializedVersion: 5
+--- !u!114 &7077847326027360314
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4647972373267723720}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6e924e6e5d37bbe44bd79c8af78e06bc, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70b44709c8f5e09408dc0c7e04bff1e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5610050262307082003
 GameObject:
   m_ObjectHideFlags: 0
@@ -894,8 +886,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3731262c0a5c94d4aa7bb0d1fad78be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEdge: 0
-  isGrass: 0
   northWall: {fileID: 8034090190297788627}
   southWall: {fileID: 494378083485872823}
   westWall: {fileID: 8907400977605207734}
@@ -909,6 +899,7 @@ MonoBehaviour:
   isFeeshOnTile: 0
   isJumperOnTile: 0
   isSonicOnTile: 0
+  <IsGrass>k__BackingField: 0
 --- !u!212 &437219753439431342
 SpriteRenderer:
   m_ObjectHideFlags: 0

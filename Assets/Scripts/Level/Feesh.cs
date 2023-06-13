@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
 
 public class Feesh : MonoBehaviour, IPointerDownHandler
 {
+    [SerializeField] private float speed;
     private bool _isActive;
     private Sonic _sonic;
     private Jumper _jumper;
@@ -85,9 +87,13 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
             var nextTile = _currentPath.Pop();
             var direction = (Vector2)(nextTile.gridPosition - previousTile.gridPosition);
             transform.up = direction;
+            while ((transform.position - nextTile.transform.position).magnitude > 0.1f)
+            {
+                transform.Translate(Time.deltaTime * speed * Vector3.up);
+                yield return new WaitForEndOfFrame();
+            }
             transform.position = nextTile.transform.position;
             previousTile = nextTile;
-            yield return new WaitForSecondsRealtime(0.1f);
         }
         _collider.enabled = true;
         IsMoving = false;
@@ -165,6 +171,7 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         if (LevelSaveManager.LevelNumber is 2 or 3) return;
+        if (CurrentTile.isSonicOnTile || CurrentTile.isJumperOnTile) return;
         
         IsActive = true;
         if (_sonic) _sonic.IsActive = false;

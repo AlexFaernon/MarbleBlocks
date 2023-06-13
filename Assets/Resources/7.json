@@ -655,7 +655,7 @@
             "Color": 0
           },
           "West": {
-            "IsActive": false,
+            "IsActive": true,
             "IsDoor": false,
             "IsOpened": false,
             "Color": 0
@@ -1369,7 +1369,7 @@
           "North": {
             "IsActive": true,
             "IsDoor": true,
-            "IsOpened": false,
+            "IsOpened": true,
             "Color": 1
           },
           "South": {

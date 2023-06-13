@@ -9,7 +9,6 @@ using UnityEngine.UI;
 public class StartLevel : MonoBehaviour
 {
 	[SerializeField] private EnergyManager energyManager;
-	[SerializeField] private TMP_Text label;
 	private Button _button;
 	private void Awake()
 	{
@@ -31,11 +30,9 @@ public class StartLevel : MonoBehaviour
 		if (LevelSaveManager.LevelNumber <= 3)
 		{
 			_button.interactable = true;
-			label.text = "Начать уровень";
 			return;
 		}
 		
 		_button.interactable = EnergyManager.CurrentEnergy > 0;
-		label.text = EnergyManager.CurrentEnergy > 0 ? "Начать уровень" : "Не хватает энергии";
 	}
 }

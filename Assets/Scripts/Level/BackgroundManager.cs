@@ -17,7 +17,7 @@ public class BackgroundManager : MonoBehaviour
         GetComponent<Image>().sprite = LevelSaveManager.LevelNumber switch
         {
             <=11 => area1Backgrounds[random.Next(area1Backgrounds.Count)],
-            >11 => area1Backgrounds[random.Next(area2Backgrounds.Count)],
+            >11 => area2Backgrounds[random.Next(area2Backgrounds.Count)],
         };
     }
 }

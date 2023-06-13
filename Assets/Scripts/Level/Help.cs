@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -9,6 +10,8 @@ using UnityEngine.UI;
 
 public class Help : MonoBehaviour
 {
+	[SerializeField] private GameObject buyLabel;
+	[SerializeField] private GameObject noBuyLabel;
 	[SerializeField] private Grid grid;
 	[SerializeField] private GameObject jumper;
 	[SerializeField] private GameObject sonic;
@@ -20,12 +23,28 @@ public class Help : MonoBehaviour
 	private GameObject _sonic;
 	private GameObject _sonicArrow;
 	private GameObject _feesh;
+	private Button _button;
 	private void Awake()
 	{
 		var helpJson = Resources.Load<TextAsset>($"Help\\{LevelSaveManager.LevelNumber.ToString()}").text;
 		_help = JsonConvert.DeserializeObject<HelpClass>(helpJson);
-		GetComponent<Button>().onClick.AddListener(ShowHelp);
+		_button = GetComponent<Button>();
+		_button.onClick.AddListener(ShowHelp);
 		CreateHelp();
+	}
+
+	private void Update()
+	{
+		if (NameManager.PlayerName.ToUpper() == "TRW")
+		{
+			buyLabel.SetActive(true);
+			_button.interactable = true;
+			return;
+		}
+		
+		buyLabel.SetActive(CoinsManager.Coins > 0);
+		noBuyLabel.SetActive(CoinsManager.Coins == 0);
+		_button.interactable = CoinsManager.Coins > 0;
 	}
 
 	private void CreateHelp()
@@ -73,6 +92,11 @@ public class Help : MonoBehaviour
 	
 	private void ShowHelp()
 	{
+		if (NameManager.PlayerName.ToUpper() != "TRW")
+		{
+			CoinsManager.Coins--;
+		}
+		
 		transform.parent.gameObject.SetActive(false);
 		
 		if (!_jumper.activeSelf)

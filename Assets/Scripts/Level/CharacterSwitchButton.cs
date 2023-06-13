@@ -7,10 +7,13 @@ using UnityEngine.UI;
 public class CharacterSwitchButton : MonoBehaviour
 {
     [SerializeField] private string character;
+    [SerializeField] private Sprite white;
     private Sonic _sonic;
     private Jumper _jumper;
     private Feesh _feesh;
     private Button _button;
+    private Image _image;
+    private Sprite _normal;
     private void Awake()
     {
         switch (LevelSaveManager.LevelNumber)
@@ -22,7 +25,9 @@ public class CharacterSwitchButton : MonoBehaviour
                 gameObject.SetActive(false);
                 return;
         }
-        
+        _image = GetComponent<Image>();
+        _normal = _image.sprite;
+
         var sonicObj = GameObject.FindWithTag("Sonic");
         if (sonicObj)
         {
@@ -74,13 +79,15 @@ public class CharacterSwitchButton : MonoBehaviour
 
     private void Update()
     {
-        _button.interactable = character switch
+        var characterActive = character switch
         {
-            "Sonic" => !_sonic.IsActive,
-            "Jumper" => !_jumper.IsActive,
-            "Feesh" => !_feesh.IsActive,
+            "Sonic" => _sonic.IsActive,
+            "Jumper" => _jumper.IsActive,
+            "Feesh" => _feesh.IsActive,
             _ => throw new ArgumentOutOfRangeException("Incorrect character name")
         };
+        transform.localScale = characterActive ? new Vector3(1.2f, 1.2f, 1.2f) : Vector3.one;
+        _image.sprite = characterActive ? white : _normal;
         if (_sonic != null) _button.interactable = !_sonic.IsMoving && !_feesh.IsMoving && !_jumper.IsMoving;
     }
 }

@@ -168,6 +168,7 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         if (LevelSaveManager.LevelNumber == 3) return;
+        if (CurrentTile.isJumperOnTile) return;
         
         IsActive = true;
         if (_feesh) _feesh.IsActive = false;

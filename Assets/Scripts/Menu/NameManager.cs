@@ -14,6 +14,11 @@ public class NameManager : MonoBehaviour
 
     private void Awake()
     {
+        if (PlayerPrefs.HasKey("PlayerName"))
+        {
+            PlayerName = PlayerPrefs.GetString("PlayerName");
+        }
+        
         if (PlayerName != "")
         {
             gameObject.SetActive(false);
@@ -29,6 +34,7 @@ public class NameManager : MonoBehaviour
     private void Confirm()
     {
         PlayerName = inputField.text;
+        PlayerPrefs.SetString("PlayerName", PlayerName);
         gameObject.SetActive(false);
     }
 }

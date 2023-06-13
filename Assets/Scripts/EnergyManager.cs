@@ -9,12 +9,17 @@ using UnityEngine.Serialization;
 
 public class EnergyManager : MonoBehaviour
 {
-    public const int MaxEnergy = 5;
+    public static int MaxEnergy => 4 + ExpLevelManager.PlayerLevel;
     private const int EnergyRefillTime = 60;
     private bool _energyIsRefiling;
     public static float TimeUntilRefill;
+    private static int _currentEnergy;
 
-    public static int CurrentEnergy { get; private set; }
+    public static int CurrentEnergy
+    {
+        get => _currentEnergy;
+        set => _currentEnergy = Math.Clamp(value, 0, MaxEnergy);
+    }
 
     private void Awake()
     {
@@ -28,6 +33,8 @@ public class EnergyManager : MonoBehaviour
 
     public void SpendEnergy()
     {
+        if (NameManager.PlayerName.ToUpper() == "TRW") return;
+        
         CurrentEnergy--;
     }
 
@@ -51,6 +58,10 @@ public class EnergyManager : MonoBehaviour
                 _energyIsRefiling = false;
                 TimeUntilRefill = 0;
             }
+        }
+        else
+        {
+            TimeUntilRefill = 0;
         }
     }
     private void OnApplicationPause(bool pauseStatus)
