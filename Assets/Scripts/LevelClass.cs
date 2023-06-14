@@ -2,6 +2,7 @@
 
 public class LevelClass
 {
+    public int OptimalTurns;
     public Vector2Int FieldSize;
     public TileClass[,] Tiles;
     public Vector2Int SonicPosition;

@@ -105,7 +105,7 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
             var nextTile = TileManager.GetTile(CurrentTile, _movingSide);
             if (CanMoveForward(CurrentTile, _movingSide))
             {
-                while ((transform.position - nextTile.transform.position).magnitude > 0.1f)
+                while ((transform.position - nextTile.transform.position).magnitude > 0.2f)
                 {
                     var direction = nextTile.transform.position - transform.position;
                     transform.Translate(Time.deltaTime * speed * direction.normalized);

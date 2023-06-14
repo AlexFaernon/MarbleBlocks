@@ -20,8 +20,9 @@ public class TileSpriteManager : MonoBehaviour
     {
         var areaNumber = LevelSaveManager.LevelNumber switch
         {
-            < 12 => 1,
-            >= 12 => 2
+            <= 9 => 1,
+            > 9 and < 17 => 2,
+            >= 17 => 3
         };
         
         _groundMid = Resources.LoadAll<Sprite>($"Tiles\\Area{areaNumber}\\Land\\Mid");

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class HintButton : MonoBehaviour
 {
     [SerializeField] private GameObject hintArea;
+    [SerializeField] private HelpManager helpManager;
+    private Button _button;
     private void Awake()
     {
         if (LevelSaveManager.LevelNumber < 4)
@@ -14,6 +16,12 @@ public class HintButton : MonoBehaviour
             gameObject.SetActive(false);
             return;
         }
-        GetComponent<Button>().onClick.AddListener(() => hintArea.SetActive(true));
+        _button = GetComponent<Button>();
+        _button.onClick.AddListener(() => hintArea.SetActive(true));
+    }
+
+    private void Update()
+    {
+        _button.interactable = helpManager.HelpLevel < 3;
     }
 }

@@ -17,6 +17,16 @@ public class StepCounter : MonoBehaviour
 
     private void Update()
     {
-        label.text = Count.ToString();
+        var optimalSteps = LevelSaveManager.LoadedLevel.OptimalTurns;
+        if (optimalSteps == 0)
+        {
+            label.text = $"{Count}";
+            return;
+        }
+        label.text = $"{Count}/{optimalSteps}";
+        if (Count > optimalSteps)
+        {
+            label.color = new Color32(255, 85, 85, 255);
+        }
     }
 }
