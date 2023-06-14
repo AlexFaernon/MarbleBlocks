@@ -107,7 +107,8 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
             {
                 while ((transform.position - nextTile.transform.position).magnitude > 0.1f)
                 {
-                    transform.Translate(Time.deltaTime * speed * movingVector);
+                    var direction = nextTile.transform.position - transform.position;
+                    transform.Translate(Time.deltaTime * speed * direction);
                     yield return new WaitForEndOfFrame();
                 }
 

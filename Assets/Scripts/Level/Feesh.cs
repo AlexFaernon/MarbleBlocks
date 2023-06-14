@@ -88,8 +88,6 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
         while (_currentPath.Count != 0)
         {
             var nextTile = _currentPath.Pop();
-            var direction = (Vector2)(nextTile.gridPosition - currentTile.gridPosition);
-            Debug.Log($"next tile: {nextTile.gridPosition}, direction: {direction}");
             while ((transform.position - nextTile.transform.position).magnitude > 0.1f)
             {
                 transform.up = nextTile.transform.position - transform.position;
