@@ -159,12 +159,7 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
     private Stack<Tile> GetPathToTile(Tile targetTile)
     {
         Assert.IsTrue(_availableTiles.Contains(targetTile));
-        
-        var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
-        var type = assembly.GetType("UnityEditor.LogEntries");
-        var method = type.GetMethod("Clear");
-        method.Invoke(new object(), null);
-        
+
         var path = new Stack<Tile>();
         var currentTile = targetTile;
         while (currentTile != CurrentTile)

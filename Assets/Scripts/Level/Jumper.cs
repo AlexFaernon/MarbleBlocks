@@ -70,8 +70,8 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
         _collider2D.enabled = false;
         while ((transform.position - targetTile.transform.position).magnitude > 0.1f)
         {
-            transform.Translate(Time.deltaTime * speed * movingVector);
-
+            var direction = targetTile.transform.position - transform.position;
+            transform.Translate(Time.deltaTime * speed * direction.normalized);
             yield return new WaitForEndOfFrame();
         }
         animator.ResetTrigger("RIGHT");
