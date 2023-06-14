@@ -132,7 +132,7 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
         {
             var currentTile = CurrentTile;
             while (CanMoveForward(currentTile, side))
-            {
+            { 
                 currentTile = TileManager.GetTile(currentTile, side);
                 if (currentTile.IsEdge)
                 {

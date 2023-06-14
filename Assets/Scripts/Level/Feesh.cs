@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -81,23 +82,27 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
 
     private IEnumerator Move()
     {
-        var previousTile = CurrentTile;
+        var currentTile = CurrentTile;
+        Debug.Log($"Start {currentTile.gridPosition}");
+        _currentPath.Pop();
         while (_currentPath.Count != 0)
         {
             var nextTile = _currentPath.Pop();
-            var direction = (Vector2)(nextTile.gridPosition - previousTile.gridPosition);
-            transform.up = direction;
+            var direction = (Vector2)(nextTile.gridPosition - currentTile.gridPosition);
+            Debug.Log($"next tile: {nextTile.gridPosition}, direction: {direction}");
             while ((transform.position - nextTile.transform.position).magnitude > 0.1f)
             {
+                transform.up = nextTile.transform.position - transform.position;
                 transform.Translate(Time.deltaTime * speed * Vector3.up);
                 yield return new WaitForEndOfFrame();
             }
             transform.position = nextTile.transform.position;
-            previousTile = nextTile;
+            currentTile = nextTile;
         }
         _collider.enabled = true;
         IsMoving = false;
         transform.up = Vector3.up;
+        CurrentTile = currentTile;
         StepCounter.Count++;
     }
 
@@ -156,6 +161,12 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
     private Stack<Tile> GetPathToTile(Tile targetTile)
     {
         Assert.IsTrue(_availableTiles.Contains(targetTile));
+        
+        var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
+        var type = assembly.GetType("UnityEditor.LogEntries");
+        var method = type.GetMethod("Clear");
+        method.Invoke(new object(), null);
+        
         var path = new Stack<Tile>();
         var currentTile = targetTile;
         while (currentTile != CurrentTile)
