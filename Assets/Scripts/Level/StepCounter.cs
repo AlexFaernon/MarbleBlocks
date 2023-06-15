@@ -17,6 +17,11 @@ public class StepCounter : MonoBehaviour
 
     private void Update()
     {
+        if (LevelSaveManager.LevelNumber == 0)
+        {
+            return;
+        }
+    
         var optimalSteps = LevelSaveManager.LoadedLevel.OptimalTurns;
         if (optimalSteps == 0)
         {

@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class HintButton : MonoBehaviour
 {
     [SerializeField] private GameObject hintArea;
-    [SerializeField] private HelpManager helpManager;
+    [FormerlySerializedAs("helpManager")]
+    [SerializeField] private HelpSwitch helpSwitch;
     private Button _button;
     private void Awake()
     {
@@ -22,6 +24,6 @@ public class HintButton : MonoBehaviour
 
     private void Update()
     {
-        _button.interactable = helpManager.HelpLevel < 3;
+        _button.interactable = helpSwitch.HelpLevel < 3;
     }
 }

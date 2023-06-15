@@ -113,13 +113,13 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
                 }
 
                 transform.position = nextTile.transform.position;
+            }
+            else
+            {
                 animator.ResetTrigger("RIGHT");
                 animator.ResetTrigger("UP");
                 animator.ResetTrigger("DOWN");
                 animator.ResetTrigger("LEFT");
-            }
-            else
-            {
                 IsMoving = false;
             }
         }

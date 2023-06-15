@@ -6,13 +6,15 @@ using TMPro;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class BuyHelpButton : MonoBehaviour
 {
 	[SerializeField] private GameObject buyLabel;
 	[SerializeField] private GameObject noBuyLabel;
-	[SerializeField] private HelpManager helpManager;
+	[FormerlySerializedAs("helpManager")]
+	[SerializeField] private HelpSwitch helpSwitch;
 	
 	private Button _button;
 	private void Awake()
@@ -38,8 +40,8 @@ public class BuyHelpButton : MonoBehaviour
 	private void BuyHelp()
 	{
 		transform.parent.gameObject.SetActive(false);
-		helpManager.BuyHelp();
-		helpManager.GetComponent<Toggle>().isOn = true;
-		helpManager.gameObject.SetActive(true);
+		helpSwitch.BuyHelp();
+		helpSwitch.GetComponent<Toggle>().isOn = true;
+		helpSwitch.gameObject.SetActive(true);
 	}
 }

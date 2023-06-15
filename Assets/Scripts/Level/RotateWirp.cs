@@ -9,10 +9,14 @@ public class RotateWirp : MonoBehaviour
     private float _rotate;
     private void Awake()
     {
-        _rotate = Random.Range(-0.2f, 0.2f);
-        if (_rotate == 0)
+        _rotate = Random.Range(-0.1f, 0.1f);
+        if (_rotate >= 0)
         {
-            _rotate = 0.1f;
+            _rotate += 0.1f;
+        }
+        else
+        {
+            _rotate -= 0.1f;
         }
     }
 

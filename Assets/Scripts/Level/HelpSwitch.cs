@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HelpManager : MonoBehaviour
+public class HelpSwitch : MonoBehaviour
 {
     [SerializeField] private Grid grid;
     [SerializeField] private GameObject jumper;
@@ -23,6 +23,12 @@ public class HelpManager : MonoBehaviour
 
     private void Awake()
     {
+        if (LevelSaveManager.LevelNumber < 4)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+        
         var helpJson = Resources.Load<TextAsset>($"Help\\{LevelSaveManager.LevelNumber}").text;
         _help = JsonConvert.DeserializeObject<HelpClass>(helpJson);
         CreateHelp();
