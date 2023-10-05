@@ -153,7 +153,7 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
         }
         
         return tile.AvailableToMoveThroughSide(movingSide) && nextTile.AvailableToMoveThroughSide(enterSide) &&
-               !nextTile.IsGrass && !nextTile.IsWhirlpoolOnTile && !nextTile.IsEdge;
+               !nextTile.IsGrass && !nextTile.Whirlpool && !nextTile.IsEdge;
     }
 
     private Stack<Tile> GetPathToTile(Tile targetTile)

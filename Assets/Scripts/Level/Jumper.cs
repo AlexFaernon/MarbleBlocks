@@ -120,7 +120,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
                 return targetTile;
             }
 
-            if (targetTile.AvailableToMoveThroughSide(movingSide) && nextTile.AvailableToMoveThroughSide(enterSide) && !targetTile.IsExitOnTile)
+            if (targetTile.AvailableToMoveThroughSide(movingSide) && nextTile.AvailableToMoveThroughSide(enterSide) && !targetTile.Exit)
             {
                 targetTile = nextTile;
             }

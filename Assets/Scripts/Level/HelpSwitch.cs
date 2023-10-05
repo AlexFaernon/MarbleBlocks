@@ -51,6 +51,7 @@ public class HelpSwitch : MonoBehaviour
         }
         
         HelpLevel++;
+        PlayerPrefs.SetInt($"Help{LevelSaveManager.LevelNumber}", HelpLevel);
     }
     
     private void Update()
@@ -126,10 +127,5 @@ public class HelpSwitch : MonoBehaviour
 		
         var worldPos = grid.GetCellCenterWorld((Vector3Int)(pos + offset));
         return Instantiate(arrow, worldPos, Quaternion.Euler(0, 0, angle));
-    }
-
-    private void OnDestroy()
-    {
-        PlayerPrefs.SetInt($"Help{LevelSaveManager.LevelNumber}", HelpLevel);
     }
 }

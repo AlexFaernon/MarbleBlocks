@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Tile : MonoBehaviour
 {
@@ -29,14 +30,52 @@ public class Tile : MonoBehaviour
     {
         set => highlight.SetActive(value);
     }
+
+    public LeverClass Lever
+    {
+        set
+        {
+            if (value is null)
+            {
+                lever.gameObject.SetActive(false);
+            }
+            else
+            {
+                lever.LeverClass = value;
+                lever.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    public bool Spike
+    {
+        set => spike.SetActive(value);
+    }
     
-    public bool IsWhirlpoolOnTile => whirlpool.activeSelf;
-    public bool IsExitOnTile => exit.activeSelf;
+    public bool Whirlpool
+    {
+        get => whirlpool.activeSelf;
+        set => whirlpool.SetActive(value);
+    }
+
+    public bool Exit
+    {
+        get => exit.activeSelf;
+        set => exit.SetActive(value);
+    }
     
     public bool IsEdge { get; set; }
     
-    [field: SerializeField]
-    public bool IsGrass { get; set; }
+    private bool _isGrass;
+    public bool IsGrass
+    {
+        get => _isGrass;
+        set
+        {
+            _isGrass = value;
+            SetSprite();
+        }
+    }
 
     private void Awake()
     {
@@ -49,10 +88,6 @@ public class Tile : MonoBehaviour
         {
             _spriteRenderer.color = Color.clear;
             return;
-        }
-        if (LevelSaveManager.LevelNumber == 0)
-        {
-            _spriteRenderer.color = IsGrass ? Color.green : Color.blue;
         }
     }
 
