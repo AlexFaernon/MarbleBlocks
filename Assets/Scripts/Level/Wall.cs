@@ -21,7 +21,6 @@ public class Wall : MonoBehaviour
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        
     }
 
     private void OnLeverSwitch(DoorLeverColor leverColor)

@@ -87,8 +87,19 @@ public class Tile : MonoBehaviour
         if (IsEdge)
         {
             _spriteRenderer.color = Color.clear;
-            return;
         }
+    }
+
+    public Wall GetWall(Side side)
+    {
+        return side switch
+        {
+            Side.North => northWall,
+            Side.South => southWall,
+            Side.West => westWall,
+            Side.East => eastWall,
+            _ => throw new ArgumentOutOfRangeException(nameof(side), side, null)
+        };
     }
 
     public bool AvailableToMoveThroughSide(Side side)
