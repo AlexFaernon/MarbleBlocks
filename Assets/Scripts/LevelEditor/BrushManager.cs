@@ -32,6 +32,7 @@ public class BrushManager : MonoBehaviour
         if (hit.collider is not null)
         {
             var targetTile = hit.collider.gameObject.GetComponent<Tile>();
+            if (targetTile.IsEdge) return;
             CurrentBrush.Invoke(targetTile);
         }
     }

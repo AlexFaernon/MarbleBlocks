@@ -4,15 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 public class Jumper : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] private float speed;
     public Tile CurrentTile { get; private set; }
+    public CharacterSwitchButton switchButton;
     private Side _movingSide;
     private bool _isActive;
-    private Feesh _feesh;
-    private Sonic _sonic;
     private Collider2D _collider2D;
     public Vector2Int GetGridPosition => CurrentTile.gridPosition;
     [SerializeField] private Animator animator;
@@ -31,10 +31,8 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
 
     public bool IsMoving { get; set; }
     
-    private void Start()
+    private void Awake()
     {
-        _feesh = GameObject.FindWithTag("Feesh")?.GetComponent<Feesh>();
-        _sonic = GameObject.FindWithTag("Sonic")?.GetComponent<Sonic>();
         _collider2D = GetComponent<Collider2D>();
     }
 
@@ -150,11 +148,10 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        Debug.Log("click");
         if (LevelSaveManager.LevelNumber == 2) return;
         
-        IsActive = true;
-        if (_feesh) _feesh.IsActive = false;
-        if (_sonic) _sonic.IsActive = false;
+        switchButton.ActivateCharacter();
     }
     
     private void OnTriggerEnter2D(Collider2D col)

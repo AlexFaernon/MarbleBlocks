@@ -1,14 +1,25 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Brushes : MonoBehaviour
 {
+    [SerializeField] private GameObject feesh;
+    [SerializeField] private GameObject jumper;
+    [SerializeField] private GameObject sonic;
     private static bool _isGrass;
     private static OnTileObject _onTileObject;
     private static Side _side;
-    
+    private static GameObject _selectedCharacter;
+    private static Grid _grid;
+
+    private void Awake()
+    {
+        _grid = GetComponent<Grid>();
+    }
+
     public void PlaceGrass()
     {
         _isGrass = true;
@@ -68,6 +79,24 @@ public class Brushes : MonoBehaviour
         BrushManager.CurrentBrush = EraseObject;
     }
 
+    public void PlaceFeesh()
+    {
+        _selectedCharacter = feesh;
+        BrushManager.CurrentBrush = PlaceCharacter;
+    }
+    
+    public void PlaceJumper()
+    {
+        _selectedCharacter = jumper;
+        BrushManager.CurrentBrush = PlaceCharacter;
+    }
+    
+    public void PlaceSonic()
+    {
+        _selectedCharacter = sonic;
+        BrushManager.CurrentBrush = PlaceCharacter;
+    }
+
     private static void ChangeGround(Tile tile)
     {
         tile.IsGrass = _isGrass;
@@ -99,6 +128,24 @@ public class Brushes : MonoBehaviour
     private static void PlaceWall(Tile tile)
     {
         tile.GetWall(_side).gameObject.SetActive(true);
+    }
+
+    private void PlaceCharacter(Tile tile)
+    {
+        var pos = _grid.GetCellCenterWorld((Vector3Int)tile.gridPosition);
+        var character = Instantiate(_selectedCharacter, pos, quaternion.identity);
+        if (_selectedCharacter == sonic)
+        {
+            character.GetComponent<Sonic>().enabled = false;
+        }
+        else if (_selectedCharacter == feesh)
+        {
+            character.GetComponent<Feesh>().enabled = false;
+        }
+        else if (_selectedCharacter == jumper)
+        {
+            character.GetComponent<Jumper>().enabled = false;
+        }
     }
 
     private static void EraseObject(Tile tile)

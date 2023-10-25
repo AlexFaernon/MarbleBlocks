@@ -14,7 +14,7 @@ public class CharacterSwitchButton : MonoBehaviour
     private Button _button;
     private Image _image;
     private Sprite _normal;
-    private void Awake()
+    private void OnEnable()
     {
         switch (LevelSaveManager.LevelNumber)
         {
@@ -27,23 +27,10 @@ public class CharacterSwitchButton : MonoBehaviour
         }
         _image = GetComponent<Image>();
         _normal = _image.sprite;
-
-        var sonicObj = GameObject.FindWithTag("Sonic");
-        if (sonicObj)
-        {
-            _sonic =  sonicObj.GetComponent<Sonic>();
-        }
-        var jumperObj = GameObject.FindWithTag("Jumper");
-        if (jumperObj)
-        {
-            _jumper = jumperObj.GetComponent<Jumper>();
-        }
         
-        var feeshObj = GameObject.FindWithTag("Feesh");
-        if (feeshObj)
-        {
-            _feesh = feeshObj.GetComponent<Feesh>();
-        }
+        _sonic = GameObject.FindWithTag("Sonic")?.GetComponent<Sonic>();
+        _jumper = GameObject.FindWithTag("Jumper")?.GetComponent<Jumper>();
+        _feesh = GameObject.FindWithTag("Feesh")?.GetComponent<Feesh>();
         
         _button = GetComponent<Button>();
         _button.onClick.AddListener(ActivateCharacter);
@@ -53,24 +40,30 @@ public class CharacterSwitchButton : MonoBehaviour
                 if (_sonic is null)
                 {
                     gameObject.SetActive(false);
+                    return;
                 }
-                return;
+                _sonic.switchButton = this;
+                break;
             case "Jumper":
                 if (_jumper is null)
                 {
                     gameObject.SetActive(false);
+                    return;
                 }
-                return;
+                _jumper.switchButton = this;
+                break;
             case "Feesh":
                 if (_feesh is null)
                 {
                     gameObject.SetActive(false);
+                    return;
                 }
-                return;
+                _feesh.switchButton = this;
+                break;
         }
     }
 
-    private void ActivateCharacter()
+    public void ActivateCharacter()
     {
         if (_sonic != null) _sonic.IsActive   = _sonic.CompareTag(character);
         if (_jumper != null) _jumper.IsActive = _jumper.CompareTag(character);
@@ -88,6 +81,21 @@ public class CharacterSwitchButton : MonoBehaviour
         };
         transform.localScale = characterActive ? new Vector3(1.2f, 1.2f, 1.2f) : Vector3.one;
         _image.sprite = characterActive ? white : _normal;
-        if (_sonic != null) _button.interactable = !_sonic.IsMoving && !_feesh.IsMoving && !_jumper.IsMoving;
+        
+        var characterMoving = false;
+        if (_sonic)
+        {
+            characterMoving = characterMoving || _sonic.IsMoving;
+        }
+        if (_jumper)
+        {
+            characterMoving = characterMoving || _jumper.IsMoving;
+        }
+        if (_feesh)
+        {
+            characterMoving = characterMoving || _feesh.IsMoving;
+        }
+
+        _button.interactable = !characterMoving;
     }
 }

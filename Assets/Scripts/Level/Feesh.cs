@@ -10,9 +10,8 @@ using UnityEngine.EventSystems;
 public class Feesh : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] private float speed;
+    public CharacterSwitchButton switchButton;
     private bool _isActive;
-    private Sonic _sonic;
-    private Jumper _jumper;
     public Tile CurrentTile { get; private set; }
     private HashSet<Tile> _availableTiles;
     private Dictionary<Tile, Tile> _paths;
@@ -35,10 +34,8 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
         }
     }
 
-    private void Start()
+    private void Awake()
     {
-        _sonic = GameObject.FindWithTag("Sonic")?.GetComponent<Sonic>();
-        _jumper = GameObject.FindWithTag("Jumper")?.GetComponent<Jumper>();
         _collider = GetComponent<Collider2D>();
     }
 
@@ -177,9 +174,7 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
         if (LevelSaveManager.LevelNumber is 2 or 3) return;
         if (CurrentTile.isSonicOnTile || CurrentTile.isJumperOnTile) return;
         
-        IsActive = true;
-        if (_sonic) _sonic.IsActive = false;
-        if (_jumper) _jumper.IsActive = false;
+        switchButton.ActivateCharacter();
     }
 
     private void OnTriggerEnter2D(Collider2D col)

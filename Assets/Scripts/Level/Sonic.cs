@@ -10,12 +10,11 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] private float speed;
     public Tile CurrentTile { get; private set; }
+    public CharacterSwitchButton switchButton;
     private bool _isMoving;
     private Side _movingSide;
     private Lever _lever;
     public bool isActive;
-    private Feesh _feesh;
-    private Jumper _jumper;
     public Vector2Int GetSave => CurrentTile.gridPosition;
     [SerializeField] private Animator animator;
 
@@ -51,12 +50,6 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
                 HighlightTiles();
             }
         }
-    }
-
-    private void Start()
-    {
-        _feesh = GameObject.FindWithTag("Feesh")?.GetComponent<Feesh>();
-        _jumper = GameObject.FindWithTag("Jumper")?.GetComponent<Jumper>();
     }
 
     public void StartMoving(Side side)
@@ -171,9 +164,7 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
         if (LevelSaveManager.LevelNumber == 3) return;
         if (CurrentTile.isJumperOnTile) return;
         
-        IsActive = true;
-        if (_feesh) _feesh.IsActive = false;
-        if (_jumper) _jumper.IsActive = false;
+        switchButton.ActivateCharacter();
     }
 
     private void OnTriggerEnter2D(Collider2D col)

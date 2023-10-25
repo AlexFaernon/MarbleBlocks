@@ -9,7 +9,7 @@ public class SwipeManager : MonoBehaviour
     private Sonic _sonic;
     private Jumper _jumper;
     
-    private void Awake()
+    private void OnEnable()
     {
         var sonicObj = GameObject.FindWithTag("Sonic");
         if (sonicObj)
