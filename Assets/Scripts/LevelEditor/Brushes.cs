@@ -23,87 +23,91 @@ public class Brushes : MonoBehaviour
     public void PlaceGrass()
     {
         _isGrass = true;
-        BrushManager.CurrentBrush = ChangeGround;
+        Drawer.CurrentBrush = ChangeGround;
     }
 
     public void PlaceWater()
     {
         _isGrass = false;
-        BrushManager.CurrentBrush = ChangeGround;
+        Drawer.CurrentBrush = ChangeGround;
     }
 
     public void PlaceExit()
     {
         _onTileObject = OnTileObject.Exit;
-        BrushManager.CurrentBrush = PlaceObject;
+        Drawer.CurrentBrush = PlaceObject;
     }
 
     public void PlaceSpike()
     {
         _onTileObject = OnTileObject.Spike;
-        BrushManager.CurrentBrush = PlaceObject;
+        Drawer.CurrentBrush = PlaceObject;
     }
 
     public void PlaceWhirlpool()
     {
         _onTileObject = OnTileObject.Whirlpool;
-        BrushManager.CurrentBrush = PlaceObject;
+        Drawer.CurrentBrush = PlaceObject;
     }
 
     public void PlaceNorthWall()
     {
         _side = Side.North;
-        BrushManager.CurrentBrush = PlaceWall;
+        Drawer.CurrentBrush = PlaceWall;
     }
     
     public void PlaceSouthWall()
     {
         _side = Side.South;
-        BrushManager.CurrentBrush = PlaceWall;
+        Drawer.CurrentBrush = PlaceWall;
     }
     
     public void PlaceWestWall()
     {
         _side = Side.West;
-        BrushManager.CurrentBrush = PlaceWall;
+        Drawer.CurrentBrush = PlaceWall;
     }
     
     public void PlaceEastWall()
     {
         _side = Side.East;
-        BrushManager.CurrentBrush = PlaceWall;
+        Drawer.CurrentBrush = PlaceWall;
     }
 
-    public void RemoveObject()
-    {
-        BrushManager.CurrentBrush = EraseObject;
-    }
+    // public void RemoveObject()
+    // {
+    //     BrushManager.CurrentBrush = EraseObject;
+    // }
 
     public void PlaceFeesh()
     {
         _selectedCharacter = feesh;
-        BrushManager.CurrentBrush = PlaceCharacter;
+        Drawer.CurrentBrush = PlaceCharacter;
     }
     
     public void PlaceJumper()
     {
         _selectedCharacter = jumper;
-        BrushManager.CurrentBrush = PlaceCharacter;
+        Drawer.CurrentBrush = PlaceCharacter;
     }
     
     public void PlaceSonic()
     {
         _selectedCharacter = sonic;
-        BrushManager.CurrentBrush = PlaceCharacter;
+        Drawer.CurrentBrush = PlaceCharacter;
     }
 
-    private static void ChangeGround(Tile tile)
+    private static Action ChangeGround(Tile tile)
     {
+        var isGrass = !_isGrass;
+        Action redo = () => tile.IsGrass = isGrass;
         tile.IsGrass = _isGrass;
+        return redo;
     }
 
-    private static void PlaceObject(Tile tile)
+    private static Action PlaceObject(Tile tile)
     {
+        Action redo;
         EraseObject(tile);
         switch (_onTileObject)
         {
@@ -111,29 +115,37 @@ public class Brushes : MonoBehaviour
                 throw new ArgumentException();
             case OnTileObject.Spike:
                 tile.Spike = true;
-                break;
+                redo = () => tile.Spike = false;
+                return redo;
             case OnTileObject.Whirlpool:
                 tile.Whirlpool = true;
-                break;
+                redo = () => tile.Whirlpool = false;
+                return redo;
             case OnTileObject.Lever:
-                break;
+                return null;
             case OnTileObject.Exit:
                 tile.Exit = true;
-                break;
+                redo = () => tile.Exit = false;
+                return redo;
             default:
                 throw new ArgumentOutOfRangeException();
         }
     }
 
-    private static void PlaceWall(Tile tile)
+    private static Action PlaceWall(Tile tile)
     {
+        var savedSide = _side;
+        Action redo = () => tile.GetWall(savedSide).gameObject.SetActive(false);
         tile.GetWall(_side).gameObject.SetActive(true);
+        return redo;
     }
 
-    private void PlaceCharacter(Tile tile)
+    private Action PlaceCharacter(Tile tile)
     {
+        Action redo;
         var pos = _grid.GetCellCenterWorld((Vector3Int)tile.gridPosition);
         var character = Instantiate(_selectedCharacter, pos, quaternion.identity);
+        redo = () => Destroy(character);
         if (_selectedCharacter == sonic)
         {
             character.GetComponent<Sonic>().enabled = false;
@@ -146,6 +158,7 @@ public class Brushes : MonoBehaviour
         {
             character.GetComponent<Jumper>().enabled = false;
         }
+        return redo;
     }
 
     private static void EraseObject(Tile tile)

@@ -34,6 +34,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
     private void Awake()
     {
         _collider2D = GetComponent<Collider2D>();
+        LevelObjectsLimiter.JumperCount++;
     }
 
     void Update()
@@ -175,5 +176,10 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
         {
             col.GetComponent<Lever>().Switch();
         }
+    }
+
+    private void OnDestroy()
+    {
+        LevelObjectsLimiter.JumperCount--;
     }
 }

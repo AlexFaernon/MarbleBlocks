@@ -15,7 +15,7 @@ public class EditorLevelStart : MonoBehaviour
     public void Switch()
     {
         _isTesting = !_isTesting;
-        BrushManager.CurrentBrush = null;
+        Drawer.CurrentBrush = null;
         foreach (var go in editorUI)
         {
             go.SetActive(!_isTesting);

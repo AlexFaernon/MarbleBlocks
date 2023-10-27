@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BrushManager : MonoBehaviour
+public class Drawer : MonoBehaviour
 {
-    public static Action<Tile> CurrentBrush;
+    public static Func<Tile, Action> CurrentBrush;
+    public static Stack<Action> Undo = new();
 
     private void Update()
     {
@@ -33,7 +34,7 @@ public class BrushManager : MonoBehaviour
         {
             var targetTile = hit.collider.gameObject.GetComponent<Tile>();
             if (targetTile.IsEdge) return;
-            CurrentBrush.Invoke(targetTile);
+            Undo.Push(CurrentBrush(targetTile));
         }
     }
 }
