@@ -30,7 +30,7 @@ public class EditorLevelStart : MonoBehaviour
         {
             if (_sonic)
             {
-                _sonic.enabled = false;
+                _sonic.enabled = false; 
             }
             _sonic = null;
             if (_jumper)

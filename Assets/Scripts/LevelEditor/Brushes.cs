@@ -11,7 +11,8 @@ public class Brushes : MonoBehaviour
     [SerializeField] private GameObject sonic;
     private static bool _isGrass;
     private static OnTileObject _onTileObject;
-    private static Side _side;
+    public static Side Side;
+    public static DoorLeverColor Color;
     private static GameObject _selectedCharacter;
     private static Grid _grid;
 
@@ -52,25 +53,25 @@ public class Brushes : MonoBehaviour
 
     public void PlaceNorthWall()
     {
-        _side = Side.North;
+        Side = Side.North;
         Drawer.CurrentBrush = PlaceWall;
     }
     
     public void PlaceSouthWall()
     {
-        _side = Side.South;
+        Side = Side.South;
         Drawer.CurrentBrush = PlaceWall;
     }
     
     public void PlaceWestWall()
     {
-        _side = Side.West;
+        Side = Side.West;
         Drawer.CurrentBrush = PlaceWall;
     }
     
     public void PlaceEastWall()
     {
-        _side = Side.East;
+        Side = Side.East;
         Drawer.CurrentBrush = PlaceWall;
     }
 
@@ -134,9 +135,9 @@ public class Brushes : MonoBehaviour
 
     private static Action PlaceWall(Tile tile)
     {
-        var savedSide = _side;
+        var savedSide = Side;
         Action redo = () => tile.GetWall(savedSide).gameObject.SetActive(false);
-        tile.GetWall(_side).gameObject.SetActive(true);
+        tile.GetWall(Side).gameObject.SetActive(true);
         return redo;
     }
 
