@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Drawer : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Drawer : MonoBehaviour
     private void Update()
     {
         if (CurrentBrush is null) return;
+        
+        if (EventSystem.current.IsPointerOverGameObject()) return;
         
         Vector2 ray;
         if (Input.GetMouseButtonDown(0))
@@ -34,7 +37,12 @@ public class Drawer : MonoBehaviour
         {
             var targetTile = hit.collider.gameObject.GetComponent<Tile>();
             if (targetTile.IsEdge) return;
-            Undo.Push(CurrentBrush(targetTile));
+
+            var redo = CurrentBrush(targetTile);
+            if (redo is not null)
+            {
+                Undo.Push(redo);
+            }
         }
     }
 }

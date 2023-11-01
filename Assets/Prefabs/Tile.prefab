@@ -899,7 +899,6 @@ MonoBehaviour:
   isFeeshOnTile: 0
   isJumperOnTile: 0
   isSonicOnTile: 0
-  <IsGrass>k__BackingField: 0
 --- !u!212 &437219753439431342
 SpriteRenderer:
   m_ObjectHideFlags: 0

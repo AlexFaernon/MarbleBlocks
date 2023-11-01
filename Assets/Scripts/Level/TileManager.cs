@@ -87,6 +87,14 @@ public class TileManager : MonoBehaviour
         return null;
     }
 
+    public void ClearAllTiles()
+    {
+        foreach (var tile in _tiles)
+        {
+            tile.ClearTile();
+        }
+    }
+
     public static void HighlightTiles(HashSet<Tile> highlightedTiles)
     {
         foreach (var tile in _tiles)

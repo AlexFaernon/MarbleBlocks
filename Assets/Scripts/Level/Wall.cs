@@ -10,6 +10,7 @@ public class Wall : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private Sprite _closed;
     private Sprite _opened;
+    private Sprite _wall;
 
     public WallClass WallClass
     {
@@ -21,6 +22,7 @@ public class Wall : MonoBehaviour
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _wall = _spriteRenderer.sprite;
     }
 
     private void OnLeverSwitch(DoorLeverColor leverColor)
@@ -51,6 +53,7 @@ public class Wall : MonoBehaviour
     
     private void SetWall(WallClass wallClass)
     {
+        OnLevelSwitch.RemoveListener(OnLeverSwitch);
         gameObject.SetActive(wallClass.IsActive);
         isDoor = wallClass.IsDoor;
         color = wallClass.Color;
@@ -62,10 +65,15 @@ public class Wall : MonoBehaviour
             _closed = Resources.Load<Sprite>($"Doors/{position}/Closed/{color}");
             OnLevelSwitch.AddListener(OnLeverSwitch);
         }
+        else
+        {
+            if (_spriteRenderer)
+                _spriteRenderer.sprite = _wall;
+        }
         tag = isDoor ? "Door" : "Wall";
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         OnLevelSwitch.RemoveListener(OnLeverSwitch);
     }

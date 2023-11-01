@@ -49,6 +49,7 @@ public class Tile : MonoBehaviour
 
     public bool Spike
     {
+        get => spike.activeSelf;
         set => spike.SetActive(value);
     }
     
@@ -146,6 +147,19 @@ public class Tile : MonoBehaviour
         var leverClass = tileObject == OnTileObject.Lever ? lever.GetSave() : null;
         
         return new TileClass {IsGrass = IsGrass, OnTileObject = tileObject, Walls = walls, LeverClass = leverClass};
+    }
+
+    public void ClearTile()
+    {
+        IsGrass = true;
+        northWall.WallClass = new WallClass();
+        southWall.WallClass = new WallClass();
+        eastWall.WallClass = new WallClass();
+        westWall.WallClass = new WallClass();
+        whirlpool.SetActive(false);
+        spike.SetActive(false);
+        exit.SetActive(false);
+        lever.gameObject.SetActive(false);
     }
 
     private void SetLoadedTile(TileClass tileClass)

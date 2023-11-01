@@ -13,6 +13,7 @@ public class Brushes : MonoBehaviour
     private static OnTileObject _onTileObject;
     public static Side Side;
     public static DoorLeverColor Color;
+    private static bool _gateOpened;
     private static GameObject _selectedCharacter;
     private static Grid _grid;
 
@@ -33,6 +34,12 @@ public class Brushes : MonoBehaviour
         Drawer.CurrentBrush = ChangeGround;
     }
 
+    public void PlaceLever()
+    {
+        _onTileObject = OnTileObject.Lever;
+        Drawer.CurrentBrush = PlaceObject;
+    }
+
     public void PlaceExit()
     {
         _onTileObject = OnTileObject.Exit;
@@ -51,34 +58,27 @@ public class Brushes : MonoBehaviour
         Drawer.CurrentBrush = PlaceObject;
     }
 
-    public void PlaceNorthWall()
+    public void PlaceWall()
     {
-        Side = Side.North;
-        Drawer.CurrentBrush = PlaceWall;
-    }
-    
-    public void PlaceSouthWall()
-    {
-        Side = Side.South;
-        Drawer.CurrentBrush = PlaceWall;
-    }
-    
-    public void PlaceWestWall()
-    {
-        Side = Side.West;
-        Drawer.CurrentBrush = PlaceWall;
-    }
-    
-    public void PlaceEastWall()
-    {
-        Side = Side.East;
         Drawer.CurrentBrush = PlaceWall;
     }
 
-    // public void RemoveObject()
-    // {
-    //     BrushManager.CurrentBrush = EraseObject;
-    // }
+    public void PlaceClosedGate()
+    {
+        _gateOpened = false;
+        Drawer.CurrentBrush = PlaceGates;
+    }
+    
+    public void PlaceOpenedGate()
+    {
+        _gateOpened = true;
+        Drawer.CurrentBrush = PlaceGates;
+    }
+
+    public void RemoveObject()
+    {
+         Drawer.CurrentBrush = EraseObject;
+    }
 
     public void PlaceFeesh()
     {
@@ -109,7 +109,7 @@ public class Brushes : MonoBehaviour
     private static Action PlaceObject(Tile tile)
     {
         Action redo;
-        EraseObject(tile);
+        var redoErase = EraseObject(tile);
         switch (_onTileObject)
         {
             case OnTileObject.None:
@@ -117,27 +117,57 @@ public class Brushes : MonoBehaviour
             case OnTileObject.Spike:
                 tile.Spike = true;
                 redo = () => tile.Spike = false;
-                return redo;
+                break;
             case OnTileObject.Whirlpool:
                 tile.Whirlpool = true;
                 redo = () => tile.Whirlpool = false;
-                return redo;
+                break;
             case OnTileObject.Lever:
-                return null;
+                tile.Lever = new LeverClass
+                {
+                    IsSwitchable = false,
+                    Color = Color
+                };
+                redo = () => tile.Lever = null;
+                break;
             case OnTileObject.Exit:
                 tile.Exit = true;
                 redo = () => tile.Exit = false;
-                return redo;
+                break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
+
+        return redo + redoErase;
     }
 
     private static Action PlaceWall(Tile tile)
     {
-        var savedSide = Side;
-        Action redo = () => tile.GetWall(savedSide).gameObject.SetActive(false);
-        tile.GetWall(Side).gameObject.SetActive(true);
+        var wall = tile.GetWall(Side);
+        var oldWall = wall.GetSave();
+        Action redo = () => wall.WallClass = oldWall;
+        wall.WallClass = new WallClass
+        {
+            IsActive = true,
+            IsDoor = false,
+            IsOpened = false,
+            Color = Color
+        };
+        return redo;
+    }
+
+    private static Action PlaceGates(Tile tile)
+    {
+        var wall = tile.GetWall(Side);
+        var oldWall = wall.GetSave();
+        wall.WallClass = new WallClass
+        {
+            IsActive = true,
+            IsDoor = true,
+            IsOpened = _gateOpened,
+            Color = Color
+        };
+        Action redo = () => wall.WallClass = oldWall;
         return redo;
     }
 
@@ -162,11 +192,34 @@ public class Brushes : MonoBehaviour
         return redo;
     }
 
-    private static void EraseObject(Tile tile)
+    private static Action EraseObject(Tile tile)
     {
-        tile.Lever = null;
-        tile.Exit = false;
-        tile.Spike = false;
-        tile.Whirlpool = false;
+        Action redo;
+        var lever = tile.GetSave().LeverClass;
+        if (lever != null)
+        {
+            tile.Lever = null;
+            redo = () => tile.Lever = lever;
+            return redo;
+        }
+        if (tile.Exit)
+        {
+            tile.Exit = false;
+            redo = () => tile.Exit = true;
+            return redo;
+        }
+        if (tile.Spike)
+        {
+            tile.Spike = false;
+            redo = () => tile.Spike = true;
+            return redo;
+        }
+        if (tile.Whirlpool)
+        {
+            tile.Whirlpool = false;
+            redo = () => tile.Whirlpool = true;
+            return redo;
+        }
+        return null;
     }
 }
