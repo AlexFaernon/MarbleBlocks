@@ -1,5 +1,4 @@
 using Lean.Touch;
-using System;
 using UnityEngine;
 
     // This script allows you to zoom a camera in and out based on the pinch gesture

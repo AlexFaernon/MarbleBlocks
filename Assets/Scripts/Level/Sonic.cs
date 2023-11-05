@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
 public class Sonic : MonoBehaviour, IPointerDownHandler
 {

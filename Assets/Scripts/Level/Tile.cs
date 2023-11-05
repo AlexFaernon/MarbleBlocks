@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Tile : MonoBehaviour
 {
@@ -45,6 +44,7 @@ public class Tile : MonoBehaviour
                 lever.gameObject.SetActive(true);
             }
         }
+        get => lever.GetSave();
     }
 
     public bool Spike
@@ -149,6 +149,32 @@ public class Tile : MonoBehaviour
         return new TileClass {IsGrass = IsGrass, OnTileObject = tileObject, Walls = walls, LeverClass = leverClass};
     }
 
+    public OnTileObject ClearOnTileObject()
+    {
+        if (lever.gameObject.activeSelf)
+        {
+            Lever = null;
+            return OnTileObject.Lever;
+        }
+        if (Exit)
+        {
+            Exit = false;
+            return OnTileObject.Exit;
+        }
+        if (Spike)
+        {
+            Spike = false;
+            return OnTileObject.Spike;
+        }
+        if (Whirlpool)
+        {
+            Whirlpool = false;
+            return OnTileObject.Whirlpool;
+        }
+
+        return OnTileObject.None;
+    }
+
     public void ClearTile()
     {
         IsGrass = true;
@@ -156,10 +182,7 @@ public class Tile : MonoBehaviour
         southWall.WallClass = new WallClass();
         eastWall.WallClass = new WallClass();
         westWall.WallClass = new WallClass();
-        whirlpool.SetActive(false);
-        spike.SetActive(false);
-        exit.SetActive(false);
-        lever.gameObject.SetActive(false);
+        ClearOnTileObject();
     }
 
     private void SetLoadedTile(TileClass tileClass)

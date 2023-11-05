@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Lean.Common;
 using CW.Common;
 
 namespace Lean.Touch

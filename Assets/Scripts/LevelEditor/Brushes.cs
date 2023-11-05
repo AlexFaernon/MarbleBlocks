@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -25,127 +23,159 @@ public class Brushes : MonoBehaviour
     public void PlaceGrass()
     {
         _isGrass = true;
-        Drawer.CurrentBrush = ChangeGround;
+        void GroundBrush(Tile tile) => ChangeGround(tile, _isGrass);
+        Drawer.CurrentBrush = GroundBrush;
     }
-
+    
     public void PlaceWater()
     {
         _isGrass = false;
-        Drawer.CurrentBrush = ChangeGround;
+        void GroundBrush(Tile tile) => ChangeGround(tile, _isGrass);
+        Drawer.CurrentBrush = GroundBrush;
     }
-
+    
     public void PlaceLever()
     {
         _onTileObject = OnTileObject.Lever;
-        Drawer.CurrentBrush = PlaceObject;
+        Drawer.CurrentBrush = tile => PlaceObject(tile, _onTileObject, null);
     }
-
+    
     public void PlaceExit()
     {
         _onTileObject = OnTileObject.Exit;
-        Drawer.CurrentBrush = PlaceObject;
+        Drawer.CurrentBrush = tile => PlaceObject(tile, _onTileObject, null);
     }
-
+    
     public void PlaceSpike()
     {
         _onTileObject = OnTileObject.Spike;
-        Drawer.CurrentBrush = PlaceObject;
+        Drawer.CurrentBrush = tile => PlaceObject(tile, _onTileObject, null);
     }
-
+    
     public void PlaceWhirlpool()
     {
         _onTileObject = OnTileObject.Whirlpool;
-        Drawer.CurrentBrush = PlaceObject;
+        Drawer.CurrentBrush = tile => PlaceObject(tile, _onTileObject, null);
     }
 
     public void PlaceWall()
     {
-        Drawer.CurrentBrush = PlaceWall;
+        void WallBrush(Tile tile) => PlaceWall(tile, Side);
+        Drawer.CurrentBrush = WallBrush;
     }
 
     public void PlaceClosedGate()
     {
         _gateOpened = false;
-        Drawer.CurrentBrush = PlaceGates;
+        Drawer.CurrentBrush = tile => PlaceGates(tile, Side, null);
     }
     
     public void PlaceOpenedGate()
     {
         _gateOpened = true;
-        Drawer.CurrentBrush = PlaceGates;
+        Drawer.CurrentBrush = tile => PlaceGates(tile, Side, null);
     }
-
+    
     public void RemoveObject()
     {
          Drawer.CurrentBrush = EraseObject;
     }
-
+    
     public void PlaceFeesh()
     {
         _selectedCharacter = feesh;
-        Drawer.CurrentBrush = PlaceCharacter;
+        Drawer.CurrentBrush = tile => PlaceCharacter(tile, _selectedCharacter);
     }
     
     public void PlaceJumper()
     {
         _selectedCharacter = jumper;
-        Drawer.CurrentBrush = PlaceCharacter;
+        Drawer.CurrentBrush = tile => PlaceCharacter(tile, _selectedCharacter);
     }
     
     public void PlaceSonic()
     {
         _selectedCharacter = sonic;
-        Drawer.CurrentBrush = PlaceCharacter;
+        Drawer.CurrentBrush = tile => PlaceCharacter(tile, _selectedCharacter);
     }
 
-    private static Action ChangeGround(Tile tile)
+    private static void ChangeGround(Tile tile, bool isGrass)
     {
-        var isGrass = !_isGrass;
-        Action redo = () => tile.IsGrass = isGrass;
-        tile.IsGrass = _isGrass;
-        return redo;
+        tile.IsGrass = isGrass;
+        void Undo() => RevertGround(tile, isGrass);
+        Drawer.Undo.Push(Undo);
     }
 
-    private static Action PlaceObject(Tile tile)
+    private static void RevertGround(Tile tile, bool isGrass)
     {
-        Action redo;
-        var redoErase = EraseObject(tile);
-        switch (_onTileObject)
+        tile.IsGrass = !isGrass;
+        void Redo() => ChangeGround(tile, isGrass);
+        Drawer.Redo.Push(Redo);
+    }
+
+    private static void PlaceObject(Tile tile, OnTileObject onTileObject, LeverClass lever)
+    {
+        var oldLever = tile.Lever;
+        var oldOnTileObject = tile.ClearOnTileObject();
+        switch (onTileObject)
         {
             case OnTileObject.None:
-                throw new ArgumentException();
+                throw new ArgumentOutOfRangeException();
             case OnTileObject.Spike:
                 tile.Spike = true;
-                redo = () => tile.Spike = false;
                 break;
             case OnTileObject.Whirlpool:
                 tile.Whirlpool = true;
-                redo = () => tile.Whirlpool = false;
                 break;
             case OnTileObject.Lever:
-                tile.Lever = new LeverClass
+                lever ??= new LeverClass
                 {
                     IsSwitchable = false,
                     Color = Color
                 };
-                redo = () => tile.Lever = null;
+                tile.Lever = lever;
                 break;
             case OnTileObject.Exit:
                 tile.Exit = true;
-                redo = () => tile.Exit = false;
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
-
-        return redo + redoErase;
+        
+        Drawer.Undo.Push(() => RevertObject(tile, oldOnTileObject, oldLever));
     }
 
-    private static Action PlaceWall(Tile tile)
+    private static void RevertObject(Tile tile, OnTileObject oldOnTileObject, LeverClass oldLever)
     {
-        var wall = tile.GetWall(Side);
+        var lever = tile.Lever;
+        var onTileObject = tile.ClearOnTileObject();
+        switch (oldOnTileObject)
+        {
+            case OnTileObject.None:
+                break;
+            case OnTileObject.Spike:
+                tile.Spike = true;
+                break;
+            case OnTileObject.Whirlpool:
+                tile.Whirlpool = true;
+                break;
+            case OnTileObject.Lever:
+                tile.Lever = oldLever;
+                break;
+            case OnTileObject.Exit:
+                tile.Exit = true;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+        
+        Drawer.Redo.Push(() => PlaceObject(tile, onTileObject, lever));
+    }
+    
+    private static void PlaceWall(Tile tile, Side side)
+    {
+        var wall = tile.GetWall(side);
         var oldWall = wall.GetSave();
-        Action redo = () => wall.WallClass = oldWall;
         wall.WallClass = new WallClass
         {
             IsActive = true,
@@ -153,73 +183,114 @@ public class Brushes : MonoBehaviour
             IsOpened = false,
             Color = Color
         };
-        return redo;
+        
+        void Undo() => RevertWall(tile, side, oldWall);
+        Drawer.Undo.Push(Undo);
     }
 
-    private static Action PlaceGates(Tile tile)
+    private static void RevertWall(Tile tile, Side side, WallClass oldWall)
     {
-        var wall = tile.GetWall(Side);
+        var wall = tile.GetWall(side);
+        wall.WallClass = oldWall;
+        void Redo() => PlaceWall(tile, side);
+        Drawer.Redo.Push(Redo);
+    }
+
+    private static void PlaceGates(Tile tile, Side side, WallClass wallClass)
+    {
+        var wall = tile.GetWall(side);
         var oldWall = wall.GetSave();
-        wall.WallClass = new WallClass
+        wallClass ??= new WallClass
         {
             IsActive = true,
             IsDoor = true,
             IsOpened = _gateOpened,
             Color = Color
         };
-        Action redo = () => wall.WallClass = oldWall;
-        return redo;
+        wall.WallClass = wallClass;
+        
+        Drawer.Undo.Push(() => RevertGates(tile, side, oldWall));
     }
 
-    private Action PlaceCharacter(Tile tile)
+    private static void RevertGates(Tile tile, Side side, WallClass oldWall)
     {
-        Action redo;
+        var wall = tile.GetWall(side);
+        var newWall = wall.GetSave();
+        wall.WallClass = oldWall;
+        
+        Drawer.Redo.Push(() => PlaceGates(tile, side, newWall));
+    }
+
+    private void PlaceCharacter(Tile tile, GameObject selectedCharacter)
+    {
         var pos = _grid.GetCellCenterWorld((Vector3Int)tile.gridPosition);
-        var character = Instantiate(_selectedCharacter, pos, quaternion.identity);
-        redo = () => Destroy(character);
-        if (_selectedCharacter == sonic)
+        var character = Instantiate(selectedCharacter, pos, quaternion.identity);
+        if (selectedCharacter == sonic)
         {
             character.GetComponent<Sonic>().enabled = false;
         }
-        else if (_selectedCharacter == feesh)
+        else if (selectedCharacter == feesh)
         {
             character.GetComponent<Feesh>().enabled = false;
         }
-        else if (_selectedCharacter == jumper)
+        else if (selectedCharacter == jumper)
         {
             character.GetComponent<Jumper>().enabled = false;
         }
-        return redo;
+        
+        Drawer.Undo.Push(() => RemoveCharacter(tile, selectedCharacter, character));
     }
 
-    private static Action EraseObject(Tile tile)
+    private void RemoveCharacter(Tile tile, GameObject selectedCharacter, GameObject characterToRemove)
     {
-        Action redo;
-        var lever = tile.GetSave().LeverClass;
-        if (lever != null)
+        Destroy(characterToRemove);
+        Drawer.Redo.Push(() => PlaceCharacter(tile, selectedCharacter));
+    }
+
+    private void EraseObject(Tile tile)
+    {
+        var oldTile = tile.GetSave();
+        tile.ClearTile();
+        GameObject character = null;
+        if (tile.isSonicOnTile)
         {
-            tile.Lever = null;
-            redo = () => tile.Lever = lever;
-            return redo;
+            Destroy(GameObject.FindWithTag("Sonic"));
+            character = sonic;
         }
-        if (tile.Exit)
+        if (tile.isJumperOnTile)
         {
-            tile.Exit = false;
-            redo = () => tile.Exit = true;
-            return redo;
+            Destroy(GameObject.FindWithTag("Jumper"));
+            character = jumper;
         }
-        if (tile.Spike)
+        if (tile.isFeeshOnTile)
         {
-            tile.Spike = false;
-            redo = () => tile.Spike = true;
-            return redo;
+            Destroy(GameObject.FindWithTag("Feesh"));
+            character = feesh;
         }
-        if (tile.Whirlpool)
+        
+        Drawer.Undo.Push(() => RevertErase(tile, oldTile, character));
+    }
+
+    private void RevertErase(Tile tile, TileClass oldTile, GameObject selectedCharacter)
+    {
+        tile.TileClass = oldTile;
+        if (selectedCharacter is not null)
         {
-            tile.Whirlpool = false;
-            redo = () => tile.Whirlpool = true;
-            return redo;
+            var pos = _grid.GetCellCenterWorld((Vector3Int)tile.gridPosition);
+            var character = Instantiate(selectedCharacter, pos, quaternion.identity);
+            if (selectedCharacter == sonic)
+            {
+                character.GetComponent<Sonic>().enabled = false;
+            }
+            else if (selectedCharacter == feesh)
+            {
+                character.GetComponent<Feesh>().enabled = false;
+            }
+            else if (selectedCharacter == jumper)
+            {
+                character.GetComponent<Jumper>().enabled = false;
+            }
         }
-        return null;
+        Drawer.Redo.Push(() => EraseObject(tile));
     }
 }

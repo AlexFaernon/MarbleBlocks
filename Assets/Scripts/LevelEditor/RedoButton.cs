@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UndoButton : MonoBehaviour
+public class RedoButton : MonoBehaviour
 {
     private Button _button;
 
@@ -13,12 +13,12 @@ public class UndoButton : MonoBehaviour
 
     private void Update()
     {
-        _button.interactable = Drawer.Undo.Count > 0;
+        _button.interactable = Drawer.Redo.Count > 0;
     }
-    
+
     private void OnClick()
     {
-        if (Drawer.Undo.Count == 0) return;
-        Drawer.Undo.Pop()();
+        if (Drawer.Redo.Count == 0) return;
+        Drawer.Redo.Pop()();
     }
 }

@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace CW.Common
+﻿namespace CW.Common
 {
 	/// <summary>This class contains some useful methods used by this asset.</summary>
 	internal static class CwShared

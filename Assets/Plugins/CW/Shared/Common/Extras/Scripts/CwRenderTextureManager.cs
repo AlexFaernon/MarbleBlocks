@@ -1,6 +1,5 @@
 ﻿//#define USE_CUSTOM_TEMPORARY
 using UnityEngine;
-using System.Collections.Generic;
 
 namespace CW.Common
 {

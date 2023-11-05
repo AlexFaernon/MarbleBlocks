@@ -1,14 +1,14 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Drawer : MonoBehaviour
 {
-    public static Func<Tile, Action> CurrentBrush;
-    public static Stack<Action> Undo = new();
-
+    public static Action<Tile> CurrentBrush;
+    public static readonly Stack<Action> Undo = new();
+    public static readonly Stack<Action> Redo = new();
+    
     private void Update()
     {
         if (CurrentBrush is null) return;
@@ -33,16 +33,12 @@ public class Drawer : MonoBehaviour
         var layerObject = LayerMask.GetMask("Ground", "UI");
         
         var hit = Physics2D.Raycast(ray, Vector2.zero, Mathf.Infinity, layerObject);
+        
         if (hit.collider is not null)
         {
             var targetTile = hit.collider.gameObject.GetComponent<Tile>();
-            if (targetTile.IsEdge) return;
-
-            var redo = CurrentBrush(targetTile);
-            if (redo is not null)
-            {
-                Undo.Push(redo);
-            }
+            Redo.Clear();
+            CurrentBrush(targetTile);
         }
     }
 }
