@@ -35,7 +35,7 @@ public class TileManager : MonoBehaviour
             {
                 var intPos = new Vector2Int(x, y);
                 var pos = _grid.GetCellCenterWorld((Vector3Int)intPos);
-                _tiles[x, y] = Instantiate(tilePrefab, pos, Quaternion.identity).GetComponent<Tile>();
+                _tiles[x, y] = Instantiate(tilePrefab, pos, Quaternion.identity, _grid.transform).GetComponent<Tile>();
                 _tiles[x, y].gridPosition = intPos;
                 if (x == 0 || x == fieldSize.x + 1 || y == 0 || y == fieldSize.y + 1)
                 {

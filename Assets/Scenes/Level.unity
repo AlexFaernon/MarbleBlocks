@@ -2286,6 +2286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31f330c3d7da1a842a48cf930e22bacc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileManager: {fileID: 1321951031}
   ignoreGuiFingers: 1
   requiredFingerCount: 0
   wheelSensitivity: 0
