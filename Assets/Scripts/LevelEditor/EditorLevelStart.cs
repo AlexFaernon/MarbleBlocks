@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class EditorLevelStart : MonoBehaviour
 {
     [SerializeField] private List<GameObject> editorUI;
     [SerializeField] private List<GameObject> levelUI;
+    [SerializeField] private Physics2DRaycaster characterRaycaster;
+    [SerializeField] private Physics2DRaycaster editorRaycaster;
     private bool _isTesting;
     private Sonic _sonic;
     private Jumper _jumper;
@@ -14,6 +17,8 @@ public class EditorLevelStart : MonoBehaviour
     {
         _isTesting = !_isTesting;
         Drawer.CurrentBrush = null;
+        characterRaycaster.enabled = _isTesting;
+        editorRaycaster.enabled = !_isTesting;
         foreach (var go in editorUI)
         {
             go.SetActive(!_isTesting);

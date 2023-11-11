@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
-public class Tile : MonoBehaviour
+public class Tile : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] private Wall northWall;
     [SerializeField] private Wall southWall;
@@ -19,6 +22,7 @@ public class Tile : MonoBehaviour
     [HideInInspector] public bool isFeeshOnTile;
     [HideInInspector] public bool isJumperOnTile;
     [HideInInspector] public bool isSonicOnTile;
+    public static UnityEvent<Tile> OnTileClick = new ();
     
     public TileClass TileClass
     {
@@ -265,5 +269,10 @@ public class Tile : MonoBehaviour
         {
             isSonicOnTile = false;
         }
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        OnTileClick.Invoke(this);
     }
 }

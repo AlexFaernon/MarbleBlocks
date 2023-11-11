@@ -83,10 +83,10 @@ public class Training : MonoBehaviour
         current = sonicTraining.GetChild(1).gameObject;
         yield return new WaitForEndOfFrame();
         current.SetActive(true);
-        yield return new WaitUntil(() => sonic.GetSave == new Vector2Int(1, 7));
+        yield return new WaitUntil(() => sonic.GetGridPosition == new Vector2Int(1, 7));
         current.SetActive(false);
 
-        yield return new WaitUntil(() => sonic.GetSave == new Vector2Int(7, 7));
+        yield return new WaitUntil(() => sonic.GetGridPosition == new Vector2Int(7, 7));
         blocker.SetActive(true);
 
         current = sonicTraining.GetChild(2).gameObject;
@@ -97,7 +97,7 @@ public class Training : MonoBehaviour
         current.SetActive(false);
         blocker.SetActive(false);
         
-        yield return new WaitUntil(() => sonic.GetSave == new Vector2Int(7, 1));
+        yield return new WaitUntil(() => sonic.GetGridPosition == new Vector2Int(7, 1));
         
         current = sonicTraining.GetChild(3).gameObject;
         blocker.SetActive(true);

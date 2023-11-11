@@ -18,8 +18,6 @@ public class Lever : MonoBehaviour
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _off = Resources.Load<Sprite>($"Levers/Off/{color}");
-        _on = Resources.Load<Sprite>($"Levers/On/{color}");
     }
 
     private void Update()
@@ -44,5 +42,7 @@ public class Lever : MonoBehaviour
     {
         isSwitchable = leverClass.IsSwitchable;
         color = leverClass.Color;
+        _off = Resources.Load<Sprite>($"Levers/Off/{color}");
+        _on = Resources.Load<Sprite>($"Levers/On/{color}");
     }
 }

@@ -15,7 +15,7 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
     private Dictionary<Tile, Tile> _paths;
     private Stack<Tile> _currentPath;
     private Collider2D _collider;
-    public Vector2Int GetSave => CurrentTile.gridPosition;
+    public Vector2Int GetGridPosition => CurrentTile.gridPosition;
     public bool IsMoving { get; private set; }
 
     public bool IsActive

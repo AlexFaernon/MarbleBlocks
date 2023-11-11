@@ -14,7 +14,7 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
     private Side _movingSide;
     private Lever _lever;
     public bool isActive;
-    public Vector2Int GetSave => CurrentTile.gridPosition;
+    public Vector2Int GetGridPosition => CurrentTile.gridPosition;
     [SerializeField] private Animator animator;
 
     public bool IsMoving

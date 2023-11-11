@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
+  switchButton: {fileID: 0}
   isActive: 0
   animator: {fileID: 8450396943348876347}
 --- !u!212 &2170304946276133791
