@@ -19,7 +19,7 @@ public class ShowColorInObjects : MonoBehaviour
 
     private void Update()
     {
-        _image.sprite = Brushes.Color switch
+        _image.sprite = Brush.Color switch
         {
             DoorLeverColor.Red => red,
             DoorLeverColor.Grey => grey,

@@ -17,6 +17,7 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
     private Collider2D _collider;
     public Vector2Int GetGridPosition => CurrentTile.gridPosition;
     public bool IsMoving { get; private set; }
+    public static int Count;
 
     public bool IsActive
     {
@@ -35,6 +36,7 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
     private void Awake()
     {
         _collider = GetComponent<Collider2D>();
+        Count++;
     }
 
     private void Update()
@@ -196,5 +198,10 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
                 TileManager.HighlightTiles(_availableTiles);
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        Count--;
     }
 }

@@ -18,11 +18,12 @@ public class ColorSelect : MonoBehaviour
     }
     private void OnClick()
     {
-        Brushes.Color = _color;
+        Brush.Color = _color;
+        Brush.Color = _color;
     }
 
     private void Update()
     {
-        _selected.SetActive(_color == Brushes.Color);
+        _selected.SetActive(_color == Brush.Color);
     }
 }

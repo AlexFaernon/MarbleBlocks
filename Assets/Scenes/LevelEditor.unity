@@ -597,8 +597,6 @@ GameObject:
   - component: {fileID: 58077809}
   - component: {fileID: 58077812}
   - component: {fileID: 58077814}
-  - component: {fileID: 58077813}
-  - component: {fileID: 58077815}
   - component: {fileID: 58077816}
   - component: {fileID: 58077817}
   - component: {fileID: 58077818}
@@ -663,21 +661,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12bdb5114ea5438bac7e69678d78e55d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &58077813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 58077808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69c0b4d935138594fad62aea7b946da7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  feesh: {fileID: 7478366469092275023, guid: 1aee358c70c8aa0469c8f64ea7fb411b, type: 3}
-  jumper: {fileID: 3384081889145027817, guid: 398a95025ebfb944ca66c46c95350b65, type: 3}
-  sonic: {fileID: 2008194922503646696, guid: 2fc49fa0b92ea174e9fd3be3b8edf8fc, type: 3}
 --- !u!114 &58077814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -690,21 +673,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc42b28c470d2614298a9e230c069033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &58077815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 58077808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a821c3f1387d3a46b620a9e55cd0af4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sonicButton: {fileID: 0}
-  jumperButton: {fileID: 223633897}
-  feeshButton: {fileID: 0}
 --- !u!114 &58077816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1521,6 +1489,7 @@ GameObject:
   - component: {fileID: 172705680}
   - component: {fileID: 172705679}
   - component: {fileID: 172705682}
+  - component: {fileID: 172705683}
   m_Layer: 5
   m_Name: Grass
   m_TagString: Untagged
@@ -1593,19 +1562,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 172705680}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 58077813}
-        m_TargetAssemblyTypeName: Brushes, Assembly-CSharp
-        m_MethodName: PlaceGrass
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &172705680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1660,6 +1617,19 @@ MonoBehaviour:
   color: {fileID: 1497921755}
   isSideShown: 0
   side: {fileID: 522521624}
+--- !u!114 &172705683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172705677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb4cd33cf8fc4b088d5113a36b9ca957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGrass: 1
 --- !u!1 &192411707
 GameObject:
   m_ObjectHideFlags: 0
@@ -2084,6 +2054,7 @@ GameObject:
   - component: {fileID: 223633898}
   - component: {fileID: 223633897}
   - component: {fileID: 223633900}
+  - component: {fileID: 223633901}
   m_Layer: 5
   m_Name: Jumper
   m_TagString: Untagged
@@ -2156,19 +2127,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 223633898}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 58077813}
-        m_TargetAssemblyTypeName: Brushes, Assembly-CSharp
-        m_MethodName: PlaceJumper
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &223633898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2223,6 +2182,20 @@ MonoBehaviour:
   color: {fileID: 1497921755}
   isSideShown: 0
   side: {fileID: 522521624}
+--- !u!114 &223633901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223633895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f44156df999b47ad898ecf2c5420e7e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 58077810}
+  selectedCharacter: {fileID: 3384081889145027817, guid: 398a95025ebfb944ca66c46c95350b65, type: 3}
 --- !u!1 &234918572
 GameObject:
   m_ObjectHideFlags: 0
@@ -5091,6 +5064,7 @@ GameObject:
   - component: {fileID: 511589476}
   - component: {fileID: 511589475}
   - component: {fileID: 511589478}
+  - component: {fileID: 511589479}
   m_Layer: 5
   m_Name: Wall
   m_TagString: Untagged
@@ -5115,10 +5089,10 @@ RectTransform:
   m_Father: {fileID: 1488205586}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 32, y: -45}
+  m_SizeDelta: {x: 54, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &511589475
 MonoBehaviour:
@@ -5163,19 +5137,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 511589476}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 58077813}
-        m_TargetAssemblyTypeName: Brushes, Assembly-CSharp
-        m_MethodName: PlaceWall
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &511589476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5230,6 +5192,20 @@ MonoBehaviour:
   color: {fileID: 1497921755}
   isSideShown: 1
   side: {fileID: 522521624}
+--- !u!114 &511589479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511589473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a1df9ac361640308498a4dc50a10f55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDoor: 0
+  isOpened: 0
 --- !u!1 &515722097
 GameObject:
   m_ObjectHideFlags: 0
@@ -5531,6 +5507,7 @@ GameObject:
   - component: {fileID: 525039605}
   - component: {fileID: 525039604}
   - component: {fileID: 525039607}
+  - component: {fileID: 525039608}
   m_Layer: 5
   m_Name: Spike
   m_TagString: Untagged
@@ -5555,10 +5532,10 @@ RectTransform:
   m_Father: {fileID: 1488205586}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 32, y: -134}
+  m_SizeDelta: {x: 54, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &525039604
 MonoBehaviour:
@@ -5603,19 +5580,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 525039605}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 58077813}
-        m_TargetAssemblyTypeName: Brushes, Assembly-CSharp
-        m_MethodName: PlaceSpike
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &525039605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5670,6 +5635,19 @@ MonoBehaviour:
   color: {fileID: 1497921755}
   isSideShown: 0
   side: {fileID: 522521624}
+--- !u!114 &525039608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525039602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df0a5b79f89f467b9aa630afc951272b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedOnTileObject: 1
 --- !u!1 &528072486
 GameObject:
   m_ObjectHideFlags: 0
@@ -6039,6 +6017,7 @@ GameObject:
   - component: {fileID: 625294727}
   - component: {fileID: 625294726}
   - component: {fileID: 625294729}
+  - component: {fileID: 625294730}
   m_Layer: 5
   m_Name: Lever
   m_TagString: Untagged
@@ -6063,10 +6042,10 @@ RectTransform:
   m_Father: {fileID: 1488205586}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 32, y: -312}
+  m_SizeDelta: {x: 54, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &625294726
 MonoBehaviour:
@@ -6111,19 +6090,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 625294727}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 58077813}
-        m_TargetAssemblyTypeName: Brushes, Assembly-CSharp
-        m_MethodName: PlaceLever
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &625294727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6174,10 +6141,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 106f9df257115ee42aba44cd69f56ad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isColorShown: 1
+  isColorShown: 0
   color: {fileID: 1497921755}
   isSideShown: 1
   side: {fileID: 522521624}
+--- !u!114 &625294730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625294724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df0a5b79f89f467b9aa630afc951272b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedOnTileObject: 3
 --- !u!1 &627066311
 GameObject:
   m_ObjectHideFlags: 0
@@ -6556,6 +6536,7 @@ GameObject:
   - component: {fileID: 686672942}
   - component: {fileID: 686672941}
   - component: {fileID: 686672944}
+  - component: {fileID: 686672945}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -6580,10 +6561,10 @@ RectTransform:
   m_Father: {fileID: 1488205586}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 95, y: -45}
+  m_SizeDelta: {x: 54, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &686672941
 MonoBehaviour:
@@ -6628,19 +6609,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 686672942}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 58077813}
-        m_TargetAssemblyTypeName: Brushes, Assembly-CSharp
-        m_MethodName: PlaceExit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &686672942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6695,6 +6664,19 @@ MonoBehaviour:
   color: {fileID: 1497921755}
   isSideShown: 0
   side: {fileID: 522521624}
+--- !u!114 &686672945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686672939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df0a5b79f89f467b9aa630afc951272b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedOnTileObject: 4
 --- !u!1 &698980184
 GameObject:
   m_ObjectHideFlags: 0
@@ -15221,6 +15203,7 @@ GameObject:
   - component: {fileID: 1138164100}
   - component: {fileID: 1138164099}
   - component: {fileID: 1138164102}
+  - component: {fileID: 1138164103}
   m_Layer: 5
   m_Name: DoorClosed
   m_TagString: Untagged
@@ -15245,10 +15228,10 @@ RectTransform:
   m_Father: {fileID: 1488205586}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 32, y: -223}
+  m_SizeDelta: {x: 54, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1138164099
 MonoBehaviour:
@@ -15293,19 +15276,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1138164100}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 58077813}
-        m_TargetAssemblyTypeName: Brushes, Assembly-CSharp
-        m_MethodName: PlaceOpenedGate
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1138164100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15360,6 +15331,20 @@ MonoBehaviour:
   color: {fileID: 1497921755}
   isSideShown: 1
   side: {fileID: 522521624}
+--- !u!114 &1138164103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138164097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a1df9ac361640308498a4dc50a10f55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDoor: 1
+  isOpened: 0
 --- !u!1 &1144340305
 GameObject:
   m_ObjectHideFlags: 0
@@ -16383,6 +16368,7 @@ GameObject:
   - component: {fileID: 1215285407}
   - component: {fileID: 1215285406}
   - component: {fileID: 1215285409}
+  - component: {fileID: 1215285410}
   m_Layer: 5
   m_Name: Sonic
   m_TagString: Untagged
@@ -16455,19 +16441,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1215285407}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 58077813}
-        m_TargetAssemblyTypeName: Brushes, Assembly-CSharp
-        m_MethodName: PlaceSonic
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1215285407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16522,6 +16496,20 @@ MonoBehaviour:
   color: {fileID: 1497921755}
   isSideShown: 0
   side: {fileID: 522521624}
+--- !u!114 &1215285410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215285404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f44156df999b47ad898ecf2c5420e7e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 58077810}
+  selectedCharacter: {fileID: 2008194922503646696, guid: 2fc49fa0b92ea174e9fd3be3b8edf8fc, type: 3}
 --- !u!1 &1224324030
 GameObject:
   m_ObjectHideFlags: 0
@@ -17889,7 +17877,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 58077813}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Brushes, Assembly-CSharp
         m_MethodName: RemoveObject
         m_Mode: 1
@@ -18109,6 +18097,7 @@ GameObject:
   - component: {fileID: 1415599942}
   - component: {fileID: 1415599941}
   - component: {fileID: 1415599944}
+  - component: {fileID: 1415599945}
   m_Layer: 5
   m_Name: Feesh
   m_TagString: Untagged
@@ -18181,19 +18170,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1415599942}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 58077813}
-        m_TargetAssemblyTypeName: Brushes, Assembly-CSharp
-        m_MethodName: PlaceFeesh
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1415599942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18248,6 +18225,20 @@ MonoBehaviour:
   color: {fileID: 1497921755}
   isSideShown: 0
   side: {fileID: 522521624}
+--- !u!114 &1415599945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415599939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f44156df999b47ad898ecf2c5420e7e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 58077810}
+  selectedCharacter: {fileID: 7478366469092275023, guid: 1aee358c70c8aa0469c8f64ea7fb411b, type: 3}
 --- !u!1 &1419957867
 GameObject:
   m_ObjectHideFlags: 0
@@ -18364,10 +18355,10 @@ RectTransform:
   m_Father: {fileID: 1831972880}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 85}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 61, y: -42.5}
+  m_SizeDelta: {x: 122, y: 85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1488205587
 CanvasRenderer:
@@ -19683,6 +19674,7 @@ GameObject:
   - component: {fileID: 1719392906}
   - component: {fileID: 1719392905}
   - component: {fileID: 1719392908}
+  - component: {fileID: 1719392909}
   m_Layer: 5
   m_Name: DoorOpened
   m_TagString: Untagged
@@ -19707,10 +19699,10 @@ RectTransform:
   m_Father: {fileID: 1488205586}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 95, y: -223}
+  m_SizeDelta: {x: 54, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1719392905
 MonoBehaviour:
@@ -19756,7 +19748,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 58077813}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Brushes, Assembly-CSharp
         m_MethodName: PlaceClosedGate
         m_Mode: 1
@@ -19822,6 +19814,20 @@ MonoBehaviour:
   color: {fileID: 1497921755}
   isSideShown: 1
   side: {fileID: 522521624}
+--- !u!114 &1719392909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719392903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a1df9ac361640308498a4dc50a10f55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDoor: 1
+  isOpened: 1
 --- !u!1 &1720252227
 GameObject:
   m_ObjectHideFlags: 0
@@ -22010,6 +22016,7 @@ GameObject:
   - component: {fileID: 1958783674}
   - component: {fileID: 1958783673}
   - component: {fileID: 1958783676}
+  - component: {fileID: 1958783677}
   m_Layer: 5
   m_Name: Whirlpool
   m_TagString: Untagged
@@ -22034,10 +22041,10 @@ RectTransform:
   m_Father: {fileID: 1488205586}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 95, y: -134}
+  m_SizeDelta: {x: 54, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1958783673
 MonoBehaviour:
@@ -22082,19 +22089,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1958783674}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 58077813}
-        m_TargetAssemblyTypeName: Brushes, Assembly-CSharp
-        m_MethodName: PlaceWhirlpool
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1958783674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22149,6 +22144,19 @@ MonoBehaviour:
   color: {fileID: 1497921755}
   isSideShown: 0
   side: {fileID: 522521624}
+--- !u!114 &1958783677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958783671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df0a5b79f89f467b9aa630afc951272b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedOnTileObject: 2
 --- !u!1 &1972191628
 GameObject:
   m_ObjectHideFlags: 0
@@ -23395,6 +23403,7 @@ GameObject:
   - component: {fileID: 2117400056}
   - component: {fileID: 2117400055}
   - component: {fileID: 2117400058}
+  - component: {fileID: 2117400059}
   m_Layer: 5
   m_Name: Water
   m_TagString: Untagged
@@ -23467,19 +23476,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2117400056}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 58077813}
-        m_TargetAssemblyTypeName: Brushes, Assembly-CSharp
-        m_MethodName: PlaceWater
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2117400056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23534,6 +23531,19 @@ MonoBehaviour:
   color: {fileID: 1497921755}
   isSideShown: 0
   side: {fileID: 522521624}
+--- !u!114 &2117400059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117400053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb4cd33cf8fc4b088d5113a36b9ca957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGrass: 0
 --- !u!1 &2128419545
 GameObject:
   m_ObjectHideFlags: 0

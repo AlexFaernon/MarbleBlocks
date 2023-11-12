@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.Profiling.Experimental;
 
 public class Drawer : MonoBehaviour
 {
@@ -49,7 +47,7 @@ public class Drawer : MonoBehaviour
 
     private void Draw(Tile targetTile)
     {
-        if (targetTile.IsEdge) return;
+        if (CurrentBrush is null || targetTile.IsEdge) return;
         Redo.Clear();
         CurrentBrush(targetTile);
     }

@@ -22,12 +22,13 @@ public class SideSelect : MonoBehaviour
 
     private void OnClick()
     {
-        Brushes.Side = _side;
+        Brush.Side = _side;
+        Brush.Side = _side;
         transform.SetSiblingIndex(transform.parent.childCount - 1);
     }
 
     private void Update()
     {
-        _image.sprite = Brushes.Side == _side ? selected : _unselected;
+        _image.sprite = Brush.Side == _side ? selected : _unselected;
     }
 }

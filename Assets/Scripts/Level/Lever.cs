@@ -4,6 +4,7 @@ public class Lever : MonoBehaviour
 {
     [SerializeField] private bool isSwitchable = true;
     [SerializeField] private DoorLeverColor color;
+    public static int Count;
     private Sprite _off;
     private Sprite _on;
 
@@ -44,5 +45,15 @@ public class Lever : MonoBehaviour
         color = leverClass.Color;
         _off = Resources.Load<Sprite>($"Levers/Off/{color}");
         _on = Resources.Load<Sprite>($"Levers/On/{color}");
+    }
+    
+    private void OnEnable()
+    {
+        Count++;
+    }
+
+    private void OnDisable()
+    {
+        Count--;
     }
 }

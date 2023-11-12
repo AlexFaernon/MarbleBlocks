@@ -745,6 +745,7 @@ GameObject:
   - component: {fileID: 7967156528535932473}
   - component: {fileID: 7369957440745209291}
   - component: {fileID: 7077847326027360314}
+  - component: {fileID: 7855831458209366134}
   m_Layer: 3
   m_Name: Whirlpool
   m_TagString: Untagged
@@ -829,6 +830,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70b44709c8f5e09408dc0c7e04bff1e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7855831458209366134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4647972373267723720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 139341765ed8f5a409582d095040c123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5610050262307082003
@@ -988,6 +1001,7 @@ GameObject:
   - component: {fileID: 4323925196358365118}
   - component: {fileID: 5851846693909719125}
   - component: {fileID: 3338404705208899814}
+  - component: {fileID: 1767193954821593799}
   m_Layer: 0
   m_Name: Spike
   m_TagString: Spike
@@ -1088,3 +1102,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6837092, y: 0.6676333}
   m_EdgeRadius: 0
+--- !u!114 &1767193954821593799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6684238812246986700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abd68743b0110cc42acc9efe3e808f3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -19,7 +19,7 @@ public class ColorSelectMenu : MonoBehaviour
 
     private void Update()
     {
-        colorIcon.sprite = Brushes.Color switch
+        colorIcon.sprite = Brush.Color switch
         {
             DoorLeverColor.Red => red,
             DoorLeverColor.Grey => grey,

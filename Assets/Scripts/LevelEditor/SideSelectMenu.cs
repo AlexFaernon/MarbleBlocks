@@ -17,7 +17,7 @@ public class SideSelectMenu : MonoBehaviour
 
 	private void Update()
 	{
-		sideIcon.sprite = Brushes.Side switch
+		sideIcon.sprite = Brush.Side switch
 		{
 			Side.North => north,
 			Side.South => south,

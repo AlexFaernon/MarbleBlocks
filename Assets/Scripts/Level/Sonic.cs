@@ -16,6 +16,7 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
     public bool isActive;
     public Vector2Int GetGridPosition => CurrentTile.gridPosition;
     [SerializeField] private Animator animator;
+    public static int Count;
 
     public bool IsMoving
     {
@@ -49,6 +50,11 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
                 HighlightTiles();
             }
         }
+    }
+
+    private void Awake()
+    {
+        Count++;
     }
 
     public void StartMoving(Side side)
@@ -184,5 +190,10 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
         {
             _lever = col.GetComponent<Lever>();
         }
+    }
+
+    private void OnDestroy()
+    {
+        Count--;
     }
 }

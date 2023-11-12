@@ -15,6 +15,8 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
     private Collider2D _collider2D;
     public Vector2Int GetGridPosition => CurrentTile.gridPosition;
     [SerializeField] private Animator animator;
+    public static int Count;
+
     public bool IsActive
     {
         get => _isActive;
@@ -33,7 +35,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
     private void Awake()
     {
         _collider2D = GetComponent<Collider2D>();
-        LevelObjectsLimiter.JumperCount++;
+        Count++;
     }
 
     void Update()
@@ -179,6 +181,6 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
 
     private void OnDestroy()
     {
-        LevelObjectsLimiter.JumperCount--;
+        Count--;
     }
 }
