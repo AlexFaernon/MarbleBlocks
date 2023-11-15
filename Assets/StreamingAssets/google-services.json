@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "596014237185",
+    "project_id": "marbleblocks-e8a00",
+    "storage_bucket": "marbleblocks-e8a00.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:596014237185:android:535c98a3863925c0452200",
+        "android_client_info": {
+          "package_name": "com.TwoRandomWords.MarbleBlocks"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBE6b8JSKzjeJWuYrx3DX9JKcgj32UMCLw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
