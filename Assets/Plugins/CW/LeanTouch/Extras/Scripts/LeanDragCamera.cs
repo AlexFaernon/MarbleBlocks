@@ -1,6 +1,7 @@
 using UnityEngine;
 using Lean.Common;
 using CW.Common;
+using System;
 
 namespace Lean.Touch
 {
@@ -9,6 +10,8 @@ namespace Lean.Touch
 	[AddComponentMenu(LeanTouch.ComponentPathPrefix + "Drag Camera")]
 	public class LeanDragCamera : MonoBehaviour
 	{
+		[SerializeField] private Vector2 clamp = new Vector2(3,3);
+		
 		/// <summary>The method used to find fingers to use with this component. See LeanFingerFilter documentation for more information.</summary>
 		public LeanFingerFilter Use = new LeanFingerFilter(true);
 
@@ -145,6 +148,10 @@ namespace Lean.Touch
 
 			// Update remainingDelta with the dampened value
 			remainingDelta = newRemainingDelta;
+			var pos = transform.position;
+			pos.x = Math.Clamp(pos.x, -clamp.x, clamp.x);
+			pos.y = Math.Clamp(pos.y, -clamp.y, clamp.y);
+			transform.position = pos;
 		}
 	}
 }

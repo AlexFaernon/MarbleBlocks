@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class Tile : MonoBehaviour, IPointerDownHandler
+public class Tile : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Wall northWall;
     [SerializeField] private Wall southWall;
@@ -270,7 +270,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         }
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    public void OnPointerClick(PointerEventData eventData)
     {
         OnTileClick.Invoke(this);
     }

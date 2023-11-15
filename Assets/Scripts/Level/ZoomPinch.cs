@@ -6,7 +6,9 @@ using UnityEngine;
 public class ZoomPinch : MonoBehaviour
 {
     [SerializeField] private TileManager tileManager;
-        
+    [SerializeField] private float minScale;
+    [SerializeField] private float maxScale;
+    
         [Tooltip("Ignore fingers with StartedOverGui?")]
         public bool ignoreGuiFingers = true;
 
@@ -33,9 +35,9 @@ public class ZoomPinch : MonoBehaviour
         {
             var size = 4.5f;
             var sizeMin = 3.5f;
-            var offset = (tileManager.fieldSize.x - 7) / 2;
-            zoom = size + offset;
-            zoomMin = sizeMin + offset;
+            var offset = tileManager.fieldSize.x - 7;
+            zoom = size + offset * maxScale;
+            zoomMin = sizeMin + offset * minScale;
             zoomMax = zoom;
         }
 
