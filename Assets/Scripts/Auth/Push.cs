@@ -1,4 +1,3 @@
-/*
 using System.Collections;
 using System.Collections.Generic;
 using Firebase.Database;
@@ -26,8 +25,8 @@ public class Push : MonoBehaviour
     public void PushData()
     {
         var reference = FirebaseDatabase.DefaultInstance.RootReference;
-        //Debug.Log("Почта " + AuthManager.User.Email);
+        Debug.Log("Почта " + AuthManager.User.Email);
         reference.Child(AuthManager.auth.CurrentUser.DisplayName).SetRawJsonValueAsync(Resources.Load("1").ToString());
     }
 }
-*/
+
