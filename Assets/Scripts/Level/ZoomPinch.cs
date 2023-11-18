@@ -5,7 +5,6 @@ using UnityEngine;
     // This supports both perspective and orthographic cameras
 public class ZoomPinch : MonoBehaviour
 {
-    [SerializeField] private TileManager tileManager;
     [SerializeField] private float minScale;
     [SerializeField] private float maxScale;
     
@@ -35,7 +34,7 @@ public class ZoomPinch : MonoBehaviour
         {
             var size = 4.5f;
             var sizeMin = 3.5f;
-            var offset = tileManager.fieldSize.x - 7;
+            var offset = TileManager.fieldSize.x - 7;
             zoom = size + offset * maxScale;
             zoomMin = sizeMin + offset * minScale;
             zoomMax = zoom;

@@ -55,6 +55,7 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
     private void Awake()
     {
         Count++;
+        CharacterManager.Sonic = this;
     }
 
     public void StartMoving(Side side)
@@ -195,5 +196,6 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
     private void OnDestroy()
     {
         Count--;
+        CharacterManager.Sonic = null;
     }
 }

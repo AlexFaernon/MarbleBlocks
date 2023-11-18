@@ -8,17 +8,28 @@ public class EditorLevelStart : MonoBehaviour
     [SerializeField] private List<GameObject> levelUI;
     [SerializeField] private Physics2DRaycaster characterRaycaster;
     [SerializeField] private Physics2DRaycaster editorRaycaster;
+    [SerializeField] private CharacterManager characterManager;
+    [SerializeField] private LevelSaveManager levelSaveManager;
     private bool _isTesting;
-    private Sonic _sonic;
-    private Jumper _jumper;
-    private Feesh _feesh;
-
+    
     public void Switch()
     {
         _isTesting = !_isTesting;
+        TileManager.HighlightTiles(new HashSet<Tile>());
+        if (_isTesting)
+        {
+            levelSaveManager.SaveLevel();
+        }
+        else
+        {
+            TileManager.ResetLevel();
+            characterManager.ResetCharacters();
+        }
+        
         Drawer.CurrentBrush = null;
         characterRaycaster.enabled = _isTesting;
         editorRaycaster.enabled = !_isTesting;
+        
         foreach (var go in editorUI)
         {
             go.SetActive(!_isTesting);
@@ -28,45 +39,20 @@ public class EditorLevelStart : MonoBehaviour
         {
             go.SetActive(_isTesting);
         }
-
-        if (!_isTesting)
+        
+        if (CharacterManager.Sonic)
         {
-            if (_sonic)
-            {
-                _sonic.enabled = false; 
-            }
-            _sonic = null;
-            if (_jumper)
-            {
-                _jumper.enabled = false;
-            }
-            _jumper = null;
-            if (_feesh)
-            {
-                _feesh.enabled = false;
-            }
-            _feesh = null;
-            return;
+            CharacterManager.Sonic.enabled = _isTesting;
         }
         
-        var sonicObj = GameObject.FindWithTag("Sonic");
-        if (sonicObj)
+        if (CharacterManager.Jumper)
         {
-            _sonic =  sonicObj.GetComponent<Sonic>();
-            _sonic.enabled = true;
-        }
-        var jumperObj = GameObject.FindWithTag("Jumper");
-        if (jumperObj)
-        {
-            _jumper = jumperObj.GetComponent<Jumper>();
-            _jumper.enabled = true;
+            CharacterManager.Jumper.enabled = _isTesting;
         }
         
-        var feeshObj = GameObject.FindWithTag("Feesh");
-        if (feeshObj)
+        if (CharacterManager.Feesh)
         {
-            _feesh = feeshObj.GetComponent<Feesh>();
-            _feesh.enabled = true;
+            CharacterManager.Feesh.enabled = _isTesting;
         }
     }
 }

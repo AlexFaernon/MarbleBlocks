@@ -5,7 +5,7 @@ using UnityEngine;
 public class TileManager : MonoBehaviour
 {
     [SerializeField] private GameObject tilePrefab;
-    public Vector2Int fieldSize;
+    public static Vector2Int fieldSize;
     public bool loadLevel;
     private Grid _grid;
     private static TileClass[,] _loadedTiles;
@@ -85,6 +85,17 @@ public class TileManager : MonoBehaviour
         }
 
         return null;
+    }
+
+    public static void ResetLevel()
+    {
+        for (var x = 1; x < fieldSize.x + 1; x++)
+        {
+            for (var y = 1; y < fieldSize.y + 1; y++)
+            {
+                _tiles[x, y].TileClass = LevelSaveManager.LoadedLevel.Tiles[x - 1, y - 1];
+            }
+        }
     }
 
     public void ClearAllTiles()

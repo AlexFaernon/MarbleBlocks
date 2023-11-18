@@ -25,12 +25,13 @@ public class LevelSaveManager : MonoBehaviour
         var feesh = GameObject.FindWithTag("Feesh")?.GetComponent<Feesh>();
         var levelSave = new LevelClass
         {
-            FieldSize      = tileManager.fieldSize,
+            FieldSize      = TileManager.fieldSize,
             Tiles          = tileManager.GetSave(),
             FeeshPosition  = feesh ? feesh.GetGridPosition : Vector2Int.zero,
             JumperPosition = jumper ? jumper.GetGridPosition : Vector2Int.zero,
             SonicPosition  = sonic ? sonic.GetGridPosition : Vector2Int.zero
         };
+        LoadedLevel = levelSave;
         var save = JsonConvert.SerializeObject(levelSave);
         File.WriteAllText(Application.persistentDataPath + "\\save.json", save);
     }

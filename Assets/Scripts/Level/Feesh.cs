@@ -37,6 +37,7 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
     {
         _collider = GetComponent<Collider2D>();
         Count++;
+        CharacterManager.Feesh = this;
     }
 
     private void Update()
@@ -203,5 +204,6 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
     private void OnDestroy()
     {
         Count--;
+        CharacterManager.Feesh = null;
     }
 }

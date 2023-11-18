@@ -5,15 +5,14 @@ public class SizeSelector : MonoBehaviour
 {
     [SerializeField] private Vector2Int size;
     [SerializeField] private Image selected;
-    [SerializeField] private TileManager tileManager;
 
     private void Awake()
     {
-        GetComponent<Button>().onClick.AddListener(() => tileManager.fieldSize = size);
+        GetComponent<Button>().onClick.AddListener(() => TileManager.fieldSize = size);
     }
 
     private void Update()
     {
-        selected.gameObject.SetActive(size == tileManager.fieldSize);
+        selected.gameObject.SetActive(size == TileManager.fieldSize);
     }
 }

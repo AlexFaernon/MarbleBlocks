@@ -36,6 +36,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
     {
         _collider2D = GetComponent<Collider2D>();
         Count++;
+        CharacterManager.Jumper = this;
     }
 
     void Update()
@@ -182,5 +183,6 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
     private void OnDestroy()
     {
         Count--;
+        CharacterManager.Jumper = null;
     }
 }

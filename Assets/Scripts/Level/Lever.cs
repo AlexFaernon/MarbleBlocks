@@ -41,6 +41,7 @@ public class Lever : MonoBehaviour
     
     private void SetLever(LeverClass leverClass)
     {
+        IsActive = false;
         isSwitchable = leverClass.IsSwitchable;
         color = leverClass.Color;
         _off = Resources.Load<Sprite>($"Levers/Off/{color}");
