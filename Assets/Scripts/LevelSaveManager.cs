@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using UnityEngine;
 using File = System.IO.File;
-
+using Firebase.Database;
 public class LevelSaveManager : MonoBehaviour
 {
     public static int LevelNumber;
@@ -33,6 +33,7 @@ public class LevelSaveManager : MonoBehaviour
         };
         LoadedLevel = levelSave;
         var save = JsonConvert.SerializeObject(levelSave);
+        RealtimeDatabase.PushLevel(save);
         File.WriteAllText(Application.persistentDataPath + "\\save.json", save);
     }
 }
