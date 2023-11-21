@@ -10,10 +10,14 @@ public class ObjectBrush : Brush
     {
         Button = GetComponent<Button>();
         Button.onClick.AddListener(OnClick);
+        Image = GetComponent<Image>();
+        UnselectedSprite = Image.sprite;
     }
 
     private void Update()
     {
+        Image.sprite = Drawer.CurrentBrush == this ? selectedSprite : UnselectedSprite;
+        
         Button.interactable = selectedOnTileObject switch
         {
             OnTileObject.None => throw new ArgumentOutOfRangeException(),
@@ -25,12 +29,18 @@ public class ObjectBrush : Brush
         };
     }
 
-    public override void Draw(Tile tile)
+    public override bool Draw(Tile tile)
 	{
-        if (!Button.interactable) return;
+        if (!Button.interactable) return false;
         
-        PlaceObject(tile, selectedOnTileObject, null);
-	}
+        if (Check(tile, selectedOnTileObject))
+        {
+            PlaceObject(tile, selectedOnTileObject, null);
+            return true;
+        }
+
+        return false;
+    }
 	
 	private void PlaceObject(Tile tile, OnTileObject onTileObject, LeverClass lever)
     {

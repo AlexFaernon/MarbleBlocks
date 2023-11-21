@@ -16,10 +16,11 @@ public class Eraser : Brush
         Button.onClick.AddListener(OnClick);
 	}
 
-	public override void Draw(Tile tile)
+	public override bool Draw(Tile tile)
 	{
 		EraseObject(tile);
-	}
+        return true;
+    }
 	
 	private void EraseObject(Tile tile)
         {

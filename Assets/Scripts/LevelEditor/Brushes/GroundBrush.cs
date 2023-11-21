@@ -10,13 +10,26 @@ public class GroundBrush : Brush
 	{
 		Button = GetComponent<Button>();
 		Button.onClick.AddListener(OnClick);
+		Image = GetComponent<Image>();
+		UnselectedSprite = Image.sprite;
 	}
 
-	public override void Draw(Tile tile)
+	private void Update()
 	{
-		if (!Button.interactable) return;
+		Image.sprite = Drawer.CurrentBrush == this ? selectedSprite : UnselectedSprite;
+	}
+
+	public override bool Draw(Tile tile)
+	{
+		if (!Button.interactable) return false;
 		
-		ChangeGround(tile, isGrass);
+		if (Check(tile, isGrass))
+		{
+			ChangeGround(tile, isGrass);
+			return true;
+		}
+
+		return false;
 	}
 	
 	private static void ChangeGround(Tile tile, bool isGrass)

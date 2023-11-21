@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Drawer : MonoBehaviour
 {
-    public static Action<Tile> CurrentBrush;
+    public static Brush CurrentBrush;
     public static readonly Stack<Action> Undo = new();
     public static readonly Stack<Action> Redo = new();
 
@@ -48,8 +48,11 @@ public class Drawer : MonoBehaviour
     private void Draw(Tile targetTile)
     {
         if (CurrentBrush is null || targetTile.IsEdge) return;
-        Redo.Clear();
-        CurrentBrush(targetTile);
+        
+        if (CurrentBrush.Draw(targetTile))
+        {
+            Redo.Clear();
+        }
     }
 
     private void OnDestroy()

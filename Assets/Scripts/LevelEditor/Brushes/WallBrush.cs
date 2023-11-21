@@ -11,15 +11,23 @@ public class WallBrush : Brush
 	{
 		Button = GetComponent<Button>();
 		Button.onClick.AddListener(OnClick);
+		Image = GetComponent<Image>();
+		UnselectedSprite = Image.sprite;
 	}
 	
-	public override void Draw(Tile tile)
+	public override bool Draw(Tile tile)
 	{
-		if (!Button.interactable) return;
+		if (!Button.interactable) return false;
 		
 		PlaceWall(tile, Side, null);
+		return true;
 	}
-	
+
+	private void Update()
+	{
+		Image.sprite = Drawer.CurrentBrush == this ? selectedSprite : UnselectedSprite;
+	}
+
 	private void PlaceWall(Tile tile, Side side, WallClass wallClass)
 	{
 		var wall = tile.GetWall(side);

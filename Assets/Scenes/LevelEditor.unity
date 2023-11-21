@@ -621,7 +621,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 5610050262307082003, guid: 39846da7fa8955349ba43a82fd404b4e, type: 3}
-  fieldSize: {x: 7, y: 7}
   loadLevel: 0
 --- !u!156049354 &58077810
 Grid:
@@ -686,7 +685,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87968e16ab9e5e944a93fa77d191dfb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileManager: {fileID: 58077809}
 --- !u!114 &58077817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -699,7 +697,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31f330c3d7da1a842a48cf930e22bacc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileManager: {fileID: 58077809}
   minScale: 0
   maxScale: 0.5
   ignoreGuiFingers: 1
@@ -1694,6 +1691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb4cd33cf8fc4b088d5113a36b9ca957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
   isGrass: 1
 --- !u!1 &192411707
 GameObject:
@@ -2259,6 +2257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44156df999b47ad898ecf2c5420e7e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
   grid: {fileID: 58077810}
   selectedCharacter: {fileID: 3384081889145027817, guid: 398a95025ebfb944ca66c46c95350b65, type: 3}
 --- !u!1 &234918572
@@ -4961,7 +4960,6 @@ MonoBehaviour:
   characterRaycaster: {fileID: 68655900}
   editorRaycaster: {fileID: 68655899}
   characterManager: {fileID: 58077819}
-  tileManager: {fileID: 58077809}
   levelSaveManager: {fileID: 58077818}
 --- !u!1 &509526312
 GameObject:
@@ -5272,6 +5270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1df9ac361640308498a4dc50a10f55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
   isDoor: 0
   isOpened: 0
 --- !u!1 &515722097
@@ -5715,6 +5714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0a5b79f89f467b9aa630afc951272b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
   selectedOnTileObject: 1
 --- !u!1 &528072486
 GameObject:
@@ -6225,6 +6225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0a5b79f89f467b9aa630afc951272b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
   selectedOnTileObject: 3
 --- !u!1 &627066311
 GameObject:
@@ -6744,6 +6745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0a5b79f89f467b9aa630afc951272b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
   selectedOnTileObject: 4
 --- !u!1 &698980184
 GameObject:
@@ -7737,7 +7739,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: {x: 7, y: 7}
   selected: {fileID: 958581424}
-  tileManager: {fileID: 58077809}
 --- !u!1 &785571470
 GameObject:
   m_ObjectHideFlags: 0
@@ -8360,7 +8361,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: {x: 11, y: 11}
   selected: {fileID: 332888010}
-  tileManager: {fileID: 58077809}
 --- !u!1 &835436413
 GameObject:
   m_ObjectHideFlags: 0
@@ -15411,6 +15411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1df9ac361640308498a4dc50a10f55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
   isDoor: 1
   isOpened: 1
 --- !u!1 &1144340305
@@ -16576,6 +16577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44156df999b47ad898ecf2c5420e7e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
   grid: {fileID: 58077810}
   selectedCharacter: {fileID: 2008194922503646696, guid: 2fc49fa0b92ea174e9fd3be3b8edf8fc, type: 3}
 --- !u!1 &1224324030
@@ -17873,6 +17875,7 @@ GameObject:
   - component: {fileID: 1403680033}
   - component: {fileID: 1403680032}
   - component: {fileID: 1403680035}
+  - component: {fileID: 1403680036}
   m_Layer: 5
   m_Name: Erase
   m_TagString: Untagged
@@ -17944,19 +17947,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1403680033}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Brushes, Assembly-CSharp
-        m_MethodName: RemoveObject
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1403680033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18015,6 +18006,23 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &1403680036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403680030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db1a571fd1604a4c94c608c38e76c6db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedSprite: {fileID: 0}
+  feesh: {fileID: 7478366469092275023, guid: 1aee358c70c8aa0469c8f64ea7fb411b, type: 3}
+  jumper: {fileID: 3384081889145027817, guid: 398a95025ebfb944ca66c46c95350b65, type: 3}
+  sonic: {fileID: 2008194922503646696, guid: 2fc49fa0b92ea174e9fd3be3b8edf8fc, type: 3}
+  grid: {fileID: 58077810}
 --- !u!1 &1407225455
 GameObject:
   m_ObjectHideFlags: 0
@@ -18305,6 +18313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44156df999b47ad898ecf2c5420e7e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
   grid: {fileID: 58077810}
   selectedCharacter: {fileID: 7478366469092275023, guid: 1aee358c70c8aa0469c8f64ea7fb411b, type: 3}
 --- !u!1 &1419957867
@@ -19438,7 +19447,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: {x: 9, y: 9}
   selected: {fileID: 273664183}
-  tileManager: {fileID: 58077809}
 --- !u!1 &1681438058
 GameObject:
   m_ObjectHideFlags: 0
@@ -19894,6 +19902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1df9ac361640308498a4dc50a10f55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
   isDoor: 1
   isOpened: 0
 --- !u!1 &1720252227
@@ -22224,6 +22233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0a5b79f89f467b9aa630afc951272b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
   selectedOnTileObject: 2
 --- !u!1 &1972191628
 GameObject:
@@ -23611,6 +23621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb4cd33cf8fc4b088d5113a36b9ca957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
   isGrass: 0
 --- !u!1 &2128419545
 GameObject:

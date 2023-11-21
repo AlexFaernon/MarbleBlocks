@@ -21,6 +21,7 @@ public class Tile : MonoBehaviour, IPointerClickHandler
     [HideInInspector] public bool isFeeshOnTile;
     [HideInInspector] public bool isJumperOnTile;
     [HideInInspector] public bool isSonicOnTile;
+    public bool AnyCharacterOnTile => isSonicOnTile || isJumperOnTile || isFeeshOnTile;
     public static UnityEvent<Tile> OnTileClick = new ();
     
     public TileClass TileClass
@@ -47,7 +48,7 @@ public class Tile : MonoBehaviour, IPointerClickHandler
                 lever.gameObject.SetActive(true);
             }
         }
-        get => lever.GetSave();
+        get => lever.gameObject.activeSelf ? lever.GetSave() : null;
     }
 
     public bool Spike

@@ -13,17 +13,27 @@ public class CharacterBrush : Brush
 	{
 		Button = GetComponent<Button>();
 		Button.onClick.AddListener(OnClick);
+		Image = GetComponent<Image>();
+		UnselectedSprite = Image.sprite;
 	}
 
-	public override void Draw(Tile tile)
+	public override bool Draw(Tile tile)
 	{
-		if (!Button.interactable) return;
+		if (!Button.interactable) return false;
 		
-		PlaceCharacter(tile, selectedCharacter);
+		if (Check(tile, selectedCharacter.tag))
+		{
+			PlaceCharacter(tile, selectedCharacter);
+			return true;
+		}
+
+		return false;
 	}
 
 	private void Update()
 	{
+		Image.sprite = Drawer.CurrentBrush == this ? selectedSprite : UnselectedSprite;
+		
 		Button.interactable = selectedCharacter.tag switch
 		{
 			"Sonic" => Sonic.Count < 1,
