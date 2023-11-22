@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class EditorLevelStart : MonoBehaviour
 {
@@ -11,7 +13,18 @@ public class EditorLevelStart : MonoBehaviour
     [SerializeField] private CharacterManager characterManager;
     [SerializeField] private LevelSaveManager levelSaveManager;
     private bool _isTesting;
-    
+    private Button _button;
+
+    private void Awake()
+    {
+        _button = GetComponent<Button>();
+    }
+
+    private void Update()
+    {
+        _button.interactable = Exit.Count < 1 && (Sonic.Count == 1 || Jumper.Count == 1 || Feesh.Count == 1);
+    }
+
     public void Switch()
     {
         _isTesting = !_isTesting;

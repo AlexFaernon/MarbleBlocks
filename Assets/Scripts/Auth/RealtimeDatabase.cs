@@ -7,7 +7,11 @@ using UnityEngine;
 using Firebase;
 using Firebase.Extensions;
 using Newtonsoft.Json;
+using System;
+using System.Threading.Tasks;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class RealtimeDatabase : MonoBehaviour
 {
@@ -25,19 +29,31 @@ public class RealtimeDatabase : MonoBehaviour
         });
     }
     
-    public static void ExportRandomLevel()
+    public static IEnumerator ExportRandomLevel()
     {
-        FirebaseDatabase.DefaultInstance.RootReference.GetValueAsync().ContinueWithOnMainThread(task => {
-            if (task.IsFaulted) {
-                Debug.Log($"Error {task.Exception}");
-            }
-            else if (task.IsCompleted) {
-                DataSnapshot snapshot = task.Result;
-                var randomKey = GetRandomKey(snapshot);
-                Debug.Log(randomKey);
-                File.WriteAllText(Application.persistentDataPath + "\\snapshot.json", JsonConvert.SerializeObject(snapshot.Child(randomKey).Value));
-            }
-        });;
+        LevelClass level = null;
+        var loadLevel = FirebaseDatabase.DefaultInstance.RootReference.GetValueAsync();
+        loadLevel.ContinueWithOnMainThread(task =>
+            {
+                if (task.IsFaulted)
+                {
+                    Debug.Log($"Error {task.Exception}");
+                }
+                else if (task.IsCompleted)
+                {
+                    DataSnapshot snapshot = task.Result;
+                    var randomKey = GetRandomKey(snapshot);
+                    Debug.Log(randomKey);
+                    //File.WriteAllText(Application.persistentDataPath + "\\snapshot.json", JsonConvert.SerializeObject(snapshot.Child(randomKey).Value));
+                    var levelJson = snapshot.Child(randomKey).GetRawJsonValue();
+                    level = JsonConvert.DeserializeObject<LevelClass>(levelJson);
+                    Debug.Log("Level loaded");
+                }
+            });
+        yield return new WaitUntil(() => loadLevel.IsCompleted);
+
+        LevelSaveManager.LoadedLevel = level;
+        SceneManager.LoadScene("Level");
     }
     
     private static string GetRandomKey(DataSnapshot snapshot)

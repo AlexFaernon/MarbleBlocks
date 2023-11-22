@@ -2286,7 +2286,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31f330c3d7da1a842a48cf930e22bacc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileManager: {fileID: 1321951031}
+  minScale: 0
+  maxScale: 0
   ignoreGuiFingers: 1
   requiredFingerCount: 0
   wheelSensitivity: 0
@@ -11322,7 +11323,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 5610050262307082003, guid: 39846da7fa8955349ba43a82fd404b4e, type: 3}
-  fieldSize: {x: 7, y: 7}
   loadLevel: 1
 --- !u!114 &1321951032
 MonoBehaviour:
@@ -11336,10 +11336,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b919b96d00742d1ab8b8a580b768865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  feesh: {x: 0, y: 0}
-  jumper: {x: 0, y: 0}
-  sonic: {x: 0, y: 0}
   tileManager: {fileID: 1321951031}
+  isEditor: 0
 --- !u!114 &1321951033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11403,7 +11401,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87968e16ab9e5e944a93fa77d191dfb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileManager: {fileID: 1321951031}
 --- !u!114 &1321951037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13524,7 +13521,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 32
   useTouch: 1
-  useHover: 1
+  useHover: 0
   useMouse: 1
   useSimulator: 1
   disableMouseEmulation: 1

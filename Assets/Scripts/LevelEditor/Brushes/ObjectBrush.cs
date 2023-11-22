@@ -24,7 +24,7 @@ public class ObjectBrush : Brush
             OnTileObject.Spike => Spike.Count < LevelObjectsLimits.Spike,
             OnTileObject.Whirlpool => Whirlpool.Count < LevelObjectsLimits.Whirlpool,
             OnTileObject.Lever => Lever.Count < LevelObjectsLimits.Lever,
-            OnTileObject.Exit => ExitScript.Count < LevelObjectsLimits.Exit,
+            OnTileObject.Exit => Exit.Count < LevelObjectsLimits.Exit,
             _ => throw new ArgumentOutOfRangeException()
         };
     }

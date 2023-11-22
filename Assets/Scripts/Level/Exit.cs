@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ExitScript : MonoBehaviour
+public class Exit : MonoBehaviour
 {
     public static int Count;
     private void OnTriggerEnter2D(Collider2D col)
