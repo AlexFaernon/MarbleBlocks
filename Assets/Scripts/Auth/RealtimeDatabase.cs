@@ -50,7 +50,7 @@ public class RealtimeDatabase : MonoBehaviour
                     Debug.Log("Level loaded");
                 }
             });
-        yield return new WaitUntil(() => loadLevel.IsCompleted);
+        yield return new WaitUntil(() => level is not null && loadLevel.IsCompleted);
 
         LevelSaveManager.LoadedLevel = level;
         SceneManager.LoadScene("Level");
