@@ -25,12 +25,13 @@ public class AuthManager : MonoBehaviour
     public TMP_InputField passwordRegisterField;
     public TMP_InputField passwordRegisterVerifyField;
     public TMP_Text warningRegisterText;
-    
-    void Awake()
+
+    private void Awake()
     {
-        // чек зависимостей
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
         {
+            if (auth is not null)
+                return;
             dependencyStatus = task.Result;
             if (dependencyStatus == DependencyStatus.Available)
             {
@@ -41,6 +42,8 @@ public class AuthManager : MonoBehaviour
                 Debug.LogError("Could not resolve all Firebase dependencies: " + dependencyStatus);
             }
         });
+        emailLoginField.text = PlayerPrefs.GetString("Login");
+        passwordLoginField.text = PlayerPrefs.GetString("Password");
     }
 
     private void InitializeFirebase()
@@ -51,6 +54,8 @@ public class AuthManager : MonoBehaviour
 
     public void LoginButton()
     {
+        PlayerPrefs.SetString("Login", emailLoginField.text);
+        PlayerPrefs.SetString("Password", passwordLoginField.text);
         StartCoroutine(Login(emailLoginField.text, passwordLoginField.text));
     }
 
@@ -59,17 +64,16 @@ public class AuthManager : MonoBehaviour
         StartCoroutine(Register(emailRegisterField.text, passwordRegisterField.text, usernameRegisterField.text));
     }
 
-    private IEnumerator Login(string _email, string _password)
+    private IEnumerator Login(string email, string password)
     {
-        Task<AuthResult> LoginTask = auth.SignInWithEmailAndPasswordAsync(_email, _password);
-        // здесь нужно подождать пока firebase проверит логин и пароль
-        yield return new WaitUntil(predicate: () => LoginTask.IsCompleted);
+        Task<AuthResult> loginTask = auth.SignInWithEmailAndPasswordAsync(email, password);
+        yield return new WaitUntil(predicate: () => loginTask.IsCompleted);
     
-        if (LoginTask.Exception != null)
+        if (loginTask.Exception != null)
         {
-            Debug.LogWarning(message: $"Failed to register task with {LoginTask.Exception}");
-            FirebaseException firebaseEx = LoginTask.Exception.GetBaseException() as FirebaseException;
-            AuthError errorCode = (AuthError)firebaseEx.ErrorCode;
+            Debug.LogWarning(message: $"Failed to register task with {loginTask.Exception}");
+            FirebaseException firebaseEx = loginTask.Exception.GetBaseException() as FirebaseException;
+            AuthError errorCode = (AuthError)firebaseEx!.ErrorCode;
     
             string message = "Login Failed!";
             switch (errorCode)
@@ -95,7 +99,7 @@ public class AuthManager : MonoBehaviour
         }
         else
         {
-            User = LoginTask.Result.User;
+            User = loginTask.Result.User;
             Debug.LogFormat("User signed in successfully: {0} ({1})", User.DisplayName, User.Email);
             warningLoginText.text = "";
             confirmLoginText.text = "Logged In";
@@ -103,9 +107,9 @@ public class AuthManager : MonoBehaviour
         }
     }
 
-    private IEnumerator Register(string _email, string _password, string _username)
+    private IEnumerator Register(string email, string password, string username)
     {
-        if (_username == "")
+        if (username == "")
         {
             warningRegisterText.text = "Missing Username";
         }
@@ -115,15 +119,14 @@ public class AuthManager : MonoBehaviour
         }
         else
         {
-            Task<AuthResult> RegisterTask = auth.CreateUserWithEmailAndPasswordAsync(_email, _password);
-            // ждем как в логине
-            yield return new WaitUntil(predicate: () => RegisterTask.IsCompleted);
+            Task<AuthResult> registerTask = auth.CreateUserWithEmailAndPasswordAsync(email, password);
+            yield return new WaitUntil(predicate: () => registerTask.IsCompleted);
 
-            if (RegisterTask.Exception != null)
+            if (registerTask.Exception != null)
             {
-                Debug.LogWarning(message: $"Failed to register task with {RegisterTask.Exception}");
-                FirebaseException firebaseEx = RegisterTask.Exception.GetBaseException() as FirebaseException;
-                AuthError errorCode = (AuthError)firebaseEx.ErrorCode;
+                Debug.LogWarning(message: $"Failed to register task with {registerTask.Exception}");
+                FirebaseException firebaseEx = registerTask.Exception.GetBaseException() as FirebaseException;
+                AuthError errorCode = (AuthError)firebaseEx!.ErrorCode;
                 // todo распилить ошибки в разные строки
                 string message = "Register Failed!";
                 switch (errorCode)
@@ -146,19 +149,19 @@ public class AuthManager : MonoBehaviour
             }
             else
             {
-                User = RegisterTask.Result.User;
+                User = registerTask.Result.User;
 
                 if (User != null)
                 {
-                    UserProfile profile = new UserProfile { DisplayName = _username };
+                    UserProfile profile = new UserProfile { DisplayName = username };
 
-                    Task ProfileTask = User.UpdateUserProfileAsync(profile);
-                    yield return new WaitUntil(predicate: () => ProfileTask.IsCompleted);
+                    Task profileTask = User.UpdateUserProfileAsync(profile);
+                    yield return new WaitUntil(predicate: () => profileTask.IsCompleted);
 
-                    if (ProfileTask.Exception != null)
+                    if (profileTask.Exception != null)
                     {
-                        Debug.LogWarning(message: $"Failed to register task with {ProfileTask.Exception}");
-                        FirebaseException firebaseEx = ProfileTask.Exception.GetBaseException() as FirebaseException;
+                        Debug.LogWarning(message: $"Failed to register task with {profileTask.Exception}");
+                        FirebaseException firebaseEx = profileTask.Exception.GetBaseException() as FirebaseException;
                         AuthError errorCode = (AuthError)firebaseEx.ErrorCode;
                         warningRegisterText.text = "Username Set Failed!";
                     }
@@ -169,7 +172,7 @@ public class AuthManager : MonoBehaviour
                         warningRegisterText.text = "";
                         
                         // подтверждение учетки через почту, можно вырезать
-                        Firebase.Auth.FirebaseUser user = auth.CurrentUser;
+                        FirebaseUser user = auth.CurrentUser;
                         if (user != null) {
                             user.SendEmailVerificationAsync().ContinueWith(task => {
                                 if (task.IsCanceled) {

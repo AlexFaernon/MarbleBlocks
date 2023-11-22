@@ -22,7 +22,7 @@ public class EditorLevelStart : MonoBehaviour
 
     private void Update()
     {
-        _button.interactable = Exit.Count < 1 && (Sonic.Count == 1 || Jumper.Count == 1 || Feesh.Count == 1);
+        _button.interactable = Exit.Count > 1 && (Sonic.Count == 1 || Jumper.Count == 1 || Feesh.Count == 1);
     }
 
     public void Switch()

@@ -19,19 +19,17 @@ public class UISwitcher : MonoBehaviour
         else if (Instance != null)
         {
             Destroy(this);
-        }    
+        }
+
+        if (AuthManager.auth == null) return;
+        register.SetActive(false);
+        login.SetActive(false);
     }
 
     public void LoginOn()
     {
         register.SetActive(false);
         login.SetActive(true);
-    }
-    
-    public void RegisterOn()
-    {
-        login.SetActive(false);
-        register.SetActive(true);
     }
 
     public void CloseLogin()
