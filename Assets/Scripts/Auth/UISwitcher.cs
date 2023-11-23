@@ -7,6 +7,7 @@ public class UISwitcher : MonoBehaviour
 {
     [SerializeField] private GameObject register;
     [SerializeField] private GameObject login;
+    [SerializeField] private GameObject authWindow;
 
     public static UISwitcher Instance;
 
@@ -22,8 +23,7 @@ public class UISwitcher : MonoBehaviour
         }
 
         if (AuthManager.auth == null) return;
-        register.SetActive(false);
-        login.SetActive(false);
+        authWindow.SetActive(false);
     }
 
     public void LoginOn()
@@ -32,8 +32,8 @@ public class UISwitcher : MonoBehaviour
         login.SetActive(true);
     }
 
-    public void CloseLogin()
+    public void CloseAuth()
     {
-        login.SetActive(false);
+        authWindow.SetActive(false);
     }
 }
