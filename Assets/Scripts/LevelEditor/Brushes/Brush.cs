@@ -31,6 +31,8 @@ public abstract class Brush : MonoBehaviour
 				return !tile.AnyCharacterOnTile;
 			case OnTileObject.Exit:
 				return !tile.AnyCharacterOnTile;
+			case OnTileObject.WaterLily:
+				return !tile.AnyCharacterOnTile && !tile.IsGrass;
 			default:
 				throw new ArgumentOutOfRangeException(nameof(onTileObject), onTileObject, null);
 		}

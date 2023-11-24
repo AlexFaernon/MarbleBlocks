@@ -37,23 +37,20 @@ public class CharacterManager : MonoBehaviour
     {
         if (Sonic)
         {
-            Destroy(Sonic.gameObject);
-            var sonicPos = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.SonicPosition);
-            Instantiate(sonic, sonicPos, Quaternion.identity);
+            Sonic.Reset();
+            Sonic.transform.position = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.SonicPosition);
         }
         
         if (Jumper)
         {
-            Destroy(Jumper.gameObject);
-            var jumperPos = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.JumperPosition);
-            Instantiate(jumper, jumperPos, Quaternion.identity);
+            Jumper.Reset();
+            Jumper.transform.position = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.JumperPosition);
         }
 
         if (Feesh)
         {
-            Destroy(Feesh.gameObject);
-            var feeshPos = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.FeeshPosition);
-            Instantiate(feesh, feeshPos, Quaternion.identity);
+            Feesh.Reset();
+            Feesh.transform.position = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.FeeshPosition);
         }
     }
 }

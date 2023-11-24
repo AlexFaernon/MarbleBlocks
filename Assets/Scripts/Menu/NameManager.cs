@@ -7,7 +7,7 @@ public class NameManager : MonoBehaviour
     [SerializeField] private TMP_InputField inputField;
     [SerializeField] private Button confirm;
 
-    public static string PlayerName = "";
+    public static string PlayerName = "TRW";
 
     private void Awake()
     {

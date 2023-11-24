@@ -4,5 +4,6 @@
     Spike,
     Whirlpool,
     Lever,
-    Exit
+    Exit,
+    WaterLily
 }

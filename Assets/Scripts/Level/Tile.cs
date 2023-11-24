@@ -15,6 +15,7 @@ public class Tile : MonoBehaviour, IPointerClickHandler
     [SerializeField] private GameObject spike;
     [SerializeField] private Lever lever;
     [SerializeField] private GameObject highlight;
+    [SerializeField] private GameObject waterLily;
     private SpriteRenderer _spriteRenderer;
 
     [HideInInspector] public Vector2Int gridPosition;
@@ -67,6 +68,12 @@ public class Tile : MonoBehaviour, IPointerClickHandler
     {
         get => exit.activeSelf;
         set => exit.SetActive(value);
+    }
+
+    public bool WaterLily
+    {
+        get => waterLily.activeSelf;
+        set => waterLily.SetActive(value);
     }
     
     public bool IsEdge { get; set; }
@@ -139,6 +146,10 @@ public class Tile : MonoBehaviour, IPointerClickHandler
         {
             tileObject = OnTileObject.Exit;
         }
+        else if (WaterLily)
+        {
+            tileObject = OnTileObject.WaterLily;
+        }
 
         var walls = new Dictionary<Side, WallClass>
         {
@@ -175,6 +186,11 @@ public class Tile : MonoBehaviour, IPointerClickHandler
             Whirlpool = false;
             return OnTileObject.Whirlpool;
         }
+        if (WaterLily)
+        {
+            WaterLily = false;
+            return OnTileObject.WaterLily;
+        }
 
         return OnTileObject.None;
     }
@@ -208,6 +224,9 @@ public class Tile : MonoBehaviour, IPointerClickHandler
                 break;
             case OnTileObject.Exit:
                 exit.SetActive(true);
+                break;
+            case OnTileObject.WaterLily:
+                WaterLily = true;
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

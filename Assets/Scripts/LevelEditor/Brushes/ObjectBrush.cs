@@ -25,6 +25,7 @@ public class ObjectBrush : Brush
             OnTileObject.Whirlpool => Whirlpool.Count < LevelObjectsLimits.Whirlpool,
             OnTileObject.Lever => Lever.Count < LevelObjectsLimits.Lever,
             OnTileObject.Exit => Exit.Count < LevelObjectsLimits.Exit,
+            OnTileObject.WaterLily => WaterLily.Count < LevelObjectsLimits.WaterLily,
             _ => throw new ArgumentOutOfRangeException()
         };
     }
@@ -67,6 +68,9 @@ public class ObjectBrush : Brush
             case OnTileObject.Exit:
                 tile.Exit = true;
                 break;
+            case OnTileObject.WaterLily:
+                tile.WaterLily = true;
+                break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
@@ -93,6 +97,9 @@ public class ObjectBrush : Brush
                 break;
             case OnTileObject.Exit:
                 tile.Exit = true;
+                break;
+            case OnTileObject.WaterLily:
+                tile.WaterLily = true;
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

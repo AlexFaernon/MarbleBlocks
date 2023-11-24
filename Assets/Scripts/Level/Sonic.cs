@@ -21,10 +21,13 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
     public bool IsMoving
     {
         get => _isMoving;
-        set
+        private set
         {
             _isMoving = value;
-            if (_isMoving) return;
+            if (_isMoving)
+            {
+                CurrentTile.WaterLily = false;
+            }
             
             if (IsActive)
             {
@@ -72,9 +75,16 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
         }
     }
 
+    public void Reset()
+    {
+        IsActive = false;
+        IsMoving = false;
+        StopAllCoroutines();
+    }
+
     private void Update()
     {
-        if (!CurrentTile.IsGrass && !CurrentTile.isFeeshOnTile && !IsMoving || CurrentTile.IsEdge)
+        if (!CurrentTile.IsGrass && !CurrentTile.WaterLily && !CurrentTile.isFeeshOnTile && !IsMoving || CurrentTile.IsEdge)
         {
             GameObject.FindWithTag("Defeat").transform.GetChild(0).gameObject.SetActive(true);
             Destroy(gameObject);

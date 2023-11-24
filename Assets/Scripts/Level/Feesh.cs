@@ -78,6 +78,14 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
         }
     }
 
+    public void Reset()
+    {
+        IsMoving = false;
+        IsActive = false;
+        StopAllCoroutines();
+        _collider.enabled = true;
+    }
+
     private IEnumerator Move()
     {
         var currentTile = CurrentTile;
@@ -151,7 +159,7 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
         }
         
         return tile.AvailableToMoveThroughSide(movingSide) && nextTile.AvailableToMoveThroughSide(enterSide) &&
-               !nextTile.IsGrass && !nextTile.Whirlpool && !nextTile.IsEdge;
+               !nextTile.IsGrass && !nextTile.Whirlpool && !nextTile.IsEdge && !nextTile.WaterLily;
     }
 
     private Stack<Tile> GetPathToTile(Tile targetTile)

@@ -30,7 +30,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
         }
     }
 
-    public bool IsMoving { get; set; }
+    public bool IsMoving { get; private set; }
     
     private void Awake()
     {
@@ -41,7 +41,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
 
     void Update()
     {
-        if (!CurrentTile.IsGrass && !CurrentTile.isFeeshOnTile && !IsMoving || CurrentTile.IsEdge)
+        if (!CurrentTile.IsGrass && !CurrentTile.WaterLily && !CurrentTile.isFeeshOnTile && !IsMoving || CurrentTile.IsEdge)
         {
             GameObject.FindWithTag("Defeat").transform.GetChild(0).gameObject.SetActive(true);
             Destroy(gameObject);
@@ -50,7 +50,6 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
 
     private IEnumerator Move(Tile targetTile)
     {
-
         var movingVector = _movingSide switch
         {
             Side.North => Vector2.up,
@@ -68,22 +67,26 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
             animator.SetTrigger("DOWN");
         if (movingVector == Vector2.left)
             animator.SetTrigger("LEFT"); 
+        
         _collider2D.enabled = false;
+        
         while ((transform.position - targetTile.transform.position).magnitude > 0.1f)
         {
             var direction = targetTile.transform.position - transform.position;
             transform.Translate(Time.deltaTime * speed * direction.normalized);
             yield return new WaitForEndOfFrame();
         }
+        
         animator.ResetTrigger("RIGHT");
         animator.ResetTrigger("UP");
         animator.ResetTrigger("DOWN");
         animator.ResetTrigger("LEFT");
+        
         transform.position = targetTile.transform.position;
-
         StepCounter.Count++;
-        IsMoving = false;
         _collider2D.enabled = true;
+        CurrentTile = targetTile;
+        IsMoving = false;
     }
 
     public void StartMoving(Side side)
@@ -97,10 +100,18 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
         if (targetTile != CurrentTile)
         {
             IsMoving = true;
+            CurrentTile.WaterLily = false;
             StartCoroutine(Move(targetTile));
         }
     }
-    
+
+    public void Reset()
+    {
+        IsMoving = false;
+        IsActive = false;
+        StopAllCoroutines();
+    }
+
     private Tile GetTargetTile(Side movingSide)
     {
         var enterSide = movingSide switch
