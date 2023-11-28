@@ -16,6 +16,7 @@ public class Tile : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Lever lever;
     [SerializeField] private GameObject highlight;
     [SerializeField] private GameObject waterLily;
+    [SerializeField] private Teleport teleport;
     private SpriteRenderer _spriteRenderer;
 
     [HideInInspector] public Vector2Int gridPosition;
@@ -75,6 +76,23 @@ public class Tile : MonoBehaviour, IPointerClickHandler
         get => waterLily.activeSelf;
         set => waterLily.SetActive(value);
     }
+
+    public TeleportClass Teleport
+    {
+        set
+        {
+            if (value is null)
+            {
+                teleport.gameObject.SetActive(false);
+            }
+            else
+            {
+                teleport.TeleportClass = value;
+                teleport.gameObject.SetActive(true);
+            }
+        }
+        get => teleport.gameObject.activeSelf ? teleport.TeleportClass : null;
+    }
     
     public bool IsEdge { get; set; }
     
@@ -130,25 +148,29 @@ public class Tile : MonoBehaviour, IPointerClickHandler
     {
         var tileObject = OnTileObject.None;
 
-        if (lever.gameObject.activeSelf)
+        if (Lever is not null)
         {
             tileObject = OnTileObject.Lever;
         }
-        else if (whirlpool.activeSelf)
+        else if (Whirlpool)
         {
             tileObject = OnTileObject.Whirlpool;
         }
-        else if (spike.activeSelf)
+        else if (Spike)
         {
             tileObject = OnTileObject.Spike;
         }
-        else if (exit.activeSelf)
+        else if (Exit)
         {
             tileObject = OnTileObject.Exit;
         }
         else if (WaterLily)
         {
             tileObject = OnTileObject.WaterLily;
+        }
+        else if (Teleport is not null)
+        {
+            tileObject = OnTileObject.Teleport;
         }
 
         var walls = new Dictionary<Side, WallClass>
@@ -158,15 +180,13 @@ public class Tile : MonoBehaviour, IPointerClickHandler
             [Side.West] = westWall.GetSave(),
             [Side.East] = eastWall.GetSave()
         };
-
-        var leverClass = tileObject == OnTileObject.Lever ? lever.GetSave() : null;
         
-        return new TileClass {IsGrass = IsGrass, OnTileObject = tileObject, Walls = walls, LeverClass = leverClass};
+        return new TileClass {IsGrass = IsGrass, OnTileObject = tileObject, Walls = walls, LeverClass = Lever, TeleportClass = Teleport};
     }
 
     public OnTileObject ClearOnTileObject()
     {
-        if (lever.gameObject.activeSelf)
+        if (Lever is not null)
         {
             Lever = null;
             return OnTileObject.Lever;
@@ -191,6 +211,11 @@ public class Tile : MonoBehaviour, IPointerClickHandler
             WaterLily = false;
             return OnTileObject.WaterLily;
         }
+        if (Teleport is not null)
+        {
+            Teleport = null;
+            return OnTileObject.Teleport;
+        }
 
         return OnTileObject.None;
     }
@@ -213,20 +238,22 @@ public class Tile : MonoBehaviour, IPointerClickHandler
             case OnTileObject.None:
                 break;
             case OnTileObject.Spike:
-                spike.SetActive(true);
+                Spike = true;
                 break;
             case OnTileObject.Whirlpool:
-                whirlpool.SetActive(true);
+                Whirlpool = true;
                 break;
             case OnTileObject.Lever:
-                lever.LeverClass = tileClass.LeverClass;
-                lever.gameObject.SetActive(true);
+                Lever = tileClass.LeverClass;
                 break;
             case OnTileObject.Exit:
-                exit.SetActive(true);
+                Exit = true;
                 break;
             case OnTileObject.WaterLily:
                 WaterLily = true;
+                break;
+            case OnTileObject.Teleport:
+                Teleport = tileClass.TeleportClass;
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

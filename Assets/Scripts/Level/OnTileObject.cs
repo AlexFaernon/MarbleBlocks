@@ -5,5 +5,6 @@
     Whirlpool,
     Lever,
     Exit,
-    WaterLily
+    WaterLily,
+    Teleport,
 }

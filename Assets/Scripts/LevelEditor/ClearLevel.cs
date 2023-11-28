@@ -14,8 +14,8 @@ public class ClearLevel : MonoBehaviour
         Drawer.Undo.Clear();
         Drawer.Redo.Clear();
         tileManager.ClearAllTiles();
-        Destroy(GameObject.FindWithTag("Sonic"));
-        Destroy(GameObject.FindWithTag("Jumper"));
-        Destroy(GameObject.FindWithTag("Feesh"));
+        Destroy(CharacterManager.Sonic.gameObject);
+        Destroy(CharacterManager.Jumper.gameObject);
+        Destroy(CharacterManager.Feesh.gameObject);
     }
 }

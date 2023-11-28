@@ -26,6 +26,7 @@ public class ObjectBrush : Brush
             OnTileObject.Lever => Lever.Count < LevelObjectsLimits.Lever,
             OnTileObject.Exit => Exit.Count < LevelObjectsLimits.Exit,
             OnTileObject.WaterLily => WaterLily.Count < LevelObjectsLimits.WaterLily,
+            OnTileObject.Teleport => Teleport.Count < LevelObjectsLimits.Teleport,
             _ => throw new ArgumentOutOfRangeException()
         };
     }
@@ -36,16 +37,17 @@ public class ObjectBrush : Brush
         
         if (Check(tile, selectedOnTileObject))
         {
-            PlaceObject(tile, selectedOnTileObject, null);
+            PlaceObject(tile, selectedOnTileObject, null, null);
             return true;
         }
 
         return false;
     }
 	
-	private void PlaceObject(Tile tile, OnTileObject onTileObject, LeverClass lever)
+	private void PlaceObject(Tile tile, OnTileObject onTileObject, LeverClass lever, TeleportClass teleport)
     {
         var oldLever = tile.Lever;
+        var oldTeleport = tile.Teleport;
         var oldOnTileObject = tile.ClearOnTileObject();
         switch (onTileObject)
         {
@@ -71,16 +73,24 @@ public class ObjectBrush : Brush
             case OnTileObject.WaterLily:
                 tile.WaterLily = true;
                 break;
+            case OnTileObject.Teleport:
+                teleport ??= new TeleportClass
+                {
+                    Color = Color
+                };
+                tile.Teleport = teleport;
+                break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
             
-        Drawer.Undo.Push(() => RevertObject(tile, oldOnTileObject, oldLever));
+        Drawer.Undo.Push(() => RevertObject(tile, oldOnTileObject, oldLever, oldTeleport));
     }
     
-    private void RevertObject(Tile tile, OnTileObject oldOnTileObject, LeverClass oldLever)
+    private void RevertObject(Tile tile, OnTileObject oldOnTileObject, LeverClass oldLever, TeleportClass oldTeleport)
     {
         var lever = tile.Lever;
+        var teleport = tile.Teleport;
         var onTileObject = tile.ClearOnTileObject();
         switch (oldOnTileObject)
         {
@@ -101,10 +111,13 @@ public class ObjectBrush : Brush
             case OnTileObject.WaterLily:
                 tile.WaterLily = true;
                 break;
+            case OnTileObject.Teleport:
+                tile.Teleport = oldTeleport;
+                break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
             
-        Drawer.Redo.Push(() => PlaceObject(tile, onTileObject, lever));
+        Drawer.Redo.Push(() => PlaceObject(tile, onTileObject, lever, teleport));
     }
 }

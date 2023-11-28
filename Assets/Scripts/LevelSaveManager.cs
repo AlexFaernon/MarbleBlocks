@@ -20,9 +20,9 @@ public class LevelSaveManager : MonoBehaviour
 
     public void SaveLevel()
     {
-        var sonic = GameObject.FindWithTag("Sonic")?.GetComponent<Sonic>();
-        var jumper = GameObject.FindWithTag("Jumper")?.GetComponent<Jumper>();
-        var feesh = GameObject.FindWithTag("Feesh")?.GetComponent<Feesh>();
+        var sonic = CharacterManager.Sonic;
+        var jumper = CharacterManager.Jumper;
+        var feesh = CharacterManager.Feesh;
         var levelSave = new LevelClass
         {
             FieldSize      = TileManager.fieldSize,

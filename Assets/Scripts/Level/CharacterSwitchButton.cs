@@ -6,9 +6,6 @@ public class CharacterSwitchButton : MonoBehaviour
 {
     [SerializeField] private string character;
     [SerializeField] private Sprite white;
-    private Sonic _sonic;
-    private Jumper _jumper;
-    private Feesh _feesh;
     private Button _button;
     private Image _image;
     private Sprite _normal;
@@ -26,72 +23,76 @@ public class CharacterSwitchButton : MonoBehaviour
         _image = GetComponent<Image>();
         _normal = _image.sprite;
         
-        _sonic = GameObject.FindWithTag("Sonic")?.GetComponent<Sonic>();
-        _jumper = GameObject.FindWithTag("Jumper")?.GetComponent<Jumper>();
-        _feesh = GameObject.FindWithTag("Feesh")?.GetComponent<Feesh>();
-        
         _button = GetComponent<Button>();
         _button.onClick.AddListener(ActivateCharacter);
         switch (character)
         {
             case "Sonic":
-                if (_sonic is null)
+                if (CharacterManager.Sonic is null)
                 {
                     gameObject.SetActive(false);
                     return;
                 }
-                _sonic.switchButton = this;
+                CharacterManager.Sonic.switchButton = this;
                 break;
             case "Jumper":
-                if (_jumper is null)
+                if (CharacterManager.Jumper is null)
                 {
                     gameObject.SetActive(false);
                     return;
                 }
-                _jumper.switchButton = this;
+                CharacterManager.Jumper.switchButton = this;
                 break;
             case "Feesh":
-                if (_feesh is null)
+                if (CharacterManager.Feesh is null)
                 {
                     gameObject.SetActive(false);
                     return;
                 }
-                _feesh.switchButton = this;
+                CharacterManager.Feesh.switchButton = this;
                 break;
         }
     }
 
     public void ActivateCharacter()
     {
-        if (_sonic != null) _sonic.IsActive   = _sonic.CompareTag(character);
-        if (_jumper != null) _jumper.IsActive = _jumper.CompareTag(character);
-        if (_feesh != null) _feesh.IsActive   = _feesh.CompareTag(character);
+        var sonic = CharacterManager.Sonic;
+        var jumper = CharacterManager.Jumper;
+        var feesh = CharacterManager.Feesh;
+        
+        if (sonic != null) sonic.IsActive = sonic.CompareTag(character);
+        if (jumper != null) jumper.IsActive = jumper.CompareTag(character);
+        if (feesh != null) feesh.IsActive = feesh.CompareTag(character);
     }
 
     private void Update()
     {
+        var sonic = CharacterManager.Sonic;
+        var jumper = CharacterManager.Jumper;
+        var feesh = CharacterManager.Feesh;
+        
         var characterActive = character switch
         {
-            "Sonic" => _sonic.IsActive,
-            "Jumper" => _jumper.IsActive,
-            "Feesh" => _feesh.IsActive,
+            "Sonic" => sonic.IsActive,
+            "Jumper" => jumper.IsActive,
+            "Feesh" => feesh.IsActive,
             _ => throw new ArgumentOutOfRangeException("Incorrect character name")
         };
         transform.localScale = characterActive ? new Vector3(1.2f, 1.2f, 1.2f) : Vector3.one;
         _image.sprite = characterActive ? white : _normal;
         
         var characterMoving = false;
-        if (_sonic)
+        if (sonic)
         {
-            characterMoving = characterMoving || _sonic.IsMoving;
+            characterMoving = characterMoving || sonic.IsMoving;
         }
-        if (_jumper)
+        if (jumper)
         {
-            characterMoving = characterMoving || _jumper.IsMoving;
+            characterMoving = characterMoving || jumper.IsMoving;
         }
-        if (_feesh)
+        if (feesh)
         {
-            characterMoving = characterMoving || _feesh.IsMoving;
+            characterMoving = characterMoving || feesh.IsMoving;
         }
 
         _button.interactable = !characterMoving;
