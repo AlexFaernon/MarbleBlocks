@@ -9,7 +9,7 @@ public class ExpBar : MonoBehaviour
 
     private void Update()
     {
-        tmpText.text = $"Level {ExpLevelManager.PlayerLevel}";
+        tmpText.text = $"{ExpLevelManager.PlayerLevel}";
         fill.fillAmount = (float)ExpLevelManager.Exp / ExpLevelManager.MaxExp;
     }
 }

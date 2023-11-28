@@ -17,14 +17,17 @@ public class AuthManager : MonoBehaviour
     public TMP_InputField emailLoginField;
     public TMP_InputField passwordLoginField;
     public TMP_Text warningLoginText;
-    public TMP_Text confirmLoginText;
 
     [Header("Register")] 
     public TMP_InputField usernameRegisterField;
     public TMP_InputField emailRegisterField;
     public TMP_InputField passwordRegisterField;
     public TMP_InputField passwordRegisterVerifyField;
-    public TMP_Text warningRegisterText;
+    public TMP_Text warningEmailText;
+    public TMP_Text warningNicknameText;
+    public TMP_Text warningPasswordText;
+    public TMP_Text warningPasswordConfirmText;
+
 
     private void Awake()
     {
@@ -94,7 +97,8 @@ public class AuthManager : MonoBehaviour
                     message = "Account does not exist";
                     break;
             }
-    
+            
+            warningLoginText.gameObject.SetActive(true);
             warningLoginText.text = message;
         }
         else
@@ -102,20 +106,23 @@ public class AuthManager : MonoBehaviour
             User = loginTask.Result.User;
             Debug.LogFormat("User signed in successfully: {0} ({1})", User.DisplayName, User.Email);
             warningLoginText.text = "";
-            confirmLoginText.text = "Logged In";
             UISwitcher.Instance.CloseAuth();
         }
     }
 
     private IEnumerator Register(string email, string password, string username)
     {
+        warningNicknameText.text = "";
+        warningEmailText.text = "";
+        warningPasswordText.text = "";
+        warningPasswordConfirmText.text = "";
         if (username == "")
         {
-            warningRegisterText.text = "Missing Username";
+            warningNicknameText.text = "Missing Username";
         }
         else if (passwordRegisterField.text != passwordRegisterVerifyField.text)
         {
-            warningRegisterText.text = "Password Does Not Match!";
+            warningPasswordConfirmText.text = "Password Does Not Match!";
         }
         else
         {
@@ -127,25 +134,26 @@ public class AuthManager : MonoBehaviour
                 Debug.LogWarning(message: $"Failed to register task with {registerTask.Exception}");
                 FirebaseException firebaseEx = registerTask.Exception.GetBaseException() as FirebaseException;
                 AuthError errorCode = (AuthError)firebaseEx!.ErrorCode;
-                // todo распилить ошибки в разные строки
-                string message = "Register Failed!";
                 switch (errorCode)
                 {
                     case AuthError.MissingEmail:
-                        message = "Missing Email";
+                        warningEmailText.text = "Missing Email";
+                        break;
+                    case AuthError.InvalidEmail:
+                        warningEmailText.text = "Invalid Email";
                         break;
                     case AuthError.MissingPassword:
-                        message = "Missing Password";
+                        warningPasswordText.text = "Missing Password";
                         break;
                     case AuthError.WeakPassword:
-                        message = "Weak Password";
+                        warningPasswordText.text = "Weak Password";
                         break;
                     case AuthError.EmailAlreadyInUse:
-                        message = "Email Already In Use";
+                        warningEmailText.text = "Email Already In Use";
                         break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
-
-                warningRegisterText.text = message;
             }
             else
             {
@@ -163,14 +171,13 @@ public class AuthManager : MonoBehaviour
                         Debug.LogWarning(message: $"Failed to register task with {profileTask.Exception}");
                         FirebaseException firebaseEx = profileTask.Exception.GetBaseException() as FirebaseException;
                         AuthError errorCode = (AuthError)firebaseEx.ErrorCode;
-                        warningRegisterText.text = "Username Set Failed!";
+                        warningNicknameText.text = "Username Set Failed!";
                     }
                     else
                     {
                         // зарегались, теперь нужно войти
                         UISwitcher.Instance.LoginOn();
-                        warningRegisterText.text = "";
-                        
+
                         // подтверждение учетки через почту, можно вырезать
                         FirebaseUser user = auth.CurrentUser;
                         if (user != null) {
