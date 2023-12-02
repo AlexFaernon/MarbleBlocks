@@ -8,6 +8,10 @@ public class Editor : MonoBehaviour
 {
     public void Awake()
     {
-        GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene("LevelEditor"));
+        GetComponent<Button>().onClick.AddListener(() =>
+            {
+                GameMode.CurrentGameMode = GameModeType.LevelEditor;
+                SceneManager.LoadScene("LevelEditor");
+            });
     }
 }

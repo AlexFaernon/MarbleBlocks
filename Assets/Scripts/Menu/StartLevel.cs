@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class StartLevel : MonoBehaviour
 {
-	[SerializeField] private EnergyManager energyManager;
 	private Button _button;
 	private void Awake()
 	{
@@ -16,8 +15,9 @@ public class StartLevel : MonoBehaviour
 	{
 		if (LevelSaveManager.LevelNumber > 3)
 		{
-			energyManager.SpendEnergy();
+			EnergyManager.SpendEnergy();
 		}
+		GameMode.CurrentGameMode = GameModeType.SinglePlayer;
 		SceneManager.LoadScene("Level");
 	}
 

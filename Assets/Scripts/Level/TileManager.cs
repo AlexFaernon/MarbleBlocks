@@ -1,61 +1,110 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class TileManager : MonoBehaviour
 {
     [SerializeField] private GameObject tilePrefab;
-    public static Vector2Int fieldSize;
-    public bool loadLevel;
+    [SerializeField] private Transform field7X7;
+    [SerializeField] private Transform field9X9;
+    [SerializeField] private Transform field11X11;
+    public static Vector2Int EditorFieldSize;
+    public static bool LoadLevel;
     private Grid _grid;
-    private static TileClass[,] _loadedTiles;
     private static Tile[,] _tiles;
+    private static Tile[,] _tiles7X7;
+    private static Tile[,] _tiles9X9;
+    private static Tile[,] _tiles11X11;
 
     private void Awake()
     {
         _grid = GetComponent<Grid>();
-        if (loadLevel)
+        switch (GameMode.CurrentGameMode)
         {
-            fieldSize = LevelSaveManager.LoadedLevel.FieldSize;
+            case GameModeType.SinglePlayer:
+                Debug.Log("Loading Single");
+                _tiles = CreateTiles(_grid.transform, LevelSaveManager.LoadedLevel.FieldSize);
+                SetTiles();
+                break;
+            case GameModeType.MultiPlayer:
+                _tiles7X7 = CreateTiles(field7X7, new Vector2Int(7,7));
+                _tiles9X9 = CreateTiles(field9X9, new Vector2Int(9,9));
+                _tiles11X11 = CreateTiles(field11X11, new Vector2Int(11,11));
+                break;
+            case GameModeType.LevelEditor: //todo пофиксить отображение нижних тайлов в редакторе
+                Debug.Log("Loading Editor");
+                _tiles = CreateTiles(_grid.transform, EditorFieldSize);
+                LevelSaveManager.LoadedLevel = new LevelClass {FieldSize = EditorFieldSize};
+                Debug.Log(LevelSaveManager.LoadedLevel.FieldSize);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
-        _tiles = new Tile[fieldSize.x + 2, fieldSize.y + 2];
-        if (loadLevel)
-        {
-            _loadedTiles = LevelSaveManager.LoadedLevel.Tiles;
-        }
-
-        BuildLevel();
     }
 
-    private void BuildLevel()
+    private Tile[,] CreateTiles(Transform tileParent, Vector2Int fieldSize)
     {
+        var tiles = new Tile[fieldSize.x + 2, fieldSize.y + 2];
         for (var x = 0; x < fieldSize.x + 2; x++)
         {
             for (var y = 0; y < fieldSize.y + 2; y++)
             {
                 var intPos = new Vector2Int(x, y);
                 var pos = _grid.GetCellCenterWorld((Vector3Int)intPos);
-                _tiles[x, y] = Instantiate(tilePrefab, pos, Quaternion.identity, _grid.transform).GetComponent<Tile>();
-                _tiles[x, y].gridPosition = intPos;
+                tiles[x, y] = Instantiate(tilePrefab, pos, Quaternion.identity, tileParent).GetComponent<Tile>();
+                tiles[x, y].gridPosition = intPos;
                 if (x == 0 || x == fieldSize.x + 1 || y == 0 || y == fieldSize.y + 1)
                 {
-                    _tiles[x, y].IsEdge = true;
-                }
-                else if (loadLevel)
-                {
-                    _tiles[x, y].TileClass = _loadedTiles[x - 1, y - 1];
-                }
-                else
-                {
-                    _tiles[x, y].IsGrass = true;
+                    tiles[x, y].IsEdge = true;
                 }
             }
+        }
+        return tiles;
+    }
+    
+    public static void SetTiles()
+    {
+        for (var x = 1; x < LevelSaveManager.LoadedLevel.FieldSize.x + 1; x++)
+        {
+            for (var y = 1; y < LevelSaveManager.LoadedLevel.FieldSize.y + 1; y++)
+            {
+                _tiles[x, y].TileClass = LevelSaveManager.LoadedLevel.Tiles[x - 1, y - 1];
+            }
+        }
+    }
+
+    public void SwitchTileSetForMultiplayer()
+    {
+        field7X7.gameObject.SetActive(false);
+        field9X9.gameObject.SetActive(false);
+        field11X11.gameObject.SetActive(false);
+
+        switch (LevelSaveManager.LoadedLevel.FieldSize)
+        {
+            case { x: 7, y: 7 }:
+                field7X7.gameObject.SetActive(true);
+                _tiles = _tiles7X7;
+                SetTiles();
+                break;
+            case { x: 9, y: 9 }:
+                field9X9.gameObject.SetActive(true);
+                _tiles = _tiles9X9;
+                SetTiles();
+                break;
+            case { x: 11, y: 11 }:
+                field11X11.gameObject.SetActive(true);
+                _tiles = _tiles11X11;
+                SetTiles();
+                break;
+            default:
+                throw new ArgumentException("incorrect field size");
         }
     }
 
     public TileClass[,] GetSave()
     {
-        var tiles = new TileClass[fieldSize.x, fieldSize.y];
+        var tiles = new TileClass[EditorFieldSize.x, EditorFieldSize.y];
 
         foreach (var tile in _tiles)
         {
@@ -85,17 +134,6 @@ public class TileManager : MonoBehaviour
         }
 
         return null;
-    }
-
-    public static void ResetLevel()
-    {
-        for (var x = 1; x < fieldSize.x + 1; x++)
-        {
-            for (var y = 1; y < fieldSize.y + 1; y++)
-            {
-                _tiles[x, y].TileClass = LevelSaveManager.LoadedLevel.Tiles[x - 1, y - 1];
-            }
-        }
     }
 
     public void ClearAllTiles()

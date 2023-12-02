@@ -110,6 +110,7 @@ public class Tile : MonoBehaviour, IPointerClickHandler
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        IsGrass = true;
     }
 
     private void Update()
@@ -232,6 +233,8 @@ public class Tile : MonoBehaviour, IPointerClickHandler
 
     private void SetLoadedTile(TileClass tileClass)
     {
+        ClearOnTileObject();
+        
         IsGrass = tileClass.IsGrass;
         switch (tileClass.OnTileObject)
         {

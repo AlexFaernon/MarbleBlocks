@@ -30,18 +30,14 @@ public class ZoomPinch : MonoBehaviour
         [Tooltip("The maximum FOV/Size we want to zoom to")]
         public float zoomMax = 60.0f;
 
-        private void Awake()
+        protected virtual void LateUpdate()
         {
             var size = 4.5f;
             var sizeMin = 3.5f;
-            var offset = TileManager.fieldSize.x - 7;
+            var offset = (GameMode.CurrentGameMode == GameModeType.LevelEditor ? TileManager.EditorFieldSize : LevelSaveManager.LoadedLevel.FieldSize).x - 7;
             zoom = size + offset * maxScale;
             zoomMin = sizeMin + offset * minScale;
             zoomMax = zoom;
-        }
-
-        protected virtual void LateUpdate()
-        {
             // Get the fingers we want to use
             var fingers = LeanTouch.GetFingers(ignoreGuiFingers, false, requiredFingerCount);
 

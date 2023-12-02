@@ -18,6 +18,7 @@ public class StartRandomLevel : MonoBehaviour
 
     private void OnClick()
     {
-        StartCoroutine(RealtimeDatabase.ExportRandomLevel());
+        GameMode.CurrentGameMode = GameModeType.MultiPlayer;
+        SceneManager.LoadScene("Level");
     }
 }

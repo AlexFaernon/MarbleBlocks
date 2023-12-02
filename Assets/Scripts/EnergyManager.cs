@@ -26,7 +26,7 @@ public class EnergyManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    public void SpendEnergy()
+    public static void SpendEnergy()
     {
         if (NameManager.PlayerName.ToUpper() == "TRW") return;
         

@@ -16,6 +16,7 @@ using Random = UnityEngine.Random;
 public class RealtimeDatabase : MonoBehaviour
 {
     public UnityEvent OnFirebaseInitialized = new UnityEvent();
+    public static bool LevelLoaded;
     void Start()
     {
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task => 
@@ -31,6 +32,7 @@ public class RealtimeDatabase : MonoBehaviour
     
     public static IEnumerator ExportRandomLevel()
     {
+        LevelLoaded = false;
         LevelClass level = null;
         var loadLevel = FirebaseDatabase.DefaultInstance.RootReference.GetValueAsync();
         loadLevel.ContinueWithOnMainThread(task =>
@@ -53,7 +55,7 @@ public class RealtimeDatabase : MonoBehaviour
         yield return new WaitUntil(() => level is not null && loadLevel.IsCompleted);
 
         LevelSaveManager.LoadedLevel = level;
-        SceneManager.LoadScene("Level");
+        LevelLoaded = true;
     }
     
     private static string GetRandomKey(DataSnapshot snapshot)

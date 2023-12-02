@@ -8,11 +8,11 @@ public class SizeSelector : MonoBehaviour
 
     private void Awake()
     {
-        GetComponent<Button>().onClick.AddListener(() => TileManager.fieldSize = size);
+        GetComponent<Button>().onClick.AddListener(() => TileManager.EditorFieldSize = size);
     }
 
     private void Update()
     {
-        selected.gameObject.SetActive(size == TileManager.fieldSize);
+        selected.gameObject.SetActive(size == TileManager.EditorFieldSize);
     }
 }

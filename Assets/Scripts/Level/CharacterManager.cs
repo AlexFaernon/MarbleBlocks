@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
@@ -12,24 +13,37 @@ public class CharacterManager : MonoBehaviour
 
     private void Awake()
     {
-        if (LevelSaveManager.LoadedLevel is null) return;
-        
-        if (LevelSaveManager.LoadedLevel.SonicPosition != Vector2Int.zero)
+        switch (GameMode.CurrentGameMode)
         {
-            var sonicPos = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.SonicPosition);
-            Instantiate(sonic, sonicPos, Quaternion.identity);
-        }
+            case GameModeType.SinglePlayer:
+                if (LevelSaveManager.LoadedLevel.SonicPosition != Vector2Int.zero)
+                {
+                    var sonicPos = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.SonicPosition);
+                    Instantiate(sonic, sonicPos, Quaternion.identity, grid.transform);
+                }
         
-        if (LevelSaveManager.LoadedLevel.JumperPosition != Vector2Int.zero)
-        {
-            var jumperPos = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.JumperPosition);
-            Instantiate(jumper, jumperPos, Quaternion.identity);
-        }
+                if (LevelSaveManager.LoadedLevel.JumperPosition != Vector2Int.zero)
+                {
+                    var jumperPos = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.JumperPosition);
+                    Instantiate(jumper, jumperPos, Quaternion.identity, grid.transform);
+                }
         
-        if (LevelSaveManager.LoadedLevel.FeeshPosition != Vector2Int.zero)
-        {
-            var feeshPos = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.FeeshPosition);
-            Instantiate(feesh, feeshPos, Quaternion.identity);
+                if (LevelSaveManager.LoadedLevel.FeeshPosition != Vector2Int.zero)
+                {
+                    var feeshPos = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.FeeshPosition);
+                    Instantiate(feesh, feeshPos, Quaternion.identity, grid.transform);
+                }
+                break;
+            case GameModeType.MultiPlayer:
+                var pos = grid.GetCellCenterWorld((Vector3Int)Vector2Int.one);
+                Instantiate(sonic, pos, Quaternion.identity, grid.transform).SetActive(false);
+                Instantiate(jumper, pos, Quaternion.identity, grid.transform).SetActive(false);
+                Instantiate(feesh, pos, Quaternion.identity, grid.transform).SetActive(false);
+                break;
+            case GameModeType.LevelEditor:
+                return;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 
@@ -38,19 +52,25 @@ public class CharacterManager : MonoBehaviour
         if (Sonic)
         {
             Sonic.Reset();
-            Sonic.transform.position = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.SonicPosition);
+            var sonicPosition = LevelSaveManager.LoadedLevel.SonicPosition;
+            Sonic.transform.position = grid.GetCellCenterWorld((Vector3Int)sonicPosition);
+            Sonic.gameObject.SetActive(sonicPosition != Vector2Int.zero);
         }
         
         if (Jumper)
         {
             Jumper.Reset();
-            Jumper.transform.position = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.JumperPosition);
+            var jumperPosition = LevelSaveManager.LoadedLevel.JumperPosition;
+            Jumper.transform.position = grid.GetCellCenterWorld((Vector3Int)jumperPosition);
+            Jumper.gameObject.SetActive(jumperPosition != Vector2Int.zero);
         }
 
         if (Feesh)
         {
             Feesh.Reset();
-            Feesh.transform.position = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.FeeshPosition);
+            var feeshPosition = LevelSaveManager.LoadedLevel.FeeshPosition;
+            Feesh.transform.position = grid.GetCellCenterWorld((Vector3Int)feeshPosition);
+            Feesh.gameObject.SetActive(feeshPosition != Vector2Int.zero);
         }
     }
 }

@@ -7,11 +7,10 @@ public class LevelSaveManager : MonoBehaviour
     public static int LevelNumber;
     public static LevelClass LoadedLevel;
     [SerializeField] private TileManager tileManager;
-    [SerializeField] private bool isEditor;
 
     private void Awake()
     {
-        if (isEditor) return;
+        if (GameMode.CurrentGameMode == GameModeType.LevelEditor) return;
         
         if (LevelNumber == 0) return;
         var levelJson = Resources.Load<TextAsset>(LevelNumber.ToString()).text;
@@ -25,7 +24,7 @@ public class LevelSaveManager : MonoBehaviour
         var feesh = CharacterManager.Feesh;
         var levelSave = new LevelClass
         {
-            FieldSize      = TileManager.fieldSize,
+            FieldSize      = TileManager.EditorFieldSize,
             Tiles          = tileManager.GetSave(),
             FeeshPosition  = feesh ? feesh.GetGridPosition : Vector2Int.zero,
             JumperPosition = jumper ? jumper.GetGridPosition : Vector2Int.zero,

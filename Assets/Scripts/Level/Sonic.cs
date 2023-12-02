@@ -188,7 +188,6 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
         if (col.CompareTag("Ground"))
         {
             CurrentTile = col.GetComponent<Tile>();
-            Debug.Log($"current tile is null? {CurrentTile is null}");
         }
         
         if (col.CompareTag("Spike"))
