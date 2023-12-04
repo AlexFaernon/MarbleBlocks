@@ -8,12 +8,10 @@ public class EnergyManager : MonoBehaviour
     private const int EnergyRefillTime = 60;
     private bool _energyIsRefiling;
     public static float TimeUntilRefill;
-    private static int _currentEnergy;
-
     public static int CurrentEnergy
     {
-        get => _currentEnergy;
-        set => _currentEnergy = Math.Clamp(value, 0, MaxEnergy);
+        get => PlayerData.Energy;
+        set => PlayerData.Energy = Math.Clamp(value, 0, MaxEnergy);
     }
 
     private void Awake()
@@ -28,7 +26,7 @@ public class EnergyManager : MonoBehaviour
 
     public static void SpendEnergy()
     {
-        if (NameManager.PlayerName.ToUpper() == "TRW") return;
+        if (PlayerData.Name.ToUpper() == "TRW") return;
         
         CurrentEnergy--;
     }

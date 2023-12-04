@@ -16,9 +16,9 @@ public class PlayerName : MonoBehaviour
 
     private void Update()
     {
-        if (NameManager.PlayerName is not null)
+        if (PlayerData.Name is not null)
         {
-            _label.text = NameManager.PlayerName;
+            _label.text = PlayerData.Name;
         }
     }
 }

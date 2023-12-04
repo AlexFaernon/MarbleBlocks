@@ -6922,7 +6922,6 @@ GameObject:
   - component: {fileID: 508208243}
   - component: {fileID: 508208245}
   - component: {fileID: 508208244}
-  - component: {fileID: 508208246}
   m_Layer: 0
   m_Name: NameWindow
   m_TagString: Untagged
@@ -6989,20 +6988,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 508208242}
   m_CullTransparentMesh: 1
---- !u!114 &508208246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 508208242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42eecf69473e1b248bdac71b1b248c4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputField: {fileID: 1754202248}
-  confirm: {fileID: 604435237}
 --- !u!1 &508798832
 GameObject:
   m_ObjectHideFlags: 0
@@ -7134,7 +7119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bb5314671df4e042b88f30f63c6ef4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyManager: {fileID: 1498861789}
 --- !u!114 &521743557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22687,6 +22671,7 @@ GameObject:
   - component: {fileID: 1567785662}
   - component: {fileID: 1567785664}
   - component: {fileID: 1567785663}
+  - component: {fileID: 1567785665}
   m_Layer: 0
   m_Name: Nickname
   m_TagString: Untagged
@@ -22811,6 +22796,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1567785661}
   m_CullTransparentMesh: 1
+--- !u!114 &1567785665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567785661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b8d9bd15d491a4a943de5d003c9615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameWindow: {fileID: 508208242}
 --- !u!1 &1604496314
 GameObject:
   m_ObjectHideFlags: 0
@@ -30087,7 +30085,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bb5314671df4e042b88f30f63c6ef4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyManager: {fileID: 1498861789}
 --- !u!1001 &2107827268
 PrefabInstance:
   m_ObjectHideFlags: 0

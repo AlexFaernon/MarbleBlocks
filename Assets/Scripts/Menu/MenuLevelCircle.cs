@@ -55,7 +55,7 @@ public class MenuLevelCircle : MonoBehaviour
 
     private void Update()
     {
-        if (NameManager.PlayerName.ToUpper() == "TRW")
+        if (PlayerData.Name.ToUpper() == "TRW")
         {
             _image.sprite = completed;
             _button.interactable = true;

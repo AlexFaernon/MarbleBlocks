@@ -5,6 +5,7 @@ using Firebase;
 using Firebase.Auth;
 using TMPro;
 using System.Threading.Tasks;
+using UnityEngine.Events;
 
 public class AuthManager : MonoBehaviour
 {

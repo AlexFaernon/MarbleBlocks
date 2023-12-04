@@ -69,7 +69,13 @@ public class RealtimeDatabase : MonoBehaviour
     public static void PushLevel(string level)
     {
         Debug.Log("Почта " + AuthManager.User.Email);
-        FirebaseDatabase.DefaultInstance.RootReference.Child(AuthManager.auth.CurrentUser.DisplayName).SetRawJsonValueAsync(level);
+        FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.auth.CurrentUser.DisplayName).SetRawJsonValueAsync(level);
+    }
+
+    public static void PushUserData(PlayerClass playerClass)
+    {
+        var userJson = JsonConvert.SerializeObject(playerClass);
+        FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.auth.CurrentUser.DisplayName).SetRawJsonValueAsync(userJson);
     }
 }
 

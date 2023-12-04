@@ -43,7 +43,7 @@ public class HelpSwitch : MonoBehaviour
 
     public void BuyHelp()
     {
-        if (NameManager.PlayerName.ToUpper() != "TRW")
+        if (PlayerData.Name.ToUpper() != "TRW")
         {
             CoinsManager.Coins--;
         }

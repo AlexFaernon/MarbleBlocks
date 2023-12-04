@@ -18,7 +18,7 @@ public class BuyHelpButton : MonoBehaviour
 
 	private void Update()
 	{
-		if (NameManager.PlayerName.ToUpper() == "TRW")
+		if (PlayerData.Name.ToUpper() == "TRW")
 		{
 			buyLabel.SetActive(true);
 			_button.interactable = true;

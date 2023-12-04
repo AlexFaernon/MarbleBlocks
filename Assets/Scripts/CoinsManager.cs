@@ -4,14 +4,13 @@ using UnityEngine;
 public class CoinsManager : MonoBehaviour
 {
     private TMP_Text _label;
-    private static int _coins = -1;
     public static int Coins
     {
-        get => _coins;
+        get => PlayerData.Coins;
         set
         {
-            _coins = value;
-            PlayerPrefs.SetInt("Coins", _coins);
+            PlayerData.Coins = value;
+            PlayerPrefs.SetInt("Coins", value);
         }
     }
 
@@ -22,11 +21,11 @@ public class CoinsManager : MonoBehaviour
         
         if (PlayerPrefs.HasKey("Coins"))
         {
-            _coins = PlayerPrefs.GetInt("Coins");
+            Coins = PlayerPrefs.GetInt("Coins");
         }
         else
         {
-            _coins = 0;
+            Coins = 0;
         }
     }
 
