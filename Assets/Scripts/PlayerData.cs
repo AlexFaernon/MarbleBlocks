@@ -36,14 +36,19 @@ public class PlayerData : MonoBehaviour
 		}
 
 		DontDestroyOnLoad(this);
-		StartCoroutine(WaitToUserLogin());
+	//	StartCoroutine(WaitToUserLogin());
 	}
 
-	private static IEnumerator WaitToUserLogin()
+	public static void SetName()
 	{
-		yield return new WaitUntil(() => AuthManager.User is not null);
-
-		var user = AuthManager.User;
-		Name = user.DisplayName;
+		Name = AuthManager.User.DisplayName;
 	}
+	
+	// private static IEnumerator WaitToUserLogin()
+	// {
+	// 	yield return new WaitUntil(() => AuthManager.User is not null);
+	//
+	// 	var user = AuthManager.User;
+	// 	Name = user.DisplayName;
+	// }
 }

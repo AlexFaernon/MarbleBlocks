@@ -32,6 +32,8 @@ public class LevelSaveManager : MonoBehaviour
         };
         LoadedLevel = levelSave;
         var save = JsonConvert.SerializeObject(levelSave);
+        RealtimeDatabase.PushMap(save);
+        RealtimeDatabase.PushRank(); 
         File.WriteAllText(Application.persistentDataPath + "\\save.json", save);
     }
 }

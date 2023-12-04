@@ -61,14 +61,12 @@ public class EnergyManager : MonoBehaviour
     {
         if (pauseStatus)
         {
-            Debug.Log("pause");
             PlayerPrefs.SetInt(nameof(CurrentEnergy), CurrentEnergy);
             PlayerPrefs.SetString("PauseTime", DateTime.Now.ToString(CultureInfo.InvariantCulture));
             PlayerPrefs.SetFloat(nameof(TimeUntilRefill), TimeUntilRefill);
         }
         else
         {
-            Debug.Log("unpause");
             CurrentEnergy   = PlayerPrefs.GetInt(nameof(CurrentEnergy), MaxEnergy);
             TimeUntilRefill = PlayerPrefs.GetFloat(nameof(TimeUntilRefill), 0);
 

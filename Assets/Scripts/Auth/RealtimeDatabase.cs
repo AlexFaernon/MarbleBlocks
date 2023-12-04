@@ -17,6 +17,10 @@ public class RealtimeDatabase : MonoBehaviour
 {
     public UnityEvent OnFirebaseInitialized = new UnityEvent();
     public static bool LevelLoaded;
+    public static bool UserLoaded;
+    public static bool LeaderboardLoaded;
+
+    private static DataSnapshot leaderboard; //todo затычка, снести когда класс напишем
     void Start()
     {
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task => 
@@ -34,7 +38,8 @@ public class RealtimeDatabase : MonoBehaviour
     {
         LevelLoaded = false;
         LevelClass level = null;
-        var loadLevel = FirebaseDatabase.DefaultInstance.RootReference.GetValueAsync();
+        var opponent = GetRandomOpponent();
+        var loadLevel = FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(opponent).Child("Map").GetValueAsync();
         loadLevel.ContinueWithOnMainThread(task =>
             {
                 if (task.IsFaulted)
@@ -44,10 +49,7 @@ public class RealtimeDatabase : MonoBehaviour
                 else if (task.IsCompleted)
                 {
                     DataSnapshot snapshot = task.Result;
-                    var randomKey = GetRandomKey(snapshot);
-                    Debug.Log(randomKey);
-                    //File.WriteAllText(Application.persistentDataPath + "\\snapshot.json", JsonConvert.SerializeObject(snapshot.Child(randomKey).Value));
-                    var levelJson = snapshot.Child(randomKey).GetRawJsonValue();
+                    var levelJson = snapshot.GetRawJsonValue();
                     level = JsonConvert.DeserializeObject<LevelClass>(levelJson);
                     Debug.Log("Level loaded");
                 }
@@ -57,25 +59,77 @@ public class RealtimeDatabase : MonoBehaviour
         LevelSaveManager.LoadedLevel = level;
         LevelLoaded = true;
     }
-    
-    private static string GetRandomKey(DataSnapshot snapshot)
+
+     public static IEnumerator ExportLeaderboard()
+     {
+         LeaderboardLoaded = false;
+         var loadLeaderboard = FirebaseDatabase.DefaultInstance.RootReference.Child("Leaderboard").GetValueAsync();
+         loadLeaderboard.ContinueWithOnMainThread(task =>
+         {
+             if (task.IsFaulted)
+             {
+                 Debug.Log($"Error {task.Exception}");
+             }
+             else if (task.IsCompleted)
+             {
+                 DataSnapshot snapshot = task.Result;
+                 var leaderboardJson = snapshot.GetRawJsonValue();
+                 leaderboard = snapshot;
+                 Debug.Log("Leaderboard loaded");
+             }
+         });
+         yield return new WaitUntil(() => leaderboard is not null && loadLeaderboard.IsCompleted);
+         LeaderboardLoaded = true;
+     }
+     
+    private static string GetRandomOpponent()
     {
-        var keys = snapshot.Children.Select(child => child.Key).ToList();
+        var keys = leaderboard.Children.Select(child => child.Key).ToList();
         if (keys.Count <= 0) return null;
         var randomIndex = Random.Range(0, keys.Count);
         return keys[randomIndex];
     }
     
-    public static void PushLevel(string level)
+    public static IEnumerator ExportUserData()
+    {
+        UserLoaded = false;
+        PlayerClass player = null;
+        var loadData = FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.User.DisplayName).GetValueAsync();
+        loadData.ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted)
+            {
+                Debug.Log($"Error {task.Exception}");
+            }
+            else if (task.IsCompleted)
+            {
+                DataSnapshot snapshot = task.Result;
+                var dataJson = snapshot.GetRawJsonValue();
+                player = JsonConvert.DeserializeObject<PlayerClass>(dataJson);
+                Debug.Log("Player loaded");
+            }
+        });
+        yield return new WaitUntil(() => player is not null && loadData.IsCompleted);
+        PlayerData.PlayerClass = player;
+        UserLoaded = true;
+    }
+    
+    public static void PushMap(string level)
     {
         Debug.Log("Почта " + AuthManager.User.Email);
-        FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.auth.CurrentUser.DisplayName).SetRawJsonValueAsync(level);
+        FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.User.DisplayName).Child("Map").SetRawJsonValueAsync(level);
     }
 
     public static void PushUserData(PlayerClass playerClass)
     {
         var userJson = JsonConvert.SerializeObject(playerClass);
-        FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.auth.CurrentUser.DisplayName).SetRawJsonValueAsync(userJson);
+        FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.User.DisplayName).SetRawJsonValueAsync(userJson);
     }
+
+    public static void PushRank()
+    {
+        FirebaseDatabase.DefaultInstance.RootReference.Child("Leaderboard").Child(AuthManager.User.DisplayName).SetRawJsonValueAsync("0"); //todo тут пушим ранг, 0 заменить на переменную
+    }
+
 }
 

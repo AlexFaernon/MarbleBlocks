@@ -105,6 +105,10 @@ public class AuthManager : MonoBehaviour
         else
         {
             User = loginTask.Result.User;
+            StartCoroutine(RealtimeDatabase.ExportUserData());
+            StartCoroutine(RealtimeDatabase.ExportLeaderboard());
+            yield return new WaitUntil(() => RealtimeDatabase.UserLoaded && RealtimeDatabase.LeaderboardLoaded);
+            PlayerData.SetName();
             Debug.LogFormat("User signed in successfully: {0} ({1})", User.DisplayName, User.Email);
             warningLoginText.text = "";
             UISwitcher.Instance.CloseAuth();
@@ -177,6 +181,7 @@ public class AuthManager : MonoBehaviour
                     else
                     {
                         // зарегались, теперь нужно войти
+                        RealtimeDatabase.PushUserData(PlayerData.PlayerClass);
                         UISwitcher.Instance.LoginOn();
 
                         // подтверждение учетки через почту, можно вырезать

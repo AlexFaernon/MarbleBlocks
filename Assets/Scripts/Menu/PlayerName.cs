@@ -11,7 +11,7 @@ public class PlayerName : MonoBehaviour
     private void Awake()
     {
         GetComponent<Button>().onClick.AddListener(() => nameWindow.SetActive(true));
-        _label = transform.GetChild(0).GetComponent<TMP_Text>();
+        _label = GetComponent<TMP_Text>();
     }
 
     private void Update()

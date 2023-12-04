@@ -53,14 +53,14 @@ public class MenuLevelCircle : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (PlayerData.Name.ToUpper() == "TRW")
-        {
-            _image.sprite = completed;
-            _button.interactable = true;
-        }
-    }
+    // private void Update()
+    // {
+    //     if (PlayerData.Name.ToUpper() == "TRW")
+    //     {
+    //         _image.sprite = completed;
+    //         _button.interactable = true;
+    //     }
+    // }
 
     private void LoadLevel()
     {
