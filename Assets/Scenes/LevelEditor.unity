@@ -4096,7 +4096,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 363306045}
-  - component: {fileID: 363306050}
   - component: {fileID: 363306049}
   - component: {fileID: 363306048}
   - component: {fileID: 363306047}
@@ -4183,6 +4182,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1729217799}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &363306048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4221,18 +4232,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 363306044}
   m_CullTransparentMesh: 1
---- !u!114 &363306050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 363306044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b489a06d146448428e6e5632b432e6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &380911413
 GameObject:
   m_ObjectHideFlags: 0
@@ -5221,6 +5220,7 @@ GameObject:
   - component: {fileID: 511589475}
   - component: {fileID: 511589478}
   - component: {fileID: 511589479}
+  - component: {fileID: 511589480}
   m_Layer: 5
   m_Name: Wall
   m_TagString: Untagged
@@ -5363,6 +5363,26 @@ MonoBehaviour:
   selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
   isDoor: 0
   isOpened: 0
+--- !u!114 &511589480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511589473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: 54
+  m_PreferredHeight: 80
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &515722097
 GameObject:
   m_ObjectHideFlags: 0
@@ -5665,6 +5685,7 @@ GameObject:
   - component: {fileID: 525039604}
   - component: {fileID: 525039607}
   - component: {fileID: 525039608}
+  - component: {fileID: 525039609}
   m_Layer: 5
   m_Name: Spike
   m_TagString: Untagged
@@ -5806,6 +5827,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
   selectedOnTileObject: 1
+--- !u!114 &525039609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525039602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: 54
+  m_PreferredHeight: 80
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &528072486
 GameObject:
   m_ObjectHideFlags: 0
@@ -6176,6 +6217,7 @@ GameObject:
   - component: {fileID: 625294726}
   - component: {fileID: 625294729}
   - component: {fileID: 625294730}
+  - component: {fileID: 625294731}
   m_Layer: 5
   m_Name: Lever
   m_TagString: Untagged
@@ -6317,6 +6359,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
   selectedOnTileObject: 3
+--- !u!114 &625294731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625294724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: 54
+  m_PreferredHeight: 80
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &627066311
 GameObject:
   m_ObjectHideFlags: 0
@@ -6907,6 +6969,7 @@ GameObject:
   - component: {fileID: 686672941}
   - component: {fileID: 686672944}
   - component: {fileID: 686672945}
+  - component: {fileID: 686672946}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -7048,6 +7111,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
   selectedOnTileObject: 4
+--- !u!114 &686672946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686672939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: 54
+  m_PreferredHeight: 80
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &698980184
 GameObject:
   m_ObjectHideFlags: 0
@@ -15281,8 +15364,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1004527174}
   m_HandleRect: {fileID: 1004527173}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.9182867
+  m_Value: 0.9999999
+  m_Size: 0.73696154
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15573,6 +15656,7 @@ GameObject:
   - component: {fileID: 1138164099}
   - component: {fileID: 1138164102}
   - component: {fileID: 1138164103}
+  - component: {fileID: 1138164104}
   m_Layer: 5
   m_Name: DoorOpened
   m_TagString: Untagged
@@ -15715,6 +15799,26 @@ MonoBehaviour:
   selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
   isDoor: 1
   isOpened: 1
+--- !u!114 &1138164104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138164097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: 54
+  m_PreferredHeight: 80
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &1144340305
 GameObject:
   m_ObjectHideFlags: 0
@@ -18707,6 +18811,7 @@ GameObject:
   - component: {fileID: 1456986365}
   - component: {fileID: 1456986364}
   - component: {fileID: 1456986363}
+  - component: {fileID: 1456986368}
   m_Layer: 5
   m_Name: WaterLily
   m_TagString: Untagged
@@ -18848,6 +18953,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1456986361}
   m_CullTransparentMesh: 1
+--- !u!114 &1456986368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456986361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: 54
+  m_PreferredHeight: 80
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &1488205585
 GameObject:
   m_ObjectHideFlags: 0
@@ -18859,6 +18984,7 @@ GameObject:
   - component: {fileID: 1488205586}
   - component: {fileID: 1488205588}
   - component: {fileID: 1488205587}
+  - component: {fileID: 1488205589}
   m_Layer: 5
   m_Name: Objects
   m_TagString: Untagged
@@ -18892,8 +19018,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 353.92}
+  m_AnchoredPosition: {x: 61, y: 0}
+  m_SizeDelta: {x: 122, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1488205587
 CanvasRenderer:
@@ -18927,6 +19053,20 @@ MonoBehaviour:
   m_Spacing: {x: 9, y: 9}
   m_Constraint: 1
   m_ConstraintCount: 2
+--- !u!114 &1488205589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488205585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
 --- !u!1 &1497921755
 GameObject:
   m_ObjectHideFlags: 0
@@ -20209,6 +20349,7 @@ GameObject:
   - component: {fileID: 1719392905}
   - component: {fileID: 1719392908}
   - component: {fileID: 1719392909}
+  - component: {fileID: 1719392910}
   m_Layer: 5
   m_Name: DoorClosed
   m_TagString: Untagged
@@ -20363,6 +20504,26 @@ MonoBehaviour:
   selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
   isDoor: 1
   isOpened: 0
+--- !u!114 &1719392910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719392903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: 54
+  m_PreferredHeight: 80
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &1720252227
 GameObject:
   m_ObjectHideFlags: 0
@@ -20586,6 +20747,7 @@ GameObject:
   - component: {fileID: 1729217800}
   - component: {fileID: 1729217803}
   - component: {fileID: 1729217802}
+  - component: {fileID: 1729217804}
   m_Layer: 5
   m_Name: Win
   m_TagString: Untagged
@@ -20652,6 +20814,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1729217799}
   m_CullTransparentMesh: 1
+--- !u!114 &1729217804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729217799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e32dfbde606f9748977ef9d69510c85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1758897641
 GameObject:
   m_ObjectHideFlags: 0
@@ -22032,6 +22206,7 @@ GameObject:
   - component: {fileID: 1888826901}
   - component: {fileID: 1888826900}
   - component: {fileID: 1888826899}
+  - component: {fileID: 1888826904}
   m_Layer: 5
   m_Name: Spike (1)
   m_TagString: Untagged
@@ -22173,6 +22348,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1888826897}
   m_CullTransparentMesh: 1
+--- !u!114 &1888826904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888826897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: 54
+  m_PreferredHeight: 80
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &1919308491
 GameObject:
   m_ObjectHideFlags: 0
@@ -22707,6 +22902,7 @@ GameObject:
   - component: {fileID: 1958783673}
   - component: {fileID: 1958783676}
   - component: {fileID: 1958783677}
+  - component: {fileID: 1958783678}
   m_Layer: 5
   m_Name: Whirlpool
   m_TagString: Untagged
@@ -22848,6 +23044,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
   selectedOnTileObject: 2
+--- !u!114 &1958783678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958783671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: 54
+  m_PreferredHeight: 80
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &1972191628
 GameObject:
   m_ObjectHideFlags: 0

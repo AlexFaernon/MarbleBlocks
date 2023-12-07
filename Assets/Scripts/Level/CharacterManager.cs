@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
@@ -16,23 +17,7 @@ public class CharacterManager : MonoBehaviour
         switch (GameMode.CurrentGameMode)
         {
             case GameModeType.SinglePlayer:
-                if (LevelSaveManager.LoadedLevel.SonicPosition != Vector2Int.zero)
-                {
-                    var sonicPos = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.SonicPosition);
-                    Instantiate(sonic, sonicPos, Quaternion.identity, grid.transform);
-                }
-        
-                if (LevelSaveManager.LoadedLevel.JumperPosition != Vector2Int.zero)
-                {
-                    var jumperPos = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.JumperPosition);
-                    Instantiate(jumper, jumperPos, Quaternion.identity, grid.transform);
-                }
-        
-                if (LevelSaveManager.LoadedLevel.FeeshPosition != Vector2Int.zero)
-                {
-                    var feeshPos = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.FeeshPosition);
-                    Instantiate(feesh, feeshPos, Quaternion.identity, grid.transform);
-                }
+                SpawnCharacters();
                 break;
             case GameModeType.MultiPlayer:
                 var pos = grid.GetCellCenterWorld((Vector3Int)Vector2Int.one);
@@ -41,12 +26,44 @@ public class CharacterManager : MonoBehaviour
                 Instantiate(feesh, pos, Quaternion.identity, grid.transform).SetActive(false);
                 break;
             case GameModeType.LevelEditor:
+                StartCoroutine(LoadCharactersForEditor());
                 return;
             default:
                 throw new ArgumentOutOfRangeException();
         }
     }
 
+    private IEnumerator LoadCharactersForEditor()
+    {
+        yield return new WaitUntil(() => LevelSaveManager.LoadLevelTaskCompleted);
+
+        if (LevelSaveManager.LoadedLevel is not null)
+        {
+            SpawnCharacters();
+        }
+    }
+
+    private void SpawnCharacters()
+    {
+        if (LevelSaveManager.LoadedLevel.SonicPosition != Vector2Int.zero)
+        {
+            var sonicPos = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.SonicPosition);
+            Instantiate(sonic, sonicPos, Quaternion.identity, grid.transform);
+        }
+        
+        if (LevelSaveManager.LoadedLevel.JumperPosition != Vector2Int.zero)
+        {
+            var jumperPos = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.JumperPosition);
+            Instantiate(jumper, jumperPos, Quaternion.identity, grid.transform);
+        }
+        
+        if (LevelSaveManager.LoadedLevel.FeeshPosition != Vector2Int.zero)
+        {
+            var feeshPos = grid.GetCellCenterWorld((Vector3Int)LevelSaveManager.LoadedLevel.FeeshPosition);
+            Instantiate(feesh, feeshPos, Quaternion.identity, grid.transform);
+        }
+    }
+    
     public void ResetCharacters()
     {
         if (Sonic)

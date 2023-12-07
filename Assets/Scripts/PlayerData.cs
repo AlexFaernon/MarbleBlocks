@@ -25,6 +25,7 @@ public class PlayerData : MonoBehaviour
 	public static int Level;
 	public static int Coins;
 	public static int Energy;
+	public static int Rank;
 	
 	private PlayerClass _playerClass;
 

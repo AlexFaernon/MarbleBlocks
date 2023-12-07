@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -33,10 +34,7 @@ public class TileManager : MonoBehaviour
                 _tiles11X11 = CreateTiles(field11X11, new Vector2Int(11,11));
                 break;
             case GameModeType.LevelEditor: //todo пофиксить отображение нижних тайлов в редакторе
-                Debug.Log("Loading Editor");
-                _tiles = CreateTiles(_grid.transform, EditorFieldSize);
-                LevelSaveManager.LoadedLevel = new LevelClass {FieldSize = EditorFieldSize};
-                Debug.Log(LevelSaveManager.LoadedLevel.FieldSize);
+                StartCoroutine(LoadEditorLevel());
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -61,6 +59,24 @@ public class TileManager : MonoBehaviour
             }
         }
         return tiles;
+    }
+
+    private IEnumerator LoadEditorLevel()
+    {
+        yield return new WaitUntil(() => LevelSaveManager.LoadLevelTaskCompleted);
+        
+        if (LevelSaveManager.LoadedLevel is null)
+        {
+            Debug.Log("level not found");
+            _tiles = CreateTiles(_grid.transform, EditorFieldSize);
+            LevelSaveManager.LoadedLevel = new LevelClass { FieldSize = EditorFieldSize };
+        }
+        else
+        {
+            Debug.Log("level found");
+            _tiles = CreateTiles(_grid.transform, LevelSaveManager.LoadedLevel.FieldSize);
+            SetTiles();
+        }
     }
     
     public static void SetTiles()

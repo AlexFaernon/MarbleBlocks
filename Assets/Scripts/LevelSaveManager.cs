@@ -6,15 +6,20 @@ public class LevelSaveManager : MonoBehaviour
 {
     public static int LevelNumber;
     public static LevelClass LoadedLevel;
+    public static bool LoadLevelTaskCompleted => RealtimeDatabase.LevelLoaded;
     [SerializeField] private TileManager tileManager;
 
     private void Awake()
     {
-        if (GameMode.CurrentGameMode == GameModeType.LevelEditor) return;
-        
-        if (LevelNumber == 0) return;
-        var levelJson = Resources.Load<TextAsset>(LevelNumber.ToString()).text;
-        LoadedLevel = JsonConvert.DeserializeObject<LevelClass>(levelJson);
+        if (GameMode.CurrentGameMode == GameModeType.LevelEditor)
+        {
+            StartCoroutine(RealtimeDatabase.ExportEditorLevel());
+        }
+        else
+        {
+            var levelJson = Resources.Load<TextAsset>(LevelNumber.ToString()).text;
+            LoadedLevel = JsonConvert.DeserializeObject<LevelClass>(levelJson);
+        }
     }
 
     public void SaveLevel()
@@ -31,9 +36,6 @@ public class LevelSaveManager : MonoBehaviour
             SonicPosition  = sonic ? sonic.GetGridPosition : Vector2Int.zero
         };
         LoadedLevel = levelSave;
-        var save = JsonConvert.SerializeObject(levelSave);
-        RealtimeDatabase.PushMap(save);
-        RealtimeDatabase.PushRank(); 
-        File.WriteAllText(Application.persistentDataPath + "\\save.json", save);
+        RealtimeDatabase.PushMap(LoadedLevel, false);
     }
 }
