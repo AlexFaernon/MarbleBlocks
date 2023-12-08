@@ -10,7 +10,7 @@ public class TileManager : MonoBehaviour
     [SerializeField] private Transform field7X7;
     [SerializeField] private Transform field9X9;
     [SerializeField] private Transform field11X11;
-    public static Vector2Int EditorFieldSize;
+    public static Vector2Int EditorFieldSize; //todo fix camera on editor
     public static bool LoadLevel;
     private Grid _grid;
     private static Tile[,] _tiles;
@@ -34,7 +34,7 @@ public class TileManager : MonoBehaviour
                 _tiles11X11 = CreateTiles(field11X11, new Vector2Int(11,11));
                 break;
             case GameModeType.LevelEditor: //todo пофиксить отображение нижних тайлов в редакторе
-                StartCoroutine(LoadEditorLevel());
+                LoadEditorLevel();
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -61,10 +61,8 @@ public class TileManager : MonoBehaviour
         return tiles;
     }
 
-    private IEnumerator LoadEditorLevel()
+    public void LoadEditorLevel()
     {
-        yield return new WaitUntil(() => LevelSaveManager.LoadLevelTaskCompleted);
-        
         if (LevelSaveManager.LoadedLevel is null)
         {
             Debug.Log("level not found");
@@ -75,6 +73,7 @@ public class TileManager : MonoBehaviour
         {
             Debug.Log("level found");
             _tiles = CreateTiles(_grid.transform, LevelSaveManager.LoadedLevel.FieldSize);
+            EditorFieldSize = LevelSaveManager.LoadedLevel.FieldSize;
             SetTiles();
         }
     }
@@ -152,12 +151,13 @@ public class TileManager : MonoBehaviour
         return null;
     }
 
-    public void ClearAllTiles()
+    public void RemakeLevelInEditor()
     {
         foreach (var tile in _tiles)
         {
-            tile.ClearTile();
+            Destroy(tile.gameObject);
         }
+        _tiles = CreateTiles(_grid.transform, EditorFieldSize);
     }
 
     public static void HighlightTiles(HashSet<Tile> highlightedTiles)

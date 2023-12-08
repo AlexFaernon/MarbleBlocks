@@ -11,6 +11,7 @@ public class Drawer : MonoBehaviour
     private void Awake()
     {
         Tile.OnTileClick.AddListener(Draw);
+        CurrentBrush = null;
     }
 
     private void Update()

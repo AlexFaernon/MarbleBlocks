@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class ClearLevel : MonoBehaviour
 {
-    [SerializeField] private TileManager tileManager;
+    [SerializeField] private GameObject sizeSelector;
     private void Awake()
     {
         GetComponent<Button>().onClick.AddListener(OnClick);
@@ -13,9 +13,9 @@ public class ClearLevel : MonoBehaviour
     {
         Drawer.Undo.Clear();
         Drawer.Redo.Clear();
-        tileManager.ClearAllTiles();
-        Destroy(CharacterManager.Sonic.gameObject);
-        Destroy(CharacterManager.Jumper.gameObject);
-        Destroy(CharacterManager.Feesh.gameObject);
+        if (CharacterManager.Sonic != null) Destroy(CharacterManager.Sonic.gameObject);
+        if (CharacterManager.Jumper != null) Destroy(CharacterManager.Jumper.gameObject);
+        if (CharacterManager.Feesh != null) Destroy(CharacterManager.Feesh.gameObject);
+        sizeSelector.SetActive(true);
     }
 }

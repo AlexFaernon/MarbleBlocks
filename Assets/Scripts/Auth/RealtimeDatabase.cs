@@ -40,6 +40,7 @@ public class RealtimeDatabase : MonoBehaviour
         LevelLoaded = false;
         LevelClass level = null;
         var opponent = GetRandomOpponent();
+        Debug.Log(opponent);
         var loadLevel = FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(opponent).Child("Map").GetValueAsync();
         loadLevel.ContinueWithOnMainThread(task =>
             {
