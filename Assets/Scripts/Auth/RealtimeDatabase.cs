@@ -76,13 +76,16 @@ public class RealtimeDatabase : MonoBehaviour
                 else if (task.IsCompleted)
                 {
                     DataSnapshot snapshot = task.Result;
-                    var levelJson = snapshot.GetRawJsonValue();
-                    level = JsonConvert.DeserializeObject<LevelClass>(levelJson);
-                    Debug.Log("Level loaded");
+                    if (snapshot.Exists)
+                    {
+                        var levelJson = snapshot.GetRawJsonValue();
+                        level = JsonConvert.DeserializeObject<LevelClass>(levelJson);
+                        Debug.Log("Level loaded");
+                    }
                 }
                 taskCompeted = true;
             });
-        yield return new WaitUntil(() => loadLevel.IsCompleted && taskCompeted);
+        yield return new WaitUntil(() => taskCompeted);
 
         LevelSaveManager.LoadedLevel = level;
         LevelLoaded = true;
@@ -92,6 +95,7 @@ public class RealtimeDatabase : MonoBehaviour
      {
          LeaderboardLoaded = false;
          Dictionary<string, Tuple<int, int>> leaderboard = null;
+         var leaderboardLoaded = false;
          var loadLeaderboard = FirebaseDatabase.DefaultInstance.RootReference.Child("Leaderboard").GetValueAsync();
          loadLeaderboard.ContinueWithOnMainThread(task =>
          {
@@ -102,12 +106,16 @@ public class RealtimeDatabase : MonoBehaviour
              else if (task.IsCompleted)
              {
                  _leaderboardSnapshot = task.Result;
-                 var leaderboardJson = _leaderboardSnapshot.GetRawJsonValue();
-                 leaderboard = JsonConvert.DeserializeObject<Dictionary<string, Tuple<int, int>>>(leaderboardJson);
-                 Debug.Log("Leaderboard loaded");
+                 if (_leaderboardSnapshot.Exists)
+                 {
+                     var leaderboardJson = _leaderboardSnapshot.GetRawJsonValue();
+                     leaderboard = JsonConvert.DeserializeObject<Dictionary<string, Tuple<int, int>>>(leaderboardJson);
+                     Debug.Log("Leaderboard loaded");
+                 }
              }
+             leaderboardLoaded = true;
          });
-         yield return new WaitUntil(() => leaderboard is not null && loadLeaderboard.IsCompleted);
+         yield return new WaitUntil(() => leaderboardLoaded);
          LeaderboardManager.LeaderboardData = leaderboard;
          LeaderboardLoaded = true;
      }
@@ -124,6 +132,8 @@ public class RealtimeDatabase : MonoBehaviour
     {
         UserLoaded = false;
         PlayerClass player = null;
+        var playerLoaded = false;
+        var rankLoaded = false;
         var loadData = FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.User.DisplayName).GetValueAsync();
         var loadRank = FirebaseDatabase.DefaultInstance.RootReference.Child("Leaderboard").Child(AuthManager.User.DisplayName).Child("Item2").GetValueAsync();
         loadData.ContinueWithOnMainThread(task =>
@@ -139,6 +149,7 @@ public class RealtimeDatabase : MonoBehaviour
                 player = JsonConvert.DeserializeObject<PlayerClass>(dataJson);
                 Debug.Log("Player loaded");
             }
+            playerLoaded = true;
         });
         loadRank.ContinueWithOnMainThread(task =>
             {
@@ -149,11 +160,20 @@ public class RealtimeDatabase : MonoBehaviour
                 else if (task.IsCompleted)
                 {
                     DataSnapshot snapshot = task.Result;
-                    PlayerData.Rank = int.Parse(snapshot.Value.ToString());
+                    if (snapshot.Exists)
+                    {
+                        PlayerData.Rank = int.Parse(snapshot.Value.ToString());
+                        Debug.Log("Rank loaded");
+                    }
+                    else
+                    {
+                        Debug.Log("Rank not found");
+                    }
                 }
+                rankLoaded = true;
             });
-        yield return new WaitUntil(() => player is not null && loadData.IsCompleted && loadRank.IsCompleted);
-        Debug.Log(PlayerData.Rank);
+        yield return new WaitUntil(() => playerLoaded && rankLoaded);
+        Debug.Log("PLayer and rank loaded");
         PlayerData.PlayerClass = player;
         UserLoaded = true;
     }

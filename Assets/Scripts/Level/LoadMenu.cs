@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class ExitLevel : MonoBehaviour
+public class LoadMenu : MonoBehaviour
 {
     public void Awake()
     {
