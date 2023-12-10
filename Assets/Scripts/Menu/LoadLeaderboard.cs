@@ -12,14 +12,15 @@ public class LoadLeaderboard : MonoBehaviour
 	{
 		_button = GetComponent<Button>();
 		_button.onClick.AddListener(() => StartCoroutine(Load()));
-		_button.interactable = false;
 	}
 
 	private IEnumerator Load()
 	{
+        _button.interactable = false;
+
 		StartCoroutine(RealtimeDatabase.ExportLeaderboard());
 		yield return new WaitUntil(() => RealtimeDatabase.LeaderboardLoaded);
-
+        
 		SceneManager.LoadScene("Leaderboard");
 	}
 }
