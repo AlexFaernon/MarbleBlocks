@@ -20,7 +20,7 @@ public class LeaderboardManager : MonoBehaviour
     {
         yield return new WaitUntil(() => RealtimeDatabase.LeaderboardLoaded);
         
-        foreach (var leaderboardRecord in LeaderboardData.OrderBy(pair => pair.Value.Item2))
+        foreach (var leaderboardRecord in LeaderboardData.OrderByDescending(pair => pair.Value.Item2))
         {
             var record = Instantiate(leaderboardRecordPrefab, transform).GetComponent<LeaderboardRecord>();
             record.SetPlayerInfo(leaderboardRecord.Key, leaderboardRecord.Value.Item1, leaderboardRecord.Value.Item2);

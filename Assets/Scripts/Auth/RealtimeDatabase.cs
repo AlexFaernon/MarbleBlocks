@@ -9,6 +9,7 @@ using Firebase.Extensions;
 using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
+using Unity.Mathematics;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -21,7 +22,8 @@ public class RealtimeDatabase : MonoBehaviour
     public static bool LeaderboardLoaded;
 
     private static DataSnapshot _leaderboardSnapshot;
-    
+    public static string Opponent { get; private set; }
+
     void Start()
     {
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task => 
@@ -39,9 +41,9 @@ public class RealtimeDatabase : MonoBehaviour
     {
         LevelLoaded = false;
         LevelClass level = null;
-        var opponent = GetRandomOpponent();
-        Debug.Log(opponent);
-        var loadLevel = FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(opponent).Child("Map").GetValueAsync();
+        Opponent = GetRandomOpponent();
+        Debug.Log(Opponent);
+        var loadLevel = FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(Opponent).Child("Map").GetValueAsync();
         loadLevel.ContinueWithOnMainThread(task =>
             {
                 if (task.IsFaulted)
@@ -193,9 +195,70 @@ public class RealtimeDatabase : MonoBehaviour
         FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.User.DisplayName).SetRawJsonValueAsync(userJson);
     }
 
-    public static void PushRank()
+    public static IEnumerator IncreaseLevelCount(string playerName)
     {
-        FirebaseDatabase.DefaultInstance.RootReference.Child("Leaderboard").Child(AuthManager.User.DisplayName).SetRawJsonValueAsync("{\"Item1\":0,\"Item2\":" + PlayerData.Rank + "}");
+        var loadRank = FirebaseDatabase.DefaultInstance.RootReference.Child("Leaderboard").Child(playerName).Child("Item1").GetValueAsync();
+        var countLoaded = false;
+        var levels = 0;
+        
+        loadRank.ContinueWithOnMainThread(task =>
+            {
+                if (task.IsFaulted)
+                {
+                    Debug.Log($"Error {task.Exception}");
+                }
+                else if (task.IsCompleted)
+                {
+                    DataSnapshot snapshot = task.Result;
+                    if (snapshot.Exists)
+                    {
+                        levels = int.Parse(snapshot.Value.ToString());
+                        Debug.Log("Rank loaded");
+                    }
+                    else
+                    {
+                        Debug.Log("Rank not found");
+                    }
+                }
+                countLoaded = true;
+            });
+        yield return new WaitUntil(() => countLoaded);
+
+        levels++;
+        FirebaseDatabase.DefaultInstance.RootReference.Child("Leaderboard").Child(playerName).Child("Item1").SetRawJsonValueAsync(levels.ToString());
+    }
+    
+    public static IEnumerator PushRank(string playerName, int rankDelta)
+    {
+        var loadRank = FirebaseDatabase.DefaultInstance.RootReference.Child("Leaderboard").Child(playerName).Child("Item2").GetValueAsync();
+        var rankLoaded = false;
+        var rank = 0;
+        
+        loadRank.ContinueWithOnMainThread(task =>
+            {
+                if (task.IsFaulted)
+                {
+                    Debug.Log($"Error {task.Exception}");
+                }
+                else if (task.IsCompleted)
+                {
+                    DataSnapshot snapshot = task.Result;
+                    if (snapshot.Exists)
+                    {
+                        rank = int.Parse(snapshot.Value.ToString());
+                        Debug.Log("Rank loaded");
+                    }
+                    else
+                    {
+                        Debug.Log("Rank not found");
+                    }
+                }
+                rankLoaded = true;
+            });
+        yield return new WaitUntil(() => rankLoaded);
+
+        rank = Math.Clamp(rank + rankDelta, 0, int.MaxValue);
+        FirebaseDatabase.DefaultInstance.RootReference.Child("Leaderboard").Child(playerName).Child("Item2").SetRawJsonValueAsync(rank.ToString());
     }
 }
 

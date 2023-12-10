@@ -8,6 +8,6 @@ public class PushDataOnLevelTest : MonoBehaviour
 	private void OnEnable()
 	{
 		RealtimeDatabase.PushMap(LevelSaveManager.LoadedLevel, true);
-		RealtimeDatabase.PushRank();
+		StartCoroutine(RealtimeDatabase.PushRank(AuthManager.User.DisplayName, 0));
 	}
 }

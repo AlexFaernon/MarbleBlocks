@@ -676,6 +676,7 @@ GameObject:
   - component: {fileID: 58077816}
   - component: {fileID: 58077817}
   - component: {fileID: 58077819}
+  - component: {fileID: 58077820}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -799,6 +800,21 @@ MonoBehaviour:
   jumper: {fileID: 3384081889145027817, guid: 398a95025ebfb944ca66c46c95350b65, type: 3}
   feesh: {fileID: 7478366469092275023, guid: 1aee358c70c8aa0469c8f64ea7fb411b, type: 3}
   grid: {fileID: 58077810}
+--- !u!114 &58077820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58077808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e21fa3bf07b75246a65ffeefffcf56e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  winMultiplayer: {fileID: 1729217799}
+  winSingleplayer: {fileID: 1729217799}
+  lose: {fileID: 770260959}
 --- !u!1 &68655894
 GameObject:
   m_ObjectHideFlags: 0

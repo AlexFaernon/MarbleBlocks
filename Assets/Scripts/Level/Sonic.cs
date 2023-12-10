@@ -86,7 +86,7 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
     {
         if (!CurrentTile.IsGrass && !CurrentTile.WaterLily && !CurrentTile.isFeeshOnTile && !IsMoving || CurrentTile.IsEdge)
         {
-            GameObject.FindWithTag("Defeat").transform.GetChild(0).gameObject.SetActive(true);
+            WinLoseManager.Lose.SetActive(true);
             Destroy(gameObject);
         }
     }

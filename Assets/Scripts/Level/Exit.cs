@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Exit : MonoBehaviour
@@ -8,7 +9,20 @@ public class Exit : MonoBehaviour
         if (col.CompareTag("Feesh") || col.CompareTag("Sonic") || col.CompareTag("Jumper"))
         {
             col.gameObject.SetActive(false);
-            GameObject.FindWithTag("Finish").transform.GetChild(0).gameObject.SetActive(true);
+            switch (GameMode.CurrentGameMode)
+            {
+                case GameModeType.SinglePlayer:
+                    WinLoseManager.WinSingleplayer.SetActive(true);
+                    break;
+                case GameModeType.MultiPlayer:
+                    WinLoseManager.WinMultiplayer.SetActive(true);
+                    break;
+                case GameModeType.LevelEditor:
+                    WinLoseManager.WinSingleplayer.SetActive(true);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
     }
     
