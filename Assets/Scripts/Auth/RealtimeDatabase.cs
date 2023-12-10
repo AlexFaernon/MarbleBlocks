@@ -195,9 +195,9 @@ public class RealtimeDatabase : MonoBehaviour
         FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.User.DisplayName).SetRawJsonValueAsync(userJson);
     }
 
-    public static IEnumerator IncreaseLevelCount(string playerName)
+    public static IEnumerator IncreaseLevelCount()
     {
-        var loadRank = FirebaseDatabase.DefaultInstance.RootReference.Child("Leaderboard").Child(playerName).Child("Item1").GetValueAsync();
+        var loadRank = FirebaseDatabase.DefaultInstance.RootReference.Child("Leaderboard").Child(AuthManager.User.DisplayName).Child("Item1").GetValueAsync();
         var countLoaded = false;
         var levels = 0;
         
@@ -225,7 +225,7 @@ public class RealtimeDatabase : MonoBehaviour
         yield return new WaitUntil(() => countLoaded);
 
         levels++;
-        FirebaseDatabase.DefaultInstance.RootReference.Child("Leaderboard").Child(playerName).Child("Item1").SetRawJsonValueAsync(levels.ToString());
+        FirebaseDatabase.DefaultInstance.RootReference.Child("Leaderboard").Child(AuthManager.User.DisplayName).Child("Item1").SetRawJsonValueAsync(levels.ToString());
     }
     
     public static IEnumerator PushRank(string playerName, int rankDelta)
@@ -258,6 +258,10 @@ public class RealtimeDatabase : MonoBehaviour
         yield return new WaitUntil(() => rankLoaded);
 
         rank = Math.Clamp(rank + rankDelta, 0, int.MaxValue);
+        if (playerName == AuthManager.User.DisplayName)
+        {
+            PlayerData.Rank = rank;
+        }
         FirebaseDatabase.DefaultInstance.RootReference.Child("Leaderboard").Child(playerName).Child("Item2").SetRawJsonValueAsync(rank.ToString());
         Debug.Log("Rank pushed");
     }
