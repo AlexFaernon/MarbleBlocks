@@ -14,7 +14,7 @@ public class WinLoseManager : MonoBehaviour
 
 	private void Awake()
 	{
-		WinMultiplayer = winSingleplayer;
+		WinMultiplayer = winMultiplayer;
 		WinSingleplayer = winSingleplayer;
 		Lose = lose;
 	}

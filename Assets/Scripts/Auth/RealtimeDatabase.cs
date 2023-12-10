@@ -246,11 +246,11 @@ public class RealtimeDatabase : MonoBehaviour
                     if (snapshot.Exists)
                     {
                         rank = int.Parse(snapshot.Value.ToString());
-                        Debug.Log("Rank loaded");
+                        Debug.Log($"{playerName}'s Rank loaded");
                     }
                     else
                     {
-                        Debug.Log("Rank not found");
+                        Debug.Log($"{playerName}'s Rank not found");
                     }
                 }
                 rankLoaded = true;
@@ -259,6 +259,7 @@ public class RealtimeDatabase : MonoBehaviour
 
         rank = Math.Clamp(rank + rankDelta, 0, int.MaxValue);
         FirebaseDatabase.DefaultInstance.RootReference.Child("Leaderboard").Child(playerName).Child("Item2").SetRawJsonValueAsync(rank.ToString());
+        Debug.Log("Rank pushed");
     }
 }
 

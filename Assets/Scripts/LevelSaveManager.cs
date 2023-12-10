@@ -15,7 +15,7 @@ public class LevelSaveManager : MonoBehaviour
         {
             StartCoroutine(RealtimeDatabase.ExportEditorLevel());
         }
-        else
+        else if (GameMode.CurrentGameMode == GameModeType.SinglePlayer)
         {
             var levelJson = Resources.Load<TextAsset>(LevelNumber.ToString()).text;
             LoadedLevel = JsonConvert.DeserializeObject<LevelClass>(levelJson);
