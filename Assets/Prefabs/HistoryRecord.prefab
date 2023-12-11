@@ -92,7 +92,6 @@ GameObject:
   - component: {fileID: 3211096796719221929}
   - component: {fileID: 3211096796719221925}
   - component: {fileID: 3211096796719221930}
-  - component: {fileID: 3211096796719221931}
   - component: {fileID: 3211096796719221928}
   m_Layer: 0
   m_Name: Nickname
@@ -218,19 +217,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &3211096796719221931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3211096796719221934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9b8d9bd15d491a4a943de5d003c9615, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameWindow: {fileID: 0}
 --- !u!114 &3211096796719221928
 MonoBehaviour:
   m_ObjectHideFlags: 0
