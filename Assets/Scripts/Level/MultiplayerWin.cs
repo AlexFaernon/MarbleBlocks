@@ -10,5 +10,7 @@ public class MultiplayerWin : MonoBehaviour
 		StartCoroutine(RealtimeDatabase.PushRank(AuthManager.User.DisplayName, 3));
 		StartCoroutine(RealtimeDatabase.PushRank(RealtimeDatabase.Opponent, -1));
 		StartCoroutine(RealtimeDatabase.IncreaseLevelCount());
+		RealtimeDatabase.PushToHistory(RealtimeDatabase.Opponent, StepCounter.Count, true);
+
 	}
 }

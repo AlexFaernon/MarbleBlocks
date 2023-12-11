@@ -269,7 +269,7 @@ public class RealtimeDatabase : MonoBehaviour
 
     public static void PushToHistory(string opponentName, int stepCount, bool isWin)
     {
-        var pair =JsonConvert.SerializeObject(new Tuple<int, bool>(stepCount, isWin));
+        var pair = JsonConvert.SerializeObject(new Tuple<int, bool>(stepCount, isWin));
         FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(opponentName).Child("History").Child(AuthManager.User.DisplayName).SetRawJsonValueAsync(pair);
     }
 
