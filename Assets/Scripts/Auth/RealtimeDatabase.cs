@@ -20,6 +20,7 @@ public class RealtimeDatabase : MonoBehaviour
     public static bool LevelLoaded;
     public static bool UserLoaded;
     public static bool LeaderboardLoaded;
+    public static bool HistoryLoaded;
 
     private static DataSnapshot _leaderboardSnapshot;
     public static string Opponent { get; private set; }
@@ -264,6 +265,43 @@ public class RealtimeDatabase : MonoBehaviour
         }
         FirebaseDatabase.DefaultInstance.RootReference.Child("Leaderboard").Child(playerName).Child("Item2").SetRawJsonValueAsync(rank.ToString());
         Debug.Log("Rank pushed");
+    }
+
+    public static void PushToHistory(string opponentName, int stepCount, bool isWin)
+    {
+        var pair =JsonConvert.SerializeObject(new Tuple<int, bool>(stepCount, isWin));
+        FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(opponentName).Child("History").Child(AuthManager.User.DisplayName).SetRawJsonValueAsync(pair);
+    }
+
+    public static IEnumerator ExportHistory()
+    {
+        HistoryLoaded = false;
+        var historyTask = FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.User.DisplayName).Child("History").GetValueAsync();
+        var historyLoaded = false;
+        Dictionary<string, Tuple<int, bool>> history = null;
+        
+        historyTask.ContinueWithOnMainThread(task =>
+            {
+                if (task.IsFaulted)
+                {
+                    Debug.Log($"Error {task.Exception}");
+                }
+                else if (task.IsCompleted)
+                {
+                    var historySnapshot = task.Result;
+                    if (historySnapshot.Exists)
+                    {
+                        var historyJson = historySnapshot.GetRawJsonValue();
+                        history = JsonConvert.DeserializeObject<Dictionary<string, Tuple<int, bool>>>(historyJson);
+                        Debug.Log("History loaded");
+                    }
+                }
+                historyLoaded = true;
+            });
+        yield return new WaitUntil(() => historyLoaded);
+
+        HistoryManager.History = history;
+        HistoryLoaded = true;
     }
 }
 

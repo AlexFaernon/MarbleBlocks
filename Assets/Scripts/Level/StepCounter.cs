@@ -13,7 +13,7 @@ public class StepCounter : MonoBehaviour
 
     private void Update()
     {
-        if (LevelSaveManager.LevelNumber == 0)
+        if (GameMode.CurrentGameMode == GameModeType.SinglePlayer && LevelSaveManager.LevelNumber == 0)
         {
             return;
         }

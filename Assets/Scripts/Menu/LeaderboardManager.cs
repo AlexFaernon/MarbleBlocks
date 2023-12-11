@@ -12,7 +12,6 @@ public class LeaderboardManager : MonoBehaviour
 
     private void Awake()
     {
-        //Debug.Log(JsonConvert.SerializeObject());
         StartCoroutine(SetLeaderboard());
     }
 
