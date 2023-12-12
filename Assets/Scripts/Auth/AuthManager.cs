@@ -181,7 +181,7 @@ public class AuthManager : MonoBehaviour
                     else
                     {
                         // зарегались, теперь нужно войти
-                        RealtimeDatabase.PushUserData(PlayerData.PlayerClass);
+                        RealtimeDatabase.PushInitialUserData(PlayerData.PlayerClass);
                         UISwitcher.Instance.LoginOn();
 
                         // подтверждение учетки через почту, можно вырезать

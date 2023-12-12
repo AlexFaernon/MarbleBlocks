@@ -10,23 +10,14 @@ public class CoinsManager : MonoBehaviour
         set
         {
             PlayerData.Coins = value;
-            PlayerPrefs.SetInt("Coins", value);
+            
+            RealtimeDatabase.PushUserData();
         }
     }
 
     private void Awake()
     {
         _label = GetComponent<TMP_Text>();
-        if (Coins != -1) return;
-        
-        if (PlayerPrefs.HasKey("Coins"))
-        {
-            Coins = PlayerPrefs.GetInt("Coins");
-        }
-        else
-        {
-            Coins = 0;
-        }
     }
 
     private void Update()

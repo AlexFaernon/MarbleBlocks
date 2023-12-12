@@ -3,19 +3,16 @@ using TMPro;
 using UnityEngine;
 using Random = System.Random;
 
-public class CoinsLabel : MonoBehaviour
+public class CoinsLabel : MonoBehaviour //todo разгрести эти хуйню
 {
 	private static Random _random = new();
 	private void Awake()
 	{
-		var coinsAdded = 0;
-		if (!PlayerPrefs.HasKey($"level{LevelSaveManager.LevelNumber}"))
-		{
-			PlayerPrefs.SetInt($"level{LevelSaveManager.LevelNumber}", Convert.ToInt32(true));
-			ExpLevelManager.Exp += 100;
-			coinsAdded = _random.Next(1, 3);
-			CoinsManager.Coins += coinsAdded;
-		}
+		ExpLevelManager.Exp += 100;
+		var coinsAdded = _random.Next(1, 3);
+		CoinsManager.Coins += coinsAdded;
+		PlayerData.SingleLevelCompleted = Math.Max(PlayerData.SingleLevelCompleted, LevelSaveManager.LevelNumber);
+		Debug.Log(PlayerData.SingleLevelCompleted);
 		
 		GetComponent<TMP_Text>().text = $"+{coinsAdded}";
 	}

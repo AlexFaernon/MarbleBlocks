@@ -8,15 +8,12 @@ public class MenuLevelCircle : MonoBehaviour
     [SerializeField] private Sprite closed;
     [SerializeField] private Sprite opened;
     [SerializeField] private Sprite completed;
-    [SerializeField] private MenuLevelCircle previousLevelCircle;
     [SerializeField] private GameObject levelPreview;
     [SerializeField] private TMP_Text numberLabel;
     public int levelNumber;
 
     private Button _button;
     private Image _image;
-    public bool isCompleted;
-    public bool isOpened;
     private void Awake()
     {
         _button = GetComponent<Button>();
@@ -24,25 +21,12 @@ public class MenuLevelCircle : MonoBehaviour
         numberLabel.text = levelNumber.ToString();
 
         _button.onClick.AddListener(LoadLevel);
-        if (levelNumber == 1)
-        {
-            isOpened = true;
-        }
-        else if (PlayerPrefs.HasKey($"level{levelNumber - 1}"))
-        {
-            isOpened = Convert.ToBoolean(PlayerPrefs.GetInt($"level{levelNumber - 1}"));
-        }
-        
-        if (PlayerPrefs.HasKey($"level{levelNumber}"))
-        {
-            isCompleted = Convert.ToBoolean(PlayerPrefs.GetInt($"level{levelNumber}"));
-        }
 
-        if (isCompleted)
+        if (PlayerData.SingleLevelCompleted >= levelNumber)
         {
             _image.sprite = completed;
         }
-        else if (isOpened)
+        else if (levelNumber - 1 == PlayerData.SingleLevelCompleted)
         {
             _image.sprite = opened;
         }

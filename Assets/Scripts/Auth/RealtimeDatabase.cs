@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Unity.Mathematics;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using Object = System.Object;
 using Random = UnityEngine.Random;
 
 public class RealtimeDatabase : MonoBehaviour
@@ -36,6 +37,12 @@ public class RealtimeDatabase : MonoBehaviour
             }
             OnFirebaseInitialized.Invoke();
         });
+    }
+
+    public static void PushEnergy(EnergyTimestamp energyTimestamp)
+    {
+        var json = JsonConvert.SerializeObject(energyTimestamp);
+        FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.User.DisplayName).Child("Energy").SetRawJsonValueAsync(json);
     }
     
     public static IEnumerator ExportRandomLevel()
@@ -138,8 +145,10 @@ public class RealtimeDatabase : MonoBehaviour
         PlayerClass player = null;
         var playerLoaded = false;
         var rankLoaded = false;
+        var energyLoaded = false;
         var loadData = FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.User.DisplayName).GetValueAsync();
         var loadRank = FirebaseDatabase.DefaultInstance.RootReference.Child("Leaderboard").Child(AuthManager.User.DisplayName).Child("Item2").GetValueAsync();
+        var loadEnergy = FirebaseDatabase.DefaultInstance.RootReference.Child("Leaderboard").GetValueAsync();
         loadData.ContinueWithOnMainThread(task =>
         {
             if (task.IsFaulted)
@@ -176,8 +185,26 @@ public class RealtimeDatabase : MonoBehaviour
                 }
                 rankLoaded = true;
             });
-        yield return new WaitUntil(() => playerLoaded && rankLoaded);
-        Debug.Log("PLayer and rank loaded");
+        loadEnergy.ContinueWithOnMainThread(task =>
+            {
+                if (task.IsFaulted)
+                {
+                    Debug.Log($"Error {task.Exception}");
+                }
+                else if (task.IsCompleted)
+                {
+                    var snapshot = task.Result;
+                    if (snapshot.Exists)
+                    {
+                        var energyJson = snapshot.GetRawJsonValue();
+                        EnergyManager.EnergyTimestamp = JsonConvert.DeserializeObject<EnergyTimestamp>(energyJson);
+                        Debug.Log("energy loaded");
+                    }
+                }
+                energyLoaded = true;
+            });
+        yield return new WaitUntil(() => playerLoaded && rankLoaded && energyLoaded);
+        Debug.Log("PLayer, energy and rank loaded");
         PlayerData.PlayerClass = player;
         UserLoaded = true;
     }
@@ -190,10 +217,19 @@ public class RealtimeDatabase : MonoBehaviour
         FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.User.DisplayName).Child(path).SetRawJsonValueAsync(json);
     }
 
-    public static void PushUserData(PlayerClass playerClass)
+    public static void PushUserData()
+    {
+        var userJson = JsonConvert.SerializeObject(PlayerData.PlayerClass);
+        var dict = JsonConvert.DeserializeObject<Dictionary<string, object>>(userJson);
+        FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.User.DisplayName).UpdateChildrenAsync(dict);
+    }
+
+    public static void PushInitialUserData(PlayerClass playerClass)
     {
         var userJson = JsonConvert.SerializeObject(playerClass);
         FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.User.DisplayName).SetRawJsonValueAsync(userJson);
+        var energyJson = JsonConvert.SerializeObject(EnergyManager.EnergyTimestamp);
+        FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.User.DisplayName).Child("Energy").SetRawJsonValueAsync(energyJson);
     }
 
     public static IEnumerator IncreaseLevelCount()

@@ -10,11 +10,11 @@ public class MenuLevelLine : MonoBehaviour
 
     private void Start()
     {
-        if (nextLevelCircle.isCompleted)
+        if (PlayerData.SingleLevelCompleted >= nextLevelCircle.levelNumber)
         {
             GetComponent<Image>().sprite = completed;
         }
-        else if (nextLevelCircle.isOpened)
+        else if (nextLevelCircle.levelNumber - 1 == PlayerData.SingleLevelCompleted)
         {
             GetComponent<Image>().sprite = opened;
         }

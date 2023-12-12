@@ -1,47 +1,29 @@
-using UnityEngine;
-
-public class ExpLevelManager : MonoBehaviour
+public static class ExpLevelManager
 {
     public const int MaxExp = 1000;
-    private static int _playerLevel = 1;
     public static int PlayerLevel
     {
-        get => _playerLevel;
+        get => PlayerData.Level;
         private set
         {
-            _playerLevel = value;
+            PlayerData.Level = value;
             EnergyManager.CurrentEnergy++;
-            PlayerPrefs.SetInt("PlayerLevel", _playerLevel);
         }
     }
     
-    private static int _exp;
     public static int Exp
     {
-        get => _exp;
+        get => PlayerData.Exp;
         set
         {
-            _exp = value;
-            if (_exp >= MaxExp)
+            PlayerData.Exp = value;
+            if (PlayerData.Exp >= MaxExp)
             {
                 PlayerLevel++;
-                _exp %= MaxExp;
+                PlayerData.Exp %= MaxExp;
             }
             
-            PlayerPrefs.SetInt("Exp", _exp);
-        }
-    }
-
-    private void Awake()
-    {
-        if (PlayerPrefs.HasKey("PlayerLevel"))
-        {
-            _playerLevel = PlayerPrefs.GetInt("PlayerLevel");
-        }
-        
-        if (PlayerPrefs.HasKey("Exp"))
-        {
-            _exp = PlayerPrefs.GetInt("Exp");
+            RealtimeDatabase.PushUserData();
         }
     }
 }
