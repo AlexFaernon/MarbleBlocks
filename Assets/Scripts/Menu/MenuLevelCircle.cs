@@ -21,14 +21,19 @@ public class MenuLevelCircle : MonoBehaviour
         numberLabel.text = levelNumber.ToString();
 
         _button.onClick.AddListener(LoadLevel);
+    }
 
+    private void Update()
+    {
         if (PlayerData.SingleLevelCompleted >= levelNumber)
         {
             _image.sprite = completed;
+            _button.interactable = true;
         }
         else if (levelNumber - 1 == PlayerData.SingleLevelCompleted)
         {
             _image.sprite = opened;
+            _button.interactable = true;
         }
         else
         {

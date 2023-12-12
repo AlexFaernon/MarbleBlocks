@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,20 +8,26 @@ public class MenuLevelLine : MonoBehaviour
     [SerializeField] private Sprite opened;
     [SerializeField] private Sprite completed;
     [SerializeField] private MenuLevelCircle nextLevelCircle;
+    private Image image;
 
-    private void Start()
+    private void Awake()
+    {
+        image = GetComponent<Image>();
+    }
+
+    private void Update()
     {
         if (PlayerData.SingleLevelCompleted >= nextLevelCircle.levelNumber)
         {
-            GetComponent<Image>().sprite = completed;
+            image.sprite = completed;
         }
         else if (nextLevelCircle.levelNumber - 1 == PlayerData.SingleLevelCompleted)
         {
-            GetComponent<Image>().sprite = opened;
+            image.sprite = opened;
         }
         else
         {
-            GetComponent<Image>().sprite = closed;
+            image.sprite = closed;
         }
     }
 }

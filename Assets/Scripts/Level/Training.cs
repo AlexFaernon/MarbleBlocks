@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Training : MonoBehaviour
@@ -11,6 +12,8 @@ public class Training : MonoBehaviour
 
     private void Start()
     {
+        if (GameMode.CurrentGameMode != GameModeType.SinglePlayer) return;
+        
         switch (LevelSaveManager.LevelNumber)
         {
             case 1:
