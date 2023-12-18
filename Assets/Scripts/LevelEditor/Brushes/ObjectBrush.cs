@@ -62,7 +62,7 @@ public class ObjectBrush : Brush
             case OnTileObject.Lever:
                 lever ??= new LeverClass
                 {
-                    IsSwitchable = false,
+                    IsSwitchable = true,
                     Color = Color
                 };
                 tile.Lever = lever;

@@ -14,19 +14,17 @@ public class NextRandomLevel : MonoBehaviour
     private void Awake()
     {
         _button = GetComponent<Button>();
-        _button.onClick.AddListener(() => StartCoroutine(OnClick()));
-        StartCoroutine(OnClick());
+        _button.onClick.AddListener(() => StartCoroutine(FindLevel()));
+        StartCoroutine(FindLevel());
     }
 
-    private IEnumerator OnClick()
+    private IEnumerator FindLevel()
     {
         _button.interactable = false;
-        startLevelButton.interactable = false;
         StartCoroutine(RealtimeDatabase.ExportRandomLevel());
         yield return new WaitUntil(() => RealtimeDatabase.LevelLoaded);
         tileManager.SwitchTileSetForMultiplayer();
         characterManager.ResetCharacters();
         _button.interactable = true;
-        startLevelButton.interactable = true;
     }
 }

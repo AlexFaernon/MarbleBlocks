@@ -44,7 +44,6 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
         if (!CurrentTile.IsGrass && !CurrentTile.WaterLily && !CurrentTile.isFeeshOnTile && !IsMoving || CurrentTile.IsEdge)
         {
             WinLoseManager.Lose.SetActive(true);
-            Destroy(gameObject);
         }
     }
 
@@ -181,8 +180,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
         
         if (col.CompareTag("Spike"))
         {
-            GameObject.FindWithTag("Defeat").transform.GetChild(0).gameObject.SetActive(true);
-            Destroy(gameObject);
+            WinLoseManager.Lose.SetActive(true);
         }
         
         if (col.CompareTag("Lever"))

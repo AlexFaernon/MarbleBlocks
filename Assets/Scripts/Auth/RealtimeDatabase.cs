@@ -133,7 +133,10 @@ public class RealtimeDatabase : MonoBehaviour
      
     private static string GetRandomOpponent()
     {
-        var keys = _leaderboardSnapshot.Children.Select(child => child.Key).ToList();
+        var keys = _leaderboardSnapshot.Children
+            .Select(child => child.Key)
+            .Where(name => name != AuthManager.User.DisplayName && name != Opponent)
+            .ToList();
         if (keys.Count <= 0) return null;
         var randomIndex = Random.Range(0, keys.Count);
         return keys[randomIndex];

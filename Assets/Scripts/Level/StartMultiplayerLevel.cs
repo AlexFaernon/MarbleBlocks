@@ -44,6 +44,6 @@ public class StartMultiplayerLevel : MonoBehaviour
 
 	private void Update()
 	{
-		_button.interactable = EnergyManager.CurrentEnergy > 0;
+		_button.interactable = EnergyManager.CurrentEnergy > 0 && LevelSaveManager.LoadLevelTaskCompleted;
 	}
 }
