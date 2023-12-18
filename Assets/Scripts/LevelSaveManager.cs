@@ -36,6 +36,7 @@ public class LevelSaveManager : MonoBehaviour
             SonicPosition  = sonic ? sonic.GetGridPosition : Vector2Int.zero
         };
         LoadedLevel = levelSave;
+        //File.WriteAllText(Application.persistentDataPath + "\\save.json", JsonConvert.SerializeObject(LoadedLevel));
         RealtimeDatabase.PushMap(LoadedLevel, false);
     }
 }
