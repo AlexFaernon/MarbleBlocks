@@ -12,7 +12,7 @@ public class EnergyLabel : MonoBehaviour
         label.text = $"{EnergyManager.CurrentEnergy}/{EnergyManager.MaxEnergy}";
 
         if (!timerParent) return;
-
+        
         if (EnergyManager.CurrentEnergy < EnergyManager.MaxEnergy)
         {
             timerParent.SetActive(true);
