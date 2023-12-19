@@ -69,7 +69,7 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
 
         if (CanMoveForward(CurrentTile, side))
         {
-            if (GameMode.CurrentGameMode == GameModeType.SinglePlayer)
+            if (GameMode.CurrentGameMode == GameModeType.LevelEditor)
             {
                 WriteHelpInEditor.PushSonicMove(GridPosition, side);
             }
