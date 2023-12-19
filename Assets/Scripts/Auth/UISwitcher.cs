@@ -32,6 +32,11 @@ public class UISwitcher : MonoBehaviour
         login.SetActive(true);
     }
 
+    public void RegistrationOn()
+    {
+        register.SetActive(true);
+        login.SetActive(false);
+    }
     public void CloseAuth()
     {
         authWindow.SetActive(false);

@@ -19,6 +19,8 @@ public class AuthManager : MonoBehaviour
     public TMP_InputField passwordLoginField;
     public TMP_Text warningLoginText;
     public TMP_Text resetPasswordLoginText;
+    public GameObject goToRegistationText;
+
 
     [Header("Register")] 
     public TMP_InputField usernameRegisterField;
@@ -112,6 +114,7 @@ public class AuthManager : MonoBehaviour
                     break;
             }
             
+            goToRegistationText.SetActive(false);
             warningLoginText.gameObject.SetActive(true);
             resetPasswordLoginText.gameObject.SetActive(true);
             warningLoginText.text = message;
