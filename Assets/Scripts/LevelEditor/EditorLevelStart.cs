@@ -32,6 +32,7 @@ public class EditorLevelStart : MonoBehaviour
         if (_isTesting)
         {
             levelSaveManager.SaveLevel();
+            WriteHelpInEditor.ResetHelp();
         }
         else
         {

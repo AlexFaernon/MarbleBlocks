@@ -86,10 +86,10 @@ public class Training : MonoBehaviour
         current = sonicTraining.GetChild(1).gameObject;
         yield return new WaitForEndOfFrame();
         current.SetActive(true);
-        yield return new WaitUntil(() => sonic.GetGridPosition == new Vector2Int(1, 7));
+        yield return new WaitUntil(() => sonic.GridPosition == new Vector2Int(1, 7));
         current.SetActive(false);
 
-        yield return new WaitUntil(() => sonic.GetGridPosition == new Vector2Int(7, 7));
+        yield return new WaitUntil(() => sonic.GridPosition == new Vector2Int(7, 7));
         blocker.SetActive(true);
 
         current = sonicTraining.GetChild(2).gameObject;
@@ -100,7 +100,7 @@ public class Training : MonoBehaviour
         current.SetActive(false);
         blocker.SetActive(false);
         
-        yield return new WaitUntil(() => sonic.GetGridPosition == new Vector2Int(7, 1));
+        yield return new WaitUntil(() => sonic.GridPosition == new Vector2Int(7, 1));
         
         current = sonicTraining.GetChild(3).gameObject;
         blocker.SetActive(true);
@@ -137,7 +137,7 @@ public class Training : MonoBehaviour
         current = jumperTraining.GetChild(1).gameObject;
         yield return new WaitForEndOfFrame();
         current.SetActive(true);
-        yield return new WaitUntil(() => jumper.GetGridPosition == new Vector2Int(5,5));
+        yield return new WaitUntil(() => jumper.GridPosition == new Vector2Int(5,5));
         current.SetActive(false);
         
         current = jumperTraining.GetChild(2).gameObject;
@@ -151,10 +151,10 @@ public class Training : MonoBehaviour
         
         current = jumperTraining.GetChild(3).gameObject;
         current.SetActive(true);
-        yield return new WaitUntil(() => jumper.GetGridPosition == new Vector2Int(7, 5));
+        yield return new WaitUntil(() => jumper.GridPosition == new Vector2Int(7, 5));
         current.SetActive(false);
         
-        yield return new WaitUntil(() => jumper.GetGridPosition == new Vector2Int(5, 1));
+        yield return new WaitUntil(() => jumper.GridPosition == new Vector2Int(5, 1));
 
         current = jumperTraining.GetChild(4).gameObject;
         blocker.SetActive(true);

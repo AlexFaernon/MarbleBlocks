@@ -1,16 +1,3 @@
 {
-  "JumperPos": {
-    "x": 3,
-    "y": 8
-  },
-  "JumperDirection": 1,
-  "SonicPos": {
-    "x": 9,
-    "y": 2
-  },
-  "SonicDirection": 0,
-  "FeeshPos": {
-    "x": 3,
-    "y": 9
-  }
+  
 }

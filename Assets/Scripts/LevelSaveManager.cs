@@ -29,11 +29,13 @@ public class LevelSaveManager : MonoBehaviour
         var feesh = CharacterManager.Feesh;
         var levelSave = new LevelClass
         {
+            OptimalTurns = StepCounter.Count,
             FieldSize      = TileManager.EditorFieldSize,
             Tiles          = tileManager.GetSave(),
-            FeeshPosition  = feesh ? feesh.GetGridPosition : Vector2Int.zero,
-            JumperPosition = jumper ? jumper.GetGridPosition : Vector2Int.zero,
-            SonicPosition  = sonic ? sonic.GetGridPosition : Vector2Int.zero
+            FeeshPosition  = feesh ? feesh.GridPosition : Vector2Int.zero,
+            JumperPosition = jumper ? jumper.GridPosition : Vector2Int.zero,
+            SonicPosition  = sonic ? sonic.GridPosition : Vector2Int.zero,
+            HelpClass = WriteHelpInEditor.GetHelp()
         };
         LoadedLevel = levelSave;
         //File.WriteAllText(Application.persistentDataPath + "\\save.json", JsonConvert.SerializeObject(LoadedLevel));

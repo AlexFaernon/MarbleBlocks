@@ -6,7 +6,7 @@ public class StepCounter : MonoBehaviour
     public static int Count;
     [SerializeField] private TMP_Text label;
 
-    private void Awake()
+    private void OnEnable()
     {
         Count = 0;
     }
@@ -15,11 +15,12 @@ public class StepCounter : MonoBehaviour
     {
         if (GameMode.CurrentGameMode == GameModeType.SinglePlayer && LevelSaveManager.LevelNumber == 0)
         {
+            Debug.Log("single 0");
             return;
         }
-    
+        
         var optimalSteps = LevelSaveManager.LoadedLevel.OptimalTurns;
-        if (optimalSteps == 0)
+        if (GameMode.CurrentGameMode == GameModeType.LevelEditor)
         {
             label.text = $"{Count}";
             return;

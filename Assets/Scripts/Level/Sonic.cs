@@ -14,7 +14,7 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
     private Side _movingSide;
     private Lever _lever;
     public bool isActive;
-    public Vector2Int GetGridPosition => CurrentTile.gridPosition;
+    public Vector2Int GridPosition => CurrentTile.gridPosition;
     [SerializeField] private Animator animator;
     public static int Count;
 
@@ -69,6 +69,10 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
 
         if (CanMoveForward(CurrentTile, side))
         {
+            if (GameMode.CurrentGameMode == GameModeType.SinglePlayer)
+            {
+                WriteHelpInEditor.PushSonicMove(GridPosition, side);
+            }
             IsMoving = true;
             _movingSide = side;
             StartCoroutine(Move());

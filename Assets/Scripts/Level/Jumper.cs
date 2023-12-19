@@ -13,7 +13,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
     private Side _movingSide;
     private bool _isActive;
     private Collider2D _collider2D;
-    public Vector2Int GetGridPosition => CurrentTile.gridPosition;
+    public Vector2Int GridPosition => CurrentTile.gridPosition;
     [SerializeField] private Animator animator;
     public static int Count;
 
@@ -98,6 +98,10 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
         var targetTile = GetTargetTile(_movingSide);
         if (targetTile != CurrentTile)
         {
+            if (GameMode.CurrentGameMode == GameModeType.LevelEditor)
+            {
+                WriteHelpInEditor.PushJumperMove(GridPosition, side);
+            }
             IsMoving = true;
             CurrentTile.WaterLily = false;
             StartCoroutine(Move(targetTile));

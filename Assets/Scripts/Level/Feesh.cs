@@ -15,7 +15,7 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
     private Dictionary<Tile, Tile> _paths;
     private Stack<Tile> _currentPath;
     private Collider2D _collider;
-    public Vector2Int GetGridPosition => CurrentTile.gridPosition;
+    public Vector2Int GridPosition => CurrentTile.gridPosition;
     public bool IsMoving { get; private set; }
     public static int Count;
 
@@ -70,6 +70,10 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
             var targetTile = hit.collider.gameObject.GetComponent<Tile>();
             if (_availableTiles.Contains(targetTile))
             {
+                if (GameMode.CurrentGameMode == GameModeType.LevelEditor)
+                {
+                    WriteHelpInEditor.PushFeeshMove(targetTile.gridPosition);
+                }
                 _currentPath = GetPathToTile(targetTile);
                 IsMoving = true;
                 _collider.enabled = false;

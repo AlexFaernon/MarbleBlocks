@@ -10,7 +10,6 @@ public class HelpSwitch : MonoBehaviour
     [SerializeField] private GameObject sonic;
     [SerializeField] private GameObject feesh;
     [SerializeField] private GameObject arrow;
-    private HelpClass _help;
     private Toggle _toggle;
     private GameObject _jumper;
     private GameObject _jumperArrow;
@@ -27,10 +26,9 @@ public class HelpSwitch : MonoBehaviour
             return;
         }
         
-        var helpJson = Resources.Load<TextAsset>($"Help\\{LevelSaveManager.LevelNumber}").text;
-        _help = JsonConvert.DeserializeObject<HelpClass>(helpJson);
+
         CreateHelp();
-        if (PlayerPrefs.HasKey($"Help{LevelSaveManager.LevelNumber}"))
+        if (GameMode.CurrentGameMode == GameModeType.SinglePlayer && PlayerPrefs.HasKey($"Help{LevelSaveManager.LevelNumber}"))
         {
             HelpLevel = PlayerPrefs.GetInt($"Help{LevelSaveManager.LevelNumber}");
         }
@@ -49,7 +47,10 @@ public class HelpSwitch : MonoBehaviour
         }
         
         HelpLevel++;
-        PlayerPrefs.SetInt($"Help{LevelSaveManager.LevelNumber}", HelpLevel);
+        if (GameMode.CurrentGameMode == GameModeType.SinglePlayer)
+        {
+            PlayerPrefs.SetInt($"Help{LevelSaveManager.LevelNumber}", HelpLevel);
+        }
     }
     
     private void Update()
@@ -86,21 +87,32 @@ public class HelpSwitch : MonoBehaviour
 
     private void CreateHelp()
     {
-        var jumperPos = grid.GetCellCenterWorld((Vector3Int)_help.JumperPos);
-        _jumperArrow = CreateArrow(_help.JumperPos, _help.JumperDirection);
-        _jumper = Instantiate(jumper, jumperPos, Quaternion.identity);
-        _jumperArrow.SetActive(false);
-        _jumper.SetActive(false);
+        var help = LevelSaveManager.LoadedLevel.HelpClass;
+        
+        if (help.JumperPos != Vector2Int.zero)
+        {
+            var jumperPos = grid.GetCellCenterWorld((Vector3Int)help.JumperPos);
+            _jumperArrow = CreateArrow(help.JumperPos, help.JumperDirection);
+            _jumper = Instantiate(jumper, jumperPos, Quaternion.identity);
+            _jumperArrow.SetActive(false);
+            _jumper.SetActive(false);
+        }
 
-        var sonicPos = grid.GetCellCenterWorld((Vector3Int)_help.SonicPos);
-        _sonicArrow = CreateArrow(_help.SonicPos, _help.SonicDirection);
-        _sonic = Instantiate(sonic, sonicPos, Quaternion.identity);
-        _sonicArrow.SetActive(false);
-        _sonic.SetActive(false);
+        if (help.SonicPos != Vector2Int.zero)
+        {
+            var sonicPos = grid.GetCellCenterWorld((Vector3Int)help.SonicPos);
+            _sonicArrow = CreateArrow(help.SonicPos, help.SonicDirection);
+            _sonic = Instantiate(sonic, sonicPos, Quaternion.identity);
+            _sonicArrow.SetActive(false);
+            _sonic.SetActive(false);
+        }
 		
-        var feeshPos = grid.GetCellCenterWorld((Vector3Int)_help.FeeshPos);
-        _feesh = Instantiate(feesh, feeshPos, Quaternion.identity);
-        _feesh.SetActive(false);
+        if (help.FeeshPos != Vector2Int.zero)
+        {
+            var feeshPos = grid.GetCellCenterWorld((Vector3Int)help.FeeshPos);
+            _feesh = Instantiate(feesh, feeshPos, Quaternion.identity);
+            _feesh.SetActive(false);
+        }
     }
     
     private GameObject CreateArrow(Vector2Int pos, Side direction)

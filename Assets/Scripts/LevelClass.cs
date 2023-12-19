@@ -8,4 +8,5 @@ public class LevelClass
     public Vector2Int SonicPosition;
     public Vector2Int JumperPosition;
     public Vector2Int FeeshPosition;
+    public HelpClass HelpClass;
 }

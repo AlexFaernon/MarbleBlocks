@@ -6,6 +6,22 @@
     "magnitude": 9.899495,
     "sqrMagnitude": 98
   },
+  "HelpClass":{
+    "JumperPos": {
+      "x": 5,
+      "y": 5
+    },
+    "JumperDirection": 3,
+    "SonicPos": {
+      "x": 4,
+      "y": 2
+    },
+    "SonicDirection": 2,
+    "FeeshPos": {
+      "x": 4,
+      "y": 5
+    }
+  },
   "Tiles": [
     [
       {
