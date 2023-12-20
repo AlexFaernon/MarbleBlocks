@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,8 @@ public class HelpSwitch : MonoBehaviour
     [SerializeField] private GameObject sonic;
     [SerializeField] private GameObject feesh;
     [SerializeField] private GameObject arrow;
+    public int MaxHelpLevels => _helpGroups.Count;
+    private readonly List<Action<bool>> _helpGroups = new();
     private Toggle _toggle;
     private GameObject _jumper;
     private GameObject _jumperArrow;
@@ -20,7 +23,7 @@ public class HelpSwitch : MonoBehaviour
 
     private void Awake()
     {
-        if (LevelSaveManager.LevelNumber < 4)
+        if (GameMode.CurrentGameMode == GameModeType.SinglePlayer && LevelSaveManager.LevelNumber < 4)
         {
             gameObject.SetActive(false);
             return;
@@ -56,32 +59,10 @@ public class HelpSwitch : MonoBehaviour
     private void Update()
     {
         _toggle.image.enabled = !_toggle.isOn;
-        
-        if (!_toggle.isOn)
-        {
-            _jumper.SetActive(false);
-            _jumperArrow.SetActive(false);
-            _sonic.SetActive(false);
-            _sonicArrow.SetActive(false);
-            _feesh.SetActive(false);
-            return;
-        }
-        
-        if (HelpLevel > 0)
-        {
-            _jumper.SetActive(true);
-            _jumperArrow.SetActive(true);
-        }
 
-        if (HelpLevel > 1)
+        for (var i = 0; i < HelpLevel; i++)
         {
-            _sonic.SetActive(true);
-            _sonicArrow.SetActive(true);
-        }
-		
-        if (HelpLevel > 2)
-        {
-            _feesh.SetActive(true);
+            _helpGroups[i](_toggle.isOn);
         }
     }
 
@@ -96,6 +77,11 @@ public class HelpSwitch : MonoBehaviour
             _jumper = Instantiate(jumper, jumperPos, Quaternion.identity);
             _jumperArrow.SetActive(false);
             _jumper.SetActive(false);
+            _helpGroups.Add(isActive =>
+                {
+                    _jumperArrow.SetActive(isActive);
+                    _jumper.SetActive(isActive);
+                });
         }
 
         if (help.SonicPos != Vector2Int.zero)
@@ -105,6 +91,11 @@ public class HelpSwitch : MonoBehaviour
             _sonic = Instantiate(sonic, sonicPos, Quaternion.identity);
             _sonicArrow.SetActive(false);
             _sonic.SetActive(false);
+            _helpGroups.Add(isActive =>
+                {
+                    _sonicArrow.SetActive(isActive);
+                    _sonic.SetActive(isActive);
+                });
         }
 		
         if (help.FeeshPos != Vector2Int.zero)
@@ -112,6 +103,10 @@ public class HelpSwitch : MonoBehaviour
             var feeshPos = grid.GetCellCenterWorld((Vector3Int)help.FeeshPos);
             _feesh = Instantiate(feesh, feeshPos, Quaternion.identity);
             _feesh.SetActive(false);
+            _helpGroups.Add(isActive =>
+                {
+                    _feesh.SetActive(isActive);
+                });
         }
     }
     

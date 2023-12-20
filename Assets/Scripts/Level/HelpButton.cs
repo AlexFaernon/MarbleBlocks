@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class HintButton : MonoBehaviour
+public class HelpButton : MonoBehaviour
 {
     [SerializeField] private GameObject hintArea;
     [FormerlySerializedAs("helpManager")]
@@ -10,7 +10,7 @@ public class HintButton : MonoBehaviour
     private Button _button;
     private void Awake()
     {
-        if (LevelSaveManager.LevelNumber < 4)
+        if (GameMode.CurrentGameMode == GameModeType.SinglePlayer && LevelSaveManager.LevelNumber < 4)
         {
             gameObject.SetActive(false);
             return;
@@ -21,6 +21,6 @@ public class HintButton : MonoBehaviour
 
     private void Update()
     {
-        _button.interactable = helpSwitch.HelpLevel < 3;
+        _button.interactable = helpSwitch.HelpLevel < helpSwitch.MaxHelpLevels;
     }
 }
