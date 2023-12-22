@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,7 @@ public class NextRandomLevel : MonoBehaviour
 {
     [SerializeField] private TileManager tileManager;
     [SerializeField] private CharacterManager characterManager;
-    [SerializeField] private Button startLevelButton;
+    [SerializeField] private MultiplayerOpponentInfo opponentInfo;
     private Button _button;
 
     private void Awake()
@@ -26,5 +27,6 @@ public class NextRandomLevel : MonoBehaviour
         tileManager.SwitchTileSetForMultiplayer();
         characterManager.ResetCharacters();
         _button.interactable = true;
+        opponentInfo.UpdateInfo();
     }
 }

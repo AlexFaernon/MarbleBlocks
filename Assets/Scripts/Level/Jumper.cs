@@ -39,14 +39,6 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
         CharacterManager.Jumper = this;
     }
 
-    void Update()
-    {
-        if (!CurrentTile.IsGrass && !CurrentTile.WaterLily && !CurrentTile.isFeeshOnTile && !IsMoving || CurrentTile.IsEdge)
-        {
-            WinLoseManager.Lose.SetActive(true);
-        }
-    }
-
     private IEnumerator Move(Tile targetTile)
     {
         var movingVector = _movingSide switch
@@ -176,6 +168,10 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
         if (col.CompareTag("Ground"))
         {
             CurrentTile = col.GetComponent<Tile>();
+            if (!CurrentTile.IsGrass && !CurrentTile.WaterLily && !CurrentTile.isFeeshOnTile && !IsMoving || CurrentTile.IsEdge)
+            {
+                WinLoseManager.Lose.SetActive(true);
+            }
             if (IsActive)
             {
                 HighlightTiles();

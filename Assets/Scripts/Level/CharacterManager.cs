@@ -68,7 +68,6 @@ public class CharacterManager : MonoBehaviour
     {
         if (Sonic)
         {
-            
             Sonic.Reset();
             var sonicPosition = LevelSaveManager.LoadedLevel.SonicPosition;
             Sonic.transform.position = grid.GetCellCenterWorld((Vector3Int)sonicPosition);

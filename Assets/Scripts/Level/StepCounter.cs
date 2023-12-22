@@ -6,7 +6,7 @@ public class StepCounter : MonoBehaviour
     public static int Count;
     [SerializeField] private TMP_Text label;
 
-    private void OnEnable()
+    private void Awake()
     {
         Count = 0;
     }

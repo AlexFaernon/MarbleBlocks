@@ -36,6 +36,7 @@ public class EditorLevelStart : MonoBehaviour
         }
         else
         {
+            StepCounter.Count = 0;
             TileManager.SetTiles();
             characterManager.ResetCharacters();
         }
