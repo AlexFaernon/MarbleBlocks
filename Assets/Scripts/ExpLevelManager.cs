@@ -1,6 +1,9 @@
+using UnityEngine;
+
 public static class ExpLevelManager
 {
-    public const int MaxExp = 1000;
+    public static int MaxExp => GetLevelUpExp(PlayerLevel + 1);
+
     public static int PlayerLevel
     {
         get => PlayerData.Level;
@@ -17,13 +20,25 @@ public static class ExpLevelManager
         set
         {
             PlayerData.Exp = value;
+            Debug.Log($"exp {PlayerData.Exp}");
             if (PlayerData.Exp >= MaxExp)
             {
-                PlayerLevel++;
                 PlayerData.Exp %= MaxExp;
+                PlayerLevel++;
+                Debug.Log($"lvl up exp:{PlayerData.Exp} lvl:{PlayerLevel}");
             }
             
             RealtimeDatabase.PushUserData();
         }
+    }
+
+    private static int GetLevelUpExp(int level)
+    {
+        if (level == 1)
+        {
+            return 80;
+        }
+
+        return GetLevelUpExp(level - 1) + (level - level % 2) * 10;
     }
 }

@@ -74,6 +74,7 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
                 {
                     WriteHelpInEditor.PushFeeshMove(targetTile.gridPosition);
                 }
+                StepCounter.Count++;
                 _currentPath = GetPathToTile(targetTile);
                 IsMoving = true;
                 _collider.enabled = false;
@@ -111,7 +112,6 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
         IsMoving = false;
         transform.up = Vector3.up;
         CurrentTile = currentTile;
-        StepCounter.Count++;
     }
 
     private void FindAvailableTiles()

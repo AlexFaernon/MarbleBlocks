@@ -69,6 +69,7 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
 
         if (CanMoveForward(CurrentTile, side))
         {
+            StepCounter.Count++;
             if (GameMode.CurrentGameMode == GameModeType.LevelEditor)
             {
                 WriteHelpInEditor.PushSonicMove(GridPosition, side);
@@ -127,7 +128,6 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
                 IsMoving = false;
             }
         }
-        StepCounter.Count++;
     }
 
     private void HighlightTiles()

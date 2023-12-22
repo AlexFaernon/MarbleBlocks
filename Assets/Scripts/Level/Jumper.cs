@@ -74,7 +74,6 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
         animator.ResetTrigger("LEFT");
         
         transform.position = targetTile.transform.position;
-        StepCounter.Count++;
         _collider2D.enabled = true;
         CurrentTile = targetTile;
         IsMoving = false;
@@ -90,6 +89,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
         var targetTile = GetTargetTile(_movingSide);
         if (targetTile != CurrentTile)
         {
+            StepCounter.Count++;
             if (GameMode.CurrentGameMode == GameModeType.LevelEditor)
             {
                 WriteHelpInEditor.PushJumperMove(GridPosition, side);

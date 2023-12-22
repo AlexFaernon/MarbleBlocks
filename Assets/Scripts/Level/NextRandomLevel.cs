@@ -16,7 +16,10 @@ public class NextRandomLevel : MonoBehaviour
     {
         _button = GetComponent<Button>();
         _button.onClick.AddListener(() => StartCoroutine(FindLevel()));
-        StartCoroutine(FindLevel());
+        if (GameMode.CurrentGameMode == GameModeType.MultiPlayer)
+        {
+            StartCoroutine(FindLevel());
+        }
     }
 
     private IEnumerator FindLevel()

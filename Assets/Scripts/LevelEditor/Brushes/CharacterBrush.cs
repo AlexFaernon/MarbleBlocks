@@ -47,18 +47,6 @@ public class CharacterBrush : Brush
 	{
 		var pos = grid.GetCellCenterWorld((Vector3Int)tile.gridPosition);
 		var spawnedCharacter = Instantiate(character, pos, quaternion.identity);
-		if (spawnedCharacter.TryGetComponent<Sonic>(out var sonic))
-		{
-			sonic.enabled = false;
-		}
-		else if (spawnedCharacter.TryGetComponent<Jumper>(out var jumper))
-		{
-			jumper.enabled = false;
-		}
-		else if (spawnedCharacter.TryGetComponent<Feesh>(out var feesh))
-		{
-			feesh.enabled = false;
-		}
         
 		Drawer.Undo.Push(() => RemoveCharacter(tile, character, spawnedCharacter));
 	}

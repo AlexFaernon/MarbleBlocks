@@ -8,7 +8,7 @@ public class CoinsLabel : MonoBehaviour //todo разгрести эти хуй�
 	private static Random _random = new();
 	private void Awake()
 	{
-		ExpLevelManager.Exp += 100;
+		ExpLevelManager.Exp += 20;
 		var coinsAdded = _random.Next(1, 3);
 		CoinsManager.Coins += coinsAdded;
 		PlayerData.SingleLevelCompleted = Math.Max(PlayerData.SingleLevelCompleted, LevelSaveManager.LevelNumber);
