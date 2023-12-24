@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class WriteHelpInEditor : MonoBehaviour
 {
-    private static (Vector2Int, Side) _sonicQueue;
-    private static (Vector2Int, Side) _jumperQueue;
-    private static Vector2Int _feeshQueue;
+    private static Queue<(Vector2Int, Side)> _sonicQueue;
+    private static Queue<(Vector2Int, Side)> _jumperQueue;
+    private static Queue<Vector2Int> _feeshQueue;
 
     private void Awake()
     {
@@ -16,29 +16,50 @@ public class WriteHelpInEditor : MonoBehaviour
     
     public static HelpClass GetHelp()
     {
-        return new HelpClass
+        var help = new HelpClass();
+        if (_jumperQueue.Count > 0)
         {
-            JumperPos = _jumperQueue.Item1,
-            JumperDirection = _jumperQueue.Item2,
-            SonicPos = _sonicQueue.Item1,
-            SonicDirection = _sonicQueue.Item2,
-            FeeshPos = _feeshQueue
-        };
+            help.JumperPos = _jumperQueue.Peek().Item1;
+            help.JumperDirection = _jumperQueue.Peek().Item2;
+        }
+        if (_sonicQueue.Count > 0)
+        {
+            help.SonicPos = _sonicQueue.Peek().Item1;
+            help.SonicDirection = _sonicQueue.Peek().Item2;
+        }
+        if (_feeshQueue.Count > 0)
+        {
+            help.FeeshPos = _feeshQueue.Peek();
+        }
+
+        return help;
     }
     
     public static void PushSonicMove(Vector2Int pos, Side direction)
     {
-        _sonicQueue = (pos, direction);
+        _sonicQueue.Enqueue((pos, direction));
+        if (_sonicQueue.Count > 2)
+        {
+            _sonicQueue.Dequeue();
+        }
     }
     
     public static void PushJumperMove(Vector2Int pos, Side direction)
     {
-        _jumperQueue = (pos, direction);
+        _jumperQueue.Enqueue((pos, direction));
+        if (_jumperQueue.Count > 2)
+        {
+            _jumperQueue.Dequeue();
+        }
     }
     
     public static void PushFeeshMove(Vector2Int pos)
     {
-        _feeshQueue = pos;
+        _feeshQueue.Enqueue(pos);
+        if (_feeshQueue.Count > 2)
+        {
+            _feeshQueue.Dequeue();
+        }
     }
 
     public static void ResetHelp()

@@ -2,6 +2,8 @@
 using UnityEngine;
 using File = System.IO.File;
 using Firebase.Database;
+using System;
+
 public class LevelSaveManager : MonoBehaviour
 {
     public static int LevelNumber;
@@ -38,5 +40,12 @@ public class LevelSaveManager : MonoBehaviour
         LoadedLevel = levelSave;
         //File.WriteAllText(Application.persistentDataPath + "\\save.json", JsonConvert.SerializeObject(LoadedLevel));
         RealtimeDatabase.PushMap(LoadedLevel, false);
+    }
+
+    public void SaveLevelLocal()
+    {
+        LoadedLevel.OptimalTurns = StepCounter.Count;
+        LoadedLevel.HelpClass = WriteHelpInEditor.GetHelp();
+        File.WriteAllText(Application.persistentDataPath + $"\\save {DateTime.Now.Day}-{DateTime.Now.Month}-{DateTime.Now.Year} {DateTime.Now.Hour}-{DateTime.Now.Minute}.json", JsonConvert.SerializeObject(LoadedLevel));
     }
 }

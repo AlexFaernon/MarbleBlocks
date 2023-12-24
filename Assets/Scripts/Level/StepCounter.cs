@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -5,11 +6,6 @@ public class StepCounter : MonoBehaviour
 {
     public static int Count;
     [SerializeField] private TMP_Text label;
-
-    private void Awake()
-    {
-        Count = 0;
-    }
 
     private void Update()
     {
@@ -30,5 +26,10 @@ public class StepCounter : MonoBehaviour
         {
             label.color = new Color32(255, 85, 85, 255);
         }
+    }
+
+    private void OnDestroy()
+    {
+        Count = 0;
     }
 }
