@@ -13,8 +13,8 @@ public class ItemShopCard : MonoBehaviour
     [SerializeField] private int cost;
     [SerializeField] private TMP_Text costLabel;
     [SerializeField] private Image lockImage;
-    private ref int _limit;
-
+    [SerializeField] private TMP_Text count;
+    
     private void Awake()
     {
         costLabel.text = cost.ToString();
@@ -23,31 +23,38 @@ public class ItemShopCard : MonoBehaviour
 
     private void Update()
     {
-        buyButton.interactable = cost <= CoinsManager.Coins;
+        buyButton.interactable = cost <= CoinsManager.Coins && ObjectLimit() < maxCount;
+        count.text = $"{ObjectLimit()}/{maxCount}";
     }
 
     private void BuyItem()
     {
         CoinsManager.Coins -= cost;
+        ObjectLimit(+1);
+        RealtimeDatabase.PushShop();
+    }
+
+    private int ObjectLimit(int delta = 0)
+    {
         switch (objectType)
         {
             case OnTileObject.None:
                 throw new ArgumentException("bruuuh buying nothing");
             case OnTileObject.Spike:
-                LevelObjectsLimits.Spike++;
-                break;
+                LevelObjectsLimits.Spike += delta;
+                return LevelObjectsLimits.Spike;
             case OnTileObject.Whirlpool:
-                LevelObjectsLimits.Whirlpool++;
-                break;
+                LevelObjectsLimits.Whirlpool += delta;
+                return LevelObjectsLimits.Whirlpool;
             case OnTileObject.Lever:
-                LevelObjectsLimits.Lever++;
-                break;
+                LevelObjectsLimits.Lever += delta;
+                return LevelObjectsLimits.Lever;
             case OnTileObject.WaterLily:
-                LevelObjectsLimits.WaterLily++;
-                break;
+                LevelObjectsLimits.WaterLily += delta;
+                return LevelObjectsLimits.WaterLily;
             case OnTileObject.Teleport:
-                LevelObjectsLimits.Teleport++;
-                break;
+                LevelObjectsLimits.Teleport += delta;
+                return LevelObjectsLimits.Teleport;
             default:
                 throw new ArgumentOutOfRangeException();
         }

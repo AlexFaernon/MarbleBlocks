@@ -145,13 +145,10 @@ public class RealtimeDatabase : MonoBehaviour
     public static IEnumerator ExportUserData()
     {
         UserLoaded = false;
-        PlayerClass player = null;
         var playerLoaded = false;
         var rankLoaded = false;
-        var energyLoaded = false;
         var loadData = FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.User.DisplayName).GetValueAsync();
         var loadRank = FirebaseDatabase.DefaultInstance.RootReference.Child("Leaderboard").Child(AuthManager.User.DisplayName).Child("Item2").GetValueAsync();
-        var loadEnergy = FirebaseDatabase.DefaultInstance.RootReference.Child("Leaderboard").GetValueAsync();
         loadData.ContinueWithOnMainThread(task =>
         {
             if (task.IsFaulted)
@@ -162,8 +159,16 @@ public class RealtimeDatabase : MonoBehaviour
             {
                 DataSnapshot snapshot = task.Result;
                 var dataJson = snapshot.GetRawJsonValue();
-                player = JsonConvert.DeserializeObject<PlayerClass>(dataJson);
+                PlayerData.PlayerClass = JsonConvert.DeserializeObject<PlayerClass>(dataJson);
                 Debug.Log("Player loaded");
+                
+                var energySnapshot = snapshot.Child("Energy");
+                EnergyManager.EnergyTimestamp = JsonConvert.DeserializeObject<EnergyTimestamp>(energySnapshot.GetRawJsonValue());
+                Debug.Log("Energy loaded");
+
+                var shopSnapshot = snapshot.Child("Shop");
+                LevelObjectsLimits.ObjectLimitClass = JsonConvert.DeserializeObject<ObjectLimitClass>(shopSnapshot.GetRawJsonValue());
+                Debug.Log("Shop loaded");
             }
             playerLoaded = true;
         });
@@ -188,27 +193,8 @@ public class RealtimeDatabase : MonoBehaviour
                 }
                 rankLoaded = true;
             });
-        loadEnergy.ContinueWithOnMainThread(task =>
-            {
-                if (task.IsFaulted)
-                {
-                    Debug.Log($"Error {task.Exception}");
-                }
-                else if (task.IsCompleted)
-                {
-                    var snapshot = task.Result;
-                    if (snapshot.Exists)
-                    {
-                        var energyJson = snapshot.GetRawJsonValue();
-                        EnergyManager.EnergyTimestamp = JsonConvert.DeserializeObject<EnergyTimestamp>(energyJson);
-                        Debug.Log("energy loaded");
-                    }
-                }
-                energyLoaded = true;
-            });
-        yield return new WaitUntil(() => playerLoaded && rankLoaded && energyLoaded);
+        yield return new WaitUntil(() => playerLoaded && rankLoaded);
         Debug.Log("PLayer, energy and rank loaded");
-        PlayerData.PlayerClass = player;
         UserLoaded = true;
     }
 
@@ -233,6 +219,14 @@ public class RealtimeDatabase : MonoBehaviour
         FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.User.DisplayName).SetRawJsonValueAsync(userJson);
         var energyJson = JsonConvert.SerializeObject(EnergyManager.EnergyTimestamp);
         FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.User.DisplayName).Child("Energy").SetRawJsonValueAsync(energyJson);
+        var shopJson = JsonConvert.SerializeObject(new ObjectLimitClass());
+        FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.User.DisplayName).Child("Shop").SetRawJsonValueAsync(shopJson);
+    }
+
+    public static void PushShop()
+    {
+        var json = JsonConvert.SerializeObject(LevelObjectsLimits.ObjectLimitClass);
+        FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.User.DisplayName).Child("Shop").SetRawJsonValueAsync(json);
     }
 
     public static IEnumerator IncreaseLevelCount()
