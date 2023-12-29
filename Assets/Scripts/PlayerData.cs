@@ -1,6 +1,9 @@
 ﻿using Firebase.Auth;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerData : MonoBehaviour
@@ -12,7 +15,11 @@ public class PlayerData : MonoBehaviour
 			Level = Level,
 			Coins = Coins,
 			Exp = Exp,
-			SingleLevelCompleted = SingleLevelCompleted
+			SingleLevelCompleted = SingleLevelCompleted,
+			AchievementsAndQuest = DailyQuestsManager.QuestDict
+				.Concat(AchievementManager.AchievementDict)
+				.ToDictionary(pair => pair.Key, pair => pair.Value),
+			LastLogin = DateTimeOffset.FromUnixTimeMilliseconds((long)AuthManager.User.Metadata.LastSignInTimestamp).DateTime.ToString()
 		};
 		set
 		{
@@ -20,6 +27,9 @@ public class PlayerData : MonoBehaviour
 			Coins = value.Coins;
 			Exp = value.Exp;
 			_singleLevelCompleted = value.SingleLevelCompleted;
+			DailyQuestsManager.QuestDict = value.AchievementsAndQuest;
+			AchievementManager.AchievementDict = value.AchievementsAndQuest;
+			LastLogin = DateTime.Parse(value.LastLogin);
 		}
 	}
 
@@ -39,6 +49,7 @@ public class PlayerData : MonoBehaviour
 	public static int Exp;
 	public static int Coins;
 	public static int Energy = 5;
+	public static DateTime LastLogin;
 	public static int Rank;
 
 	private void Awake()

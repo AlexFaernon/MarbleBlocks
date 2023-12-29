@@ -125,6 +125,9 @@ public class AuthManager : MonoBehaviour
             StartCoroutine(RealtimeDatabase.ExportUserData());
             StartCoroutine(RealtimeDatabase.ExportLeaderboard());
             yield return new WaitUntil(() => RealtimeDatabase.UserLoaded && RealtimeDatabase.LeaderboardLoaded);
+            Debug.Log(DateTimeOffset.FromUnixTimeMilliseconds((long)AuthManager.User.Metadata.LastSignInTimestamp));
+            DailyQuestsManager.CheckResetDailyQuest();
+            RealtimeDatabase.PushUserData();
             PlayerData.SetName();
             Debug.LogFormat("User signed in successfully: {0} ({1})", User.DisplayName, User.Email);
             warningLoginText.text = "";
@@ -198,7 +201,7 @@ public class AuthManager : MonoBehaviour
                     else
                     {
                         // зарегались, теперь нужно войти
-                        RealtimeDatabase.PushInitialUserData(PlayerData.PlayerClass);
+                        RealtimeDatabase.PushInitialUserData();
                         UISwitcher.Instance.LoginOn();
 
                         // подтверждение учетки через почту, можно вырезать

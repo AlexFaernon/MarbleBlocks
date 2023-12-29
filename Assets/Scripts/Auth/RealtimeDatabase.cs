@@ -7,7 +7,9 @@ using UnityEngine;
 using Firebase;
 using Firebase.Extensions;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
+using System.Globalization;
 using System.Threading.Tasks;
 using Unity.Mathematics;
 using UnityEngine.Events;
@@ -158,10 +160,16 @@ public class RealtimeDatabase : MonoBehaviour
             else if (task.IsCompleted)
             {
                 DataSnapshot snapshot = task.Result;
-                var dataJson = snapshot.GetRawJsonValue();
-                PlayerData.PlayerClass = JsonConvert.DeserializeObject<PlayerClass>(dataJson);
-                Debug.Log("Player loaded");
-                
+                try
+                {
+                    var dataJson = snapshot.GetRawJsonValue();
+                    PlayerData.PlayerClass = JsonConvert.DeserializeObject<PlayerClass>(dataJson);
+                    Debug.Log("Player loaded");
+                }
+                catch (Exception e)
+                {
+                    Debug.Log(e);
+                }
                 var energySnapshot = snapshot.Child("Energy");
                 EnergyManager.EnergyTimestamp = JsonConvert.DeserializeObject<EnergyTimestamp>(energySnapshot.GetRawJsonValue());
                 Debug.Log("Energy loaded");
@@ -208,14 +216,26 @@ public class RealtimeDatabase : MonoBehaviour
 
     public static void PushUserData()
     {
-        var userJson = JsonConvert.SerializeObject(PlayerData.PlayerClass);
-        var dict = JsonConvert.DeserializeObject<Dictionary<string, object>>(userJson);
+        // var userJson = JsonConvert.SerializeObject(PlayerData.PlayerClass);
+        // var dict = JsonConvert.DeserializeObject<Dictionary<string, object>>(userJson);
+        // dict["AchievementsAndQuest"] = ((JObject)dict["AchievementsAndQuest"]).ToObject<Dictionary<string, Tuple<int, bool>>>();
+        var dict = new Dictionary<string, object>();
+        var playerClass = PlayerData.PlayerClass;
+        foreach (var field in typeof(PlayerClass).GetFields())
+        {
+            if (field.Name != "AchievementsAndQuest")
+            {
+                dict[field.Name] = field.GetValue(playerClass);
+            }
+        }
         FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.User.DisplayName).UpdateChildrenAsync(dict);
+        var jsonValue = JsonConvert.SerializeObject(playerClass.AchievementsAndQuest);
+        FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.User.DisplayName).Child("AchievementsAndQuest").SetRawJsonValueAsync(jsonValue);
     }
 
-    public static void PushInitialUserData(PlayerClass playerClass)
+    public static void PushInitialUserData()
     {
-        var userJson = JsonConvert.SerializeObject(playerClass);
+        var userJson = JsonConvert.SerializeObject(PlayerData.PlayerClass);
         FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.User.DisplayName).SetRawJsonValueAsync(userJson);
         var energyJson = JsonConvert.SerializeObject(EnergyManager.EnergyTimestamp);
         FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.User.DisplayName).Child("Energy").SetRawJsonValueAsync(energyJson);

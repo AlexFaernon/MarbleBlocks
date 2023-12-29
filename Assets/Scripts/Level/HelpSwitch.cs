@@ -48,7 +48,8 @@ public class HelpSwitch : MonoBehaviour
         {
             CoinsManager.Coins--;
         }
-        
+
+        DailyQuestsManager.HelpUsed++;
         HelpLevel++;
         if (GameMode.CurrentGameMode == GameModeType.SinglePlayer)
         {
