@@ -40,5 +40,8 @@ public class UISwitcher : MonoBehaviour
     public void CloseAuth()
     {
         authWindow.SetActive(false);
+        Debug.Log(DateTimeOffset.FromUnixTimeMilliseconds((long)AuthManager.User.Metadata.LastSignInTimestamp));
+        DailyQuestsManager.CheckResetDailyQuest();
+        RealtimeDatabase.PushUserData();
     }
 }
