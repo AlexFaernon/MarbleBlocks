@@ -18,10 +18,7 @@ public class AuthManager : MonoBehaviour
     public TMP_InputField emailLoginField;
     public TMP_InputField passwordLoginField;
     public TMP_Text warningLoginText;
-    public TMP_Text resetPasswordLoginText;
-    public GameObject goToRegistationText;
-
-
+    
     [Header("Register")] 
     public TMP_InputField usernameRegisterField;
     public TMP_InputField emailRegisterField;
@@ -80,6 +77,7 @@ public class AuthManager : MonoBehaviour
         var resetTask = auth.SendPasswordResetEmailAsync(email);
         yield return new WaitUntil(predicate: () => resetTask.IsCompleted);
         warningLoginText.text = "Проверьте указанную почту";
+        warningLoginText.gameObject.SetActive(true);
         passwordLoginField.text = "";
         PlayerPrefs.DeleteKey("Password");
     }
@@ -114,9 +112,7 @@ public class AuthManager : MonoBehaviour
                     break;
             }
             
-            goToRegistationText.SetActive(false);
             warningLoginText.gameObject.SetActive(true);
-            resetPasswordLoginText.gameObject.SetActive(true);
             warningLoginText.text = message;
         }
         else
@@ -133,6 +129,18 @@ public class AuthManager : MonoBehaviour
         }
     }
 
+    public void LogOut()
+    {
+        if (auth != null && User != null)
+        {
+            auth.SignOut();
+            emailLoginField.text = "";
+            passwordLoginField.text = "";
+            warningLoginText.gameObject.SetActive(false);
+            UISwitcher.Instance.OpenAuth();
+        }
+    }
+    
     private IEnumerator Pizedc()
     {
         yield return new WaitForSeconds(0.5f);

@@ -8,6 +8,7 @@ public class UISwitcher : MonoBehaviour
     [SerializeField] private GameObject register;
     [SerializeField] private GameObject login;
     [SerializeField] private GameObject authWindow;
+    [SerializeField] private GameObject loginWarning;
 
     public static UISwitcher Instance;
 
@@ -29,6 +30,7 @@ public class UISwitcher : MonoBehaviour
     public void LoginOn()
     {
         register.SetActive(false);
+        loginWarning.gameObject.SetActive(false);
         login.SetActive(true);
     }
 
@@ -43,5 +45,10 @@ public class UISwitcher : MonoBehaviour
         Debug.Log(DateTimeOffset.FromUnixTimeMilliseconds((long)AuthManager.User.Metadata.LastSignInTimestamp));
         DailyQuestsManager.CheckResetDailyQuest();
         RealtimeDatabase.PushUserData();
+    }
+
+    public void OpenAuth()
+    {
+        authWindow.SetActive(true);
     }
 }
