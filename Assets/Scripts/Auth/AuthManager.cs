@@ -125,7 +125,6 @@ public class AuthManager : MonoBehaviour
             Debug.LogFormat("User signed in successfully: {0} ({1})", User.DisplayName, User.Email);
             warningLoginText.text = "";
             UISwitcher.Instance.CloseAuth();
-            StartCoroutine(Pizedc());
         }
     }
 
@@ -139,13 +138,6 @@ public class AuthManager : MonoBehaviour
             warningLoginText.gameObject.SetActive(false);
             UISwitcher.Instance.OpenAuth();
         }
-    }
-    
-    private IEnumerator Pizedc()
-    {
-        yield return new WaitForSeconds(0.5f);
-        Debug.Log($"userdata: {PlayerData.LastLogin}, Metadata: {DateTimeOffset.FromUnixTimeMilliseconds((long)User.Metadata.LastSignInTimestamp)}");
-        StartCoroutine(Pizedc());
     }
 
     private IEnumerator Register(string email, string password, string username)

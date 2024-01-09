@@ -12,6 +12,7 @@ public class EditorLevelStart : MonoBehaviour
     [SerializeField] private Physics2DRaycaster editorRaycaster;
     [SerializeField] private CharacterManager characterManager;
     [SerializeField] private LevelSaveManager levelSaveManager;
+    [SerializeField] private CameraClamp cameraClamp;
     private bool _isTesting;
     private Button _button;
 
@@ -27,16 +28,17 @@ public class EditorLevelStart : MonoBehaviour
 
     public void Switch()
     {
+        cameraClamp.ResetCameraPos();
         _isTesting = !_isTesting;
         TileManager.HighlightTiles(new HashSet<Tile>());
         if (_isTesting)
         {
+            StepCounter.Count = 0;
             levelSaveManager.SaveLevel();
             WriteHelpInEditor.ResetHelp();
         }
         else
         {
-            StepCounter.Count = 0;
             TileManager.SetTiles();
             characterManager.ResetCharacters();
         }
@@ -53,21 +55,6 @@ public class EditorLevelStart : MonoBehaviour
         foreach (var go in levelUI)
         {
             go.SetActive(_isTesting);
-        }
-        
-        if (CharacterManager.Sonic)
-        {
-            CharacterManager.Sonic.enabled = _isTesting;
-        }
-        
-        if (CharacterManager.Jumper)
-        {
-            CharacterManager.Jumper.enabled = _isTesting;
-        }
-        
-        if (CharacterManager.Feesh)
-        {
-            CharacterManager.Feesh.enabled = _isTesting;
         }
     }
 }

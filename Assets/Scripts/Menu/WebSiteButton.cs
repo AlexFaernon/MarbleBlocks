@@ -8,6 +8,6 @@ public class WebSiteButton : MonoBehaviour
 {
     private void Awake()
     {
-        GetComponent<Button>().onClick.AddListener((() => Application.OpenURL("https://marbleblocks.web.app")));
+        GetComponent<Button>().onClick.AddListener(() => Application.OpenURL("https://marbleblocks-trw.web.app"));
     }
 }

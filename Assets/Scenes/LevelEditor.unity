@@ -1317,7 +1317,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e278200a08f9b9f419a13f87e9559ab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clamp: {x: 3, y: 3}
   Use:
     Filter: 0
     IgnoreStartedOverGui: 1
@@ -1349,6 +1348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb84d88f96fe50b46a3cb4d10f6e8fb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grid: {fileID: 58077810}
 --- !u!1 &70120265
 GameObject:
   m_ObjectHideFlags: 0
@@ -6086,6 +6086,7 @@ MonoBehaviour:
   editorRaycaster: {fileID: 68655899}
   characterManager: {fileID: 58077819}
   levelSaveManager: {fileID: 1106475908}
+  cameraClamp: {fileID: 68655902}
 --- !u!1 &507339095
 GameObject:
   m_ObjectHideFlags: 0
@@ -16658,8 +16659,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1004527174}
   m_HandleRect: {fileID: 1004527173}
   m_Direction: 2
-  m_Value: 1.0000035
-  m_Size: 0.6378522
+  m_Value: 1.0000051
+  m_Size: 0.73696154
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -17527,6 +17528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sizeSelector: {fileID: 469169109}
+  cameraClamp: {fileID: 68655902}
 --- !u!1 &1166078873
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class StartRandomLevel : MonoBehaviour
+public class SearchMultiplayer : MonoBehaviour
 {
     private Button _button;
 
@@ -14,6 +14,11 @@ public class StartRandomLevel : MonoBehaviour
     {
         _button = GetComponent<Button>();
         _button.onClick.AddListener(OnClick);
+    }
+
+    private void Update()
+    {
+        _button.interactable = AchievementManager.LevelsCreated > 0;
     }
 
     private void OnClick()

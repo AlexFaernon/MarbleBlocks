@@ -9,6 +9,7 @@ public class PushDataOnLevelTest : MonoBehaviour
 	public void PushLevel()
 	{
 		AchievementManager.LevelsCreated++;
+		Debug.Log(StepCounter.Count);
 		LevelSaveManager.LoadedLevel.OptimalTurns = StepCounter.Count;
 		LevelSaveManager.LoadedLevel.HelpClass = WriteHelpInEditor.GetHelp();
 		RealtimeDatabase.PushMap(LevelSaveManager.LoadedLevel, true);

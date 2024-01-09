@@ -10,6 +10,7 @@ public class NextRandomLevel : MonoBehaviour
     [SerializeField] private TileManager tileManager;
     [SerializeField] private CharacterManager characterManager;
     [SerializeField] private MultiplayerOpponentInfo opponentInfo;
+    [SerializeField] private CameraClamp cameraClamp;
     private Button _button;
 
     private void Awake()
@@ -31,5 +32,6 @@ public class NextRandomLevel : MonoBehaviour
         characterManager.ResetCharacters();
         _button.interactable = true;
         opponentInfo.UpdateInfo();
+        cameraClamp.ResetCameraPos();
     }
 }

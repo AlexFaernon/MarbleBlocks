@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DailyQuestsManager : MonoBehaviour
@@ -46,14 +47,14 @@ public class DailyQuestsManager : MonoBehaviour
 		{
 			(_multiplayerLevelCompleted, _claimed1) = value[nameof(play1)];
 			(_multiplayerLevelCompleted, _claimed2) = value[nameof(play2)];
-			(HelpUsed, _claimed3) = value[nameof(useHelp)];
+			(_helpUsed, _claimed3) = value[nameof(useHelp)];
 		}
 	}
 
 	public static void CheckResetDailyQuest()
 	{
 		var currentLogin = DateTimeOffset.FromUnixTimeMilliseconds((long)AuthManager.User.Metadata.LastSignInTimestamp);
-		if (currentLogin.Day <= PlayerData.LastLogin.Day) return;
+		if (currentLogin.Day <= PlayerData.LastLogin.Day && currentLogin.Month <= PlayerData.LastLogin.Month && currentLogin.Year <= PlayerData.LastLogin.Year) return;
 
 		_claimed1 = false;
 		_claimed2 = false;

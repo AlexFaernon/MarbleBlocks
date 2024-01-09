@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class RestartButton : MonoBehaviour
+public class RestartSingleplayerButton : MonoBehaviour
 {
     [SerializeField] private CharacterManager characterManager;
     [SerializeField] private GameObject window;

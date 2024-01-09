@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class ClearLevel : MonoBehaviour
 {
     [SerializeField] private GameObject sizeSelector;
+    [SerializeField] private CameraClamp cameraClamp;
     private void Awake()
     {
         GetComponent<Button>().onClick.AddListener(OnClick);
@@ -16,6 +17,7 @@ public class ClearLevel : MonoBehaviour
         if (CharacterManager.Sonic != null) Destroy(CharacterManager.Sonic.gameObject);
         if (CharacterManager.Jumper != null) Destroy(CharacterManager.Jumper.gameObject);
         if (CharacterManager.Feesh != null) Destroy(CharacterManager.Feesh.gameObject);
+        cameraClamp.ResetCameraPos();
         sizeSelector.SetActive(true);
     }
 }
