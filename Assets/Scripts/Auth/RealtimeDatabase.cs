@@ -284,32 +284,38 @@ public class RealtimeDatabase : MonoBehaviour
     
     public static IEnumerator PushRank(string playerName, int rankDelta)
     {
-        var loadRank = FirebaseDatabase.DefaultInstance.RootReference.Child("Leaderboard").Child(playerName).Child("Item2").GetValueAsync();
         var rankLoaded = false;
         var rank = 0;
-        
-        loadRank.ContinueWithOnMainThread(task =>
-            {
-                if (task.IsFaulted)
+        if (playerName != AuthManager.User.DisplayName)
+        {
+            var loadRank = FirebaseDatabase.DefaultInstance.RootReference.Child("Leaderboard").Child(playerName).Child("Item2").GetValueAsync();
+            loadRank.ContinueWithOnMainThread(task =>
                 {
-                    Debug.Log($"Error {task.Exception}");
-                }
-                else if (task.IsCompleted)
-                {
-                    DataSnapshot snapshot = task.Result;
-                    if (snapshot.Exists)
+                    if (task.IsFaulted)
                     {
-                        rank = int.Parse(snapshot.Value.ToString());
-                        Debug.Log($"{playerName}'s Rank loaded");
+                        Debug.Log($"Error {task.Exception}");
                     }
-                    else
+                    else if (task.IsCompleted)
                     {
-                        Debug.Log($"{playerName}'s Rank not found");
+                        DataSnapshot snapshot = task.Result;
+                        if (snapshot.Exists)
+                        {
+                            rank = int.Parse(snapshot.Value.ToString());
+                            Debug.Log($"{playerName}'s Rank loaded");
+                        }
+                        else
+                        {
+                            Debug.Log($"{playerName}'s Rank not found");
+                        }
                     }
-                }
-                rankLoaded = true;
-            });
-        yield return new WaitUntil(() => rankLoaded);
+                    rankLoaded = true;
+                });
+            yield return new WaitUntil(() => rankLoaded);
+        }
+        else
+        {
+            rank = PlayerData.Rank;
+        }
 
         rank = Math.Clamp(rank + rankDelta, 0, int.MaxValue);
         if (playerName == AuthManager.User.DisplayName)

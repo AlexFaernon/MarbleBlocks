@@ -14,34 +14,16 @@ public class LeaderboardRank : MonoBehaviour
 
 	private void Awake()
 	{
-		int nextRank;
-		switch (PlayerData.Rank)
+		var nextRank = PlayerData.GetNextRankThreshold(PlayerData.Rank);
+		rankLabel.text = PlayerData.Rank switch
 		{
-			case < 50:
-				rankLabel.text = "-";
-				nextRank = 50;
-				break;
-			case >= 50 and < 100:
-				rankLabel.text = "Серый";
-				nextRank = 100;
-				break;
-			case >= 100 and < 250:
-				rankLabel.text = "Бронза";
-				nextRank = 250;
-				break;
-			case >= 250 and < 500:
-				rankLabel.text = "Серебро";
-				nextRank = 500;
-				break;
-			case >= 500 and < 800:
-				rankLabel.text = "Золото";
-				nextRank = 800;
-				break;
-			case >= 800:
-				rankLabel.text = "Бриллиант";
-				nextRank = 0;
-				break;
-		}
+			< 50 => "-",
+			>= 50 and < 100 => "Серый",
+			>= 100 and < 250 => "Бронза",
+			>= 250 and < 500 => "Серебро",
+			>= 500 and < 800 => "Золото",
+			>= 800 => "Бриллиант"
+		};
 		rankProgress.text = $"{PlayerData.Rank}/{(nextRank > 0 ? nextRank : "-")}";
 		progressBar.fillAmount =  nextRank > 0 ? (float)PlayerData.Rank / nextRank : 1;
 

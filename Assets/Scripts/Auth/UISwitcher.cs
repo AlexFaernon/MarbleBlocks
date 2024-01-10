@@ -1,3 +1,4 @@
+using Firebase.Database;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -45,6 +46,8 @@ public class UISwitcher : MonoBehaviour
         Debug.Log(DateTimeOffset.FromUnixTimeMilliseconds((long)AuthManager.User.Metadata.LastSignInTimestamp));
         DailyQuestsManager.CheckResetDailyQuest();
         RealtimeDatabase.PushUserData();
+        FirebaseDatabase.DefaultInstance.RootReference.Child("Leaderboard").Child(AuthManager.User.DisplayName).Child("Item2").ValueChanged += PlayerData.HandleRankChanged;
+
     }
 
     public void OpenAuth()

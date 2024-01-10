@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnergyManager : MonoBehaviour
 {
     public static int MaxEnergy => 4 + ExpLevelManager.PlayerLevel;
-    private const int EnergyRefillTime = 60;
+    private const int EnergyRefillTime = 300;
     private static bool _energyIsRefiling;
     public static float TimeUntilRefill;
     public static int CurrentEnergy

@@ -1,4 +1,5 @@
 ﻿using Firebase.Auth;
+using Firebase.Database;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Globalization;
 using System.Linq;
 using UnityEngine;
 
-public class PlayerData : MonoBehaviour
+public static class PlayerData
 {
 	public static PlayerClass PlayerClass
 	{
@@ -44,7 +45,7 @@ public class PlayerData : MonoBehaviour
 		}
 	}
 
-	public static string Name;
+	public static string Name => AuthManager.User?.DisplayName;
 	public static int Level;
 	public static int Exp;
 	public static int Coins;
@@ -52,27 +53,28 @@ public class PlayerData : MonoBehaviour
 	public static DateTime LastLogin;
 	public static int Rank;
 
-	private void Awake()
+	public static int GetNextRankThreshold(int currentRank)
 	{
-		if (FindObjectsOfType<PlayerData>().Length > 1)
+		return currentRank switch
 		{
-			Destroy(gameObject);
-		}
-
-		DontDestroyOnLoad(this);
-	//	StartCoroutine(WaitToUserLogin());
-	}
-
-	public static void SetName()
-	{
-		Name = AuthManager.User.DisplayName;
+			< 50 => 50,
+			>= 50 and < 100 => 100,
+			>= 100 and < 250 => 250,
+			>= 250 and < 500 => 500,
+			>= 500 and < 800 => 800,
+			>= 800 => 0
+		};
 	}
 	
-	// private static IEnumerator WaitToUserLogin()
-	// {
-	// 	yield return new WaitUntil(() => AuthManager.User is not null);
-	//
-	// 	var user = AuthManager.User;
-	// 	Name = user.DisplayName;
-	// }
+	public static void HandleRankChanged(object sender, ValueChangedEventArgs args)
+	{
+		if (args.DatabaseError != null)
+		{
+			Debug.LogError(args.DatabaseError.Message);
+			return;
+		}
+
+		Rank = int.Parse(args.Snapshot.Value.ToString());
+		Debug.Log($"rank updated for {Rank}");
+	}
 }

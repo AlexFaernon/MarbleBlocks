@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using Firebase;
 using Firebase.Auth;
+using Firebase.Database;
 using TMPro;
 using System.Threading.Tasks;
 using UnityEngine.Events;
@@ -121,7 +122,6 @@ public class AuthManager : MonoBehaviour
             StartCoroutine(RealtimeDatabase.ExportUserData());
             StartCoroutine(RealtimeDatabase.ExportLeaderboard());
             yield return new WaitUntil(() => RealtimeDatabase.UserLoaded && RealtimeDatabase.LeaderboardLoaded);
-            PlayerData.SetName();
             Debug.LogFormat("User signed in successfully: {0} ({1})", User.DisplayName, User.Email);
             warningLoginText.text = "";
             UISwitcher.Instance.CloseAuth();
