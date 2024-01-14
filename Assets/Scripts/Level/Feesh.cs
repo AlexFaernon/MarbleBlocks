@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
+using Spine;
+using Spine.Unity;
 
 public class Feesh : MonoBehaviour, IPointerDownHandler
 {
@@ -18,6 +20,9 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
     public Vector2Int GridPosition => CurrentTile.gridPosition;
     public bool IsMoving { get; private set; }
     public static int Count;
+    
+    private SkeletonAnimation skeletonAnimation;
+
 
     public bool IsActive
     {
@@ -36,6 +41,8 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
     private void Awake()
     {
         _collider = GetComponent<Collider2D>();
+        skeletonAnimation = GetComponent<SkeletonAnimation>();
+        
         Count++;
         CharacterManager.Feesh = this;
     }
@@ -93,6 +100,7 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
 
     private IEnumerator Move()
     {
+        skeletonAnimation.AnimationState.SetAnimation(0, "animation", true);
         var currentTile = CurrentTile;
         Debug.Log($"Start {currentTile.gridPosition}");
         _currentPath.Pop();
@@ -112,6 +120,7 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
         IsMoving = false;
         transform.up = Vector3.up;
         CurrentTile = currentTile;
+        skeletonAnimation.AnimationState.ClearTrack(0);
     }
 
     private void FindAvailableTiles()

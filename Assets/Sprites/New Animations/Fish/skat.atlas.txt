@@ -1,0 +1,62 @@
+
+skat.png
+size: 1315,537
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer11
+  rotate: false
+  xy: 937, 202
+  size: 96, 116
+  orig: 97, 116
+  offset: 1, 0
+  index: -1
+Layer14
+  rotate: true
+  xy: 1181, 222
+  size: 96, 116
+  orig: 97, 116
+  offset: 0, 0
+  index: -1
+Layer17
+  rotate: true
+  xy: 688, 178
+  size: 357, 247
+  orig: 358, 247
+  offset: 1, 0
+  index: -1
+Layer18
+  rotate: false
+  xy: 1181, 3
+  size: 77, 217
+  orig: 77, 218
+  offset: 0, 0
+  index: -1
+Layer20
+  rotate: true
+  xy: 688, 22
+  size: 154, 278
+  orig: 154, 280
+  offset: 0, 0
+  index: -1
+Layer22
+  rotate: false
+  xy: 1035, 27
+  size: 144, 291
+  orig: 144, 291
+  offset: 0, 0
+  index: -1
+Layer8
+  rotate: false
+  xy: 2, 2
+  size: 684, 533
+  orig: 685, 533
+  offset: 0, 0
+  index: -1
+Layer9
+  rotate: false
+  xy: 968, 320
+  size: 345, 215
+  orig: 346, 215
+  offset: 0, 0
+  index: -1
