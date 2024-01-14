@@ -101,6 +101,7 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
     private IEnumerator Move()
     {
         skeletonAnimation.AnimationState.SetAnimation(0, "animation", true);
+        skeletonAnimation.AnimationState.TimeScale = 1f;
         var currentTile = CurrentTile;
         Debug.Log($"Start {currentTile.gridPosition}");
         _currentPath.Pop();
@@ -120,7 +121,8 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
         IsMoving = false;
         transform.up = Vector3.up;
         CurrentTile = currentTile;
-        skeletonAnimation.AnimationState.ClearTrack(0);
+        skeletonAnimation.timeScale = 0.5f;
+        //skeletonAnimation.AnimationState.ClearTrack(0);
     }
 
     private void FindAvailableTiles()

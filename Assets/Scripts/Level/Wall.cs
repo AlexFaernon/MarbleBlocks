@@ -59,6 +59,7 @@ public class Wall : MonoBehaviour
             if (wallClass.IsDoor)
             {
                 DoorCount++;
+                Debug.Log("Door+");
             }
         }
         else
@@ -66,6 +67,7 @@ public class Wall : MonoBehaviour
             if (isDoor)
             {
                 DoorCount--;
+                Debug.Log("Door-");
             }
         }
         OnLevelSwitch.RemoveListener(OnLeverSwitch);
