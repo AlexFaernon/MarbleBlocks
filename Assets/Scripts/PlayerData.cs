@@ -20,7 +20,8 @@ public static class PlayerData
 			AchievementsAndQuest = DailyQuestsManager.QuestDict
 				.Concat(AchievementManager.AchievementDict)
 				.ToDictionary(pair => pair.Key, pair => pair.Value),
-			LastLogin = DateTimeOffset.FromUnixTimeMilliseconds((long)AuthManager.User.Metadata.LastSignInTimestamp).DateTime.ToString()
+			LastLogin = DateTimeOffset.FromUnixTimeMilliseconds((long)AuthManager.User.Metadata.LastSignInTimestamp).DateTime.ToString(),
+			LastOpponentName = LastOpponentName
 		};
 		set
 		{
@@ -31,6 +32,7 @@ public static class PlayerData
 			DailyQuestsManager.QuestDict = value.AchievementsAndQuest;
 			AchievementManager.AchievementDict = value.AchievementsAndQuest;
 			LastLogin = DateTime.Parse(value.LastLogin);
+			_lastOpponentName = value.LastOpponentName;
 		}
 	}
 
@@ -46,6 +48,18 @@ public static class PlayerData
 	}
 
 	public static string Name => AuthManager.User?.DisplayName;
+
+	private static string _lastOpponentName;
+	public static string LastOpponentName
+	{
+		get => _lastOpponentName;
+		set
+		{
+			_lastOpponentName = value;
+			RealtimeDatabase.PushUserData();
+		}
+	}
+
 	public static int Level;
 	public static int Exp;
 	public static int Coins;

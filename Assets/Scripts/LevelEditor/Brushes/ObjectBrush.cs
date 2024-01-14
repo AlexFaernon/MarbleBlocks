@@ -24,7 +24,7 @@ public class ObjectBrush : Brush
             OnTileObject.Spike => Spike.Count < LevelObjectsLimits.Spike,
             OnTileObject.Whirlpool => Whirlpool.Count < LevelObjectsLimits.Whirlpool,
             OnTileObject.Lever => Lever.Count < LevelObjectsLimits.Lever,
-            OnTileObject.Exit => Exit.Count < LevelObjectsLimits.Exit,
+            OnTileObject.Exit => true,
             OnTileObject.WaterLily => WaterLily.Count < LevelObjectsLimits.WaterLily,
             OnTileObject.Teleport => Teleport.Count < LevelObjectsLimits.Teleport,
             _ => throw new ArgumentOutOfRangeException()

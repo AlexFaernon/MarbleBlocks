@@ -29,7 +29,6 @@ public class HelpSwitch : MonoBehaviour
             return;
         }
         
-
         CreateHelp();
         if (GameMode.CurrentGameMode == GameModeType.SinglePlayer && PlayerPrefs.HasKey($"Help{LevelSaveManager.LevelNumber}"))
         {

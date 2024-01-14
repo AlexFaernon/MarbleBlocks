@@ -9,13 +9,15 @@ public class SingleplayerWin : MonoBehaviour
 {
     [SerializeField] private TMP_Text coinsReward;
     [SerializeField] private RewardProgressBar playerLevel;
-    private static Random _random = new();
+    [SerializeField] private HelpSwitch helpSwitch;
     private void Start()
     {
         StartCoroutine(playerLevel.GainExp(20));
-        var coinsAdded = _random.Next(1, 3);
-        CoinsManager.Coins += coinsAdded;
-        coinsReward.text = coinsAdded.ToString();
+        var helpReward = helpSwitch.HelpLevel < 3 ? 5 : 0;
+        var stepsReward = StepCounter.Count <= LevelSaveManager.LoadedLevel.OptimalTurns ? 5 : 0;
+        var reward = LevelSaveManager.LevelNumber > 3 ? 10 + helpReward + stepsReward : 10;
+        CoinsManager.Coins += reward;
+        coinsReward.text = reward.ToString();
         PlayerData.SingleLevelCompleted = Math.Max(PlayerData.SingleLevelCompleted, LevelSaveManager.LevelNumber);
     }
 }

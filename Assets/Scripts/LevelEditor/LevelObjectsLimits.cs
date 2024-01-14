@@ -8,7 +8,11 @@ public static class LevelObjectsLimits
             Spike = Spike,
             Whirlpool = Whirlpool,
             WaterLily = WaterLily,
-            Teleport = Teleport
+            Teleport = Teleport,
+            Gate = Gate,
+            Purple = Purple,
+            Green = Green,
+            Yellow = Yellow
         };
         set
         {
@@ -18,13 +22,20 @@ public static class LevelObjectsLimits
             Whirlpool = value.Whirlpool;
             WaterLily = value.WaterLily;
             Teleport = value.Teleport;
+            Gate = value.Gate;
+            Purple = value.Purple;
+            Green = value.Green;
+            Yellow = value.Yellow;
         }
     }
     
     public static int Lever = 1;
-    public static int Exit = 10;
-    public static int Spike = 5;
-    public static int Whirlpool = 5;
-    public static int WaterLily = 5;
-    public static int Teleport = 5;
+    public static int Spike = 2;
+    public static int Whirlpool = 2;
+    public static int WaterLily = 2;
+    public static int Teleport = 2;
+    public static int Gate = 2;
+    public static bool Purple;
+    public static bool Green;
+    public static bool Yellow;
 }

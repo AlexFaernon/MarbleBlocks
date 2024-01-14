@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class Wall : MonoBehaviour
@@ -6,6 +7,7 @@ public class Wall : MonoBehaviour
     [SerializeField] private bool isDoor;
     [SerializeField] private bool isOpened;
     [SerializeField] private DoorLeverColor color;
+    public static int DoorCount { get; private set; }
     private SpriteRenderer _spriteRenderer;
     private Sprite _closed;
     private Sprite _opened;
@@ -52,10 +54,25 @@ public class Wall : MonoBehaviour
     
     private void SetWall(WallClass wallClass)
     {
+        if (wallClass.IsActive)
+        {
+            if (wallClass.IsDoor)
+            {
+                DoorCount++;
+            }
+        }
+        else
+        {
+            if (isDoor)
+            {
+                DoorCount--;
+            }
+        }
         OnLevelSwitch.RemoveListener(OnLeverSwitch);
         gameObject.SetActive(wallClass.IsActive);
         isDoor = wallClass.IsDoor;
         color = wallClass.Color;
+        
         if (isDoor)
         {
             isOpened = wallClass.IsOpened;
@@ -69,6 +86,7 @@ public class Wall : MonoBehaviour
             if (_spriteRenderer)
                 _spriteRenderer.sprite = _wall;
         }
+        
         tag = isDoor ? "Door" : "Wall";
     }
 

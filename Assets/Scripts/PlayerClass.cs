@@ -9,4 +9,5 @@ public class PlayerClass
 	public int SingleLevelCompleted;
 	public string LastLogin;
 	public Dictionary<string, Tuple<int, bool>> AchievementsAndQuest = null;
+	public string LastOpponentName;
 }

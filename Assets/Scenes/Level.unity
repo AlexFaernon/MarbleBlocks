@@ -1206,6 +1206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   helpSwitch: {fileID: 525003326}
+  coinsRewardLabel: {fileID: 1361999269}
   progressBarExp: {fileID: 123368418}
   progressBarRank: {fileID: 123368419}
 --- !u!114 &123368418
@@ -19369,6 +19370,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinsReward: {fileID: 1759959897}
   playerLevel: {fileID: 1246304860}
+  helpSwitch: {fileID: 525003326}
 --- !u!114 &1246304860
 MonoBehaviour:
   m_ObjectHideFlags: 0

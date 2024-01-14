@@ -16,17 +16,17 @@ public class NextRandomLevel : MonoBehaviour
     private void Awake()
     {
         _button = GetComponent<Button>();
-        _button.onClick.AddListener(() => StartCoroutine(FindLevel()));
+        _button.onClick.AddListener(() => StartCoroutine(FindLevel(false)));
         if (GameMode.CurrentGameMode == GameModeType.MultiPlayer)
         {
-            StartCoroutine(FindLevel());
+            StartCoroutine(FindLevel(true));
         }
     }
 
-    private IEnumerator FindLevel()
+    private IEnumerator FindLevel(bool loadPrevious)
     {
         _button.interactable = false;
-        StartCoroutine(RealtimeDatabase.ExportRandomLevel());
+        StartCoroutine(RealtimeDatabase.ExportRandomLevel(loadPrevious));
         yield return new WaitUntil(() => RealtimeDatabase.LevelLoaded);
         tileManager.SwitchTileSetForMultiplayer();
         characterManager.ResetCharacters();

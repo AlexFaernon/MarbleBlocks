@@ -26,6 +26,10 @@ public class WallBrush : Brush
 	private void Update()
 	{
 		Image.sprite = Drawer.CurrentBrush == this ? selectedSprite : UnselectedSprite;
+		if (isDoor)
+		{
+			Button.interactable = Wall.DoorCount < LevelObjectsLimits.Gate;
+		}
 	}
 
 	private void PlaceWall(Tile tile, Side side, WallClass wallClass)

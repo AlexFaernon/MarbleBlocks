@@ -47,11 +47,20 @@ public class RealtimeDatabase : MonoBehaviour
         FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.User.DisplayName).Child("Energy").SetRawJsonValueAsync(json);
     }
     
-    public static IEnumerator ExportRandomLevel()
+    public static IEnumerator ExportRandomLevel(bool loadPreviousOpponent)
     {
         LevelLoaded = false;
         LevelClass level = null;
-        Opponent = GetRandomOpponent();
+        if (loadPreviousOpponent && PlayerData.LastOpponentName is not null)
+        {
+            Opponent = PlayerData.LastOpponentName;
+        }
+        else
+        {
+            Opponent = GetRandomOpponent();
+        }
+        
+        PlayerData.LastOpponentName = Opponent;
         Debug.Log(Opponent);
         var loadLevel = FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(Opponent).Child("Map").GetValueAsync();
         loadLevel.ContinueWithOnMainThread(task =>
@@ -148,9 +157,7 @@ public class RealtimeDatabase : MonoBehaviour
     {
         UserLoaded = false;
         var playerLoaded = false;
-        var rankLoaded = false;
         var loadData = FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(AuthManager.User.DisplayName).GetValueAsync();
-        var loadRank = FirebaseDatabase.DefaultInstance.RootReference.Child("Leaderboard").Child(AuthManager.User.DisplayName).Child("Item2").GetValueAsync();
         loadData.ContinueWithOnMainThread(task =>
         {
             if (task.IsFaulted)
@@ -163,7 +170,7 @@ public class RealtimeDatabase : MonoBehaviour
                 try
                 {
                     var dataJson = snapshot.GetRawJsonValue();
-                    PlayerData.PlayerClass = JsonConvert.DeserializeObject<PlayerClass>(dataJson);
+                    PlayerData.PlayerClass = JsonConvert.DeserializeObject<PlayerClass>(dataJson, new JsonSerializerSettings{MissingMemberHandling = MissingMemberHandling.Ignore});
                     Debug.Log("Player loaded");
                 }
                 catch (Exception e)
@@ -175,33 +182,12 @@ public class RealtimeDatabase : MonoBehaviour
                 Debug.Log("Energy loaded");
 
                 var shopSnapshot = snapshot.Child("Shop");
-                LevelObjectsLimits.ObjectLimitClass = JsonConvert.DeserializeObject<ObjectLimitClass>(shopSnapshot.GetRawJsonValue());
+                LevelObjectsLimits.ObjectLimitClass = JsonConvert.DeserializeObject<ObjectLimitClass>(shopSnapshot.GetRawJsonValue(), new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Ignore });
                 Debug.Log("Shop loaded");
             }
             playerLoaded = true;
         });
-        loadRank.ContinueWithOnMainThread(task =>
-            {
-                if (task.IsFaulted)
-                {
-                    Debug.Log($"Error {task.Exception}");
-                }
-                else if (task.IsCompleted)
-                {
-                    DataSnapshot snapshot = task.Result;
-                    if (snapshot.Exists)
-                    {
-                        PlayerData.Rank = int.Parse(snapshot.Value.ToString());
-                        Debug.Log("Rank loaded");
-                    }
-                    else
-                    {
-                        Debug.Log("Rank not found");
-                    }
-                }
-                rankLoaded = true;
-            });
-        yield return new WaitUntil(() => playerLoaded && rankLoaded);
+        yield return new WaitUntil(() => playerLoaded);
         Debug.Log("PLayer, energy and rank loaded");
         UserLoaded = true;
     }

@@ -4,26 +4,32 @@ using UnityEngine.UI;
 
 public class ColorSelect : MonoBehaviour
 {
-    [SerializeField] private string stringColor;
     private Button _button;
-    private DoorLeverColor _color;
+    [SerializeField] private DoorLeverColor color;
     private GameObject _selected;
 
     private void Awake()
     {
         _button = GetComponent<Button>();
         _button.onClick.AddListener(OnClick);
-        _color = Enum.Parse<DoorLeverColor>(stringColor);
         _selected = transform.GetChild(0).gameObject;
+        gameObject.SetActive(color switch
+        {
+            DoorLeverColor.Red or DoorLeverColor.Grey or DoorLeverColor.Blue => true,
+            DoorLeverColor.Purple => LevelObjectsLimits.Purple,
+            DoorLeverColor.Green => LevelObjectsLimits.Green,
+            DoorLeverColor.Yellow => LevelObjectsLimits.Yellow,
+            _ => throw new ArgumentOutOfRangeException()
+        });
     }
     private void OnClick()
     {
-        Brush.Color = _color;
-        Brush.Color = _color;
+        Brush.Color = color;
+        Brush.Color = color;
     }
 
     private void Update()
     {
-        _selected.SetActive(_color == Brush.Color);
+        _selected.SetActive(color == Brush.Color);
     }
 }
