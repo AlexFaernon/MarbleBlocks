@@ -19,11 +19,11 @@ public class MenuBackground : MonoBehaviour
 
     private void Update()
     {
-        if (scroll.verticalNormalizedPosition < area2SwitchThreshold)
+        if (scroll.horizontalNormalizedPosition < area2SwitchThreshold)
         {
             _spriteRenderer.sprite = _area1Sprite;
         }
-        else if (scroll.verticalNormalizedPosition >= area2SwitchThreshold && scroll.verticalNormalizedPosition < area3SwitchThreshold)
+        else if (scroll.horizontalNormalizedPosition >= area2SwitchThreshold && scroll.horizontalNormalizedPosition < area3SwitchThreshold)
         {
             _spriteRenderer.sprite = area2Sprite;
         }
