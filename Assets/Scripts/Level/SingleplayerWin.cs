@@ -10,7 +10,7 @@ public class SingleplayerWin : MonoBehaviour
     [SerializeField] private TMP_Text coinsReward;
     [SerializeField] private RewardProgressBar playerLevel;
     [SerializeField] private HelpSwitch helpSwitch;
-    private void Start()
+    private void OnEnable()
     {
         StartCoroutine(playerLevel.GainExp(20));
         var helpReward = helpSwitch.HelpLevel < 3 ? 5 : 0;

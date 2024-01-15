@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using Random = UnityEngine.Random;
 
 public class Tile : MonoBehaviour, IPointerClickHandler
 {
@@ -276,11 +277,13 @@ public class Tile : MonoBehaviour, IPointerClickHandler
         {
             _spriteRenderer.sprite =
                 IsGrass ? TileSpriteManager.GetRandomGroundBot : TileSpriteManager.GetRandomWaterBot;
+            _spriteRenderer.flipX = false;
         }
         else
         {
             _spriteRenderer.sprite =
                 IsGrass ? TileSpriteManager.GetRandomGroundMid : TileSpriteManager.GetRandomWaterMid;
+            _spriteRenderer.flipX = Random.value > 0.5;
         }
     }
 

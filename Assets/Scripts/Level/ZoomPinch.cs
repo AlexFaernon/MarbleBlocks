@@ -1,4 +1,5 @@
 using Lean.Touch;
+using System;
 using UnityEngine;
 
     // This script allows you to zoom a camera in and out based on the pinch gesture
@@ -23,21 +24,17 @@ public class ZoomPinch : MonoBehaviour
 
         [Tooltip("Limit the FOV/Size?")]
         public bool zoomClamp;
+        
+        private float ZoomMin => SizeMin + Offset * minScale;
 
-        [Tooltip("The minimum FOV/Size we want to zoom to")]
-        public float zoomMin = 10.0f;
+        private float ZoomMax => Size + Offset * maxScale;
 
-        [Tooltip("The maximum FOV/Size we want to zoom to")]
-        public float zoomMax = 60.0f;
+        private static int Offset => (GameMode.CurrentGameMode == GameModeType.LevelEditor ? TileManager.EditorFieldSize : LevelSaveManager.LoadedLevel.FieldSize).x - 7;
+        private const float Size = 4.5f;
+        private const float SizeMin = 3.5f;
 
         protected virtual void LateUpdate()
         {
-            var size = 4.5f;
-            var sizeMin = 3.5f;
-            var offset = (GameMode.CurrentGameMode == GameModeType.LevelEditor ? TileManager.EditorFieldSize : LevelSaveManager.LoadedLevel.FieldSize).x - 7;
-            zoom = size + offset * maxScale;
-            zoomMin = sizeMin + offset * minScale;
-            zoomMax = zoom;
             // Get the fingers we want to use
             var fingers = LeanTouch.GetFingers(ignoreGuiFingers, false, requiredFingerCount);
 
@@ -49,11 +46,16 @@ public class ZoomPinch : MonoBehaviour
 
             if (zoomClamp)
             {
-                zoom = Mathf.Clamp(zoom, zoomMin, zoomMax);
+                zoom = Mathf.Clamp(zoom, ZoomMin, ZoomMax);
             }
 
             // Set the new zoom
             SetZoom(zoom);
+        }
+
+        public void ResetCameraZoom()
+        {
+            zoom = ZoomMax;
         }
 
         private void SetZoom(float current)

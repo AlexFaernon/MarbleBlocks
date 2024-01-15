@@ -100,6 +100,7 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
 
     private IEnumerator Move()
     {
+        TileManager.HighlightTiles(new HashSet<Tile>());
         skeletonAnimation.AnimationState.SetAnimation(0, "animation", true);
         skeletonAnimation.AnimationState.TimeScale = 1f;
         var currentTile = CurrentTile;

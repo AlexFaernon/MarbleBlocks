@@ -11,6 +11,7 @@ public class NextRandomLevel : MonoBehaviour
     [SerializeField] private CharacterManager characterManager;
     [SerializeField] private MultiplayerOpponentInfo opponentInfo;
     [SerializeField] private CameraClamp cameraClamp;
+    [SerializeField] private ZoomPinch zoomPinch;
     private Button _button;
 
     private void Awake()
@@ -33,5 +34,6 @@ public class NextRandomLevel : MonoBehaviour
         _button.interactable = true;
         opponentInfo.UpdateInfo();
         cameraClamp.ResetCameraPos();
+        zoomPinch.ResetCameraZoom();
     }
 }

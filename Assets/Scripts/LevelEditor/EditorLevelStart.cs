@@ -13,6 +13,7 @@ public class EditorLevelStart : MonoBehaviour
     [SerializeField] private CharacterManager characterManager;
     [SerializeField] private LevelSaveManager levelSaveManager;
     [SerializeField] private CameraClamp cameraClamp;
+    [SerializeField] private ZoomPinch zoomPinch;
     private bool _isTesting;
     private Button _button;
 
@@ -28,7 +29,9 @@ public class EditorLevelStart : MonoBehaviour
 
     public void Switch()
     {
+        zoomPinch.ResetCameraZoom();
         cameraClamp.ResetCameraPos();
+        
         _isTesting = !_isTesting;
         TileManager.HighlightTiles(new HashSet<Tile>());
         if (_isTesting)

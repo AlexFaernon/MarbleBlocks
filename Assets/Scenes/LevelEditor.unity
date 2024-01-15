@@ -994,8 +994,6 @@ MonoBehaviour:
   wheelSensitivity: 0
   zoom: 4.5
   zoomClamp: 1
-  zoomMin: 4.5
-  zoomMax: 5.5
 --- !u!114 &58077819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6087,6 +6085,7 @@ MonoBehaviour:
   characterManager: {fileID: 58077819}
   levelSaveManager: {fileID: 1106475908}
   cameraClamp: {fileID: 68655902}
+  zoomPinch: {fileID: 58077817}
 --- !u!1 &507339095
 GameObject:
   m_ObjectHideFlags: 0
@@ -17529,6 +17528,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sizeSelector: {fileID: 469169109}
   cameraClamp: {fileID: 68655902}
+  zoomPinch: {fileID: 58077817}
 --- !u!1 &1166078873
 GameObject:
   m_ObjectHideFlags: 0
