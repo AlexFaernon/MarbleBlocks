@@ -4,30 +4,29 @@ using UnityEngine.UI;
 
 public class MenuLevelLine : MonoBehaviour
 {
-    [SerializeField] private Sprite closed;
-    [SerializeField] private Sprite opened;
-    [SerializeField] private Sprite completed;
+    [SerializeField] private Material solid;
+    [SerializeField] private Material dotted;
     [SerializeField] private MenuLevelCircle nextLevelCircle;
-    private Image image;
+    private LineRenderer _lineRenderer;
 
     private void Awake()
     {
-        image = GetComponent<Image>();
+        _lineRenderer = GetComponent<LineRenderer>();
     }
 
     private void Update()
     {
         if (PlayerData.SingleLevelCompleted >= nextLevelCircle.levelNumber)
         {
-            image.sprite = completed;
+            _lineRenderer.material = solid;
         }
         else if (nextLevelCircle.levelNumber - 1 == PlayerData.SingleLevelCompleted)
         {
-            image.sprite = opened;
+            _lineRenderer.material = solid;
         }
         else
         {
-            image.sprite = closed;
+            _lineRenderer.material = dotted;
         }
     }
 }

@@ -37,11 +37,34 @@ public class ItemShopCard : MonoBehaviour
             }
         }
     }
+
+    private int LevelRequirement
+    {
+        get
+        {
+            return objectType switch
+            {
+                LimitedObject.Spike => 0,
+                LimitedObject.Whirlpool => 0,
+                LimitedObject.Lever => LevelObjectsLimits.LeverLevel,
+                LimitedObject.WaterLily => LevelObjectsLimits.WaterlilyLevel,
+                LimitedObject.Teleport => LevelObjectsLimits.TeleportLevel,
+                LimitedObject.Gate => LevelObjectsLimits.GateLevel,
+                _ => throw new ArgumentOutOfRangeException()
+            };
+        }
+    }
     
     private void Awake()
     {
         costLabel.text = cost.ToString();
         buyButton.onClick.AddListener(BuyItem);
+        if (PlayerData.SingleLevelCompleted >= LevelRequirement) return;
+
+        lockImage.gameObject.SetActive(true);
+        buyButton.gameObject.SetActive(false);
+        count.transform.parent.gameObject.SetActive(false);
+        lockImage.GetComponentInChildren<TMP_Text>().text = $"{LevelRequirement} уровень";
     }
 
     private void Update()

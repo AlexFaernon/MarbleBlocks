@@ -12,7 +12,7 @@ public static class LevelObjectsLimits
             Gate = Gate,
             Purple = Purple,
             Green = Green,
-            Yellow = Yellow
+            Blue = Blue
         };
         set
         {
@@ -25,9 +25,17 @@ public static class LevelObjectsLimits
             Gate = value.Gate;
             Purple = value.Purple;
             Green = value.Green;
-            Yellow = value.Yellow;
+            Blue = value.Blue;
         }
     }
+    
+    public const int LeverLevel = 8;
+    public const int GateLevel = 8;
+    public const int TeleportLevel = 15;
+    public const int WaterlilyLevel = 9;
+    public const int BlueLevel = 0;
+    public const int PurpleLevel = 0;
+    public const int GreenLevel = 0;
     
     public static int Lever = 1;
     public static int Spike = 2;
@@ -37,5 +45,5 @@ public static class LevelObjectsLimits
     public static int Gate = 2;
     public static bool Purple;
     public static bool Green;
-    public static bool Yellow;
+    public static bool Blue;
 }

@@ -1,10 +1,48 @@
 ﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ObjectBrush : Brush
 {
+    [SerializeField] private TMP_Text limitLabel;
     [SerializeField] private OnTileObject selectedOnTileObject;
+
+    private int ObjectLimit
+    {
+        get
+        {
+            return selectedOnTileObject switch
+            {
+                OnTileObject.None => throw new ArgumentOutOfRangeException("None object"),
+                OnTileObject.Spike => LevelObjectsLimits.Spike,
+                OnTileObject.Whirlpool => LevelObjectsLimits.Whirlpool,
+                OnTileObject.Lever => LevelObjectsLimits.Lever,
+                OnTileObject.Exit => throw new ArgumentOutOfRangeException("Exit has no limits"),
+                OnTileObject.WaterLily => LevelObjectsLimits.WaterLily,
+                OnTileObject.Teleport => LevelObjectsLimits.Teleport,
+                _ => throw new ArgumentOutOfRangeException()
+            };
+        }
+    }
+
+    private int ObjectCount
+    {
+        get
+        {
+            return selectedOnTileObject switch
+            {
+                OnTileObject.None => throw new ArgumentOutOfRangeException("None object"),
+                OnTileObject.Spike => Spike.Count,
+                OnTileObject.Whirlpool => Whirlpool.Count,
+                OnTileObject.Lever => Lever.Count,
+                OnTileObject.Exit => throw new ArgumentOutOfRangeException("Exit has no limits"),
+                OnTileObject.WaterLily => WaterLily.Count,
+                OnTileObject.Teleport => Teleport.Count,
+                _ => throw new ArgumentOutOfRangeException()
+            };
+        }
+    }
 
     private void Awake()
     {
@@ -12,23 +50,29 @@ public class ObjectBrush : Brush
         Button.onClick.AddListener(OnClick);
         Image = GetComponent<Image>();
         UnselectedSprite = Image.sprite;
+        var levelRequirement = selectedOnTileObject switch
+        {
+            OnTileObject.None or OnTileObject.Spike or OnTileObject.Whirlpool or OnTileObject.Exit => 0,
+            OnTileObject.Lever => LevelObjectsLimits.LeverLevel,
+            OnTileObject.WaterLily => LevelObjectsLimits.WaterlilyLevel,
+            OnTileObject.Teleport => LevelObjectsLimits.TeleportLevel,
+            _ => throw new ArgumentOutOfRangeException()
+        };
+        if (PlayerData.SingleLevelCompleted < levelRequirement)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     private void Update()
     {
         Image.sprite = Drawer.CurrentBrush == this ? selectedSprite : UnselectedSprite;
-        
-        Button.interactable = selectedOnTileObject switch
+
+        if (selectedOnTileObject != OnTileObject.Exit)
         {
-            OnTileObject.None => throw new ArgumentOutOfRangeException(),
-            OnTileObject.Spike => Spike.Count < LevelObjectsLimits.Spike,
-            OnTileObject.Whirlpool => Whirlpool.Count < LevelObjectsLimits.Whirlpool,
-            OnTileObject.Lever => Lever.Count < LevelObjectsLimits.Lever,
-            OnTileObject.Exit => true,
-            OnTileObject.WaterLily => WaterLily.Count < LevelObjectsLimits.WaterLily,
-            OnTileObject.Teleport => Teleport.Count < LevelObjectsLimits.Teleport,
-            _ => throw new ArgumentOutOfRangeException()
-        };
+            Button.interactable = ObjectCount < ObjectLimit;
+            limitLabel.text = (ObjectLimit - ObjectCount).ToString();
+        }
     }
 
     public override bool Draw(Tile tile)

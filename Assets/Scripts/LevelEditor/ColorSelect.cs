@@ -15,10 +15,10 @@ public class ColorSelect : MonoBehaviour
         _selected = transform.GetChild(0).gameObject;
         gameObject.SetActive(color switch
         {
-            DoorLeverColor.Red or DoorLeverColor.Grey or DoorLeverColor.Blue => true,
+            DoorLeverColor.Red or DoorLeverColor.Grey or DoorLeverColor.Yellow => true,
             DoorLeverColor.Purple => LevelObjectsLimits.Purple,
             DoorLeverColor.Green => LevelObjectsLimits.Green,
-            DoorLeverColor.Yellow => LevelObjectsLimits.Yellow,
+            DoorLeverColor.Blue => LevelObjectsLimits.Blue,
             _ => throw new ArgumentOutOfRangeException()
         });
     }

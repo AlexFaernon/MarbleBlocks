@@ -8,5 +8,5 @@
 	public int Gate = 0;
 	public bool Purple;
 	public bool Green;
-	public bool Yellow;
+	public bool Blue;
 }

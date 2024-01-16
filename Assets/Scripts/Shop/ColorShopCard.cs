@@ -23,20 +23,43 @@ public class ColorShopCard : MonoBehaviour
                     return ref LevelObjectsLimits.Purple;
                 case DoorLeverColor.Green:
                     return ref LevelObjectsLimits.Green;
-                case DoorLeverColor.Yellow:
-                    return ref LevelObjectsLimits.Yellow;
+                case DoorLeverColor.Blue:
+                    return ref LevelObjectsLimits.Blue;
                 case DoorLeverColor.Red:
                 case DoorLeverColor.Grey:
-                case DoorLeverColor.Blue:
+                case DoorLeverColor.Yellow:
                 default:
                     throw new ArgumentOutOfRangeException();
             }
         }
     }
+
+    private int LevelRequirement
+    {
+        get
+        {
+            return color switch
+            {
+                DoorLeverColor.Red => 0,
+                DoorLeverColor.Grey => 0,
+                DoorLeverColor.Blue => LevelObjectsLimits.BlueLevel,
+                DoorLeverColor.Purple => LevelObjectsLimits.PurpleLevel,
+                DoorLeverColor.Green => LevelObjectsLimits.GreenLevel,
+                DoorLeverColor.Yellow => 0,
+                _ => throw new ArgumentOutOfRangeException()
+            };
+        }
+    }
+    
     
     private void Awake()
     {
         buyButton.onClick.AddListener(BuyItem);
+        if (PlayerData.SingleLevelCompleted >= LevelRequirement) return;
+        
+        lockImage.gameObject.SetActive(true);
+        buyButton.gameObject.SetActive(false);
+        lockImage.GetComponentInChildren<TMP_Text>().text = $"{LevelRequirement} уровень";
     }
 
     private void Update()

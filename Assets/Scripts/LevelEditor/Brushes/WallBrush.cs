@@ -1,10 +1,12 @@
 ﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class WallBrush : Brush
 {
+	[SerializeField] private TMP_Text limitLabel;
 	[SerializeField] private bool isDoor;
 	[SerializeField] private bool isOpened;
 	private void Awake()
@@ -13,6 +15,10 @@ public class WallBrush : Brush
 		Button.onClick.AddListener(OnClick);
 		Image = GetComponent<Image>();
 		UnselectedSprite = Image.sprite;
+		if (isDoor && PlayerData.SingleLevelCompleted < LevelObjectsLimits.GateLevel)
+		{
+			gameObject.SetActive(false);
+		}
 	}
 	
 	public override bool Draw(Tile tile)
@@ -26,10 +32,10 @@ public class WallBrush : Brush
 	private void Update()
 	{
 		Image.sprite = Drawer.CurrentBrush == this ? selectedSprite : UnselectedSprite;
-		if (isDoor)
-		{
-			Button.interactable = Wall.DoorCount < LevelObjectsLimits.Gate;
-		}
+		if (!isDoor) return;
+
+		Button.interactable = Wall.DoorCount < LevelObjectsLimits.Gate;
+		limitLabel.text = (LevelObjectsLimits.Gate - Wall.DoorCount).ToString();
 	}
 
 	private void PlaceWall(Tile tile, Side side, WallClass wallClass)
