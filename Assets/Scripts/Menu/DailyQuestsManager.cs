@@ -9,6 +9,7 @@ public class DailyQuestsManager : MonoBehaviour
 	[SerializeField] private QuestAchivement play1;
 	[SerializeField] private QuestAchivement play2;
 	[SerializeField] private QuestAchivement useHelp;
+	public static int DailyQuestRemained => Convert.ToInt32(!_claimed1) + Convert.ToInt32(!_claimed3) + Convert.ToInt32(!_claimed3);
 	private static int _multiplayerLevelCompleted;
 	private static int _helpUsed;
 	private static bool _claimed1;

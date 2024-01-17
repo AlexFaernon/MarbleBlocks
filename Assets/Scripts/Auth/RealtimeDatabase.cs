@@ -27,6 +27,7 @@ public class RealtimeDatabase : MonoBehaviour
 
     private static DataSnapshot _leaderboardSnapshot;
     public static string Opponent { get; private set; }
+    public static int OpponentLevel { get; private set; }
 
     void Start()
     {
@@ -61,8 +62,8 @@ public class RealtimeDatabase : MonoBehaviour
         }
         
         PlayerData.LastOpponentName = Opponent;
-        Debug.Log(Opponent);
         var loadLevel = FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(Opponent).Child("Map").GetValueAsync();
+        var loadPlayerLevel = FirebaseDatabase.DefaultInstance.RootReference.Child("Users").Child(Opponent).Child("Level").GetValueAsync();
         loadLevel.ContinueWithOnMainThread(task =>
             {
                 if (task.IsFaulted)
@@ -74,10 +75,25 @@ public class RealtimeDatabase : MonoBehaviour
                     DataSnapshot snapshot = task.Result;
                     var levelJson = snapshot.GetRawJsonValue();
                     level = JsonConvert.DeserializeObject<LevelClass>(levelJson);
-                    Debug.Log("Level loaded");
+                    Debug.Log("Map loaded");
                 }
             });
-        yield return new WaitUntil(() => level is not null && loadLevel.IsCompleted);
+        var playerLevelLoaded = false;
+        loadPlayerLevel.ContinueWithOnMainThread(task =>
+            {
+                if (task.IsFaulted)
+                {
+                    Debug.Log($"Error {task.Exception}");
+                }
+                else if (task.IsCompleted)
+                {
+                    DataSnapshot snapshot = task.Result;
+                    OpponentLevel = int.Parse(snapshot.GetRawJsonValue());
+                    Debug.Log("PLayer level loaded");
+                }
+                playerLevelLoaded = true;
+            });
+        yield return new WaitUntil(() => level is not null && loadLevel.IsCompleted && playerLevelLoaded);
 
         LevelSaveManager.LoadedLevel = level;
         LevelLoaded = true;

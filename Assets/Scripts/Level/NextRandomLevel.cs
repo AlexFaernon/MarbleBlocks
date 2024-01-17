@@ -12,6 +12,8 @@ public class NextRandomLevel : MonoBehaviour
     [SerializeField] private MultiplayerOpponentInfo opponentInfo;
     [SerializeField] private CameraClamp cameraClamp;
     [SerializeField] private ZoomPinch zoomPinch;
+    [SerializeField] private int skipCost;
+    [SerializeField] private TMP_Text costLabel;
     private Button _button;
 
     private void Awake()
@@ -24,8 +26,27 @@ public class NextRandomLevel : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (PlayerData.FreeOpponentSkip)
+        {
+            _button.interactable = true;
+            costLabel.text = "0";
+        }
+        else
+        {
+            _button.interactable = skipCost <= CoinsManager.Coins;
+            costLabel.text = $"-{skipCost}";
+        }
+    }
+
     private IEnumerator FindLevel(bool loadPrevious)
     {
+        if (!loadPrevious)
+        {
+            CoinsManager.Coins -= PlayerData.FreeOpponentSkip ? 0 : skipCost;
+            PlayerData.FreeOpponentSkip = false;
+        }
         _button.interactable = false;
         StartCoroutine(RealtimeDatabase.ExportRandomLevel(loadPrevious));
         yield return new WaitUntil(() => RealtimeDatabase.LevelLoaded);

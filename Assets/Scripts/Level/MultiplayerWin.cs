@@ -26,6 +26,7 @@ public class MultiplayerWin : MonoBehaviour
 		StartCoroutine(RealtimeDatabase.PushRank(RealtimeDatabase.Opponent, -1));
 		StartCoroutine(RealtimeDatabase.IncreaseLevelCount());
 		PlayerData.LastOpponentName = null;
+		PlayerData.FreeOpponentSkip = true;
 		RealtimeDatabase.PushToHistory(RealtimeDatabase.Opponent, StepCounter.Count, true);
 	}
 }

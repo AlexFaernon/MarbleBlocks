@@ -21,7 +21,8 @@ public static class PlayerData
 				.Concat(AchievementManager.AchievementDict)
 				.ToDictionary(pair => pair.Key, pair => pair.Value),
 			LastLogin = DateTimeOffset.FromUnixTimeMilliseconds((long)AuthManager.User.Metadata.LastSignInTimestamp).DateTime.ToString(),
-			LastOpponentName = LastOpponentName
+			LastOpponentName = LastOpponentName,
+			FreeOpponentSkip = FreeOpponentSkip
 		};
 		set
 		{
@@ -33,6 +34,7 @@ public static class PlayerData
 			AchievementManager.AchievementDict = value.AchievementsAndQuest;
 			LastLogin = DateTime.Parse(value.LastLogin);
 			_lastOpponentName = value.LastOpponentName;
+			_freeOpponentSkip = value.FreeOpponentSkip;
 		}
 	}
 
@@ -56,6 +58,18 @@ public static class PlayerData
 		set
 		{
 			_lastOpponentName = value;
+			RealtimeDatabase.PushUserData();
+		}
+	}
+
+	private static bool _freeOpponentSkip = true;
+
+	public static bool FreeOpponentSkip
+	{
+		get => _freeOpponentSkip;
+		set
+		{
+			_freeOpponentSkip = value;
 			RealtimeDatabase.PushUserData();
 		}
 	}

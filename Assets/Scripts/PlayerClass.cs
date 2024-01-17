@@ -10,4 +10,5 @@ public class PlayerClass
 	public string LastLogin;
 	public Dictionary<string, Tuple<int, bool>> AchievementsAndQuest = null;
 	public string LastOpponentName;
+	public bool FreeOpponentSkip = true;
 }

@@ -12134,6 +12134,8 @@ MonoBehaviour:
   opponentInfo: {fileID: 991966004}
   cameraClamp: {fileID: 519420035}
   zoomPinch: {fileID: 1321951038}
+  skipCost: 5
+  costLabel: {fileID: 1567685897}
 --- !u!1 &612781373
 GameObject:
   m_ObjectHideFlags: 0
@@ -15774,7 +15776,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 519420031}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 20
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -15858,6 +15860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   opponentName: {fileID: 1279228505}
+  opponentLevel: {fileID: 1379119573}
   optimalSteps: {fileID: 1816985292}
 --- !u!1 &993214797
 GameObject:
@@ -23380,7 +23383,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1567685896}
-  - component: {fileID: 1567685899}
   - component: {fileID: 1567685898}
   - component: {fileID: 1567685897}
   m_Layer: 5
@@ -23507,18 +23509,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1567685895}
   m_CullTransparentMesh: 1
---- !u!114 &1567685899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1567685895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bae23c3d3efb725479ed15f645c80bab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1584984602
 GameObject:
   m_ObjectHideFlags: 0
