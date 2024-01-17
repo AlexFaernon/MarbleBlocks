@@ -8908,9 +8908,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 11.5, y: -11}
+  m_AnchoredPosition: {x: 3.5, y: -11}
   m_SizeDelta: {x: 16, y: 16}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &407686296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8931,7 +8931,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f859054c2579e014d8422b50fdd39633, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 80d509e7a156aa643a9e6b88a08693c9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9709,8 +9709,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00000333786}
-  m_SizeDelta: {x: -3, y: -3.8500004}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -3, y: -5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &459541190
 MonoBehaviour:
@@ -9734,8 +9734,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: aedbc2b64db354147b780fac15640a17, type: 2}
-  m_sharedMaterial: {fileID: -8462419016832054907, guid: aedbc2b64db354147b780fac15640a17, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 944e8e5fcd41f224393f90505ee193c8, type: 2}
+  m_sharedMaterial: {fileID: -5024580198373418384, guid: 944e8e5fcd41f224393f90505ee193c8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9759,7 +9759,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10.1
+  m_fontSize: 9.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -15065,7 +15065,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7612fcf07793fbf4786b81b3ff4c6797, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dcc5df4972a9afb46b2d0e7d7e9d4320, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -42035,7 +42035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scroll: {fileID: 1670013483}
-  area2Sprite: {fileID: 21300000, guid: 1da2a36a7c07f6944bb99bbe7ce45986, type: 3}
+  area2Sprite: {fileID: 21300000, guid: 57a1bc1d2f8966949bfd49f4d7c7ef2b, type: 3}
   area3Sprite: {fileID: 21300000, guid: e8944e6d0515e0342912f0b392b19b6e, type: 3}
   area2SwitchThreshold: 0.3
   area3SwitchThreshold: 0.8

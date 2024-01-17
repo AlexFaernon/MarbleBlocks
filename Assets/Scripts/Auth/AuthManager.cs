@@ -209,22 +209,22 @@ public class AuthManager : MonoBehaviour
                         RealtimeDatabase.PushInitialUserData();
                         UISwitcher.Instance.LoginOn();
 
-                        // подтверждение учетки через почту, можно вырезать
-                        FirebaseUser user = auth.CurrentUser;
-                        if (user != null) {
-                            user.SendEmailVerificationAsync().ContinueWith(task => {
-                                if (task.IsCanceled) {
-                                    Debug.LogError("SendEmailVerificationAsync was canceled.");
-                                    return;
-                                }
-                                if (task.IsFaulted) {
-                                    Debug.LogError("SendEmailVerificationAsync encountered an error: " + task.Exception);
-                                    return;
-                                }
-
-                                Debug.Log("Email sent successfully.");
-                            });
-                        }
+                        // // подтверждение учетки через почту, можно вырезать
+                        // FirebaseUser user = auth.CurrentUser;
+                        // if (user != null) {
+                        //     user.SendEmailVerificationAsync().ContinueWith(task => {
+                        //         if (task.IsCanceled) {
+                        //             Debug.LogError("SendEmailVerificationAsync was canceled.");
+                        //             return;
+                        //         }
+                        //         if (task.IsFaulted) {
+                        //             Debug.LogError("SendEmailVerificationAsync encountered an error: " + task.Exception);
+                        //             return;
+                        //         }
+                        //
+                        //         Debug.Log("Email sent successfully.");
+                        //     });
+                        // }
                     }
                 }
             }
