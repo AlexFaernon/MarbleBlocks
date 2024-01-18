@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +7,7 @@ using UnityEngine.UI;
 public class ObjectBrush : Brush
 {
     [SerializeField] private TMP_Text limitLabel;
-    [SerializeField] private OnTileObject selectedOnTileObject;
+    public OnTileObject selectedOnTileObject;
 
     private int ObjectLimit
     {
@@ -73,11 +74,28 @@ public class ObjectBrush : Brush
             Button.interactable = ObjectCount < ObjectLimit;
             limitLabel.text = (ObjectLimit - ObjectCount).ToString();
         }
+
+        if (selectedOnTileObject == OnTileObject.Teleport)
+        {
+            AllowedColors[DoorLeverColor.Red] = false;
+            AllowedColors[DoorLeverColor.Grey] = false;
+            AllowedColors[DoorLeverColor.Yellow] = false;
+            AllowedColors[DoorLeverColor.Purple] = true;
+            AllowedColors[DoorLeverColor.Green] = true;
+            AllowedColors[DoorLeverColor.Blue] = true;
+            //var notPairedTeleportColor = Teleport.CountByColors.Where(pair => pair.Value == 1).Select(pair => pair.Key);
+            
+            var pairedTeleportsColors = Teleport.CountByColors.Where(pair => pair.Value == 2).Select(pair => pair.Key);
+            foreach (var pairedTeleportsColor in pairedTeleportsColors)
+            {
+                AllowedColors[pairedTeleportsColor] = false;
+            }
+        }
     }
 
     public override bool Draw(Tile tile)
 	{
-        if (!Button.interactable) return false;
+        if (!Button.interactable || !AllowedColors[Color]) return false;
         
         if (Check(tile, selectedOnTileObject))
         {

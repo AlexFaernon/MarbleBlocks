@@ -11,32 +11,27 @@ public class Teleport : MonoBehaviour
     public Teleport pairedTeleport;
     public bool sonicJustTeleported;
     public bool jumperJustTeleported;
+    public static readonly Dictionary<DoorLeverColor, int> CountByColors = new()
+    {
+        { DoorLeverColor.Purple, 0 },
+        { DoorLeverColor.Green , 0 },
+        { DoorLeverColor.Blue , 0 }
+    };
 
     public TeleportClass TeleportClass
     {
         get => new() { Color = Color };
         set => SetColor(value);
     }
-    public static int Count { get; private set; }
 
-    private void OnEnable()
-    {
-        Count++;
-    }
+    public static int Count => CountByColors.Count;
 
     private void SetColor(TeleportClass teleportClass)
     {
+        var spriteRenderer = GetComponent<SpriteRenderer>();
         Color = teleportClass.Color;
-        GetComponent<SpriteRenderer>().color = Color switch
-        {
-            DoorLeverColor.Red => UnityEngine.Color.red,
-            DoorLeverColor.Grey => UnityEngine.Color.gray,
-            DoorLeverColor.Blue => UnityEngine.Color.blue,
-            DoorLeverColor.Purple => UnityEngine.Color.magenta,
-            DoorLeverColor.Green => UnityEngine.Color.green,
-            DoorLeverColor.Yellow => UnityEngine.Color.yellow,
-            _ => throw new ArgumentOutOfRangeException()
-        };
+        spriteRenderer.sprite = Resources.Load<Sprite>($"Teleports/{Color}");
+        CountByColors[Color]++;
         foreach (var teleport in FindObjectsOfType<Teleport>())
         {
             if (teleport.Color != Color) continue;
@@ -49,6 +44,8 @@ public class Teleport : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
+        if (pairedTeleport is null) return;
+        
         if (other.CompareTag("Sonic") && !CharacterManager.Sonic.IsMoving && !sonicJustTeleported)
         {
             pairedTeleport.sonicJustTeleported = true;
@@ -77,6 +74,6 @@ public class Teleport : MonoBehaviour
 
     private void OnDisable()
     {
-        Count--;
+        CountByColors[Color]--;
     }
 }

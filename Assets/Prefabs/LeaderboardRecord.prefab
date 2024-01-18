@@ -1087,6 +1087,7 @@ MonoBehaviour:
   playerName: {fileID: 1806441896820869379}
   levelsCompleted: {fileID: 1806441898536716619}
   trophy: {fileID: 1806441897341680481}
+  currentPlayerSprite: {fileID: 21300000, guid: ddee149fde462a14fa0dffe606bacec1, type: 3}
 --- !u!114 &9138588171668192679
 MonoBehaviour:
   m_ObjectHideFlags: 0

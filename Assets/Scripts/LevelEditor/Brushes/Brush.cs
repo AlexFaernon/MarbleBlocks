@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,11 +11,22 @@ public abstract class Brush : MonoBehaviour
 	protected Button Button;
 	protected Image Image;
 	protected Sprite UnselectedSprite;
+
+	protected readonly Dictionary<DoorLeverColor, bool> AllowedColors = new()
+	{
+		{ DoorLeverColor.Red, false },
+		{ DoorLeverColor.Grey, true },
+		{ DoorLeverColor.Yellow, true },
+		{ DoorLeverColor.Green, true },
+		{ DoorLeverColor.Purple, true },
+		{ DoorLeverColor.Blue, true },
+	};
 	public abstract bool Draw(Tile tile);
 
 	protected void OnClick()
 	{
 		Drawer.CurrentBrush = this;
+		ColorSelect.AllowedColors = AllowedColors;
 	}
 	
 	public bool Check(Tile tile, OnTileObject onTileObject)
