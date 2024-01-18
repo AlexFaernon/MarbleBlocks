@@ -5,6 +5,9 @@ using UnityEngine.UI;
 public class ColorSelectMenu : MonoBehaviour
 {
     [SerializeField] private Image colorIcon;
+    [SerializeField] private Sprite selectedSprite;
+    private Sprite _unselectedSprite;
+    private Image _image;
     [SerializeField] private GameObject colorButtons;
     [SerializeField] private Sprite red;
     [SerializeField] private Sprite grey;
@@ -15,10 +18,13 @@ public class ColorSelectMenu : MonoBehaviour
     private void Awake()
     {
         GetComponent<Button>().onClick.AddListener(OnClick);
+        _image = GetComponent<Image>();
+        _unselectedSprite = _image.sprite;
     }
 
     private void Update()
     {
+        _image.sprite = colorButtons.activeSelf ? selectedSprite : _unselectedSprite;
         colorIcon.sprite = Brush.Color switch
         {
             DoorLeverColor.Red => red,

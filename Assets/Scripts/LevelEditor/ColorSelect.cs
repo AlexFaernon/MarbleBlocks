@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ColorSelect : MonoBehaviour
@@ -16,13 +17,13 @@ public class ColorSelect : MonoBehaviour
     };
     private Button _button;
     [SerializeField] private DoorLeverColor color;
-    private GameObject _selected;
+    [SerializeField] private Image selected;
+    [SerializeField] private Image locked;
 
     private void Awake()
     {
         _button = GetComponent<Button>();
         _button.onClick.AddListener(OnClick);
-        _selected = transform.GetChild(0).gameObject;
     }
     private void OnClick()
     {
@@ -31,7 +32,7 @@ public class ColorSelect : MonoBehaviour
 
     private void Update()
     {
-        _selected.SetActive(color == Brush.Color);
+        selected.gameObject.SetActive(color == Brush.Color);
         _button.interactable = color switch
         {
             DoorLeverColor.Red or DoorLeverColor.Grey or DoorLeverColor.Yellow => true,
@@ -41,5 +42,6 @@ public class ColorSelect : MonoBehaviour
             _ => throw new ArgumentOutOfRangeException()
         };
         _button.interactable = _button.interactable && AllowedColors[color];
+        locked.gameObject.SetActive(!_button.interactable);
     }
 }

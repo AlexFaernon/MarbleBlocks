@@ -14,7 +14,7 @@ public abstract class Brush : MonoBehaviour
 
 	protected readonly Dictionary<DoorLeverColor, bool> AllowedColors = new()
 	{
-		{ DoorLeverColor.Red, false },
+		{ DoorLeverColor.Red, true },
 		{ DoorLeverColor.Grey, true },
 		{ DoorLeverColor.Yellow, true },
 		{ DoorLeverColor.Green, true },

@@ -128,6 +128,10 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
                 IsMoving = false;
             }
         }
+        if (!CurrentTile.IsGrass && !CurrentTile.WaterLily && !CurrentTile.isFeeshOnTile && !IsMoving || CurrentTile.IsEdge)
+        {
+            WinLoseManager.Lose.SetActive(true);
+        }
     }
 
     private void HighlightTiles()
@@ -183,10 +187,6 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
         if (col.CompareTag("Ground"))
         {
             CurrentTile = col.GetComponent<Tile>();
-            if (!CurrentTile.IsGrass && !CurrentTile.WaterLily && !CurrentTile.isFeeshOnTile && !IsMoving || CurrentTile.IsEdge)
-            {
-                WinLoseManager.Lose.SetActive(true);
-            }
         }
         
         if (col.CompareTag("Spike"))

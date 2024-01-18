@@ -87,6 +87,7 @@ public class TileManager : MonoBehaviour
                 _tiles[x, y].TileClass = LevelSaveManager.LoadedLevel.Tiles[x - 1, y - 1];
             }
         }
+        HighlightTiles(new HashSet<Tile>());
     }
 
     public void SwitchTileSetForMultiplayer()
