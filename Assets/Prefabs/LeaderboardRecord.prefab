@@ -112,7 +112,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -82.5975, y: 0.95}
-  m_SizeDelta: {x: 77.5975, y: 40.1}
+  m_SizeDelta: {x: 77.5975, y: 40}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &1806441896820869378
 CanvasRenderer:
@@ -371,17 +371,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1806441897092469837}
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.078459114, y: 0, z: 0, w: 0.99691737}
+  m_LocalPosition: {x: 0, y: 0, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1806441898532955795}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 9, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 45.1, y: 0.9}
+  m_AnchoredPosition: {x: 0, y: 0.6}
   m_SizeDelta: {x: 45, y: 40}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &1806441897092469838
@@ -412,7 +412,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7b3ba953853171a4bb55e25d3cdfc5c7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 45453ab08706eb34e897c1d6f5442db3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -592,8 +592,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 37, y: 0}
-  m_SizeDelta: {x: 28, y: 26}
+  m_AnchoredPosition: {x: 39, y: 0}
+  m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &1806441897496570278
 CanvasRenderer:
@@ -623,7 +623,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a9788a0f326afee4d88a240bc84409df, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 95a6685d06711974683fdb1545e9679f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -816,7 +816,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0304db9b52fe2594db20b57ddb49fced, type: 3}
+  m_Sprite: {fileID: 21300000, guid: acdf94d97736a234e9bd032262b3d423, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1035,7 +1035,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ee01dcaedd634104286ecc6da5c560a8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 69ca0c6955592d74498763a6f57b54bc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1087,7 +1087,7 @@ MonoBehaviour:
   playerName: {fileID: 1806441896820869379}
   levelsCompleted: {fileID: 1806441898536716619}
   trophy: {fileID: 1806441897341680481}
-  currentPlayerSprite: {fileID: 21300000, guid: ddee149fde462a14fa0dffe606bacec1, type: 3}
+  currentPlayerSprite: {fileID: 21300000, guid: 1e1ba0ad44ff9a04dae4f4c6941913bd, type: 3}
 --- !u!114 &9138588171668192679
 MonoBehaviour:
   m_ObjectHideFlags: 0

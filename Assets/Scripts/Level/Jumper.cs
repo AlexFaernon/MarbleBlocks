@@ -15,10 +15,11 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
     private bool _isActive;
     private Collider2D _collider2D;
     public Vector2Int GridPosition => CurrentTile.gridPosition;
-   // [SerializeField] private Animator animator;
     public static int Count;
     
     private SkeletonAnimationMulti skeletonAnimation;
+    private MeshRenderer mesh;
+    private bool facingRight = true;
 
 
     public bool IsActive
@@ -41,7 +42,6 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
         _collider2D = GetComponent<Collider2D>();
         
         skeletonAnimation = GetComponent<SkeletonAnimationMulti>();
-        
         Count++;
         CharacterManager.Jumper = this;
     }
@@ -49,6 +49,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
     private IEnumerator Move(Tile targetTile)
     {
         _collider2D.enabled = false;
+
         var movingVector = _movingSide switch
         {
             Side.North => Vector2.up,
@@ -61,25 +62,26 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
         if (movingVector == Vector2.right)
         {
             Debug.Log("Jumper right");
+            FlipCharacter(true);
             skeletonAnimation.SetAnimation("liz side jump", false);
             skeletonAnimation.CurrentSkeletonAnimation.AnimationState.TimeScale = 2;
-            //animator.SetTrigger("RIGHT");
         }        
         if (movingVector == Vector2.up)
         {
             Debug.Log("Jumper up");
-            //animator.SetTrigger("UP");
+            skeletonAnimation.SetAnimation("liz jop jump", false);
         }        
         if (movingVector == Vector2.down)
         {
             Debug.Log("Jumper down");
             skeletonAnimation.SetAnimation("liz straight jump", false);
-            //animator.SetTrigger("DOWN");
         }        
         if (movingVector == Vector2.left)
         {
             Debug.Log("Jumper left");
-            //animator.SetTrigger("LEFT");
+            FlipCharacter(false);
+            skeletonAnimation.SetAnimation("liz side jump", false);
+            skeletonAnimation.CurrentSkeletonAnimation.AnimationState.TimeScale = 2;
         }        
         
         while ((transform.position - targetTile.transform.position).magnitude > 0.1f)
@@ -89,19 +91,29 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
             yield return new WaitForEndOfFrame();
         }
         
-        // animator.ResetTrigger("RIGHT");
-        // animator.ResetTrigger("UP");
-        // animator.ResetTrigger("DOWN");
-        // animator.ResetTrigger("LEFT");
-        
         transform.position = targetTile.transform.position;
         _collider2D.enabled = true;
         CurrentTile = targetTile;
         IsMoving = false;
         skeletonAnimation.ClearAnimation();
         skeletonAnimation.SetAnimation("liz afk animation", true);
+        mesh = skeletonAnimation.transform.GetChild(0).GetComponent<MeshRenderer>(); //todo в awake эта херня еще не появилась, позже нужно перенести отсюда
+        mesh.sortingOrder = 5;
     }
 
+
+    private void FlipCharacter(bool jumpRight)
+    {
+        if ((jumpRight && !facingRight) || (!jumpRight && facingRight))
+        {
+            facingRight = !facingRight;
+
+            Vector3 theScale = transform.localScale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
+        }
+    }
+    
     public void StartMoving(Side side)
     {
         Assert.IsTrue(IsActive);

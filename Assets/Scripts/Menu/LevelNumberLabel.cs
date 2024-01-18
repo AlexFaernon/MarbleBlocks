@@ -12,6 +12,6 @@ public class LevelNumberLabel : MonoBehaviour
 	
 	private void Update()
 	{
-		label.text = $"{LevelSaveManager.LevelNumber} Уровень";
+		label.text = $"Уровень {LevelSaveManager.LevelNumber}";
 	}
 }

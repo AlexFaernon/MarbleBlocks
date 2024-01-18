@@ -1,0 +1,83 @@
+
+lizard jop.png
+size: 1078,580
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer10
+  rotate: true
+  xy: 932, 126
+  size: 106, 134
+  orig: 106, 134
+  offset: 0, 0
+  index: -1
+Layer11
+  rotate: true
+  xy: 153, 2
+  size: 46, 149
+  orig: 46, 150
+  offset: 0, 1
+  index: -1
+Layer12
+  rotate: true
+  xy: 2, 50
+  size: 144, 344
+  orig: 144, 344
+  offset: 0, 0
+  index: -1
+Layer13
+  rotate: true
+  xy: 769, 28
+  size: 85, 127
+  orig: 85, 127
+  offset: 0, 0
+  index: -1
+Layer14
+  rotate: true
+  xy: 633, 7
+  size: 106, 134
+  orig: 106, 134
+  offset: 0, 0
+  index: -1
+Layer3
+  rotate: true
+  xy: 2, 196
+  size: 382, 659
+  orig: 382, 685
+  offset: 0, 26
+  index: -1
+Layer4
+  rotate: false
+  xy: 663, 115
+  size: 267, 463
+  orig: 267, 463
+  offset: 0, 0
+  index: -1
+Layer5
+  rotate: false
+  xy: 348, 3
+  size: 283, 191
+  orig: 283, 191
+  offset: 0, 0
+  index: -1
+Layer7
+  rotate: false
+  xy: 932, 234
+  size: 144, 344
+  orig: 144, 344
+  offset: 0, 0
+  index: -1
+Layer8
+  rotate: true
+  xy: 2, 2
+  size: 46, 149
+  orig: 46, 149
+  offset: 0, 0
+  index: -1
+Layer9
+  rotate: true
+  xy: 932, 40
+  size: 84, 127
+  orig: 84, 127
+  offset: 0, 0
+  index: -1
