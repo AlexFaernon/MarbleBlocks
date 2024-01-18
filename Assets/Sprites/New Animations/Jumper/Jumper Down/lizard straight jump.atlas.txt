@@ -1,0 +1,97 @@
+
+lizard straight jump.png
+size: 1613,395
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer10
+  rotate: true
+  xy: 962, 2
+  size: 106, 134
+  orig: 106, 134
+  offset: 0, 0
+  index: -1
+Layer11
+  rotate: true
+  xy: 1098, 2
+  size: 106, 134
+  orig: 106, 134
+  offset: 0, 0
+  index: -1
+Layer12
+  rotate: true
+  xy: 813, 3
+  size: 44, 147
+  orig: 46, 149
+  offset: 1, 1
+  index: -1
+Layer13
+  rotate: false
+  xy: 1316, 33
+  size: 71, 91
+  orig: 72, 91
+  offset: 1, 0
+  index: -1
+Layer14
+  rotate: false
+  xy: 1234, 14
+  size: 80, 110
+  orig: 80, 110
+  offset: 0, 0
+  index: -1
+Layer15
+  rotate: false
+  xy: 809, 49
+  size: 144, 344
+  orig: 144, 344
+  offset: 0, 0
+  index: -1
+Layer3
+  rotate: true
+  xy: 2, 11
+  size: 382, 659
+  orig: 382, 685
+  offset: 0, 26
+  index: -1
+Layer4
+  rotate: true
+  xy: 1148, 126
+  size: 267, 463
+  orig: 267, 463
+  offset: 0, 0
+  index: -1
+Layer5
+  rotate: true
+  xy: 955, 110
+  size: 283, 191
+  orig: 283, 191
+  offset: 0, 0
+  index: -1
+Layer6
+  rotate: false
+  xy: 1389, 33
+  size: 70, 91
+  orig: 72, 91
+  offset: 2, 0
+  index: -1
+Layer7
+  rotate: false
+  xy: 663, 49
+  size: 144, 344
+  orig: 144, 344
+  offset: 0, 0
+  index: -1
+Layer8
+  rotate: true
+  xy: 663, 2
+  size: 45, 148
+  orig: 46, 149
+  offset: 1, 1
+  index: -1
+Layer9
+  rotate: true
+  xy: 1461, 38
+  size: 86, 127
+  orig: 235, 127
+  offset: 0, 0
+  index: -1

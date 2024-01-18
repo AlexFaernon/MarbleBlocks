@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
+using Spine.Unity;
 
 public class Jumper : MonoBehaviour, IPointerDownHandler
 {
@@ -14,8 +15,11 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
     private bool _isActive;
     private Collider2D _collider2D;
     public Vector2Int GridPosition => CurrentTile.gridPosition;
-    [SerializeField] private Animator animator;
+   // [SerializeField] private Animator animator;
     public static int Count;
+    
+    private SkeletonAnimationMulti skeletonAnimation;
+
 
     public bool IsActive
     {
@@ -35,12 +39,16 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
     private void Awake()
     {
         _collider2D = GetComponent<Collider2D>();
+        
+        skeletonAnimation = GetComponent<SkeletonAnimationMulti>();
+        
         Count++;
         CharacterManager.Jumper = this;
     }
 
     private IEnumerator Move(Tile targetTile)
     {
+        _collider2D.enabled = false;
         var movingVector = _movingSide switch
         {
             Side.North => Vector2.up,
@@ -51,15 +59,28 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
         };
 
         if (movingVector == Vector2.right)
-            animator.SetTrigger("RIGHT");
+        {
+            Debug.Log("Jumper right");
+            skeletonAnimation.SetAnimation("liz side jump", false);
+            skeletonAnimation.CurrentSkeletonAnimation.AnimationState.TimeScale = 2;
+            //animator.SetTrigger("RIGHT");
+        }        
         if (movingVector == Vector2.up)
-            animator.SetTrigger("UP");
+        {
+            Debug.Log("Jumper up");
+            //animator.SetTrigger("UP");
+        }        
         if (movingVector == Vector2.down)
-            animator.SetTrigger("DOWN");
+        {
+            Debug.Log("Jumper down");
+            skeletonAnimation.SetAnimation("liz straight jump", false);
+            //animator.SetTrigger("DOWN");
+        }        
         if (movingVector == Vector2.left)
-            animator.SetTrigger("LEFT"); 
-        
-        _collider2D.enabled = false;
+        {
+            Debug.Log("Jumper left");
+            //animator.SetTrigger("LEFT");
+        }        
         
         while ((transform.position - targetTile.transform.position).magnitude > 0.1f)
         {
@@ -68,15 +89,17 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
             yield return new WaitForEndOfFrame();
         }
         
-        animator.ResetTrigger("RIGHT");
-        animator.ResetTrigger("UP");
-        animator.ResetTrigger("DOWN");
-        animator.ResetTrigger("LEFT");
+        // animator.ResetTrigger("RIGHT");
+        // animator.ResetTrigger("UP");
+        // animator.ResetTrigger("DOWN");
+        // animator.ResetTrigger("LEFT");
         
         transform.position = targetTile.transform.position;
         _collider2D.enabled = true;
         CurrentTile = targetTile;
         IsMoving = false;
+        skeletonAnimation.ClearAnimation();
+        skeletonAnimation.SetAnimation("liz afk animation", true);
     }
 
     public void StartMoving(Side side)

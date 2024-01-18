@@ -62,9 +62,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 3}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.94
+  m_Radius: 1.36
 --- !u!50 &5536192908650938282
 Rigidbody2D:
   serializedVersion: 4
@@ -103,8 +103,9 @@ MonoBehaviour:
   initialAnimation: 
   initialLoop: 0
   skeletonDataAssets:
-  - {fileID: 11400000, guid: 7cf8207fc4ce8f94e9855d337da52c77, type: 2}
-  - {fileID: 11400000, guid: 3c48535ae5679204c950a22a7caaa5a4, type: 2}
+  - {fileID: 11400000, guid: c55a947ad8d9f53429a35b7c944cf490, type: 2}
+  - {fileID: 11400000, guid: ff4e603655a61de4aafea9909228b55a, type: 2}
+  - {fileID: 11400000, guid: e647b100fa33b3f4f82822c955c505ba, type: 2}
   meshGeneratorSettings:
     useClipping: 1
     zSpacing: 0
