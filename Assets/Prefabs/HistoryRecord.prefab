@@ -81,6 +81,8 @@ MonoBehaviour:
   stepCount: {fileID: 3211096798358895762}
   rating: {fileID: 3211096798160517729}
   result: {fileID: 3211096797248825531}
+  rankIcon: {fileID: 3211096798702977505}
+  loseSprite: {fileID: 21300000, guid: 1e1ba0ad44ff9a04dae4f4c6941913bd, type: 3}
 --- !u!1 &3211096796719221934
 GameObject:
   m_ObjectHideFlags: 0
@@ -1208,7 +1210,7 @@ GameObject:
   - component: {fileID: 3211096798702977504}
   - component: {fileID: 3211096798702977505}
   m_Layer: 0
-  m_Name: Level
+  m_Name: Rank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -6,19 +6,18 @@ public class MuteButton : MonoBehaviour
     private AudioSource _audioSource;
     private Sprite _unmute;
     [SerializeField] private Sprite mute;
-    private Image _image;
+    [SerializeField] private Image image;
 
     private void Awake()
     {
-        _image = GetComponent<Image>();
-        _unmute = _image.sprite;
+        _unmute = image.sprite;
         _audioSource = GameObject.FindWithTag("EnergyManager").GetComponent<AudioSource>();
         GetComponent<Button>().onClick.AddListener(Mute);
     }
 
     private void Update()
     {
-        _image.sprite = _audioSource.volume != 0 ? _unmute : mute;
+        image.sprite = _audioSource.volume != 0 ? _unmute : mute;
     }
 
     private void Mute()

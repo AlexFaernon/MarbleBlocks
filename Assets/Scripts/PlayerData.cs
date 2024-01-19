@@ -81,6 +81,22 @@ public static class PlayerData
 	public static DateTime LastLogin;
 	public static int Rank;
 
+	public static RankString GetRankString(int rank = -1)
+	{
+		if (rank == -1)
+		{
+			rank = Rank;
+		}
+		return rank switch
+		{
+			< 50 => RankString.Дерево,
+			>= 50 and < 100 => RankString.Серый,
+			>= 100 and < 250 => RankString.Бронза,
+			>= 250 and < 500 => RankString.Серебро,
+			>= 500 and < 800 => RankString.Золото,
+			>= 800 => RankString.Бриллиант
+		};
+	}
 	public static int GetNextRankThreshold(int currentRank)
 	{
 		return currentRank switch
@@ -105,4 +121,14 @@ public static class PlayerData
 		Rank = int.Parse(args.Snapshot.Value.ToString());
 		Debug.Log($"rank updated for {Rank}");
 	}
+}
+
+public enum RankString
+{
+	Дерево,
+	Серый,
+	Бронза,
+	Серебро,
+	Золото,
+	Бриллиант
 }

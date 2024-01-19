@@ -569,7 +569,7 @@ GameObject:
   - component: {fileID: 1806441897496570278}
   - component: {fileID: 1806441897496570279}
   m_Layer: 0
-  m_Name: Level
+  m_Name: Rank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1084,9 +1084,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionInLeaderboard: {fileID: 1806441897021290645}
-  playerName: {fileID: 1806441896820869379}
+  playerNameLabel: {fileID: 1806441896820869379}
   levelsCompleted: {fileID: 1806441898536716619}
-  trophy: {fileID: 1806441897341680481}
+  rankLabel: {fileID: 1806441897341680481}
+  rankIcon: {fileID: 1806441897496570279}
   currentPlayerSprite: {fileID: 21300000, guid: 1e1ba0ad44ff9a04dae4f4c6941913bd, type: 3}
 --- !u!114 &9138588171668192679
 MonoBehaviour:

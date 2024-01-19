@@ -3,14 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class LeaderboardRecord : MonoBehaviour
 {
     [SerializeField] private TMP_Text positionInLeaderboard;
-    [SerializeField] private TMP_Text playerName;
+    [SerializeField] private TMP_Text playerNameLabel;
     [SerializeField] private TMP_Text levelsCompleted;
-    [SerializeField] private TMP_Text trophy;
+    [SerializeField] private TMP_Text rankLabel;
+    [SerializeField] private Image rankIcon;
     [SerializeField] private Sprite currentPlayerSprite;
 
     private void Awake()
@@ -18,14 +20,15 @@ public class LeaderboardRecord : MonoBehaviour
         positionInLeaderboard.text = (transform.GetSiblingIndex() + 1).ToString();
     }
 
-    public void SetPlayerInfo(string name, int levels, int trophy)
+    public void SetPlayerInfo(string playerName, int levels, int rank, Sprite rankIconSprite)
     {
-        playerName.text = name;
-        if (name == PlayerData.Name)
+        playerNameLabel.text = playerName;
+        if (playerName == PlayerData.Name)
         {
             GetComponent<Image>().sprite = currentPlayerSprite;
         }
+        rankIcon.sprite = rankIconSprite;
         levelsCompleted.text = levels.ToString();
-        this.trophy.text = trophy.ToString();
+        rankLabel.text = rank.ToString();
     }
 }

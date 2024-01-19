@@ -2144,6 +2144,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1466101580}
     m_Modifications:
+    - target: {fileID: 925432112398709336, guid: 03a852376301e9f44990394cdb58324c, type: 3}
+      propertyPath: rank
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2664749855461758947, guid: 03a852376301e9f44990394cdb58324c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -2570,6 +2574,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1466101580}
     m_Modifications:
+    - target: {fileID: 925432112398709336, guid: 03a852376301e9f44990394cdb58324c, type: 3}
+      propertyPath: rank
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2664749855461758947, guid: 03a852376301e9f44990394cdb58324c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -5223,6 +5231,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1466101580}
     m_Modifications:
+    - target: {fileID: 925432112398709336, guid: 03a852376301e9f44990394cdb58324c, type: 3}
+      propertyPath: rank
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2664749855461758947, guid: 03a852376301e9f44990394cdb58324c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -6247,6 +6259,8 @@ MonoBehaviour:
   timerLabel: {fileID: 587510663}
   rankProgress: {fileID: 971135642}
   progressBar: {fileID: 979772824}
+  rankIcon: {fileID: 1545394833}
+  nextRankIcon: {fileID: 48436352}
 --- !u!114 &1452759278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8148,6 +8162,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1796992956}
   - component: {fileID: 1796992959}
+  - component: {fileID: 1796992960}
   - component: {fileID: 1796992958}
   - component: {fileID: 1796992957}
   m_Layer: 5
@@ -8296,6 +8311,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1796992955}
   m_CullTransparentMesh: 1
+--- !u!114 &1796992960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796992955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2d03121e1a2c6b4280fdcea0af2018d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selected: {fileID: 856604410}
+  selectedSprite: {fileID: 21300000, guid: 3ce55d3299742cc4589e8b2d06823162, type: 3}
 --- !u!1 &1839177735
 GameObject:
   m_ObjectHideFlags: 0
@@ -8341,6 +8370,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1466101580}
     m_Modifications:
+    - target: {fileID: 925432112398709336, guid: 03a852376301e9f44990394cdb58324c, type: 3}
+      propertyPath: rank
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2664749855461758947, guid: 03a852376301e9f44990394cdb58324c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -8535,6 +8568,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1466101580}
     m_Modifications:
+    - target: {fileID: 925432112398709336, guid: 03a852376301e9f44990394cdb58324c, type: 3}
+      propertyPath: rank
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2664749855461758947, guid: 03a852376301e9f44990394cdb58324c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -9080,6 +9117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2021048985}
   - component: {fileID: 2021048988}
+  - component: {fileID: 2021048989}
   - component: {fileID: 2021048987}
   - component: {fileID: 2021048986}
   m_Layer: 5
@@ -9228,6 +9266,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2021048984}
   m_CullTransparentMesh: 1
+--- !u!114 &2021048989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021048984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2d03121e1a2c6b4280fdcea0af2018d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selected: {fileID: 1266903310}
+  selectedSprite: {fileID: 21300000, guid: c4808d6b17c34e84b82e1050df119e42, type: 3}
 --- !u!1 &2058312357
 GameObject:
   m_ObjectHideFlags: 0
@@ -9412,6 +9464,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2068924553}
   - component: {fileID: 2068924556}
+  - component: {fileID: 2068924557}
   - component: {fileID: 2068924555}
   - component: {fileID: 2068924554}
   m_Layer: 5
@@ -9560,6 +9613,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2068924552}
   m_CullTransparentMesh: 1
+--- !u!114 &2068924557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068924552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2d03121e1a2c6b4280fdcea0af2018d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selected: {fileID: 1611818825}
+  selectedSprite: {fileID: 21300000, guid: f936746769097164eb984c824bf72048, type: 3}
 --- !u!1 &2103492450
 GameObject:
   m_ObjectHideFlags: 0

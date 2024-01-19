@@ -9,10 +9,15 @@ public class LeaderboardManager : MonoBehaviour
 {
     [SerializeField] private GameObject leaderboardRecordPrefab;
     public static Dictionary<string, Tuple<int, int>> LeaderboardData;
+    private readonly Dictionary<RankString, Sprite> _rankIcons = new();
 
     private void Awake()
     {
         StartCoroutine(SetLeaderboard());
+        foreach (RankString rankString in Enum.GetValues(typeof(RankString)))
+        {
+            _rankIcons[rankString] = Resources.Load<Sprite>($"Rank/small/{rankString}");
+        }
     }
 
     private IEnumerator SetLeaderboard()
@@ -22,7 +27,9 @@ public class LeaderboardManager : MonoBehaviour
         foreach (var leaderboardRecord in LeaderboardData.OrderByDescending(pair => pair.Value.Item2))
         {
             var record = Instantiate(leaderboardRecordPrefab, transform).GetComponent<LeaderboardRecord>();
-            record.SetPlayerInfo(leaderboardRecord.Key, leaderboardRecord.Value.Item1, leaderboardRecord.Value.Item2);
+            var levelsCompleted = leaderboardRecord.Value.Item1;
+            var rank = leaderboardRecord.Value.Item2;
+            record.SetPlayerInfo(leaderboardRecord.Key, levelsCompleted, rank, _rankIcons[PlayerData.GetRankString(rank)]);
         }
     }
 }

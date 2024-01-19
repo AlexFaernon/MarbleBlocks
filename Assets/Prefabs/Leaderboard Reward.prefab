@@ -1189,6 +1189,7 @@ GameObject:
   - component: {fileID: 2664749857364339178}
   - component: {fileID: 2664749857364339173}
   - component: {fileID: 2664749857364339172}
+  - component: {fileID: 925432112398709336}
   m_Layer: 5
   m_Name: Leaderboard Reward
   m_TagString: Untagged
@@ -1284,3 +1285,17 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &925432112398709336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2664749857364339174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ace69ca15ccb49d48b3e4ba11f618e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  current: {fileID: 21300000, guid: 1e1ba0ad44ff9a04dae4f4c6941913bd, type: 3}
+  rank: 0

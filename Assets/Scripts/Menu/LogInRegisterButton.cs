@@ -6,9 +6,15 @@ using UnityEngine.UI;
 
 public class LogInRegisterButton : MonoBehaviour
 {
+	private Button _button;
 	private void Awake()
 	{
-		var button = GetComponent<Button>();
-		button.onClick.AddListener(() => button.interactable = false);
+		_button = GetComponent<Button>();
+		_button.onClick.AddListener(() => _button.interactable = false);
+	}
+
+	private void OnEnable()
+	{
+		_button.interactable = true;
 	}
 }
