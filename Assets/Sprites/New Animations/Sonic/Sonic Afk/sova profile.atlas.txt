@@ -1,0 +1,97 @@
+
+sova profile.png
+size: 870,1035
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer11
+  rotate: true
+  xy: 694, 629
+  size: 67, 75
+  orig: 71, 75
+  offset: 1, 0
+  index: -1
+Layer16
+  rotate: true
+  xy: 272, 269
+  size: 356, 270
+  orig: 356, 304
+  offset: 0, 11
+  index: -1
+Layer16(2)
+  rotate: true
+  xy: 2, 254
+  size: 371, 268
+  orig: 373, 294
+  offset: 1, 10
+  index: -1
+Layer17
+  rotate: false
+  xy: 544, 374
+  size: 277, 251
+  orig: 278, 253
+  offset: 0, 1
+  index: -1
+Layer17(2)
+  rotate: true
+  xy: 654, 66
+  size: 306, 214
+  orig: 308, 216
+  offset: 1, 1
+  index: -1
+Layer26
+  rotate: true
+  xy: 817, 631
+  size: 124, 43
+  orig: 125, 44
+  offset: 0, 0
+  index: -1
+Layer26(2)
+  rotate: false
+  xy: 694, 698
+  size: 121, 57
+  orig: 122, 57
+  offset: 0, 0
+  index: -1
+Layer7
+  rotate: false
+  xy: 342, 36
+  size: 310, 231
+  orig: 310, 233
+  offset: 0, 1
+  index: -1
+Layer8
+  rotate: true
+  xy: 2, 2
+  size: 250, 338
+  orig: 250, 341
+  offset: 0, 0
+  index: -1
+Layer8(2)
+  rotate: true
+  xy: 2, 2
+  size: 250, 338
+  orig: 250, 341
+  offset: 0, 0
+  index: -1
+Level Correction 1
+  rotate: false
+  xy: 2, 627
+  size: 690, 406
+  orig: 690, 406
+  offset: 0, 0
+  index: -1
+перья на башке
+  rotate: false
+  xy: 694, 889
+  size: 167, 144
+  orig: 168, 145
+  offset: 1, 1
+  index: -1
+перья на башке(2)
+  rotate: true
+  xy: 694, 757
+  size: 130, 134
+  orig: 131, 135
+  offset: 0, 0
+  index: -1

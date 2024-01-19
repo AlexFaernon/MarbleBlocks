@@ -16,7 +16,7 @@ public class TileSpriteManager : MonoBehaviour
 
     private void Awake()
     {
-        var areaNumber = 0;
+        var areaNumber = 1;
         if (GameMode.CurrentGameMode == GameModeType.SinglePlayer)
         {
             areaNumber = LevelSaveManager.LevelNumber switch

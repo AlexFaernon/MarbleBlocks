@@ -74,6 +74,7 @@ MonoBehaviour:
   initialLoop: 0
   skeletonDataAssets:
   - {fileID: 11400000, guid: c93806b467b2c8c4d9d7aa696a199b33, type: 2}
+  - {fileID: 11400000, guid: 249d3e7e6b41b804db95d58a11672146, type: 2}
   meshGeneratorSettings:
     useClipping: 1
     zSpacing: 0

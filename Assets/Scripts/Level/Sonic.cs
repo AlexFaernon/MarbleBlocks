@@ -137,6 +137,7 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
             {
                 IsMoving = false;
                 skeletonAnimation.ClearAnimation();
+                skeletonAnimation.SetAnimation("sova afk", true);
                 mesh = skeletonAnimation.transform.GetChild(0).GetComponent<MeshRenderer>(); //todo в awake эта херня еще не появилась, позже нужно перенести отсюда
                 mesh.sortingOrder = 6;
             }
