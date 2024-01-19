@@ -13,7 +13,7 @@ public class HelpButton : MonoBehaviour
     private Button _button;
     private void Awake()
     {
-        if (GameMode.CurrentGameMode == GameModeType.SinglePlayer && LevelSaveManager.LevelNumber < 4)
+        if (GameMode.CurrentGameMode == GameModeType.SinglePlayer && LevelSaveManager.LevelNumber <= 3)
         {
             gameObject.SetActive(false);
             return;

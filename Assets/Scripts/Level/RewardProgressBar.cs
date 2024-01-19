@@ -10,6 +10,8 @@ public class RewardProgressBar : MonoBehaviour
     [SerializeField] private TMP_Text playerLevel;
     [SerializeField] private Image fill;
     [SerializeField] private TMP_Text rankLabel;
+    [SerializeField] private Image rankIcon;
+
     private const float FillTime = 1.5f;
     private bool _progressBarFilled;
 
@@ -52,16 +54,21 @@ public class RewardProgressBar : MonoBehaviour
 
     public IEnumerator GainRank(int oldRank, int newRank)
     {
+        var rankIconSprite = Resources.Load<Sprite>($"Rank/small/{PlayerData.GetRankString(oldRank)}");
         var value = oldRank;
         var oldMax = PlayerData.GetNextRankThreshold(oldRank);
         var newMax = PlayerData.GetNextRankThreshold(newRank);
         if (oldMax < newMax)
         {
+            rankIcon.sprite = rankIconSprite;
             StartCoroutine(FillProgressbar(value, oldMax, oldMax));
             yield return new WaitUntil(() => _progressBarFilled);
+            
+            rankIconSprite = Resources.Load<Sprite>($"Rank/small/{PlayerData.GetRankString(newRank)}");
 
             value = 0;
         }
+        rankIcon.sprite = rankIconSprite;
         StartCoroutine(FillProgressbar(value, newRank, newMax));
     }
 }

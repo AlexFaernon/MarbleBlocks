@@ -58,7 +58,7 @@ public abstract class Brush : MonoBehaviour
 			return !tile.isFeeshOnTile && !tile.Whirlpool;
 		}
 		
-		return !tile.Spike && !tile.isJumperOnTile && !tile.isSonicOnTile;
+		return !tile.Spike && tile.Teleport is null && !tile.isJumperOnTile && !tile.isSonicOnTile;
 	}
 
 	public bool Check(Tile tile, string character)

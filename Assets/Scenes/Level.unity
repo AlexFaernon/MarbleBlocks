@@ -1148,6 +1148,7 @@ MonoBehaviour:
   playerLevel: {fileID: 1036487913}
   fill: {fileID: 707948886}
   rankLabel: {fileID: 0}
+  rankIcon: {fileID: 0}
 --- !u!114 &123368419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1163,6 +1164,7 @@ MonoBehaviour:
   playerLevel: {fileID: 0}
   fill: {fileID: 1123219481}
   rankLabel: {fileID: 2117382159}
+  rankIcon: {fileID: 28555132}
 --- !u!1 &129376952
 GameObject:
   m_ObjectHideFlags: 0
@@ -18345,6 +18347,7 @@ MonoBehaviour:
   playerLevel: {fileID: 1461603787}
   fill: {fileID: 775247584}
   rankLabel: {fileID: 0}
+  rankIcon: {fileID: 0}
 --- !u!1 &1268617466
 GameObject:
   m_ObjectHideFlags: 0

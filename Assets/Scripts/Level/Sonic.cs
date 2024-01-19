@@ -184,6 +184,11 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
             _ => throw new ArgumentOutOfRangeException()
         };
 
+        if (nextTile is null)
+        {
+            return false;
+        }
+        
         return currentTile.AvailableToMoveThroughSide(moveSide) && nextTile.AvailableToMoveThroughSide(enterSide) &&
                !nextTile.isJumperOnTile;
     }
@@ -201,6 +206,10 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
         if (col.CompareTag("Ground"))
         {
             CurrentTile = col.GetComponent<Tile>();
+            if (CurrentTile.IsEdge)
+            {
+                WinLoseManager.Lose.SetActive(true);
+            }
         }
         
         if (col.CompareTag("Spike"))
