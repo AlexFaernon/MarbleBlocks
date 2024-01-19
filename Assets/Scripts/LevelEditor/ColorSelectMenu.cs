@@ -14,7 +14,6 @@ public class ColorSelectMenu : MonoBehaviour
     [SerializeField] private Sprite purple;
     [SerializeField] private Sprite blue;
     [SerializeField] private Sprite green;
-    [SerializeField] private Sprite yellow;
     private void Awake()
     {
         GetComponent<Button>().onClick.AddListener(OnClick);
@@ -32,7 +31,6 @@ public class ColorSelectMenu : MonoBehaviour
             DoorLeverColor.Blue => blue,
             DoorLeverColor.Purple => purple,
             DoorLeverColor.Green => green,
-            DoorLeverColor.Yellow => yellow,
             _ => throw new ArgumentOutOfRangeException()
         };
     }

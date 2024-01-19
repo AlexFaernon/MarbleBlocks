@@ -17,6 +17,14 @@ public class CameraClamp : MonoBehaviour
 		}
 	}
 
+	private void Start()
+	{
+		if (GameMode.CurrentGameMode == GameModeType.SinglePlayer)
+		{
+			ResetCameraPos();
+		}
+	}
+
 	private void Update()
 	{
 		var clamp = new Vector2(3, 3);

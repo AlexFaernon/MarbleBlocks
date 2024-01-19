@@ -2467,10 +2467,10 @@ RectTransform:
   m_Father: {fileID: 958927769}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 32, y: -40}
-  m_SizeDelta: {x: 54, y: 70}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &172705679
 MonoBehaviour:
@@ -2582,7 +2582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb4cd33cf8fc4b088d5113a36b9ca957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
+  selectedSprite: {fileID: 21300000, guid: 2d331b7dec18a35419fbcae0dd9c8711, type: 3}
   isGrass: 1
 --- !u!1 &180873984
 GameObject:
@@ -3347,7 +3347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44156df999b47ad898ecf2c5420e7e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
+  selectedSprite: {fileID: 21300000, guid: 2d331b7dec18a35419fbcae0dd9c8711, type: 3}
   grid: {fileID: 58077810}
   selectedCharacter: {fileID: 4579890484890494249, guid: 4402122b1b9757d4ba131dbed8df13a8, type: 3}
 --- !u!1 &226268150
@@ -7506,7 +7506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1df9ac361640308498a4dc50a10f55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
+  selectedSprite: {fileID: 21300000, guid: 2d331b7dec18a35419fbcae0dd9c8711, type: 3}
   limitLabel: {fileID: 0}
   isDoor: 0
   isOpened: 0
@@ -7915,7 +7915,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0a5b79f89f467b9aa630afc951272b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
+  selectedSprite: {fileID: 21300000, guid: 2d331b7dec18a35419fbcae0dd9c8711, type: 3}
   limitLabel: {fileID: 834160009}
   selectedOnTileObject: 1
 --- !u!114 &525039609
@@ -13555,7 +13555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0a5b79f89f467b9aa630afc951272b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
+  selectedSprite: {fileID: 21300000, guid: 2d331b7dec18a35419fbcae0dd9c8711, type: 3}
   limitLabel: {fileID: 507257780}
   selectedOnTileObject: 3
 --- !u!114 &625294731
@@ -14070,7 +14070,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   red: {fileID: 21300000, guid: 6b985482e53854d47b135343475843f3, type: 3}
   purple: {fileID: 21300000, guid: fcbb1ef8e9358c849980b36fbb31f77a, type: 3}
-  yellow: {fileID: 21300000, guid: 6b985482e53854d47b135343475843f3, type: 3}
   grey: {fileID: 21300000, guid: 6b985482e53854d47b135343475843f3, type: 3}
   green: {fileID: 21300000, guid: 15827fce259e7e34899c7296b2cfb507, type: 3}
   blue: {fileID: 21300000, guid: 6b985482e53854d47b135343475843f3, type: 3}
@@ -14806,7 +14805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0a5b79f89f467b9aa630afc951272b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
+  selectedSprite: {fileID: 21300000, guid: 2d331b7dec18a35419fbcae0dd9c8711, type: 3}
   limitLabel: {fileID: 0}
   selectedOnTileObject: 4
 --- !u!114 &686672946
@@ -16935,7 +16934,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   red: {fileID: 21300000, guid: f868811614ead5c42b6294e55bf08120, type: 3}
   purple: {fileID: 21300000, guid: 90be1f215b5f74d4185ee7312616bd11, type: 3}
-  yellow: {fileID: 21300000, guid: eeeab694676cbf849bca3584b3a9571b, type: 3}
   grey: {fileID: 21300000, guid: d88e08a877389a2429af16dc30cc0844, type: 3}
   green: {fileID: 21300000, guid: a567e503821466f498822169b58c193b, type: 3}
   blue: {fileID: 21300000, guid: 3b3d044a4304fa641818b7076df9983e, type: 3}
@@ -17907,9 +17905,9 @@ RectTransform:
   m_Father: {fileID: 1831972880}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 61, y: -42.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 122, y: 85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &958927770
@@ -19526,7 +19524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1df9ac361640308498a4dc50a10f55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
+  selectedSprite: {fileID: 21300000, guid: 2d331b7dec18a35419fbcae0dd9c8711, type: 3}
   limitLabel: {fileID: 74537887}
   isDoor: 1
   isOpened: 1
@@ -20433,7 +20431,6 @@ MonoBehaviour:
   purple: {fileID: 21300000, guid: 1f842b04d3bb2eb47a8d6e15ae2d3e3c, type: 3}
   blue: {fileID: 21300000, guid: 2a89b154789875f46990f739109ded61, type: 3}
   green: {fileID: 21300000, guid: 82c244761d9b8e24188c9c6831a506d6, type: 3}
-  yellow: {fileID: 21300000, guid: 0c9b5680bf14a3b43902320e54af2e39, type: 3}
 --- !u!1 &1177599960
 GameObject:
   m_ObjectHideFlags: 0
@@ -21047,7 +21044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44156df999b47ad898ecf2c5420e7e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
+  selectedSprite: {fileID: 21300000, guid: 2d331b7dec18a35419fbcae0dd9c8711, type: 3}
   grid: {fileID: 58077810}
   selectedCharacter: {fileID: 4579890484890494249, guid: b9a449fa50dc1664cb7425792a4bea23, type: 3}
 --- !u!1 &1223504916
@@ -26877,7 +26874,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   red: {fileID: 21300000, guid: 526a289be9eefcc4fa5e9667c2909e1d, type: 3}
   purple: {fileID: 21300000, guid: 0894a499d3eb81749a313f81314f4c36, type: 3}
-  yellow: {fileID: 21300000, guid: 42058b230ca1e5a4caf53ca81cc23dbd, type: 3}
   grey: {fileID: 21300000, guid: 8ab48062c54642644a5005aed1cf2254, type: 3}
   green: {fileID: 21300000, guid: e21871307de7ef048b9e9b71c2ac2a74, type: 3}
   blue: {fileID: 21300000, guid: 7f81f82f71728b141b671ac7b7fabc25, type: 3}
@@ -27787,7 +27783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44156df999b47ad898ecf2c5420e7e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
+  selectedSprite: {fileID: 21300000, guid: 2d331b7dec18a35419fbcae0dd9c8711, type: 3}
   grid: {fileID: 58077810}
   selectedCharacter: {fileID: 4579890484890494249, guid: f2ac94b1a8851414c914899072ac6d49, type: 3}
 --- !u!1 &1419957867
@@ -27923,7 +27919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0a5b79f89f467b9aa630afc951272b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
+  selectedSprite: {fileID: 21300000, guid: 2d331b7dec18a35419fbcae0dd9c8711, type: 3}
   limitLabel: {fileID: 673853313}
   selectedOnTileObject: 5
 --- !u!114 &1456986364
@@ -29716,7 +29712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1df9ac361640308498a4dc50a10f55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
+  selectedSprite: {fileID: 21300000, guid: 2d331b7dec18a35419fbcae0dd9c8711, type: 3}
   limitLabel: {fileID: 488722674}
   isDoor: 1
   isOpened: 0
@@ -30468,7 +30464,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   red: {fileID: 21300000, guid: 2d6ab06286f1dcf4c80a16764e434a7b, type: 3}
   purple: {fileID: 21300000, guid: 0f9ff32877db11d46b9c947f30941c47, type: 3}
-  yellow: {fileID: 21300000, guid: e458f84247b2d3d46b63b3fb52a369cc, type: 3}
   grey: {fileID: 21300000, guid: f76a2b052dc2cb44da7d836eadd194c7, type: 3}
   green: {fileID: 21300000, guid: becbec5903e73a54c99049e7219d036c, type: 3}
   blue: {fileID: 21300000, guid: 2ada028d21f1dbf43899c85908b830c3, type: 3}
@@ -31421,7 +31416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0a5b79f89f467b9aa630afc951272b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
+  selectedSprite: {fileID: 21300000, guid: 2d331b7dec18a35419fbcae0dd9c8711, type: 3}
   limitLabel: {fileID: 1067142236}
   selectedOnTileObject: 6
 --- !u!114 &1888826900
@@ -32321,7 +32316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0a5b79f89f467b9aa630afc951272b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
+  selectedSprite: {fileID: 21300000, guid: 2d331b7dec18a35419fbcae0dd9c8711, type: 3}
   limitLabel: {fileID: 1467262866}
   selectedOnTileObject: 2
 --- !u!114 &1958783678
@@ -33998,10 +33993,10 @@ RectTransform:
   m_Father: {fileID: 958927769}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 93, y: -40}
-  m_SizeDelta: {x: 54, y: 70}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2117400055
 MonoBehaviour:
@@ -34113,7 +34108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb4cd33cf8fc4b088d5113a36b9ca957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedSprite: {fileID: 21300000, guid: b075f2fffc6a35a4e8713ffae19bd3fc, type: 3}
+  selectedSprite: {fileID: 21300000, guid: 2d331b7dec18a35419fbcae0dd9c8711, type: 3}
   isGrass: 0
 --- !u!1 &2128419545
 GameObject:

@@ -6,7 +6,6 @@ public class ShowColorInObjects : MonoBehaviour
 {
     [SerializeField] private Sprite red;
     [SerializeField] private Sprite purple;
-    [SerializeField] private Sprite yellow;
     [SerializeField] private Sprite grey;
     [SerializeField] private Sprite green;
     [SerializeField] private Sprite blue;
@@ -26,7 +25,6 @@ public class ShowColorInObjects : MonoBehaviour
             DoorLeverColor.Blue => blue,
             DoorLeverColor.Purple => purple,
             DoorLeverColor.Green => green,
-            DoorLeverColor.Yellow => yellow,
             _ => throw new ArgumentOutOfRangeException()
         };
     }

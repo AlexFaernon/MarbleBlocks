@@ -1337,7 +1337,7 @@
         "OnTileObject": 3,
         "LeverClass": {
           "IsSwitchable": false,
-          "Color": 5
+          "Color": 0
         },
         "Walls": {
           "North": {
@@ -2935,7 +2935,7 @@
             "IsActive": true,
             "IsDoor": true,
             "IsOpened": false,
-            "Color": 5
+            "Color": 0
           },
           "South": {
             "IsActive": true,

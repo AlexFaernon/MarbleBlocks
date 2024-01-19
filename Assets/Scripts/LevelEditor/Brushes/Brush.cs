@@ -16,7 +16,6 @@ public abstract class Brush : MonoBehaviour
 	{
 		{ DoorLeverColor.Red, true },
 		{ DoorLeverColor.Grey, true },
-		{ DoorLeverColor.Yellow, true },
 		{ DoorLeverColor.Green, true },
 		{ DoorLeverColor.Purple, true },
 		{ DoorLeverColor.Blue, true },

@@ -138,7 +138,7 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
                 IsMoving = false;
                 skeletonAnimation.ClearAnimation();
                 mesh = skeletonAnimation.transform.GetChild(0).GetComponent<MeshRenderer>(); //todo в awake эта херня еще не появилась, позже нужно перенести отсюда
-                mesh.sortingOrder = 5;
+                mesh.sortingOrder = 6;
             }
         }
         if (!CurrentTile.IsGrass && !CurrentTile.WaterLily && !CurrentTile.isFeeshOnTile && !IsMoving || CurrentTile.IsEdge)

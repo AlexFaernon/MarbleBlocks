@@ -78,7 +78,6 @@ public class CharacterSwitchButton : MonoBehaviour
             "Feesh" => feesh.IsActive,
             _ => throw new ArgumentOutOfRangeException("Incorrect character name")
         };
-        transform.localScale = characterActive ? new Vector3(1.2f, 1.2f, 1.2f) : Vector3.one;
         _image.sprite = characterActive ? white : _normal;
         
         var characterMoving = false;

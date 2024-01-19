@@ -33,6 +33,14 @@ public class ZoomPinch : MonoBehaviour
         private const float Size = 4.5f;
         private const float SizeMin = 3.5f;
 
+        private void Start()
+        {
+            if (GameMode.CurrentGameMode == GameModeType.SinglePlayer)
+            {
+                ResetCameraZoom();
+            }
+        }
+
         protected virtual void LateUpdate()
         {
             // Get the fingers we want to use

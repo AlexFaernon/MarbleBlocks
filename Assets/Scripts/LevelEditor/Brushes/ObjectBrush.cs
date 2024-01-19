@@ -79,7 +79,6 @@ public class ObjectBrush : Brush
         {
             AllowedColors[DoorLeverColor.Red] = false;
             AllowedColors[DoorLeverColor.Grey] = false;
-            AllowedColors[DoorLeverColor.Yellow] = false;
             AllowedColors[DoorLeverColor.Purple] = true;
             AllowedColors[DoorLeverColor.Green] = true;
             AllowedColors[DoorLeverColor.Blue] = true;

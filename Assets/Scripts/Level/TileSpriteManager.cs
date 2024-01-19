@@ -16,12 +16,16 @@ public class TileSpriteManager : MonoBehaviour
 
     private void Awake()
     {
-        var areaNumber = LevelSaveManager.LevelNumber switch
+        var areaNumber = 0;
+        if (GameMode.CurrentGameMode == GameModeType.SinglePlayer)
         {
-            <= 9 => 1,
-            > 9 and < 17 => 2,
-            >= 17 => 3
-        };
+            areaNumber = LevelSaveManager.LevelNumber switch
+            {
+                <= 9 => 1,
+                > 9 and < 17 => 2,
+                >= 17 => 3
+            };
+        }
         
         _groundMid = Resources.LoadAll<Sprite>($"Tiles\\Area{areaNumber}\\Land\\Mid");
         _groundBot = Resources.LoadAll<Sprite>($"Tiles\\Area{areaNumber}\\Land\\Bottom");

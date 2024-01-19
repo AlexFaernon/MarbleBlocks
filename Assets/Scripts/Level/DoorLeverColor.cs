@@ -5,5 +5,4 @@
 	Blue,
 	Purple,
 	Green,
-	Yellow
 }

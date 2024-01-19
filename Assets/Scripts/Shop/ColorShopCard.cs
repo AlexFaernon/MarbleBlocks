@@ -27,7 +27,6 @@ public class ColorShopCard : MonoBehaviour
                     return ref LevelObjectsLimits.Blue;
                 case DoorLeverColor.Red:
                 case DoorLeverColor.Grey:
-                case DoorLeverColor.Yellow:
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -45,7 +44,6 @@ public class ColorShopCard : MonoBehaviour
                 DoorLeverColor.Blue => LevelObjectsLimits.BlueLevel,
                 DoorLeverColor.Purple => LevelObjectsLimits.PurpleLevel,
                 DoorLeverColor.Green => LevelObjectsLimits.GreenLevel,
-                DoorLeverColor.Yellow => 0,
                 _ => throw new ArgumentOutOfRangeException()
             };
         }

@@ -10,7 +10,6 @@ public class ColorSelect : MonoBehaviour
     {
         { DoorLeverColor.Red, true },
         { DoorLeverColor.Grey, true },
-        { DoorLeverColor.Yellow, true },
         { DoorLeverColor.Green, true },
         { DoorLeverColor.Purple, true },
         { DoorLeverColor.Blue, true },
@@ -35,7 +34,7 @@ public class ColorSelect : MonoBehaviour
         selected.gameObject.SetActive(color == Brush.Color);
         _button.interactable = color switch
         {
-            DoorLeverColor.Red or DoorLeverColor.Grey or DoorLeverColor.Yellow => true,
+            DoorLeverColor.Red or DoorLeverColor.Grey => true,
             DoorLeverColor.Purple => LevelObjectsLimits.Purple,
             DoorLeverColor.Green => LevelObjectsLimits.Green,
             DoorLeverColor.Blue => LevelObjectsLimits.Blue,

@@ -98,7 +98,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
         skeletonAnimation.ClearAnimation();
         skeletonAnimation.SetAnimation("liz afk animation", true);
         mesh = skeletonAnimation.transform.GetChild(0).GetComponent<MeshRenderer>(); //todo в awake эта херня еще не появилась, позже нужно перенести отсюда
-        mesh.sortingOrder = 5;
+        mesh.sortingOrder = 7;
     }
 
 
