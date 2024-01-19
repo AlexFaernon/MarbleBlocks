@@ -1,0 +1,111 @@
+
+sova fas.png
+size: 1681,530
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer21
+  rotate: true
+  xy: 339, 4
+  size: 243, 349
+  orig: 243, 349
+  offset: 0, 0
+  index: -1
+Layer22
+  rotate: true
+  xy: 688, 253
+  size: 275, 344
+  orig: 276, 344
+  offset: 1, 0
+  index: -1
+Layer24
+  rotate: true
+  xy: 1170, 25
+  size: 225, 87
+  orig: 225, 87
+  offset: 0, 0
+  index: -1
+Layer25
+  rotate: true
+  xy: 1259, 101
+  size: 149, 148
+  orig: 149, 148
+  offset: 0, 0
+  index: -1
+Layer26
+  rotate: true
+  xy: 1560, 129
+  size: 151, 98
+  orig: 151, 98
+  offset: 0, 0
+  index: -1
+Layer27
+  rotate: true
+  xy: 2, 54
+  size: 127, 244
+  orig: 127, 244
+  offset: 0, 0
+  index: -1
+Layer28
+  rotate: true
+  xy: 819, 7
+  size: 243, 349
+  orig: 243, 349
+  offset: 0, 0
+  index: -1
+Layer29
+  rotate: true
+  xy: 1034, 252
+  size: 276, 332
+  orig: 276, 332
+  offset: 0, 0
+  index: -1
+Layer30
+  rotate: false
+  xy: 2, 2
+  size: 35, 50
+  orig: 37, 50
+  offset: 1, 0
+  index: -1
+башка
+  rotate: false
+  xy: 339, 249
+  size: 347, 279
+  orig: 347, 279
+  offset: 0, 0
+  index: -1
+задник тела
+  rotate: true
+  xy: 1368, 282
+  size: 246, 311
+  orig: 249, 311
+  offset: 0, 0
+  index: -1
+когти
+  rotate: false
+  xy: 1259, 2
+  size: 150, 97
+  orig: 151, 98
+  offset: 1, 1
+  index: -1
+ношки
+  rotate: false
+  xy: 690, 7
+  size: 127, 244
+  orig: 127, 244
+  offset: 0, 0
+  index: -1
+перья на башке
+  rotate: false
+  xy: 1409, 132
+  size: 149, 148
+  orig: 149, 148
+  offset: 0, 0
+  index: -1
+тело
+  rotate: false
+  xy: 2, 183
+  size: 335, 345
+  orig: 335, 346
+  offset: 0, 0
+  index: -1

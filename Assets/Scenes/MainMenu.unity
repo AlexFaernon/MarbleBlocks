@@ -41663,7 +41663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scroll: {fileID: 1670013483}
   area2Sprite: {fileID: 21300000, guid: 57a1bc1d2f8966949bfd49f4d7c7ef2b, type: 3}
-  area3Sprite: {fileID: 21300000, guid: e8944e6d0515e0342912f0b392b19b6e, type: 3}
+  area3Sprite: {fileID: 21300000, guid: d780445b49c639844b00849d06f09fff, type: 3}
   area2SwitchThreshold: 0.3
   area3SwitchThreshold: 0.8
 --- !u!1 &1899525177

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Spine.Unity;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
@@ -15,8 +16,12 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
     private Lever _lever;
     public bool isActive;
     public Vector2Int GridPosition => CurrentTile.gridPosition;
-    [SerializeField] private Animator animator;
+    //[SerializeField] private Animator animator;
     public static int Count;
+    
+    private SkeletonAnimationMulti skeletonAnimation;
+    private MeshRenderer mesh;
+    private bool facingRight = true;
 
     public bool IsMoving
     {
@@ -59,6 +64,8 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
     {
         Count++;
         CharacterManager.Sonic = this;
+        
+        skeletonAnimation = GetComponent<SkeletonAnimationMulti>();
     }
 
     public void StartMoving(Side side)
@@ -98,13 +105,20 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
             _ => throw new ArgumentOutOfRangeException()
         };
         if (movingVector == Vector2.right)
-            animator.SetTrigger("RIGHT");
+        {
+        }     
         if (movingVector == Vector2.up)
-            animator.SetTrigger("UP");
+        {
+        }     
         if (movingVector == Vector2.down)
-            animator.SetTrigger("DOWN");
+        {
+            skeletonAnimation.SetAnimation("sova fas jump", true);
+            skeletonAnimation.CurrentSkeletonAnimation.AnimationState.TimeScale = 2;
+        }     
         if (movingVector == Vector2.left)
-            animator.SetTrigger("LEFT");
+        {
+        }   
+        
         while (IsMoving)
         {
             var nextTile = TileManager.GetTile(CurrentTile, _movingSide);
@@ -121,11 +135,10 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
             }
             else
             {
-                animator.ResetTrigger("RIGHT");
-                animator.ResetTrigger("UP");
-                animator.ResetTrigger("DOWN");
-                animator.ResetTrigger("LEFT");
                 IsMoving = false;
+                skeletonAnimation.ClearAnimation();
+                mesh = skeletonAnimation.transform.GetChild(0).GetComponent<MeshRenderer>(); //todo в awake эта херня еще не появилась, позже нужно перенести отсюда
+                mesh.sortingOrder = 5;
             }
         }
         if (!CurrentTile.IsGrass && !CurrentTile.WaterLily && !CurrentTile.isFeeshOnTile && !IsMoving || CurrentTile.IsEdge)
