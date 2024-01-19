@@ -106,6 +106,8 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
         };
         if (movingVector == Vector2.right)
         {
+            FlipCharacter(true);
+            skeletonAnimation.SetAnimation("sova side jump", true);
         }     
         if (movingVector == Vector2.up)
         {
@@ -117,6 +119,8 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
         }     
         if (movingVector == Vector2.left)
         {
+            FlipCharacter(false);
+            skeletonAnimation.SetAnimation("sova side jump", true);
         }   
         
         while (IsMoving)
@@ -148,6 +152,18 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
         }
     }
 
+    private void FlipCharacter(bool jumpRight)
+    {
+        if ((jumpRight && !facingRight) || (!jumpRight && facingRight))
+        {
+            facingRight = !facingRight;
+
+            Vector3 theScale = transform.localScale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
+        }
+    }
+    
     private void HighlightTiles()
     {
         var highlightedTiles = new HashSet<Tile>();

@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class BuyHelpButton : MonoBehaviour
 {
-	[SerializeField] private GameObject buyLabel;
-	[SerializeField] private GameObject noBuyLabel;
 	[FormerlySerializedAs("helpManager")]
 	[SerializeField] private HelpSwitch helpSwitch;
 	
@@ -20,13 +18,10 @@ public class BuyHelpButton : MonoBehaviour
 	{
 		if (PlayerData.Name.ToUpper() == "TRW")
 		{
-			buyLabel.SetActive(true);
 			_button.interactable = true;
 			return;
 		}
 		
-		buyLabel.SetActive(CoinsManager.Coins > 0);
-		noBuyLabel.SetActive(CoinsManager.Coins == 0);
 		_button.interactable = CoinsManager.Coins > 0;
 	}
 
