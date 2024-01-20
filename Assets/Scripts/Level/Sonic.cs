@@ -111,6 +111,8 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
         }     
         if (movingVector == Vector2.up)
         {
+            skeletonAnimation.SetAnimation("sova zad jump", true);
+            skeletonAnimation.CurrentSkeletonAnimation.AnimationState.TimeScale = 2;
         }     
         if (movingVector == Vector2.down)
         {

@@ -76,6 +76,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c93806b467b2c8c4d9d7aa696a199b33, type: 2}
   - {fileID: 11400000, guid: 249d3e7e6b41b804db95d58a11672146, type: 2}
   - {fileID: 11400000, guid: 4ea89f8280742dc4d802923ca254ada3, type: 2}
+  - {fileID: 11400000, guid: b7c1cebd6094b534b87f3019309e7e32, type: 2}
   meshGeneratorSettings:
     useClipping: 1
     zSpacing: 0

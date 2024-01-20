@@ -1,0 +1,97 @@
+
+sova zad.png
+size: 1622,537
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer21
+  rotate: true
+  xy: 1025, 292
+  size: 243, 348
+  orig: 243, 349
+  offset: 0, 1
+  index: -1
+Layer22
+  rotate: true
+  xy: 959, 14
+  size: 276, 332
+  orig: 276, 332
+  offset: 0, 0
+  index: -1
+Layer28
+  rotate: true
+  xy: 2, 351
+  size: 184, 670
+  orig: 184, 672
+  offset: 0, 0
+  index: -1
+Layer29
+  rotate: false
+  xy: 1293, 129
+  size: 149, 148
+  orig: 149, 148
+  offset: 0, 0
+  index: -1
+Layer30
+  rotate: true
+  xy: 674, 292
+  size: 243, 349
+  orig: 243, 349
+  offset: 0, 0
+  index: -1
+Layer31
+  rotate: true
+  xy: 620, 14
+  size: 276, 337
+  orig: 276, 346
+  offset: 0, 0
+  index: -1
+Layer32
+  rotate: false
+  xy: 1293, 38
+  size: 150, 89
+  orig: 151, 89
+  offset: 1, 0
+  index: -1
+Layer33
+  rotate: true
+  xy: 1375, 408
+  size: 127, 245
+  orig: 127, 245
+  offset: 0, 0
+  index: -1
+башка
+  rotate: true
+  xy: 339, 2
+  size: 347, 279
+  orig: 347, 279
+  offset: 0, 0
+  index: -1
+когти
+  rotate: false
+  xy: 1445, 39
+  size: 151, 89
+  orig: 151, 89
+  offset: 0, 0
+  index: -1
+ношки
+  rotate: true
+  xy: 1375, 279
+  size: 127, 244
+  orig: 127, 245
+  offset: 0, 0
+  index: -1
+перья на башке
+  rotate: false
+  xy: 1444, 130
+  size: 148, 147
+  orig: 149, 147
+  offset: 0, 0
+  index: -1
+тело
+  rotate: false
+  xy: 2, 4
+  size: 335, 345
+  orig: 335, 346
+  offset: 0, 0
+  index: -1
