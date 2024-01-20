@@ -46,6 +46,12 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
         CharacterManager.Jumper = this;
     }
 
+    private void Start()
+    {
+        mesh = skeletonAnimation.transform.GetChild(0).GetComponent<MeshRenderer>(); //todo в awake эта херня еще не появилась, позже нужно перенести отсюда
+        mesh.sortingOrder = 7;
+    }
+
     private IEnumerator Move(Tile targetTile)
     {
         _collider2D.enabled = false;
@@ -97,8 +103,6 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
         IsMoving = false;
         skeletonAnimation.ClearAnimation();
         skeletonAnimation.SetAnimation("liz afk animation", true);
-        mesh = skeletonAnimation.transform.GetChild(0).GetComponent<MeshRenderer>(); //todo в awake эта херня еще не появилась, позже нужно перенести отсюда
-        mesh.sortingOrder = 7;
     }
 
 

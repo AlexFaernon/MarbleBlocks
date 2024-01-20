@@ -48,6 +48,7 @@ MonoBehaviour:
   isDoor: 0
   isOpened: 0
   color: 0
+  area2Sprite: {fileID: 21300000, guid: 3167f6c708b28cb42810b3189ef2849b, type: 3}
 --- !u!212 &2987367056808223342
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -148,6 +149,7 @@ MonoBehaviour:
   isDoor: 0
   isOpened: 0
   color: 0
+  area2Sprite: {fileID: 21300000, guid: 3879a47a043d8514da3622bfd7c17a00, type: 3}
 --- !u!212 &5301791884531868915
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -345,6 +347,7 @@ MonoBehaviour:
   isDoor: 0
   isOpened: 0
   color: 0
+  area2Sprite: {fileID: 21300000, guid: 3167f6c708b28cb42810b3189ef2849b, type: 3}
 --- !u!212 &5433016337011661003
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -653,6 +656,7 @@ MonoBehaviour:
   isDoor: 0
   isOpened: 0
   color: 0
+  area2Sprite: {fileID: 21300000, guid: 62b8f06e5cb0984499942695ec14e52d, type: 3}
 --- !u!212 &2563084244520033132
 SpriteRenderer:
   m_ObjectHideFlags: 0

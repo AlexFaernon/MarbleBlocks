@@ -7,6 +7,7 @@ public class Wall : MonoBehaviour
     [SerializeField] private bool isDoor;
     [SerializeField] private bool isOpened;
     [SerializeField] private DoorLeverColor color;
+    [SerializeField] private Sprite area2Sprite;
     public static int DoorCount { get; private set; }
     private SpriteRenderer _spriteRenderer;
     private Sprite _closed;
@@ -23,6 +24,10 @@ public class Wall : MonoBehaviour
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        if (GameMode.CurrentGameMode == GameModeType.SinglePlayer && LevelSaveManager.LevelNumber <= 9)
+        {
+            _spriteRenderer.sprite = area2Sprite;
+        }
         _wall = _spriteRenderer.sprite;
     }
 
@@ -95,5 +100,9 @@ public class Wall : MonoBehaviour
     private void OnDisable()
     {
         OnLevelSwitch.RemoveListener(OnLeverSwitch);
+        if (gameObject.activeSelf && isDoor)
+        {
+            DoorCount--;
+        }
     }
 }

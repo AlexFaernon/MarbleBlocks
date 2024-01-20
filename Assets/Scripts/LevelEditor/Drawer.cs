@@ -12,10 +12,12 @@ public class Drawer : MonoBehaviour
     {
         Tile.OnTileClick.AddListener(Draw);
         CurrentBrush = null;
+        Undo.Clear();
+        Redo.Clear();
     }
 
-    private void Update()
-    {
+    // private void Update()
+    // {
         // if (CurrentBrush is null) return;
         //
         // if (EventSystem.current.IsPointerOverGameObject()) return;
@@ -44,7 +46,7 @@ public class Drawer : MonoBehaviour
         //     Redo.Clear();
         //     CurrentBrush(targetTile);
         // }
-    }
+    // }
 
     private void Draw(Tile targetTile)
     {

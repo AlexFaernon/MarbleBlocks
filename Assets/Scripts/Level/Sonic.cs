@@ -68,6 +68,12 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
         skeletonAnimation = GetComponent<SkeletonAnimationMulti>();
     }
 
+    private void Start()
+    {
+        mesh = skeletonAnimation.transform.GetChild(0).GetComponent<MeshRenderer>(); //todo в awake эта херня еще не появилась, позже нужно перенести отсюда
+        mesh.sortingOrder = 6;
+    }
+
     public void StartMoving(Side side)
     {
         Assert.IsTrue(IsActive);
@@ -144,8 +150,6 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
                 IsMoving = false;
                 skeletonAnimation.ClearAnimation();
                 skeletonAnimation.SetAnimation("sova afk", true);
-                mesh = skeletonAnimation.transform.GetChild(0).GetComponent<MeshRenderer>(); //todo в awake эта херня еще не появилась, позже нужно перенести отсюда
-                mesh.sortingOrder = 6;
             }
         }
         if (!CurrentTile.IsGrass && !CurrentTile.WaterLily && !CurrentTile.isFeeshOnTile && !IsMoving || CurrentTile.IsEdge)
