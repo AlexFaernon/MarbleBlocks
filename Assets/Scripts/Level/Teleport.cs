@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -24,7 +25,7 @@ public class Teleport : MonoBehaviour
         set => SetColor(value);
     }
 
-    public static int Count => CountByColors.Count;
+    public static int Count => CountByColors.Sum(pair => pair.Value);
 
     private void SetColor(TeleportClass teleportClass)
     {
