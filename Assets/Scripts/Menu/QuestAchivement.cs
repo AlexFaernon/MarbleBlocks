@@ -44,7 +44,6 @@ public class QuestAchivement : MonoBehaviour
 		}
 
 		label.text = claimButton.interactable ? "Получить" : "Получено";
-		label.color = claimButton.interactable ? Color.black : Color.white;
 		
 		if (!claimButton.interactable)
 		{
