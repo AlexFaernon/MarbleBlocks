@@ -1,28 +1,874 @@
 {
-  "OptimalTurns": 12,
+  "OptimalTurns": 42,
   "FieldSize": {
-    "x": 7,
-    "y": 7,
-    "magnitude": 9.899495,
-    "sqrMagnitude": 98
+    "x": 9,
+    "y": 9,
+    "magnitude": 12.7279224,
+    "sqrMagnitude": 162
   },
-  "HelpClass":{
+  "HelpClass": {
     "JumperPos": {
-      "x": 5,
-      "y": 5
+      "x": 3,
+      "y": 8
     },
-    "JumperDirection": 3,
+    "JumperDirection": 1,
     "SonicPos": {
-      "x": 4,
+      "x": 9,
       "y": 2
     },
-    "SonicDirection": 2,
+    "SonicDirection": 0,
     "FeeshPos": {
-      "x": 4,
-      "y": 5
+      "x": 3,
+      "y": 9
     }
   },
   "Tiles": [
+    [
+      {
+        "IsGrass": true,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": true,
+        "OnTileObject": 3,
+        "LeverClass": {
+          "IsSwitchable": true,
+          "Color": 3
+        },
+        "Walls": {
+          "North": {
+            "IsActive": true,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": true,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      }
+    ],
+    [
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      }
+    ],
+    [
+      {
+        "IsGrass": false,
+        "OnTileObject": 2,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": true,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": true,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": true,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": true,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": true,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": true,
+        "OnTileObject": 1,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": true,
+            "IsDoor": true,
+            "IsOpened": false,
+            "Color": 3
+          },
+          "South": {
+            "IsActive": true,
+            "IsDoor": true,
+            "IsOpened": true,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": true,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": true,
+            "IsDoor": true,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      }
+    ],
     [
       {
         "IsGrass": false,
@@ -73,7 +919,569 @@
             "Color": 0
           },
           "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": true,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      }
+    ],
+    [
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": true,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": true,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
             "IsActive": true,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": true,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": true,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": true,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": true,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": true,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": true,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": true,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": true,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      }
+    ],
+    [
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": true,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
             "IsDoor": false,
             "IsOpened": false,
             "Color": 0
@@ -123,6 +1531,37 @@
         "LeverClass": null,
         "Walls": {
           "North": {
+            "IsActive": true,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": true,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": true,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
             "IsActive": false,
             "IsDoor": false,
             "IsOpened": false,
@@ -154,7 +1593,7 @@
         "LeverClass": null,
         "Walls": {
           "North": {
-            "IsActive": false,
+            "IsActive": true,
             "IsDoor": false,
             "IsOpened": false,
             "Color": 0
@@ -240,194 +1679,6 @@
             "Color": 0
           }
         }
-      }
-    ],
-    [
-      {
-        "IsGrass": false,
-        "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
-        "IsGrass": true,
-        "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
-        "IsGrass": false,
-        "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
-        "IsGrass": false,
-        "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
-        "IsGrass": false,
-        "OnTileObject": 2,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
-        "IsGrass": false,
-        "OnTileObject": 2,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
       },
       {
         "IsGrass": false,
@@ -556,39 +1807,8 @@
         }
       },
       {
-        "IsGrass": true,
+        "IsGrass": false,
         "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
-        "IsGrass": true,
-        "OnTileObject": 1,
         "LeverClass": null,
         "Walls": {
           "North": {
@@ -654,731 +1874,7 @@
         "LeverClass": null,
         "Walls": {
           "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      }
-    ],
-    [
-      {
-        "IsGrass": false,
-        "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
-        "IsGrass": true,
-        "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
             "IsActive": true,
-            "IsDoor": true,
-            "IsOpened": false,
-            "Color": 1
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
-        "IsGrass": false,
-        "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
-        "IsGrass": false,
-        "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
-        "IsGrass": false,
-        "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
-        "IsGrass": false,
-        "OnTileObject": 3,
-        "LeverClass": {
-          "IsSwitchable": true,
-          "Color": 1
-        },
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
-        "IsGrass": false,
-        "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      }
-    ],
-    [
-      {
-        "IsGrass": false,
-        "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
-        "IsGrass": true,
-        "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
-        "IsGrass": false,
-        "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
-        "IsGrass": false,
-        "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
-        "IsGrass": true,
-        "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
-        "IsGrass": true,
-        "OnTileObject": 1,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
-        "IsGrass": true,
-        "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": true,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      }
-    ],
-    [
-      {
-        "IsGrass": false,
-        "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
-        "IsGrass": false,
-        "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": true,
-            "IsDoor": true,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
-        "IsGrass": false,
-        "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
-        "IsGrass": false,
-        "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
-        "IsGrass": false,
-        "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
-        "IsGrass": false,
-        "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
-        "IsGrass": false,
-        "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      }
-    ],
-    [
-      {
-        "IsGrass": false,
-        "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
-        "IsGrass": true,
-        "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
             "IsDoor": false,
             "IsOpened": false,
             "Color": 0
@@ -1404,99 +1900,6 @@
         }
       },
       {
-        "IsGrass": true,
-        "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
-        "IsGrass": false,
-        "OnTileObject": 2,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
-        "IsGrass": true,
-        "OnTileObject": 0,
-        "LeverClass": null,
-        "Walls": {
-          "North": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "South": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "West": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          },
-          "East": {
-            "IsActive": false,
-            "IsDoor": false,
-            "IsOpened": false,
-            "Color": 0
-          }
-        }
-      },
-      {
         "IsGrass": false,
         "OnTileObject": 0,
         "LeverClass": null,
@@ -1528,7 +1931,7 @@
         }
       },
       {
-        "IsGrass": true,
+        "IsGrass": false,
         "OnTileObject": 3,
         "LeverClass": {
           "IsSwitchable": true,
@@ -1560,25 +1963,621 @@
             "Color": 0
           }
         }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      }
+    ],
+    [
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": true,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": true,
+            "IsDoor": true,
+            "IsOpened": true,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": true,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": true,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": true,
+            "IsDoor": true,
+            "IsOpened": false,
+            "Color": 1
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": true,
+        "OnTileObject": 1,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": true,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": true,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      }
+    ],
+    [
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": true,
+            "IsDoor": true,
+            "IsOpened": true,
+            "Color": 3
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": false,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": true,
+        "OnTileObject": 0,
+        "LeverClass": null,
+        "Walls": {
+          "North": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": true,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
+      },
+      {
+        "IsGrass": true,
+        "OnTileObject": 3,
+        "LeverClass": {
+          "IsSwitchable": true,
+          "Color": 1
+        },
+        "Walls": {
+          "North": {
+            "IsActive": true,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "South": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "West": {
+            "IsActive": false,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          },
+          "East": {
+            "IsActive": true,
+            "IsDoor": false,
+            "IsOpened": false,
+            "Color": 0
+          }
+        }
       }
     ]
   ],
   "SonicPosition": {
-    "x": 7,
-    "y": 5,
-    "magnitude": 2.828427,
-    "sqrMagnitude": 8
+    "x": 3,
+    "y": 2,
+    "magnitude": 4.2426405,
+    "sqrMagnitude": 18
   },
   "JumperPosition": {
     "x": 1,
-    "y": 5,
-    "magnitude": 7.28011,
-    "sqrMagnitude": 53
+    "y": 1,
+    "magnitude": 1.41421354,
+    "sqrMagnitude": 2
   },
   "FeeshPosition": {
-    "x": 4,
-    "y": 1,
-    "magnitude": 5.38516474,
-    "sqrMagnitude": 29
+    "x": 1,
+    "y": 4,
+    "magnitude": 4.12310553,
+    "sqrMagnitude": 17
   }
 }
