@@ -13,6 +13,7 @@ public class ItemShopCard : MonoBehaviour
     [SerializeField] private int cost;
     [SerializeField] private TMP_Text costLabel;
     [SerializeField] private Image lockImage;
+    [SerializeField] private Sprite lockSprite;
     [SerializeField] private TMP_Text count;
     private ref int ObjectLimit
     {
@@ -65,12 +66,17 @@ public class ItemShopCard : MonoBehaviour
         buyButton.gameObject.SetActive(false);
         count.transform.parent.gameObject.SetActive(false);
         lockImage.GetComponentInChildren<TMP_Text>().text = $"{LevelRequirement} уровень";
+        GetComponent<Image>().sprite = lockSprite;
     }
 
     private void Update()
     {
         buyButton.interactable = cost <= CoinsManager.Coins && ObjectLimit < maxCount;
         count.text = $"{ObjectLimit}/{maxCount}";
+        if (!buyButton.interactable)
+        {
+            costLabel.text = "Куплено";
+        }
     }
 
     private void BuyItem()

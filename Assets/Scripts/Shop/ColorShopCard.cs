@@ -13,6 +13,7 @@ public class ColorShopCard : MonoBehaviour
     [SerializeField] private int cost;
     [SerializeField] private TMP_Text costLabel;
     [SerializeField] private Image lockImage;
+    [SerializeField] private Sprite lockSprite;
     private ref bool GetColorField
     {
         get
@@ -58,6 +59,7 @@ public class ColorShopCard : MonoBehaviour
         lockImage.gameObject.SetActive(true);
         buyButton.gameObject.SetActive(false);
         lockImage.GetComponentInChildren<TMP_Text>().text = $"{LevelRequirement} уровень";
+        GetComponent<Image>().sprite = lockSprite;
     }
 
     private void Update()
