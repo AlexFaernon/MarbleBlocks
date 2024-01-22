@@ -82,7 +82,7 @@ MonoBehaviour:
   rating: {fileID: 3211096798160517729}
   result: {fileID: 3211096797248825531}
   rankIcon: {fileID: 3211096798702977505}
-  loseSprite: {fileID: 21300000, guid: 1e1ba0ad44ff9a04dae4f4c6941913bd, type: 3}
+  loseSprite: {fileID: 21300000, guid: 9ebc0253e39ae4241b1b42e6d5645d0b, type: 3}
 --- !u!1 &3211096796719221934
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,7 +405,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 95a6685d06711974683fdb1545e9679f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0a71afe3b325feb4eb7c09dc24365aa7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -699,7 +699,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 69ca0c6955592d74498763a6f57b54bc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3030bfe717a66d342ad6a8bf49764c5a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -725,7 +725,7 @@ MonoBehaviour:
     m_Left: 0
     m_Right: 9
     m_Top: 0
-    m_Bottom: 0
+    m_Bottom: 2
   m_ChildAlignment: 4
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
@@ -1120,7 +1120,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 152, y: 42}
+  m_SizeDelta: {x: 152, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3917817269592494089
 CanvasRenderer:
@@ -1150,7 +1150,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: acdf94d97736a234e9bd032262b3d423, type: 3}
+  m_Sprite: {fileID: 21300000, guid: df456a49584ae2f47a14743ab4d196ec, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
