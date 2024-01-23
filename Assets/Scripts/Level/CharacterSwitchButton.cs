@@ -60,6 +60,8 @@ public class CharacterSwitchButton : MonoBehaviour
         var jumper = CharacterManager.Jumper;
         var feesh = CharacterManager.Feesh;
         
+        if (sonic.IsMoving || jumper.IsMoving || feesh.IsMoving) return;
+        
         if (sonic != null) sonic.IsActive = sonic.CompareTag(character);
         if (jumper != null) jumper.IsActive = jumper.CompareTag(character);
         if (feesh != null) feesh.IsActive = feesh.CompareTag(character);

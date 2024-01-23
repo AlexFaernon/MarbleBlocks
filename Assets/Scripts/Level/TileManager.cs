@@ -10,7 +10,7 @@ public class TileManager : MonoBehaviour
     [SerializeField] private Transform field7X7;
     [SerializeField] private Transform field9X9;
     [SerializeField] private Transform field11X11;
-    public static Vector2Int EditorFieldSize; //todo fix camera on editor
+    public static Vector2Int EditorFieldSize;
     public static bool LoadLevel;
     private Grid _grid;
     private static Tile[,] _tiles;

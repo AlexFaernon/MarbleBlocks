@@ -8,6 +8,9 @@ public class Training : MonoBehaviour
     [SerializeField] private Transform feeshTraining;
     [SerializeField] private Transform sonicTraining;
     [SerializeField] private Transform jumperTraining;
+    [SerializeField] private GameObject zoomTraining;
+    [SerializeField] private GameObject waterlilyTraining;
+    [SerializeField] private GameObject teleportTraining;
     [SerializeField] private GameObject characterHand;
 
     private void Start()
@@ -24,6 +27,15 @@ public class Training : MonoBehaviour
                 break;
             case 3:
                 StartCoroutine(JumperTraining());
+                break;
+            case 5:
+                StartCoroutine(ShowBasicTutorial(zoomTraining));
+                break;
+            case 8:
+                StartCoroutine(ShowBasicTutorial(waterlilyTraining));
+                break;
+            case 15:
+                StartCoroutine(ShowBasicTutorial(teleportTraining));
                 break;
         }
     }
@@ -163,6 +175,16 @@ public class Training : MonoBehaviour
         yield return new WaitUntil(() => Input.touchCount == 0);
         yield return new WaitUntil(() => Input.GetMouseButtonDown(0) || GetTouchDown());
         current.SetActive(false);
+        blocker.SetActive(false);
+    }
+
+    private IEnumerator ShowBasicTutorial(GameObject tutorial)
+    {
+        tutorial.SetActive(true);
+        blocker.SetActive(true);
+        yield return new WaitUntil(() => Input.touchCount == 0);
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0) || GetTouchDown());
+        tutorial.SetActive(false);
         blocker.SetActive(false);
     }
 

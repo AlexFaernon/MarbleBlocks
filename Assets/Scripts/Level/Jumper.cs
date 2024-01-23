@@ -108,7 +108,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
 
     private void FlipCharacter(bool jumpRight)
     {
-        if ((jumpRight && !facingRight) || (!jumpRight && facingRight))
+        if (jumpRight && !facingRight || !jumpRight && facingRight)
         {
             facingRight = !facingRight;
 
@@ -198,6 +198,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
     {
         Debug.Log("click");
         if (LevelSaveManager.LevelNumber == 2) return;
+        
         
         switchButton.ActivateCharacter();
     }
