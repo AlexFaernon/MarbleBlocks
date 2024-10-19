@@ -21,6 +21,8 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
     private MeshRenderer mesh;
     private bool facingRight = true;
 
+    private readonly Vector3 _animationOffset = new Vector3(0, 4.5f, 0);
+
 
     public bool IsActive
     {
@@ -88,12 +90,21 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
             FlipCharacter(false);
             skeletonAnimation.SetAnimation("liz side jump", false);
             skeletonAnimation.CurrentSkeletonAnimation.AnimationState.TimeScale = 2;
-        }        
+        }
+
+        var targetAnimationOffset = targetTile.isSonicOnTile ? _animationOffset : Vector3.zero;
+        var currentAnimationOffset = CurrentTile.isSonicOnTile ? _animationOffset : Vector3.zero;
+        var distance = (targetTile.transform.position - transform.position).magnitude;
         
         while ((transform.position - targetTile.transform.position).magnitude > 0.1f)
         {
-            var direction = targetTile.transform.position - transform.position;
-            transform.Translate(Time.deltaTime * speed * direction.normalized);
+            var moveVector = targetTile.transform.position - transform.position;
+            var remainingDistRatio =  1 - moveVector.magnitude / distance;
+            foreach (Transform child in transform)
+            {
+                child.localPosition = Vector3.Lerp(currentAnimationOffset, targetAnimationOffset, remainingDistRatio);
+            }
+            transform.Translate(Time.deltaTime * speed * moveVector.normalized);
             yield return new WaitForEndOfFrame();
         }
         

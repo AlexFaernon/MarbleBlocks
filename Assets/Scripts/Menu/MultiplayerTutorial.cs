@@ -7,7 +7,7 @@ public class MultiplayerTutorial : MonoBehaviour
 {
 	private void Awake()
 	{
-		if (PlayerData.SingleLevelCompleted >= 4 && PlayerPrefs.HasKey("OpenedEditor") && !PlayerPrefs.HasKey("MultiplayerTutorial"))
+		if (PlayerData.SingleLevelCompleted >= 4 && PlayerPrefs.HasKey("OpenedEditor") && AchievementManager.LevelsCreated > 0 && !PlayerPrefs.HasKey("MultiplayerTutorial"))
 		{
 			foreach (Transform child in transform)
 			{
