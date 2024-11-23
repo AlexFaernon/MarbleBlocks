@@ -13,6 +13,7 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
     public CharacterSwitchButton switchButton;
     private bool _isMoving;
     private Side _movingSide;
+    private readonly Dictionary<Tile, Side> _availableTiles = new();
     private Lever _lever;
     public bool isActive;
     public Vector2Int GridPosition => CurrentTile.gridPosition;
@@ -36,7 +37,7 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
             
             if (IsActive)
             {
-                HighlightTiles();
+                UpdateAvailableTiles();
             }
             
             if (_lever is not null && (transform.position - _lever.transform.position).magnitude < 0.1f)
@@ -55,7 +56,7 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
             isActive = value;
             if (value)
             {
-                HighlightTiles();
+                UpdateAvailableTiles();
             }
         }
     }
@@ -74,7 +75,20 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
         mesh.sortingOrder = 6;
     }
 
-    public void StartMoving(Side side)
+    public void StartMovingBySwipe(Side side)
+    {
+        StartMoving(side);
+    }
+
+    public void StartMovingByTileClick(Tile tile)
+    {
+        if (_availableTiles.TryGetValue(tile, out var side))
+        {
+            StartMoving(side);
+        }
+    }
+    
+    private void StartMoving(Side side)
     {
         Assert.IsTrue(IsActive);
         
@@ -170,7 +184,7 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
         }
     }
     
-    private void HighlightTiles()
+    private void UpdateAvailableTiles()
     {
         var highlightedTiles = new HashSet<Tile>();
         foreach (Side side in Enum.GetValues(typeof(Side)))
@@ -184,10 +198,10 @@ public class Sonic : MonoBehaviour, IPointerDownHandler
                     break;
                 }
             }
-            if (currentTile != CurrentTile)
-            {
-                highlightedTiles.Add(currentTile);
-            }
+            if (currentTile == CurrentTile) continue;
+
+            _availableTiles[currentTile] = side;
+            highlightedTiles.Add(currentTile);
         }
         
         TileManager.HighlightTiles(highlightedTiles);

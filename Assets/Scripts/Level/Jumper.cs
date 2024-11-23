@@ -12,6 +12,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
     public Tile CurrentTile { get; private set; }
     public CharacterSwitchButton switchButton;
     private Side _movingSide;
+    private readonly Dictionary<Tile, Side> _availableTiles = new();
     private bool _isActive;
     private Collider2D _collider2D;
     public Vector2Int GridPosition => CurrentTile.gridPosition;
@@ -21,7 +22,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
     private MeshRenderer mesh;
     private bool facingRight = true;
 
-    private readonly Vector3 _animationOffset = new Vector3(0, 4.5f, 0);
+    private readonly Vector3 _animationOffset = new(0, 4.5f, 0);
 
 
     public bool IsActive
@@ -32,7 +33,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
             _isActive = value;
             if (value)
             {
-                HighlightTiles();
+                UpdateAvailableTiles();
             }
         }
     }
@@ -128,8 +129,21 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
             transform.localScale = theScale;
         }
     }
+
+    public void StartMovingBySwipe(Side side)
+    {
+        StartMoving(side);
+    }
+
+    public void StartMovingByTileClick(Tile tile)
+    {
+        if (_availableTiles.TryGetValue(tile, out var side))
+        {
+            StartMoving(side);
+        }
+    }
     
-    public void StartMoving(Side side)
+    private void StartMoving(Side side)
     {
         Assert.IsTrue(IsActive);
         
@@ -190,16 +204,16 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
         return targetTile;
     }
 
-    private void HighlightTiles()
+    private void UpdateAvailableTiles()
     {
         var highlightedTiles = new HashSet<Tile>();
         foreach (Side side in Enum.GetValues(typeof(Side)))
         {
             var targetTile = GetTargetTile(side);
-            if (targetTile != CurrentTile && !targetTile.IsEdge)
-            {
-                highlightedTiles.Add(targetTile);
-            }
+            if (targetTile == CurrentTile || targetTile.IsEdge) continue;
+
+            _availableTiles[targetTile] = side;
+            highlightedTiles.Add(targetTile);
         }
         
         TileManager.HighlightTiles(highlightedTiles);
@@ -225,7 +239,7 @@ public class Jumper : MonoBehaviour, IPointerDownHandler
             }
             if (IsActive)
             {
-                HighlightTiles();
+                UpdateAvailableTiles();
             }
         }
         

@@ -47,47 +47,19 @@ public class Feesh : MonoBehaviour, IPointerDownHandler
         CharacterManager.Feesh = this;
     }
 
-    private void Update()
+    public void StartMoving(Tile targetTile)
     {
-        if (!IsActive || CurrentTile.isJumperOnTile || CurrentTile.isSonicOnTile || IsMoving)
-        {
-            return;
-        }
+        if (IsMoving || !_availableTiles.Contains(targetTile)) return;
 
-        Vector2 ray;
-        if (Input.GetMouseButtonDown(0))
+        if (GameMode.CurrentGameMode == GameModeType.LevelEditor)
         {
-            ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            WriteHelpInEditor.PushFeeshMove(targetTile.gridPosition);
         }
-        else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-        {
-            var touch = Input.GetTouch(0);
-            ray = Camera.main.ScreenToWorldPoint(touch.position);
-        }
-        else
-        {
-            return;
-        }
-
-        var layerObject = LayerMask.GetMask("Ground", "UI");
-        
-        var hit = Physics2D.Raycast(ray, Vector2.zero, Mathf.Infinity, layerObject);
-        if (hit.collider is not null)
-        {
-            var targetTile = hit.collider.gameObject.GetComponent<Tile>();
-            if (_availableTiles.Contains(targetTile))
-            {
-                if (GameMode.CurrentGameMode == GameModeType.LevelEditor)
-                {
-                    WriteHelpInEditor.PushFeeshMove(targetTile.gridPosition);
-                }
-                StepCounter.Count++;
-                _currentPath = GetPathToTile(targetTile);
-                IsMoving = true;
-                _collider.enabled = false;
-                StartCoroutine(Move());
-            }
-        }
+        StepCounter.Count++;
+        _currentPath = GetPathToTile(targetTile);
+        IsMoving = true;
+        _collider.enabled = false;
+        StartCoroutine(Move());
     }
 
     public void Reset()

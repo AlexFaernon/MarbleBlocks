@@ -327,4 +327,22 @@ public class Tile : MonoBehaviour, IPointerClickHandler
     {
         OnTileClick.Invoke(this);
     }
+
+    public override bool Equals(object other)
+    {
+        if (other is Tile tile)
+        {
+            return Equals(tile);
+        }
+
+        return false;
+    }
+    private bool Equals(Tile other)
+    {
+        return gridPosition == other.gridPosition;
+    }
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(gridPosition.x, gridPosition.y);
+    }
 }
